@@ -1,0 +1,35 @@
+---
+description: Innotech design system — dark theme, fonts, tokens, animations, cards, and product/copy naming
+alwaysApply: true
+---
+
+# Design & Naming Rules
+
+## Design
+- **Theme:** Dark only. Base background `#070c18`. No white or light backgrounds.
+- **Fonts:** Chakra Petch (headings), DM Sans (body), IBM Plex Mono (mono/metadata). Use CSS vars: `--font-chakra`, `--font-dm-sans`, `--font-ibm-mono`. Never use Inter, Roboto, Arial, or system fonts.
+- **Colours:** Only CSS variable tokens (e.g. `var(--background)`, `var(--muted-foreground)`). No raw hex in components or pages.
+- **Icons:** Stroke width always `1.5` (e.g. Lucide `strokeWidth={1.5}`). Never default 2.
+- **Motion:** No looping animations, parallax, or autoplay video (unless muted). Hover 150ms, dropdowns/menus 200ms, section reveals 300–400ms.
+- **CTAs:** One primary CTA per section maximum.
+- **Cards:** 3px left-border accents only. No full coloured card backgrounds.
+- **Body copy:** Max column width 680px.
+
+## Components
+- Client components: `"use client"` at top.
+- Framer Motion: define variants outside the component, not inline.
+- No magic numbers — use spacing and colour tokens only.
+- Mobile-first: base styles for mobile, enhance at `lg` breakpoint.
+
+## Naming (exact terms)
+| Use | Never use |
+|-----|-----------|
+| **SafeGuard** (safety monitoring) | — |
+| **AutoLock** (autonomous charging + fleet) | — |
+| **Radar Link** (V2X + localization + drone tracking) | — |
+| autonomous charging | automated charging |
+| Congregate Detection | Congreagate / Congregate (as product name) |
+| Mining | Minning |
+| Company (in nav) | Our Company |
+| Charge Depot | Overnight Charge Facility |
+| Robotic Monitoring System (product name) | predictive monitoring |

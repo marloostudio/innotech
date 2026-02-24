@@ -1,0 +1,40 @@
+# .cursorrules — InnoTech Systems
+
+## Stack
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4 (config via app/globals.css @theme — no tailwind.config.ts)
+- Framer Motion (all animations)
+- Lucide React (icons only — no other icon libraries)
+- shadcn/ui (Radix UI based)
+
+## Design Rules
+- Dark theme only. Base background is #070c18. Never use white or light backgrounds.
+- Three fonts only: Chakra Petch (headings and H1–H4 only), DM Sans (body copy, nav links, buttons, labels), IBM Plex Mono (mono metadata, tags, slugs only).
+- Never use Inter, Roboto, Arial, or system fonts anywhere.
+- Nav link labels use DM Sans — NOT Chakra Petch. Chakra Petch is for headings only.
+- All colours must reference CSS variable tokens — no raw hex values in components or pages.
+- Icon stroke width is always 1.5 — never use the default 2.
+- No looping animations. No parallax. No autoplay video unless muted.
+- Animation durations: hover 150ms, dropdowns/menus 200ms, section reveals 300–400ms.
+- One primary CTA per section maximum.
+- Cards use 3px left-border accents — never full coloured card backgrounds.
+- Max body copy column width: 680px.
+- All page sections must be wrapped in a max-width container (max-w-screen-xl or max-w-7xl) centred with mx-auto and horizontal padding px-6 or px-8.
+
+## Component Conventions
+- All client components must have "use client" at the top.
+- Framer Motion variants defined outside the component, not inline.
+- No magic numbers — use spacing and colour tokens only.
+- Mobile-first. Base styles for mobile, enhance at lg breakpoint.
+- Footer must always be full-width background with inner content wrapped in max-w-7xl mx-auto px-6 or px-8.
+
+## Naming — Always Use These Exact Terms
+- Product 1: SafeGuard
+- Product 2: AutoLock
+- Product 3: Radar Link
+- Never: "automated charging" — always "autonomous charging"
+- Never: "Congreagate" — always "Congregate Detection"
+- Never: "Minning" — always "Mining"
+- Never: "Our Company" in nav — always "Company"
+- Never: "Overnight Charge Facility" — always "Charge Depot"

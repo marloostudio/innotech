@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* ── InnoTech Brand Tokens ─────────────────────────── */
+
+  /* Base surfaces */
+  --it-bg: #0b1221;
+  --it-surface: #111827;
+  --it-surface-raised: #1a2540;
+
+  /* Borders */
+  --it-border: #1e3050;
+  --it-border-subtle: #131e30;
+
+  /* Text */
+  --it-text-primary: #eaf2ff;
+  --it-text-secondary: #c8d8f0;
+  --it-text-muted: #7a90b0;
+  --it-text-dim: #4a6080;
+
+  /* Primary brand — Radar Link blue */
+  --it-blue: #4d9fff;
+  --it-blue-hover: #7bb8ff;
+  --it-blue-subtle: rgba(77, 159, 255, 0.08);
+  --it-blue-border: rgba(77, 159, 255, 0.25);
+  --it-blue-glow: rgba(77, 159, 255, 0.2);
+
+  /* Product — SafeGuard teal */
+  --it-safeguard: #00d4aa;
+  --it-safeguard-subtle: rgba(0, 212, 170, 0.08);
+  --it-safeguard-border: rgba(0, 212, 170, 0.25);
+
+  /* Product — AutoLock orange */
+  --it-autolock: #ff6b35;
+  --it-autolock-subtle: rgba(255, 107, 53, 0.08);
+  --it-autolock-border: rgba(255, 107, 53, 0.25);
+
+  /* Pillar — Solutions violet */
+  --it-solutions: #b47dff;
+  --it-solutions-subtle: rgba(180, 125, 255, 0.08);
+  --it-solutions-border: rgba(180, 125, 255, 0.25);
+
+  /* Pillar — Industries amber */
+  --it-industries: #f59e0b;
+  --it-industries-subtle: rgba(245, 158, 11, 0.08);
+  --it-industries-border: rgba(245, 158, 11, 0.25);
+
+  /* Semantic */
+  --it-success: #00d4aa;
+  --it-warning: #f59e0b;
+  --it-danger: #fb7185;
+  --it-info: #38bdf8;
+
+  /* Shadows */
+  --it-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --it-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --it-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --it-shadow-glow-blue: 0 0 20px rgba(77, 159, 255, 0.25);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: var(--it-blue);
+  --primary-foreground: var(--it-bg);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-mono: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
+  --font-chakra: var(--font-chakra), 'Chakra Petch', sans-serif;
+  --color-background: #0b1221;
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* InnoTech brand (Tailwind utilities) */
+  --color-it-bg: var(--it-bg);
+  --color-it-surface: var(--it-surface);
+  --color-it-surface-raised: var(--it-surface-raised);
+  --color-it-border: var(--it-border);
+  --color-it-text-primary: var(--it-text-primary);
+  --color-it-text-secondary: var(--it-text-secondary);
+  --color-it-text-muted: var(--it-text-muted);
+  --color-it-text-dim: var(--it-text-dim);
+  --color-it-blue: var(--it-blue);
+  --color-it-blue-hover: var(--it-blue-hover);
+  --color-it-safeguard: var(--it-safeguard);
+  --color-it-autolock: var(--it-autolock);
+  --color-it-solutions: var(--it-solutions);
+  --color-it-industries: var(--it-industries);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
