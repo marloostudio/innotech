@@ -46,7 +46,7 @@ export function PillarHero({
   return (
     <section
       style={!heroClass ? { background: "var(--it-bg)", color: "var(--it-text-primary)" } : { color: "var(--it-text-primary)" }}
-      className={["relative w-full pt-24 md:pt-28 pb-14 md:pb-20 min-h-0", heroClass].filter(Boolean).join(" ")}
+      className={["relative w-full pt-24 md:pt-28 pb-20 md:pb-28 min-h-0", heroClass].filter(Boolean).join(" ")}
     >
       <PageShell>
         <div className="max-w-4xl mx-auto text-center space-y-6">

@@ -74,7 +74,7 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <>
-      <Section className="pt-24 pb-12">
+      <Section className="pt-24 pb-20 md:pb-28">
         <h1
           className="text-4xl font-bold mb-6"
           style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}

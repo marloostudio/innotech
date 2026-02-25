@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Linkedin, Twitter, Github } from "lucide-react"
+import { Linkedin, Twitter, Github, Youtube } from "lucide-react"
 
 import { footerNav } from "@/lib/nav"
 import { siteConfig } from "@/lib/site"
@@ -60,6 +60,16 @@ export function Footer() {
                 <Github className="h-5 w-5" strokeWidth={1.5} />
                 <span className="sr-only">GitHub</span>
               </Link>
+              <Link
+                href="https://www.youtube.com/channel/UCWS8SE_2VAz1hkRKlhlu_Iw?view_as=subscriber"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors duration-150 hover:opacity-90"
+                style={{ color: 'var(--it-text-muted)' }}
+              >
+                <Youtube className="h-5 w-5" strokeWidth={1.5} />
+                <span className="sr-only">YouTube</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -95,6 +105,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: 'var(--it-text-muted)' }}>
           <p>© {currentYear} {siteConfig.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
+            <Link href="/sitemap.xml" className="transition-colors duration-150 hover:opacity-90" style={{ color: 'var(--it-text-secondary)' }}>
+              Sitemap
+            </Link>
             <Link href="/legal/privacy-policy" className="transition-colors duration-150 hover:opacity-90" style={{ color: 'var(--it-text-secondary)' }}>
               Privacy Policy
             </Link>

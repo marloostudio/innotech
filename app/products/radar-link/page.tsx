@@ -43,7 +43,7 @@ export default function RadarLinkPage() {
               <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">
                 {radarLinkProduct.hero.description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
                 <Button size="lg" asChild>
                   <Link href="/demo">Request a Demo</Link>
                 </Button>
@@ -135,7 +135,7 @@ export default function RadarLinkPage() {
       </PageShell>
 
       {/* Use Cases Section */}
-      <section className="it-section-mid py-16 lg:py-24">
+      <section className="it-section-mid py-20 lg:py-28">
         <PageShell>
           <SectionHeader
             label="Applications"

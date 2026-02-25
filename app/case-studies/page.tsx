@@ -76,8 +76,9 @@ export default function CaseStudiesPage() {
       />
 
       {/* Case Studies Grid */}
-      <PageShell id="case-studies-grid">
-        <div className="grid lg:grid-cols-2 gap-8">
+      <section className="py-20 md:py-28" style={{ background: "var(--it-section-2)" }}>
+        <PageShell id="case-studies-grid">
+          <div className="grid lg:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
             <Card key={index} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
               <CardHeader>
@@ -118,7 +119,7 @@ export default function CaseStudiesPage() {
           <p className="text-it-light-text-muted mb-6">
             Detailed case studies coming soon. Contact us to learn more about these deployments.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap gap-4 justify-center">
             <Button asChild size="lg">
               <Link href="/demo">Request a Demo</Link>
             </Button>
@@ -127,17 +128,18 @@ export default function CaseStudiesPage() {
             </Button>
           </div>
         </div>
-      </PageShell>
+        </PageShell>
+      </section>
 
       {/* CTA */}
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="bg-muted/30 py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-3xl font-bold">Ready to Transform Your Operations?</h2>
             <p className="text-lg text-muted-foreground text-pretty">
               Join leading companies deploying autonomous systems with InnoTech infrastructure
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row flex-wrap gap-4 justify-center">
               <Button asChild size="lg">
                 <Link href="/demo">Schedule a Demo</Link>
               </Button>

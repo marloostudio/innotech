@@ -46,7 +46,7 @@ const additionalTech = [
 export default function TechnologyPage() {
   return (
     <>
-      <Section className="pt-24 pb-12">
+      <Section className="pt-24 pb-20 md:pb-28">
         <h1
           className="text-4xl font-bold mb-6"
           style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
@@ -77,7 +77,7 @@ export default function TechnologyPage() {
         <TechnologyImageStrip />
       </Section>
 
-      <Section className="bg-muted/30 py-16">
+      <Section className="bg-muted/30 py-20 md:py-28">
         <SectionHeader 
           title="Built for Enterprise"
           description="Beyond core capabilities, our technology is designed for the demands of enterprise operations"

@@ -72,9 +72,10 @@ export default function ProductsPage() {
       />
 
       {/* Products Grid */}
-      <PageShell>
-        <div className="grid lg:grid-cols-3 gap-8">
-          {products.map((product) => {
+      <section className="py-20 md:py-28" style={{ background: "var(--it-section-2)" }}>
+        <PageShell>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {products.map((product) => {
             const Icon = product.icon
             return (
               <Card key={product.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
@@ -108,12 +109,13 @@ export default function ProductsPage() {
                 </CardContent>
               </Card>
             )
-          })}
-        </div>
-      </PageShell>
+            })}
+          </div>
+        </PageShell>
+      </section>
 
       {/* Why InnoTech Section */}
-      <section className="it-section-mid py-16 lg:py-24">
+      <section className="it-section-mid py-20 md:py-28">
         <PageShell>
           <SectionHeader
             label="Why InnoTech"

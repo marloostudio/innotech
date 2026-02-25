@@ -54,7 +54,7 @@ export function ProductFeatureDetail({
     <>
       {/* Breadcrumbs */}
       <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
             <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
@@ -68,7 +68,7 @@ export function ProductFeatureDetail({
       </div>
 
       {/* Hero Section */}
-      <section className="it-hero py-16 lg:py-24">
+      <section className="it-hero py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
@@ -114,7 +114,7 @@ export function ProductFeatureDetail({
       </section>
 
       {/* Benefits & Features — white section */}
-      <section className="py-16 lg:py-24" style={{ background: 'var(--it-light-surface)' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'var(--it-light-surface)' }}>
         <PageShell>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Key Benefits */}
@@ -155,7 +155,7 @@ export function ProductFeatureDetail({
       </section>
 
       {/* Use Cases — light gray section */}
-      <section className="py-16 lg:py-24" style={{ background: 'var(--it-light-bg)', borderTop: '1px solid var(--it-light-border)', borderBottom: '1px solid var(--it-light-border)' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'var(--it-light-bg)', borderTop: '1px solid var(--it-light-border)', borderBottom: '1px solid var(--it-light-border)' }}>
         <PageShell>
           <SectionHeader
             theme="light"

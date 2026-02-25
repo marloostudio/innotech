@@ -80,7 +80,7 @@ const caseStudies = [
 export default function CaseStudiesPage() {
   return (
     <>
-      <Section className="pt-24 pb-12">
+      <Section className="pt-24 pb-20 md:pb-28">
         <h1
           className="text-4xl font-bold mb-6"
           style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
@@ -165,7 +165,7 @@ export default function CaseStudiesPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30 py-16">
+      <Section className="bg-muted/30 py-20 md:py-28">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold">Ready to Write Your Success Story?</h2>
           <p className="text-lg text-muted-foreground">

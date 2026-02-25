@@ -54,7 +54,7 @@ export default function OurStoryPage() {
     <>
       {/* Breadcrumbs */}
       <div className="border-b">
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function OurStoryPage() {
       </div>
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 lg:py-24">
+      <section className="bg-gradient-to-b from-muted/50 to-background py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">Our Story</Badge>
@@ -99,7 +99,7 @@ export default function OurStoryPage() {
       </PageShell>
 
       {/* Timeline */}
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="bg-muted/30 py-20 lg:py-28">
         <PageShell>
           <SectionHeader 
             title="Our Journey"

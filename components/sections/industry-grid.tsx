@@ -50,7 +50,7 @@ export function IndustryGrid({ title, description, industries, showCta = false }
   }
 
   return (
-    <section className="it-section-mid py-16 md:py-24">
+    <section className="it-section-mid py-20 md:py-28">
       <PageShell>
       <SectionHeader title={title} description={description} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

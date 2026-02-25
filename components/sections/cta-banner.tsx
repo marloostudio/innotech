@@ -35,7 +35,7 @@ export function CtaBanner({
         background: "var(--it-bg)",
         borderTop: "1px solid var(--it-border)",
       }}
-      className="w-full py-16 md:py-24"
+      className="w-full py-20 md:py-28"
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-6 max-w-3xl mx-auto" style={{ color: "var(--it-text-primary)" }}>
@@ -45,7 +45,7 @@ export function CtaBanner({
           <p className="text-lg md:text-xl opacity-90 text-pretty" style={{ color: "var(--it-text-secondary)" }}>
             {description}
           </p>
-          <div className="pt-4 flex flex-col items-center justify-center gap-3">
+          <div className="pt-4 flex flex-row flex-wrap items-center justify-center gap-3">
             {primaryLabel && (
               <Link href={primaryHref}>
                 <Button
@@ -61,7 +61,7 @@ export function CtaBanner({
             )}
             {secondaryCta && (
               <Link href={secondaryCta.href}>
-                <Button size="lg" variant="ghost" className="hover:bg-white/10" style={{ color: "var(--it-text-primary)" }}>
+                <Button size="lg" variant="outline" className="border-[var(--it-border)] text-[var(--it-text-primary)] hover:bg-[var(--it-surface)]">
                   {secondaryCta.label}
                 </Button>
               </Link>

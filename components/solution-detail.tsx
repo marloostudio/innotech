@@ -47,7 +47,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
     <>
       {/* Breadcrumbs */}
       <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
             <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
@@ -59,7 +59,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
       </div>
 
       {/* Hero Section — two-column with 3/2 placeholder on right */}
-      <section className="it-hero-solutions py-16 lg:py-24">
+      <section className="it-hero-solutions py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
             <div>
@@ -114,7 +114,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
       </section>
 
       {/* Challenges & How It Works */}
-      <section className="it-section-alt py-16 lg:py-24">
+      <section className="it-section-alt py-20 lg:py-28">
         <PageShell>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Challenges */}
@@ -155,7 +155,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
       </section>
 
       {/* Benefits */}
-      <section className="it-section py-16 lg:py-24">
+      <section className="it-section py-20 lg:py-28">
         <PageShell>
           <SectionHeader
             label="Benefits"
@@ -179,7 +179,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
 
       {/* Related Products */}
       {solution.relatedProducts && solution.relatedProducts.length > 0 && (
-        <section className="it-section-mid py-16 lg:py-24">
+        <section className="it-section-mid py-20 lg:py-28">
           <PageShell>
             <SectionHeader
               theme="dark"

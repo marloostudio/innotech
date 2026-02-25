@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageShell, Section } from "@/components/page-shell"
+import { siteConfig } from "@/lib/site"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -45,7 +46,7 @@ export default function DemoPage() {
       </section>
 
       {/* Form section — dark surface, card with 3px left accent */}
-      <Section variant="dark" className="py-16 md:py-24">
+      <Section variant="dark" className="py-20 md:py-28">
         <div className="max-w-2xl mx-auto">
           <Card className="overflow-hidden it-card it-card-accent-blue border-it-border shadow-(--it-shadow-md)">
             <CardContent className="pt-8 pb-8 px-6 sm:px-8">
@@ -181,10 +182,10 @@ export default function DemoPage() {
             <p className="mt-2">
               Or email{" "}
               <Link
-                href="mailto:sales@innotech-systems.com"
+                href={`mailto:${siteConfig.company.email}`}
                 className="underline hover:text-it-text-secondary"
               >
-                sales@innotech-systems.com
+                {siteConfig.company.email}
               </Link>
             </p>
           </div>

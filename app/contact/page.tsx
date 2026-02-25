@@ -198,9 +198,11 @@ export default function ContactPage() {
                 <p className="text-sm text-it-light-text-muted">
                   For pricing information, product demos, or to discuss your specific automation requirements.
                 </p>
-                <Button variant="outline" className="w-full">
-                  <Mail className="mr-2 h-4 w-4" />
-                  sales@innotech-systems.com
+                <Button variant="outline" className="w-full" asChild>
+                  <a href={`mailto:${siteConfig.company.email}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    {siteConfig.company.email}
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -213,9 +215,11 @@ export default function ContactPage() {
                 <p className="text-sm text-it-light-text-muted">
                   24/7 support for existing customers. Login to your account for faster service.
                 </p>
-                <Button variant="outline" className="w-full">
-                  <Mail className="mr-2 h-4 w-4" />
-                  support@innotech-systems.com
+                <Button variant="outline" className="w-full" asChild>
+                  <a href={`mailto:${siteConfig.company.email}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    {siteConfig.company.email}
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -223,7 +227,7 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="py-16 text-[var(--it-light-text-primary)]" style={{ background: "var(--it-light-surface-2)" }}>
+      <Section className="py-20 md:py-28 text-[var(--it-light-text-primary)]" style={{ background: "var(--it-light-surface-2)" }}>
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-it-light-text-primary">Prefer to Talk?</h2>
           <p className="text-lg text-it-light-text-muted">

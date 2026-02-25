@@ -221,10 +221,22 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-2 shrink-0">
             <Link
               href="/contact"
-              className="px-3 py-2 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
-              style={{ fontSize: "0.9375rem", color: NAV_LINK_COLOR, fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = NAV_LINK_HOVER)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = NAV_LINK_COLOR)}
+              className="px-3 py-2 rounded border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
+              style={{
+                fontSize: "0.9375rem",
+                color: NAV_LINK_COLOR,
+                fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+                fontWeight: 500,
+                borderColor: BAR_BORDER,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = NAV_LINK_HOVER
+                e.currentTarget.style.borderColor = "var(--it-blue)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = NAV_LINK_COLOR
+                e.currentTarget.style.borderColor = BAR_BORDER
+              }}
             >
               Contact
             </Link>
@@ -311,7 +323,7 @@ function ProductsMegaMenu({ onClose }: { onClose: () => void }) {
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3
-              className="text-xs font-semibold uppercase tracking-widest mb-1"
+              className="text-lg font-semibold uppercase tracking-widest mb-1"
               style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}
             >
               Products
@@ -381,7 +393,7 @@ function SolutionsMegaMenu({ onClose }: { onClose: () => void }) {
     >
       <div className="max-w-screen-2xl mx-auto px-8 py-6">
         <h3
-          className="text-xs font-semibold uppercase tracking-widest mb-1"
+          className="text-lg font-semibold uppercase tracking-widest mb-1"
           style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}
         >
           Solutions
@@ -452,7 +464,7 @@ function IndustriesMegaMenu({ onClose }: { onClose: () => void }) {
       role="menu"
     >
       <div className="max-w-screen-2xl mx-auto px-8 py-6">
-        <h3 className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
+        <h3 className="text-lg font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
           Industries
         </h3>
         <p className="text-sm mb-6" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>

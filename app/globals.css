@@ -159,6 +159,10 @@
       transparent 65%),
     linear-gradient(180deg, #0b1221 0%, #111827 100%);
 
+  /* Section vertical spacing — relax space between sections (no sticking) */
+  --section-space-y: 5rem;      /* 80px mobile */
+  --section-space-y-md: 7rem;  /* 112px from md up */
+
   /* ─────────────────────────────────────────────────────
      FIX 2: Section alternation system
      Three clearly distinct surface levels for dark pages.
@@ -327,6 +331,16 @@
   --color-it-mid-section:   var(--it-mid-section-bg);
   --color-it-card-default:  var(--it-card-default-bg);
   --color-it-card-hover:    var(--it-card-hover-bg);
+}
+
+/* ── Hero badge: larger balloon above hero title ─────── */
+.max-w-4xl.text-center > [data-slot="badge"]:first-child {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+.max-w-4xl.text-center > [data-slot="badge"]:first-child > svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 /* ── Contact page: light form area ───────────────────── */

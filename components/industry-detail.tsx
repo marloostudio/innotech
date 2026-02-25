@@ -49,7 +49,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
     <>
       {/* Breadcrumbs */}
       <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
             <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
@@ -61,7 +61,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
       </div>
 
       {/* Hero Section — optional two-column with placeholder on right */}
-      <section className="it-hero py-16 lg:py-24">
+      <section className="it-hero py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className={heroImagePlaceholder ? 'grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto' : 'max-w-4xl mx-auto'}>
             <div>
@@ -119,7 +119,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
 
       {/* Metrics */}
       {industry.metrics && industry.metrics.length > 0 && (
-        <section className="it-section-mid py-12">
+        <section className="it-section-mid py-16 md:py-20">
           <div className="container mx-auto px-4">
             <div className="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {industry.metrics.map((metric, index) => (
@@ -150,7 +150,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
       )}
 
       {/* Challenges & Solutions — white section */}
-      <section className="py-16 lg:py-24" style={{ background: 'var(--it-light-surface)' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'var(--it-light-surface)' }}>
         <PageShell>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Challenges */}
@@ -191,7 +191,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
       </section>
 
       {/* Benefits — light gray section */}
-      <section className="py-16 lg:py-24" style={{ background: 'var(--it-light-bg)', borderTop: '1px solid var(--it-light-border)', borderBottom: '1px solid var(--it-light-border)' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'var(--it-light-bg)', borderTop: '1px solid var(--it-light-border)', borderBottom: '1px solid var(--it-light-border)' }}>
         <PageShell>
           <SectionHeader
             theme="light"
@@ -217,7 +217,7 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
 
       {/* Related Products */}
       {industry.relatedProducts && industry.relatedProducts.length > 0 && (
-        <section className="it-section-mid py-16 lg:py-24">
+        <section className="it-section-mid py-20 lg:py-28">
           <PageShell>
             <SectionHeader
               theme="dark"

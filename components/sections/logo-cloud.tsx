@@ -8,7 +8,7 @@ interface LogoCloudProps {
 
 export function LogoCloud({ title = "Trusted by industry leaders", logos }: LogoCloudProps) {
   return (
-    <section className="it-section-mid py-12">
+    <section className="it-section-mid py-16 md:py-20">
       <PageShell>
       <div className="space-y-8">
         <p className="text-center text-sm font-medium text-it-text-muted uppercase tracking-wider">

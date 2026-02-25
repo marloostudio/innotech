@@ -49,7 +49,7 @@ export function Section({ variant = "white", alt = false, children, className, c
   return (
     <section
       id={id}
-      className={cn(alt ? "it-section-alt" : "it-section", "py-16 md:py-24", className)}
+      className={cn(alt ? "it-section-alt" : "it-section", "py-20 md:py-28", className)}
       style={Object.keys(style).length ? style : undefined}
     >
       <PageShell className={containerClassName}>

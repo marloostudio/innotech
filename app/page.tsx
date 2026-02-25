@@ -67,15 +67,17 @@ export default function HomePage() {
       {/* Stats: light, alternating */}
       <Stats stats={statsPlaceholder} variant="light" alt />
       {/* Product Overview — 16/9 placeholder */}
-      <PageShell>
-        <div className="max-w-4xl mx-auto">
-          <ImagePlaceholder
-            aspectRatio="16/9"
-            alt="Product Overview — AutoLock in Action"
-            label="Product Overview — AutoLock in Action"
-          />
-        </div>
-      </PageShell>
+      <section className="py-20 md:py-28" style={{ background: "var(--it-section-2)" }}>
+        <PageShell>
+          <div className="max-w-4xl mx-auto">
+            <ImagePlaceholder
+              aspectRatio="16/9"
+              alt="Product Overview — AutoLock in Action"
+              label="Product Overview — AutoLock in Action"
+            />
+          </div>
+        </PageShell>
+      </section>
       {/* FAQ: white */}
       <Faq items={faqItems} variant="white" />
       {/* CtaBanner: dark (unchanged) */}

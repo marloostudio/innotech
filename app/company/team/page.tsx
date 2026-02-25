@@ -34,7 +34,7 @@ export default function TeamPage() {
     <>
       {/* Breadcrumbs */}
       <div className="border-b" style={{ borderColor: "var(--it-border)" }}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
             <Link href="/" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Home</Link>
             <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
@@ -63,7 +63,7 @@ export default function TeamPage() {
       </section>
 
       {/* Single section: Leadership, Advisors, Engineering, Culture */}
-      <Section variant="white" className="py-12 lg:py-16">
+      <Section variant="white" className="py-20 lg:py-28">
         <div className="space-y-12 lg:space-y-14">
           {/* Leadership + Advisors in one row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">

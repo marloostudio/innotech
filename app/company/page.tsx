@@ -94,7 +94,7 @@ export default function CompanyPage() {
         </div>
       </PageShell>
 
-      <section className="bg-muted/30 py-16 lg:py-24">
+      <section className="bg-muted/30 py-20 lg:py-28">
         <PageShell>
           <SectionHeader 
             title="Our Values"

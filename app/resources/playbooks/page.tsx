@@ -30,7 +30,7 @@ export default function PlaybooksPage() {
           <p className="text-lg" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
             Best practice guides and playbooks are coming soon. Subscribe to be notified when we publish.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <div className="flex flex-row flex-wrap gap-4 justify-center pt-4">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-md px-5 py-2.5 font-medium transition-colors"
