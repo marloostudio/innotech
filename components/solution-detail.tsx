@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ImagePlaceholder } from '@/components/ui/image-placeholder'
 import * as LucideIcons from 'lucide-react'
 
 interface Solution {
@@ -57,47 +58,56 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section — two-column with 3/2 placeholder on right */}
       <section className="it-hero-solutions py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-lg" style={{ background: 'rgba(180, 125, 255, 0.12)' }}>
-                <SolutionIcon name={solution.icon} />
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 rounded-lg" style={{ background: 'rgba(180, 125, 255, 0.12)' }}>
+                  <SolutionIcon name={solution.icon} />
+                </div>
+                <Badge
+                  variant="outline"
+                  className="border-it-solutions text-it-solutions"
+                >
+                  Solution
+                </Badge>
               </div>
-              <Badge
-                variant="outline"
-                className="border-it-solutions text-it-solutions"
-              >
-                Solution
-              </Badge>
+              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
+                {solution.name}
+              </h1>
+              <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
+                {solution.tagline}
+              </p>
+              <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
+                {solution.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  asChild
+                  style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
+                >
+                  <Link href="/demo">Request a Demo</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="border-it-border hover:bg-white/5"
+                  style={{ color: 'var(--it-text-primary)' }}
+                >
+                  <Link href="/contact">Speak with an Expert</Link>
+                </Button>
+              </div>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
-              {solution.name}
-            </h1>
-            <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
-              {solution.tagline}
-            </p>
-            <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
-              {solution.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                asChild
-                style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
-              >
-                <Link href="/demo">Request a Demo</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="border-it-border hover:bg-white/5"
-                style={{ color: 'var(--it-text-primary)' }}
-              >
-                <Link href="/contact">Speak with an Expert</Link>
-              </Button>
+            <div className="w-full">
+              <ImagePlaceholder
+                aspectRatio="3/2"
+                alt={`${solution.name} — In Use`}
+                label={`${solution.name} — In Use`}
+              />
             </div>
           </div>
         </div>

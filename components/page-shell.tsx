@@ -14,7 +14,7 @@ export function PageShell({
   id,
 }: PageShellProps) {
   return (
-    <Component id={id} className={cn("w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", className)}>
+    <Component id={id} className={cn("w-full max-w-7xl mx-auto px-6 lg:px-8", className)}>
       {children}
     </Component>
   )

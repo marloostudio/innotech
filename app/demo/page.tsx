@@ -1,186 +1,172 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PageShell } from "@/components/page-shell"
+import { PageShell, Section } from "@/components/page-shell"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import * as LucideIcons from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Request a Demo — See InnoTech in Action",
   description: "Schedule a personalized demo of InnoTech's autonomous infrastructure solutions."
 }
 
-const whatToExpect = [
-  {
-    icon: LucideIcons.Calendar,
-    title: "Schedule a Call",
-    description: "Pick a time that works for you to meet with our solutions team"
-  },
-  {
-    icon: LucideIcons.MessageSquare,
-    title: "Discuss Your Needs",
-    description: "We'll learn about your operations and specific challenges"
-  },
-  {
-    icon: LucideIcons.Monitor,
-    title: "See a Live Demo",
-    description: "Watch our products in action with a personalized walkthrough"
-  },
-  {
-    icon: LucideIcons.FileText,
-    title: "Get a Custom Proposal",
-    description: "Receive a tailored solution proposal for your operation"
-  }
-]
+const inputBase =
+  "w-full px-4 py-3 rounded-lg border bg-it-surface border-it-border text-it-text-primary placeholder:text-it-text-muted focus:outline-none focus:ring-2 focus:ring-it-blue focus:border-transparent transition-[box-shadow,border-color] duration-150"
 
 export default function DemoPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 lg:py-24">
-        <div className="container mx-auto px-4">
+      {/* Hero — dark theme, brand gradient */}
+      <section
+        className="relative w-full pt-24 md:pt-28 pb-14 md:pb-20"
+        style={{
+          background: "var(--it-hero-gradient)",
+          color: "var(--it-text-primary)"
+        }}
+      >
+        <PageShell>
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="outline" className="mb-4">Request a Demo</Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
+            <Badge
+              variant="outline"
+              className="mb-4 border-it-border text-it-text-secondary font-normal"
+            >
+              Request a Demo
+            </Badge>
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-balance"
+              style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}
+            >
               See InnoTech in Action
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 text-balance">
+            <p className="text-xl max-w-2xl mx-auto text-balance" style={{ color: "var(--it-text-muted)" }}>
               Schedule a personalized demo of our autonomous infrastructure solutions
             </p>
           </div>
-        </div>
+        </PageShell>
       </section>
 
-      {/* What to Expect */}
-      <PageShell>
-        <h2 className="text-3xl font-bold text-center mb-12">What to Expect</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {whatToExpect.map((step, index) => {
-            const Icon = step.icon
-            return (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                  <Icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground text-pretty">{step.description}</p>
-              </div>
-            )
-          })}
-        </div>
-      </PageShell>
-
-      <Separator />
-
-      {/* Form */}
-      <PageShell>
+      {/* Form section — dark surface, card with 3px left accent */}
+      <Section variant="dark" className="py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="overflow-hidden it-card it-card-accent-blue border-it-border shadow-(--it-shadow-md)">
+            <CardContent className="pt-8 pb-8 px-6 sm:px-8">
               <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                      First Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                      Last Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    />
-                  </div>
-                </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Work Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    Company Name *
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2 text-it-text-primary"
+                  >
+                    Name *
                   </label>
                   <input
                     type="text"
-                    id="company"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    id="name"
+                    name="name"
+                    className={inputBase}
                     required
                   />
                 </div>
 
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-2 text-it-text-primary"
+                    >
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className={inputBase}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="company"
+                      className="block text-sm font-medium mb-2 text-it-text-primary"
+                    >
+                      Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      className={inputBase}
+                      required
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="role" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="role"
+                    className="block text-sm font-medium mb-2 text-it-text-primary"
+                  >
                     Your Role *
                   </label>
                   <input
                     type="text"
                     id="role"
+                    name="role"
                     placeholder="e.g., Fleet Manager, CTO, Operations Director"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className={inputBase}
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="product" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="product"
+                    className="block text-sm font-medium mb-2 text-it-text-primary"
+                  >
                     Product Interest *
                   </label>
                   <select
                     id="product"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    name="product"
+                    className={inputBase}
                     required
                   >
                     <option value="">Select a product</option>
-                    <option value="safeguard">SafeGuard - Safety Monitoring</option>
-                    <option value="autolock">AutoLock - Autonomous Charging</option>
-                    <option value="radar-link">Radar Link - V2X Communication</option>
+                    <option value="safeguard">SafeGuard — Safety Monitoring</option>
+                    <option value="autolock">AutoLock — Autonomous Charging</option>
+                    <option value="radar-link">Radar Link — V2X Communication</option>
                     <option value="all">All Products</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium mb-2 text-it-text-primary"
+                  >
                     Tell us about your needs
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={4}
                     placeholder="Describe your operation, fleet size, challenges, etc."
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className={`${inputBase} resize-y min-h-[120px]`}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg font-semibold transition-colors hover:opacity-90"
-                  style={{ background: "var(--it-light-blue)", color: "white" }}
+                  className="w-full py-3 rounded-lg font-semibold transition-all duration-150 hover:opacity-90"
+                  style={{
+                    background: "var(--it-blue)",
+                    color: "var(--it-bg)"
+                  }}
                 >
                   Request Demo
                 </button>
 
-                <p className="text-xs text-center text-muted-foreground">
-                  By submitting this form, you agree to our{' '}
-                  <Link href="/legal/privacy-policy" className="underline">
+                <p className="text-xs text-center" style={{ color: "var(--it-text-muted)" }}>
+                  By submitting this form, you agree to our{" "}
+                  <Link href="/legal/privacy-policy" className="underline hover:text-it-text-secondary">
                     Privacy Policy
                   </Link>
                 </p>
@@ -188,14 +174,22 @@ export default function DemoPage() {
             </CardContent>
           </Card>
 
-          <div className="text-center mt-8 text-sm text-muted-foreground">
-            <p>Prefer to talk? Call us at <strong>1-800-INNOTECH</strong></p>
+          <div className="text-center mt-10 text-sm" style={{ color: "var(--it-text-muted)" }}>
+            <p>
+              Prefer to talk? Call us at <strong className="text-it-text-secondary">1-800-INNOTECH</strong>
+            </p>
             <p className="mt-2">
-              Or email <Link href="mailto:sales@innotech-systems.com" className="underline">sales@innotech-systems.com</Link>
+              Or email{" "}
+              <Link
+                href="mailto:sales@innotech-systems.com"
+                className="underline hover:text-it-text-secondary"
+              >
+                sales@innotech-systems.com
+              </Link>
             </p>
           </div>
         </div>
-      </PageShell>
+      </Section>
     </>
   )
 }

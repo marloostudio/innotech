@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Chakra_Petch, DM_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { Chakra_Petch, DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -13,6 +13,11 @@ const chakraPetch = Chakra_Petch({
   weight: ['300', '600', '700'],
   subsets: ['latin'],
   variable: '--font-chakra',
+})
+const inter = Inter({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-inter',
 })
 const dmSans = DM_Sans({
   weight: ['300', '400', '500', '600'],
@@ -72,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${chakraPetch.variable} ${dmSans.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${chakraPetch.variable} ${inter.variable} ${dmSans.variable} ${ibmPlexMono.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Navbar />

@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ImagePlaceholder } from '@/components/ui/image-placeholder'
 import * as LucideIcons from 'lucide-react'
 
 interface Industry {
@@ -19,6 +20,9 @@ interface Industry {
   relatedProducts: string[]
   icon: string
 }
+
+export type HeroImagePlaceholder = { label: string; aspectRatio: '3/2' | '16/9' }
+export type MidPageImagePlaceholder = { label: string; aspectRatio: '21/9' | '16/9' }
 
 const INDUSTRY_ICON_MAP: Record<string, LucideIcons.LucideIcon> = {
   truck: LucideIcons.Truck,
@@ -36,9 +40,11 @@ function IndustryIcon({ name }: { name: string }) {
 
 interface IndustryDetailProps {
   industry: Industry
+  heroImagePlaceholder?: HeroImagePlaceholder
+  midPageImagePlaceholder?: MidPageImagePlaceholder
 }
 
-export function IndustryDetail({ industry }: IndustryDetailProps) {
+export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePlaceholder }: IndustryDetailProps) {
   return (
     <>
       {/* Breadcrumbs */}
@@ -54,48 +60,59 @@ export function IndustryDetail({ industry }: IndustryDetailProps) {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section — optional two-column with placeholder on right */}
       <section className="it-hero py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-lg" style={{ background: 'rgba(245, 158, 11, 0.12)' }}>
-                <IndustryIcon name={industry.icon} />
+          <div className={heroImagePlaceholder ? 'grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto' : 'max-w-4xl mx-auto'}>
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 rounded-lg" style={{ background: 'rgba(245, 158, 11, 0.12)' }}>
+                  <IndustryIcon name={industry.icon} />
+                </div>
+                <Badge
+                  variant="outline"
+                  className="border-it-industries text-it-industries"
+                >
+                  Industry
+                </Badge>
               </div>
-              <Badge
-                variant="outline"
-                className="border-it-industries text-it-industries"
-              >
-                Industry
-              </Badge>
+              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
+                {industry.name}
+              </h1>
+              <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
+                {industry.tagline}
+              </p>
+              <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
+                {industry.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  asChild
+                  style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
+                >
+                  <Link href="/demo">Request a Demo</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="border-it-border hover:bg-white/5"
+                  style={{ color: 'var(--it-text-primary)' }}
+                >
+                  <Link href="/contact">Speak with an Expert</Link>
+                </Button>
+              </div>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
-              {industry.name}
-            </h1>
-            <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
-              {industry.tagline}
-            </p>
-            <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
-              {industry.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                asChild
-                style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
-              >
-                <Link href="/demo">Request a Demo</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="border-it-border hover:bg-white/5"
-                style={{ color: 'var(--it-text-primary)' }}
-              >
-                <Link href="/contact">Speak with an Expert</Link>
-              </Button>
-            </div>
+            {heroImagePlaceholder && (
+              <div className="w-full">
+                <ImagePlaceholder
+                  aspectRatio={heroImagePlaceholder.aspectRatio}
+                  alt={heroImagePlaceholder.label}
+                  label={heroImagePlaceholder.label}
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -107,16 +124,29 @@ export function IndustryDetail({ industry }: IndustryDetailProps) {
             <div className="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {industry.metrics.map((metric, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ color: 'var(--it-industries)' }}>
+                  <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ color: 'var(--it-industries)', fontFamily: 'var(--font-ibm-mono), \'IBM Plex Mono\', monospace' }}>
                     {metric.value}
                   </div>
-                  <div className="font-semibold mb-1" style={{ color: 'var(--it-text-primary)' }}>{metric.label}</div>
-                  <div className="text-sm" style={{ color: 'var(--it-text-muted)' }}>{metric.description}</div>
+                  <div className="font-semibold mb-1" style={{ fontSize: '13px', color: 'var(--it-text-secondary)', fontFamily: 'var(--font-dm-sans), \'DM Sans\', sans-serif' }}>{metric.label}</div>
+                  <div className="text-sm" style={{ color: 'var(--it-text-muted)', fontFamily: 'var(--font-dm-sans), \'DM Sans\', sans-serif' }}>{metric.description}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
+      )}
+
+      {/* Mid-page full-width image placeholder */}
+      {midPageImagePlaceholder && (
+        <div className="w-full px-4 py-8">
+          <div className="max-w-screen-2xl mx-auto">
+            <ImagePlaceholder
+              aspectRatio={midPageImagePlaceholder.aspectRatio}
+              alt={midPageImagePlaceholder.label}
+              label={midPageImagePlaceholder.label}
+            />
+          </div>
+        </div>
       )}
 
       {/* Challenges & Solutions — white section */}

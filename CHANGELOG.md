@@ -8,7 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-- Nothing yet.
+### Added
+
+- **TeamCard compact variant** (`components/site/team-card.tsx`) – Optional `compact` prop for a horizontal, space-efficient layout: small avatar/initials, name and title in one row, 3px left-border accent. Used on `/company/team` for Engineering & Operations.
+
+### Changed
+
+- **Team page layout** (`app/company/team/page.tsx`) – Reduced scroll: shorter hero (`py-10 lg:py-14`, smaller title); single main section containing Executive Leadership and Advisors side-by-side (two columns on lg), Engineering & Operations in a dense grid using compact TeamCards, and Our Culture as one short paragraph with a top border. Removed four separate `Section` blocks and full `SectionHeader` usage in favour of compact subsection titles.
+- **Section padding and containers** – Team page now uses `Section` with `className="py-12 lg:py-16"` for the main content block. `PageShell` and `CtaBanner` horizontal padding standardised to `px-6 lg:px-8` (was `px-4 sm:px-6 lg:px-8`) site-wide to match design rules (px-6 or px-8).
+
+### Fixed
+
+- **Team page section spacing** – Replaced raw `PageShell` wrappers with `Section` so Executive Leadership, Advisors, Engineering & Operations, and Our Culture have consistent vertical padding (`py-16 md:py-24` from `Section`, overridable via `className`) and proper max-width containers.
 
 ---
 

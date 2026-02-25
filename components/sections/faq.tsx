@@ -32,11 +32,11 @@ export function Faq({
       <SectionHeader title={title} description={description} />
       <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
         {items.map((item, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="border-it-light-border">
-            <AccordionTrigger className="text-left text-it-light-text-primary hover:text-it-light-blue [&>svg]:text-it-light-text-muted">
+          <AccordionItem key={index} value={`item-${index}`} className="border-it-border">
+            <AccordionTrigger className="text-left text-it-text-primary hover:text-it-blue [&>svg]:text-it-text-muted">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="text-it-light-text-secondary">
+            <AccordionContent className="text-it-text-secondary">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

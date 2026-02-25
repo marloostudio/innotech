@@ -40,7 +40,7 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 - **/technology** – Technology overview.
 - **/resources** – Resources hub; **/resources/blog**, **/resources/case-studies**, **/resources/whitepapers**, **/resources/playbooks**, **/resources/videos**, **/resources/faq**, **/resources/docs**.
 - **/about** – Redirects to **/company**.
-- **/company** – Company hub; **/company/team**, **/company/our-story**, **/company/careers**, **/company/careers/open-roles**, **/company/values**, **/company/board-advisors**, **/company/investors**, **/company/partners**.
+- **/company** – Company hub; **/company/team** (compact layout: Leadership + Advisors side-by-side, Engineering & Operations with compact cards, Culture summary), **/company/our-story**, **/company/careers**, **/company/careers/open-roles**, **/company/values**, **/company/board-advisors**, **/company/investors**, **/company/partners**.
 - **/contact** – Contact form and info; **/demo** – Demo request.
 - **/case-studies** – Case studies index.
 - **/legal/privacy-policy**, **/legal/cookie-policy**, **/legal/terms** – Legal pages.
@@ -68,8 +68,9 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 - **Navbar** – Sticky bar; scroll behaviour (transparent → blurred bar, 64→56px); Framer Motion. Colours via `var(--it-*)`. Products / Solutions / Industries mega menus; Case Studies / Resources / Company dropdowns; Contact + Book a Demo. Mobile: hamburger → full-screen drawer. Data: `lib/nav-mega.ts`.
 - **Footer** – Multi-column links and social links from `lib/nav`.
-- **PageShell / Section** – Layout and section wrappers.
+- **PageShell / Section** – Layout and section wrappers; horizontal padding `px-6 lg:px-8` site-wide. Section provides vertical padding and optional alternating backgrounds.
 - **SectionHeader** – Reusable section title, description, badge.
+- **TeamCard** (`components/site/team-card.tsx`) – Team member card (avatar, name, title, optional bio and social links). Optional **compact** variant: horizontal layout with small avatar/initials and 3px left-border accent for dense grids (e.g. Engineering list on `/company/team`).
 
 ### Sections (home & content pages)
 
@@ -106,6 +107,7 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 | Version   | Change |
 |-----------|--------|
+| **Unreleased** | Team page: compact layout (shorter hero, single section, Leadership + Advisors side-by-side, Engineering with compact TeamCards, Culture as one paragraph). TeamCard compact variant. Section/PageShell/CtaBanner padding standardised to px-6 lg:px-8. |
 | **0.2.0** | InnoTech design tokens (`--it-*`), tokenised navbar/nav-mega. Legal and accessibility routes; company sub-pages (values, board-advisors, investors, partners, open-roles); resources (whitepapers, playbooks, videos, faq, docs); industries (military, charge-depot). loading/error/not-found. CtaBanner dual API. SITE_AUDIT.md as source of truth. next.config `ignoreBuildErrors: false`. |
 | **0.1.1** | Navbar rebuild (v0 spec, Framer Motion, mega menus, mobile drawer). PillarHero and pillar page heroes. ThemeProvider and Toaster in layout. ESLint, CHANGELOG, FEATURES, NEXT_RECOMMENDATIONS. |
 | **0.1.0** | Initial Next.js 16 app: App Router, pages, sections, shadcn/ui, content layer, docs. |

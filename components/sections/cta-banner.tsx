@@ -37,7 +37,7 @@ export function CtaBanner({
       }}
       className="w-full py-16 md:py-24"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-6 max-w-3xl mx-auto" style={{ color: "var(--it-text-primary)" }}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
             {resolvedHeadline}

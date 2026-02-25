@@ -1,6 +1,6 @@
 # SITE_AUDIT.md
 
-Generated: 2025-02-23 | Project: InnoTech Systems | Source of truth for current setup and features
+Generated: 2025-02-24 | Project: InnoTech Systems | Source of truth for current setup and features
 
 ---
 
@@ -26,7 +26,7 @@ Generated: 2025-02-23 | Project: InnoTech Systems | Source of truth for current 
 - @vercel/analytics: 1.6.1
 - next-themes: ^0.4.6
 - react: 19.2.4, react-dom: 19.2.4
-- @radix-ui/* (accordion, alert-dialog, avatar, checkbox, dialog, dropdown-menu, label, navigation-menu, popover, progress, select, separator, tabs, toggle, tooltip, etc.): various 1.x
+- @radix-ui/* (accordion, alert-dialog, aspect-ratio, avatar, checkbox, collapsible, context-menu, dialog, dropdown-menu, hover-card, label, menubar, navigation-menu, popover, progress, radio-group, scroll-area, select, separator, slider, slot, switch, tabs, toast, toggle, toggle-group, tooltip): various 1.x / 2.x
 - class-variance-authority: ^0.7.1, clsx: ^2.1.1, tailwind-merge: ^3.3.1
 - zod: ^3.24.1, react-hook-form: ^7.54.1, @hookform/resolvers: ^3.9.1
 - sonner: ^1.7.1, recharts: 2.15.0, date-fns: 4.1.0, embla-carousel-react: 8.6.0
@@ -35,7 +35,7 @@ Generated: 2025-02-23 | Project: InnoTech Systems | Source of truth for current 
 - postcss: ^8.5, autoprefixer: ^10.4.20
 
 ### Google Fonts
-- Loaded in **`app/layout.tsx`** via `next/font/google`: `Chakra_Petch`, `DM_Sans`, `IBM_Plex_Mono`. Variables on `<html>`: `--font-chakra`, `--font-dm-sans`, `--font-ibm-mono`.
+- Loaded in **`app/layout.tsx`** via `next/font/google`: `Chakra_Petch` (300, 600, 700), `DM_Sans` (300, 400, 500, 600), `IBM_Plex_Mono` (400, 500). Variables on `<html>`: `--font-chakra`, `--font-dm-sans`, `--font-ibm-mono`.
 
 ### Required fonts
 - **Chakra Petch**: Yes (--font-chakra)
@@ -45,17 +45,21 @@ Generated: 2025-02-23 | Project: InnoTech Systems | Source of truth for current 
 ### Tailwind and theme (app/globals.css)
 - **@theme inline** (Tailwind v4): `--font-sans`, `--font-mono`, `--font-chakra`; `--color-*` for background, foreground, card, popover, primary, secondary, muted, accent, destructive, border, input, ring, chart-1–5, sidebar-*; `--radius-sm` through `--radius-xl`.
 - **InnoTech brand tokens** (in `:root`):  
-  **Surfaces:** `--it-bg`, `--it-surface`, `--it-surface-raised`  
+  **Surfaces:** `--it-bg` (#0b1221), `--it-surface`, `--it-surface-raised`  
   **Borders:** `--it-border`, `--it-border-subtle`  
   **Text:** `--it-text-primary`, `--it-text-secondary`, `--it-text-muted`, `--it-text-dim`  
   **Brand:** `--it-blue`, `--it-blue-hover`, `--it-blue-subtle`, `--it-blue-border`, `--it-blue-glow`  
   **Products:** `--it-safeguard`, `--it-autolock`, `--it-solutions`, `--it-industries` (with -subtle, -border variants)  
   **Semantic:** `--it-success`, `--it-warning`, `--it-danger`, `--it-info`  
   **Shadows:** `--it-shadow-sm`, `--it-shadow-md`, `--it-shadow-lg`, `--it-shadow-glow-blue`  
+  **Light theme:** `--it-light-bg`, `--it-light-surface`, `--it-light-surface-2`, `--it-light-border`, `--it-light-text-*`, `--it-light-blue`, etc.  
+  **Hero gradients:** `--it-hero-gradient`, `--it-hero-gradient-light`, `--it-hero-safeguard`, `--it-hero-autolock`, `--it-hero-solutions`  
+  **Section alternation:** `--it-section-1`, `--it-section-2`, `--it-section-3`, `--it-section-raised`  
+  **Mid-section / cards:** `--it-mid-section-bg`, `--it-card-default-bg`, `--it-card-accent-*`, etc.  
 - These are mapped in `@theme inline` as `--color-it-*` for Tailwind utilities (e.g. `bg-it-surface`, `text-it-text-primary`).
 
 ### Cursor rules
-- **Present**: `.cursor/rules/design-and-naming.mdc` — design theme (dark, fonts, colours, icons, motion, naming conventions).
+- **Present**: `.cursorrules` (project root), `.cursor/rules/design-and-naming.mdc` — design theme (dark, fonts, colours, icons, motion, naming conventions).
 
 ---
 
@@ -64,6 +68,7 @@ Generated: 2025-02-23 | Project: InnoTech Systems | Source of truth for current 
 ```
 Innotech/
 ├── .cursor/rules/design-and-naming.mdc
+├── .cursorrules
 ├── .eslintrc.json
 ├── CHANGELOG.md
 ├── COMPONENTS_GUIDE.md
@@ -72,6 +77,7 @@ Innotech/
 ├── NEXT_RECOMMENDATIONS.md
 ├── PROJECT_SUMMARY.md
 ├── README.md
+├── SITE_AUDIT.md
 ├── app/
 │   ├── about/page.tsx              (redirect to /company)
 │   ├── accessibility/page.tsx
@@ -169,7 +175,8 @@ Innotech/
 │   │   └── testimonial.tsx
 │   ├── site/
 │   │   ├── footer.tsx
-│   │   └── navbar.tsx
+│   │   ├── navbar.tsx
+│   │   └── team-card.tsx
 │   └── ui/
 │       └── (accordion, alert, alert-dialog, aspect-ratio, avatar, badge, breadcrumb,
 │           button, button-group, calendar, card, carousel, chart, checkbox, collapsible,
@@ -223,26 +230,26 @@ Innotech/
 
 | Route | File | H1 | Metadata |
 |-------|------|-----|----------|
-| / | app/page.tsx | Yes (PillarHero from home.ts) | layout |
+| / | app/page.tsx | PillarHero (from home.ts) | layout |
 | /about | app/about/page.tsx | — | redirect to /company |
 | /accessibility | app/accessibility/page.tsx | Yes | Yes |
-| /case-studies | app/case-studies/page.tsx | Yes (PillarHero) | Yes |
-| /company | app/company/page.tsx | Yes (PillarHero) | Yes |
+| /case-studies | app/case-studies/page.tsx | PillarHero | Yes |
+| /company | app/company/page.tsx | PillarHero | Yes |
 | /company/board-advisors | app/company/board-advisors/page.tsx | Yes | Yes |
 | /company/careers | app/company/careers/page.tsx | Yes | Yes |
 | /company/careers/open-roles | app/company/careers/open-roles/page.tsx | Yes | Yes |
 | /company/investors | app/company/investors/page.tsx | Yes | Yes |
 | /company/our-story | app/company/our-story/page.tsx | Yes | Yes |
 | /company/partners | app/company/partners/page.tsx | Yes | Yes |
-| /company/team | app/company/team/page.tsx | Yes | Yes |
+| /company/team | app/company/team/page.tsx | Yes (compact layout) | Yes |
 | /company/values | app/company/values/page.tsx | Yes | Yes |
-| /contact | app/contact/page.tsx | Yes (PillarHero) | Yes |
+| /contact | app/contact/page.tsx | PillarHero | Yes |
 | /demo | app/demo/page.tsx | Yes | Yes |
-| /industries | app/industries/page.tsx | Yes (PillarHero) | Yes |
+| /industries | app/industries/page.tsx | PillarHero | Yes |
 | /industries/airport-shopping-mall | app/industries/airport-shopping-mall/page.tsx | IndustryDetail | Yes |
 | /industries/automated-depot | app/industries/automated-depot/page.tsx | IndustryDetail | Yes |
 | /industries/autonomous-fleets | app/industries/autonomous-fleets/page.tsx | IndustryDetail | Yes |
-| /industries/autonomous-fleets/charge-depot | app/industries/autonomous-fleets/charge-depot/page.tsx | IndustryDetail | Yes |
+| /industries/autonomous-fleets/charge-depot | app/industries/autonomous-fleets/charge-depot/page.tsx | Yes (custom) | Yes |
 | /industries/logistics | app/industries/logistics/page.tsx | IndustryDetail | Yes |
 | /industries/military | app/industries/military/page.tsx | Yes | Yes |
 | /industries/mining | app/industries/mining/page.tsx | IndustryDetail | Yes |
@@ -250,7 +257,7 @@ Innotech/
 | /legal/cookie-policy | app/legal/cookie-policy/page.tsx | Yes | Yes |
 | /legal/privacy-policy | app/legal/privacy-policy/page.tsx | Yes | Yes |
 | /legal/terms | app/legal/terms/page.tsx | Yes | Yes |
-| /products | app/products/page.tsx | Yes (PillarHero) | Yes |
+| /products | app/products/page.tsx | PillarHero | Yes |
 | /products/autolock | app/products/autolock/page.tsx | Yes (content) | Yes |
 | /products/autolock/access-control | app/products/autolock/access-control/page.tsx | ProductFeatureDetail | Yes |
 | /products/autolock/autonomous-charging | app/products/autolock/autonomous-charging/page.tsx | ProductFeatureDetail | Yes |
@@ -266,15 +273,15 @@ Innotech/
 | /products/safeguard/predictive-maintenance | app/products/safeguard/predictive-maintenance/page.tsx | ProductFeatureDetail | Yes |
 | /products/safeguard/real-time-alerting | app/products/safeguard/real-time-alerting/page.tsx | ProductFeatureDetail | Yes |
 | /products/safeguard/threat-detection | app/products/safeguard/threat-detection/page.tsx | ProductFeatureDetail | Yes |
-| /resources | app/resources/page.tsx | Yes (PillarHero) | Yes |
-| /resources/blog | app/resources/blog/page.tsx | SectionHeader (h2-level) | Yes |
-| /resources/case-studies | app/resources/case-studies/page.tsx | SectionHeader (h2-level) | Yes |
+| /resources | app/resources/page.tsx | PillarHero | Yes |
+| /resources/blog | app/resources/blog/page.tsx | Yes | Yes |
+| /resources/case-studies | app/resources/case-studies/page.tsx | Yes | Yes |
 | /resources/docs | app/resources/docs/page.tsx | Yes | Yes |
 | /resources/faq | app/resources/faq/page.tsx | Yes | Yes |
 | /resources/playbooks | app/resources/playbooks/page.tsx | Yes | Yes |
 | /resources/videos | app/resources/videos/page.tsx | Yes | Yes |
 | /resources/whitepapers | app/resources/whitepapers/page.tsx | Yes | Yes |
-| /solutions | app/solutions/page.tsx | Yes (PillarHero) | Yes |
+| /solutions | app/solutions/page.tsx | PillarHero | Yes |
 | /solutions/charging-autonomous-vehicles | app/solutions/charging-autonomous-vehicles/page.tsx | SolutionDetail | Yes |
 | /solutions/charging-heavy-duty | app/solutions/charging-heavy-duty/page.tsx | SolutionDetail | Yes |
 | /solutions/charging-mar | app/solutions/charging-mar/page.tsx | SolutionDetail | Yes |
@@ -285,7 +292,7 @@ Innotech/
 | /solutions/safety-human-robot | app/solutions/safety-human-robot/page.tsx | SolutionDetail | Yes |
 | /solutions/safety-industrial-robots | app/solutions/safety-industrial-robots/page.tsx | SolutionDetail | Yes |
 | /solutions/safety-mar | app/solutions/safety-mar/page.tsx | SolutionDetail | Yes |
-| /technology | app/technology/page.tsx | SectionHeader (h2-level) | Yes |
+| /technology | app/technology/page.tsx | Yes | Yes |
 | (root layout) | app/layout.tsx | — | Yes |
 | (loading) | app/loading.tsx | — | — |
 | (error) | app/error.tsx | — | — |
@@ -295,12 +302,13 @@ Innotech/
 
 ## 4. Components Overview
 
-- **Page/section**: `PageShell`, `Section`, `SectionHeader`; `PillarHero`, `Hero`; `CtaBanner`, `FeatureGrid`, `Faq`, `Stats`, `Testimonial`, `TechOverview`, `IndustryGrid`, `LogoCloud`.
+- **Page/section**: `PageShell`, `Section`, `SectionHeader`; `PillarHero`, `Hero`; `CtaBanner`, `FeatureGrid`, `Faq`, `Stats`, `Testimonial`, `TechOverview`, `IndustryGrid`, `LogoCloud`. `PageShell` and `CtaBanner` use horizontal padding `px-6 lg:px-8`; `Section` provides vertical padding and optional alternating backgrounds.
 - **Detail pages**: `IndustryDetail`, `SolutionDetail`, `ProductFeatureDetail` (consume content from `lib/content/` and render H1 from content).
-- **Site**: `Navbar` (client, Framer Motion, mega menus, mobile drawer), `Footer`.
+- **Site**: `Navbar` (client, Framer Motion, mega menus, mobile drawer), `Footer`, `TeamCard` (`components/site/team-card.tsx`). **TeamCard**: team member card (avatar, name, title, optional bio/social); optional `compact` prop for horizontal, space-efficient layout with 3px left-border accent (used on `/company/team` for Engineering & Operations).
 - **CtaBanner**: Accepts both shapes — `title` / `primaryCta` / `secondaryCta` and legacy `headline` / `ctaText` / `ctaHref`; `description` shared.
-- **Theme**: `ThemeProvider` (client).
-- **UI**: Radix-based primitives and composed components in `components/ui/` (accordion, alert, button, card, dialog, form, navigation-menu, sidebar, tabs, etc.; chart uses recharts).
+- **Faq**: Uses `SectionHeader` for title/description; accordion with `FaqItem[]`; supports `variant` and `alt` from `PageShell`.
+- **Theme**: `ThemeProvider` (client, next-themes, attribute="class", defaultTheme="system").
+- **UI**: Radix-based primitives and composed components in `components/ui/` (accordion, alert, button, card, dialog, form, navigation-menu, sidebar, tabs, etc.; chart uses recharts). `ImagePlaceholder` for placeholder avatars/thumbnails.
 
 ---
 
@@ -308,8 +316,8 @@ Innotech/
 
 - **Component**: `components/site/navbar.tsx` (client, Framer Motion).
 - **Sticky**: Yes — `sticky top-0 z-50` on `<motion.header>`.
-- **Scroll**: Transparent until scroll; then `backgroundColor: rgba(7, 12, 24, 0.85)`, border, `backdropFilter: blur(12px)`.
-- **Colours**: Navbar uses CSS variables only: `var(--it-text-muted)`, `var(--it-text-primary)`, `var(--it-blue)`, `var(--it-border)`, `var(--it-surface)`, `var(--it-blue-hover)`, `var(--it-bg)`.
+- **Scroll**: Idle `backgroundColor: rgba(7,12,24,0.35)`; scrolled `rgba(7,12,24,0.94)`, border, `backdropFilter: blur(10px)`. Height animates 64px → 56px on scroll.
+- **Colours**: Navbar uses constants and CSS variables: link colour `rgba(255,255,255,0.72)` / hover `rgba(255,255,255,1)`, underline `var(--it-blue)`, bar `var(--it-border)`, panel `var(--it-surface)`, CTA `var(--it-blue)` / `var(--it-blue-hover)` / `var(--it-bg)`.
 - **Top-level**: Home, Products, Solutions, Industries, Case Studies, Resources, Company; Contact link and "Book a Demo" (→ `/demo`).
 - **Mega menus**: Products (SafeGuard, AutoLock, Radar Link), Solutions (categories), Industries (with Charge Depot sub-item; Military coming soon).
 - **Dropdowns**: Case Studies, Resources, Company.
@@ -323,9 +331,10 @@ Innotech/
 
 - **Source**: `app/globals.css` (imported in `app/layout.tsx`).
 - **Shad/UI (oklch)**: `:root` and `.dark` set `--background`, `--foreground`, `--card`, `--primary`, `--muted`, `--border`, `--radius`, `--sidebar-*`, etc.; mapped in `@theme inline` as `--color-*`, `--radius-*`.
-- **InnoTech (--it-*)**: Base (`--it-bg`, `--it-surface`, `--it-surface-raised`), borders, text, blue, safeguard, autolock, solutions, industries, semantic, shadows; exposed in `@theme` as `--color-it-*` for utilities.
+- **InnoTech (--it-*)**: Base (`--it-bg` #0b1221, `--it-surface`, `--it-surface-raised`), borders, text, blue, safeguard, autolock, solutions, industries, semantic, shadows; light surface set (`--it-light-*`); hero gradients; section alternation (`--it-section-1`–`--it-section-raised`); mid-section and card depth; exposed in `@theme` as `--color-it-*` for utilities.
 - **Fonts**: `--font-chakra`, `--font-dm-sans`, `--font-ibm-mono` from layout; `@theme`: `--font-sans`, `--font-mono`, `--font-chakra`.
-- **Hardcoded hex**: None in navbar or nav-mega (both use tokens). `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts class selectors for stroke/fill (third-party chart styling).
+- **Body**: `style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}` on `<body>` in layout.
+- **Hardcoded hex**: InnoTech tokens in globals.css use hex/rgba for values; components reference variables. `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts Tailwind arbitrary selectors for stroke/fill (third-party chart styling).
 
 ---
 
@@ -334,8 +343,8 @@ Innotech/
 All planned areas have corresponding routes:
 
 - **Core**: /, /products, /solutions, /industries, /case-studies, /resources, /company, /contact, /demo, /technology.
-- **Products**: /products/safeguard (with threat-detection, compliance-monitoring, real-time-alerting, predictive-maintenance), /products/autolock (autonomous-charging, fleet-orchestration, process-automation, access-control), /products/radar-link (v2x-communication, micro-localization, drone-tracking, real-time-analytics).
-- **Solutions**: All charging, safety, and connectivity/solutions routes.
+- **Products**: /products/safeguard (threat-detection, compliance-monitoring, real-time-alerting, predictive-maintenance), /products/autolock (autonomous-charging, fleet-orchestration, process-automation, access-control), /products/radar-link (v2x-communication, micro-localization, drone-tracking, real-time-analytics).
+- **Solutions**: All charging, safety, and connectivity solution routes.
 - **Industries**: logistics, autonomous-fleets, autonomous-fleets/charge-depot, automated-depot, port, airport-shopping-mall, mining, military.
 - **Resources**: blog, case-studies, whitepapers, playbooks, videos, faq, docs.
 - **Company**: our-story, team, values, board-advisors, investors, careers, careers/open-roles, partners.
@@ -358,18 +367,22 @@ All planned areas have corresponding routes:
 | Charge Depot | Overnight Charge Facility |
 | Robotic Monitoring System (product name) | predictive monitoring |
 
-No naming violations found in current `app/`, `components/`, `lib/` source.
+Naming conventions are enforced via `.cursorrules` and `.cursor/rules/design-and-naming.mdc`.
 
 ---
 
 ## 9. Open Items & Recommendations
 
+**Resolved**
+
+- **Footer legal links**: Footer uses `href="/legal/privacy-policy"` and `href="/legal/terms"`; no change needed.
+- **Team page section padding**: `/company/team` now uses a single `Section` with compact subsection layout (Leadership + Advisors side-by-side, Engineering & Operations with compact `TeamCard`s, Culture as one paragraph); vertical and horizontal spacing aligned with design rules.
+
 **Minor**
 
-- **Footer bottom links**: Footer uses `href="/privacy"` and `href="/terms"` in the bottom bar; legal pages live at `/legal/privacy-policy` and `/legal/terms`. Consider updating footer links to `/legal/privacy-policy` and `/legal/terms`, or add redirects from `/privacy` and `/terms`.
-
-- **Chart component**: `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts selector strings. Optional: replace with theme tokens (e.g. border/background) where recharts supports it for dark/light consistency.
+- **Chart component**: `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts selector strings (e.g. `[stroke='#ccc']`, `[stroke='#fff']`). Optional: replace with theme tokens where recharts supports it for dark/light consistency.
 
 **Optional**
 
-- **H1 on list pages**: `/resources/blog`, `/resources/case-studies`, and `/technology` use `SectionHeader` (typically h2). Optionally add an explicit `<h1>` for SEO/accessibility if desired.
+- **H1 on list pages**: `/resources/blog`, `/resources/case-studies`, and `/technology` already have explicit `<h1>` in addition to `SectionHeader`; no action required unless consolidating heading pattern.
+- **Navbar colours**: Navbar uses inline `rgba()` constants (e.g. `BAR_BG_IDLE`, `NAV_LINK_COLOR`) rather than CSS variables. Optional: move to `globals.css` as `--nav-*` tokens for consistency with design rules.

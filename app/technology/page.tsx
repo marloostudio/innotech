@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { TechOverview } from "@/components/sections/tech-overview"
+import { TechnologyImageStrip } from "@/components/sections/technology-image-strip"
 import { CtaBanner } from "@/components/sections/cta-banner"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -72,6 +73,8 @@ export default function TechnologyPage() {
           title="Core Technology Pillars"
           pillars={technologyPillars}
         />
+
+        <TechnologyImageStrip />
       </Section>
 
       <Section className="bg-muted/30 py-16">

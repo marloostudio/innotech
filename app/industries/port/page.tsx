@@ -9,5 +9,11 @@ export const metadata: Metadata = {
 
 export default function PortPage() {
   const industry = industries.find(i => i.slug === 'port')!
-  return <IndustryDetail industry={industry} />
+  return (
+    <IndustryDetail
+      industry={industry}
+      heroImagePlaceholder={{ label: 'Port — Container Terminal Aerial', aspectRatio: '3/2' }}
+      midPageImagePlaceholder={{ label: 'Port Autonomous Vehicles in Operation', aspectRatio: '16/9' }}
+    />
+  )
 }

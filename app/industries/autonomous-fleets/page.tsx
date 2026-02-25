@@ -9,5 +9,10 @@ export const metadata: Metadata = {
 
 export default function AutonomousFleetsPage() {
   const industry = industries.find(i => i.slug === 'autonomous-fleets')!
-  return <IndustryDetail industry={industry} />
+  return (
+    <IndustryDetail
+      industry={industry}
+      heroImagePlaceholder={{ label: 'Autonomous Fleet — Self-Driving Vehicles', aspectRatio: '16/9' }}
+    />
+  )
 }

@@ -81,7 +81,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* Story */}
-      <PageShell>
+      <PageShell className="pt-16 md:pt-24 pb-8">
         <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
             InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly, the supporting infrastructure lagged behind. Companies were building incredible autonomous technology, but lacked the practical solutions needed to deploy them at scale.

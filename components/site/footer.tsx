@@ -13,10 +13,9 @@ export function Footer() {
     <footer style={{ background: "var(--it-surface)" }}>
       {/* This inner div constrains all content */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Top section — logo + columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-8 py-16">
-          {/* Logo + tagline + address — spans 2 cols on lg */}
-          <div className="col-span-2 space-y-4">
+        {/* Row 1 — logo + tagline + address + social */}
+        <div className="py-12 border-b border-[var(--it-border)]">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <Link href="/" className="font-bold text-xl" style={{ color: 'var(--it-text-primary)' }}>
                 {siteConfig.name}
@@ -63,8 +62,10 @@ export function Footer() {
               </Link>
             </div>
           </div>
+        </div>
 
-          {/* Footer Navigation — all columns preserved */}
+        {/* Row 2 — footer navigation columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 py-12">
           {footerNav.map((section) => (
             <div key={section.title} className="space-y-4">
               <h3 className="font-semibold text-sm" style={{ color: 'var(--it-text-primary)' }}>{section.title}</h3>
@@ -105,6 +106,19 @@ export function Footer() {
             </Link>
           </div>
         </div>
+        <p className="text-xs pb-6" style={{ color: 'var(--it-text-muted)' }}>
+          Powered by{" "}
+          <a
+            href="https://marloo.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-150 hover:opacity-90"
+            style={{ color: "var(--it-text-muted)" }}
+          >
+            Marloo Creative Studio
+          </a>
+          .
+        </p>
       </div>
     </footer>
   )

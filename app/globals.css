@@ -234,7 +234,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-sans: var(--font-inter), 'Inter', sans-serif;
   --font-mono: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
   --font-chakra: var(--font-chakra), 'Chakra Petch', sans-serif;
 
@@ -404,12 +404,13 @@
   background-color: var(--it-card-default-bg);
   border: 1px solid var(--it-card-default-border);
   border-radius: var(--radius);
-  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease;
 }
 .it-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--it-shadow-md);
   background-color: var(--it-card-hover-bg);
   border-color: var(--it-card-hover-border);
-  box-shadow: var(--it-card-hover-shadow);
 }
 
 /* Left-accent card (used in SafeGuard feature grid) */
@@ -430,6 +431,15 @@
   background-color: var(--it-blue-subtle);
 }
 
+/* Section eyebrow labels (e.g. "Our Story", "Benefits", "Industry") */
+.eyebrow {
+  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--it-blue);
+}
+
 /* ─────────────────────────────────────────────────────────
    BASE RESET
 ───────────────────────────────────────────────────────── */
@@ -440,10 +450,28 @@
   body {
     background: var(--it-bg);
     color: var(--it-text-primary);
+    font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
   }
-  /* Chakra Petch for headings only (design system) */
+  p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  /* Inter for headings (Chakra Petch reserved for logo only) */
   h1, h2, h3, h4 {
-    font-family: var(--font-chakra), 'Chakra Petch', sans-serif;
+    font-family: var(--font-sans);
+  }
+  h1 {
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  h2 {
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  h3, h4 {
+    letter-spacing: 0;
   }
   /* Body copy readability */
   .prose p, .max-w-prose p {

@@ -7,6 +7,8 @@ import { Testimonial } from "@/components/sections/testimonial"
 import { Stats } from "@/components/sections/stats"
 import { Faq } from "@/components/sections/faq"
 import { CtaBanner } from "@/components/sections/cta-banner"
+import { ImagePlaceholder } from "@/components/ui/image-placeholder"
+import { PageShell } from "@/components/page-shell"
 
 import {
   heroContent,
@@ -25,14 +27,25 @@ export default function HomePage() {
     <>
       {/* PillarHero: dark (unchanged) */}
       <PillarHero {...heroContent} />
+      {/* Hero — full-width 21/9 placeholder */}
+      <div className="w-full px-6 md:px-8">
+        <div className="max-w-screen-2xl mx-auto">
+          <ImagePlaceholder
+            aspectRatio="21/9"
+            alt="Hero — Aerial/Fleet Footage"
+            label="Hero — Aerial/Fleet Footage"
+          />
+        </div>
+      </div>
       {/* LogoCloud: white */}
       <LogoCloud logos={trustLogos} />
-      {/* FeatureGrid: light */}
+      {/* FeatureGrid: light — solutions grid with 4/3 placeholder per card */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
         description="End-to-end robotics and autonomous systems designed for enterprise operations"
         features={solutionsOverview}
         variant="light"
+        showImagePlaceholder
       />
       {/* IndustryGrid: white */}
       <IndustryGrid 
@@ -53,6 +66,16 @@ export default function HomePage() {
       <Testimonial {...caseStudyTeaser} variant="white" />
       {/* Stats: light, alternating */}
       <Stats stats={statsPlaceholder} variant="light" alt />
+      {/* Product Overview — 16/9 placeholder */}
+      <PageShell>
+        <div className="max-w-4xl mx-auto">
+          <ImagePlaceholder
+            aspectRatio="16/9"
+            alt="Product Overview — AutoLock in Action"
+            label="Product Overview — AutoLock in Action"
+          />
+        </div>
+      </PageShell>
       {/* FAQ: white */}
       <Faq items={faqItems} variant="white" />
       {/* CtaBanner: dark (unchanged) */}

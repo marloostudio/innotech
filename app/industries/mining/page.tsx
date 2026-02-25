@@ -9,5 +9,10 @@ export const metadata: Metadata = {
 
 export default function MiningPage() {
   const industry = industries.find(i => i.slug === 'mining')!
-  return <IndustryDetail industry={industry} />
+  return (
+    <IndustryDetail
+      industry={industry}
+      heroImagePlaceholder={{ label: 'Mining — Open Pit or Underground Shot', aspectRatio: '3/2' }}
+    />
+  )
 }

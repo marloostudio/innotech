@@ -9,5 +9,10 @@ export const metadata: Metadata = {
 
 export default function AirportShoppingMallPage() {
   const industry = industries.find(i => i.slug === 'airport-shopping-mall')!
-  return <IndustryDetail industry={industry} />
+  return (
+    <IndustryDetail
+      industry={industry}
+      heroImagePlaceholder={{ label: 'Airport — Ground Transport Hub', aspectRatio: '16/9' }}
+    />
+  )
 }

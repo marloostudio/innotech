@@ -9,5 +9,11 @@ export const metadata: Metadata = {
 
 export default function LogisticsPage() {
   const industry = industries.find(i => i.slug === 'logistics')!
-  return <IndustryDetail industry={industry} />
+  return (
+    <IndustryDetail
+      industry={industry}
+      heroImagePlaceholder={{ label: 'Logistics — EV Fleet at Depot', aspectRatio: '3/2' }}
+      midPageImagePlaceholder={{ label: 'Logistics Operations Wide Shot', aspectRatio: '21/9' }}
+    />
+  )
 }

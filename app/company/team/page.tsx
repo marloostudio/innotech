@@ -1,126 +1,129 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PageShell } from "@/components/page-shell"
-import { SectionHeader } from "@/components/section-header"
+import { Section } from "@/components/page-shell"
 import { CtaBanner } from "@/components/sections/cta-banner"
-import { Card, CardContent } from "@/components/ui/card"
+import { TeamCard } from "@/components/site/team-card"
 import { Badge } from "@/components/ui/badge"
-import * as LucideIcons from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Our Team — The People Behind the Technology",
-  description: "Meet the experts building the infrastructure for autonomous operations."
+  description: "Meet the experts building the infrastructure for autonomous operations.",
 }
 
-const teams = [
-  {
-    name: "Leadership",
-    icon: LucideIcons.Users,
-    description: "Industry veterans with decades of experience in automotive systems, robotics, and enterprise software leading our strategic vision."
-  },
-  {
-    name: "Engineering",
-    icon: LucideIcons.Code,
-    description: "World-class engineers specializing in robotics, AI, computer vision, embedded systems, and full-stack software development."
-  },
-  {
-    name: "Product",
-    icon: LucideIcons.Lightbulb,
-    description: "Product managers and designers translating customer needs into innovative solutions that solve real-world problems."
-  },
-  {
-    name: "Customer Success",
-    icon: LucideIcons.Headphones,
-    description: "Implementation specialists, support engineers, and account managers ensuring successful deployments and ongoing success."
-  },
-  {
-    name: "Operations",
-    icon: LucideIcons.Settings,
-    description: "Supply chain, manufacturing, and logistics experts ensuring reliable delivery and deployment of our systems."
-  },
-  {
-    name: "Business Development",
-    icon: LucideIcons.TrendingUp,
-    description: "Sales and partnership teams expanding our reach and building relationships across industries and regions."
-  }
+const executiveLeadership = [
+  { name: "Dr. Fred Daneshgaran", title: "CEO and Co-Founder" },
+  { name: "Kash Olia", title: "CTO and Co-Founder" },
+]
+
+const advisors = [
+  { name: "Dr. Marina Mondin", title: "Advisor — Artificial Intelligence and Machine Learning" },
+]
+
+const engineeringAndOperations = [
+  { name: "Nayer Shahri", title: "Finance Manager" },
+  { name: "Behzad Zarifkar", title: "Sr. Mechanical Engineer" },
+  { name: "Fausto Lizzio", title: "Mechanical Engineer" },
+  { name: "Antonio Marangi", title: "Software Engineer, Localization and Mapping" },
+  { name: "Jason May", title: "Software Engineer, Path Planning" },
+  { name: "Ramtin Haddadzadeh", title: "Controls Engineer, Autopilot" },
 ]
 
 export default function TeamPage() {
   return (
     <>
       {/* Breadcrumbs */}
-      <div className="border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
-            <Link href="/company" className="hover:text-foreground transition-colors">Company</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">Team</span>
+      <div className="border-b" style={{ borderColor: "var(--it-border)" }}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center gap-2 text-sm" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Home</Link>
+            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
+            <Link href="/company" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Company</Link>
+            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
+            <span style={{ color: "var(--it-text-primary)" }}>Team</span>
           </div>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="outline" className="mb-4">Our Team</Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
+      {/* Hero — compact */}
+      <section className="py-10 lg:py-14" style={{ background: "var(--it-hero-gradient)" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <Badge variant="outline" className="mb-3 border-it-border" style={{ color: "var(--it-text-secondary)" }}>
+              Our Team
+            </Badge>
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-balance" style={{ color: "var(--it-text-primary)" }}>
               The Team Behind the Technology
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty">
-              Passionate experts dedicated to building the future of autonomous operations
+            <p className="text-lg text-pretty" style={{ color: "var(--it-text-muted)" }}>
+              Passionate experts building the future of autonomous operations
             </p>
           </div>
         </div>
       </section>
 
-      {/* Teams */}
-      <PageShell>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teams.map((team) => {
-            const Icon = team.icon
-            return (
-              <Card key={team.name} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
-                <CardContent className="pt-6 space-y-4 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--it-light-blue-subtle)]">
-                    <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-it-light-text-primary">{team.name}</h3>
-                  <p className="text-it-light-text-muted text-pretty">
-                    {team.description}
-                  </p>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
-      </PageShell>
+      {/* Single section: Leadership, Advisors, Engineering, Culture */}
+      <Section variant="white" className="py-12 lg:py-16">
+        <div className="space-y-12 lg:space-y-14">
+          {/* Leadership + Advisors in one row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+            <div>
+              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+                Executive Leadership
+              </h2>
+              <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+                Strategy and technology vision
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {executiveLeadership.map((person) => (
+                  <TeamCard key={person.name} {...person} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+                Advisors
+              </h2>
+              <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+                AI, ML, and technology strategy
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {advisors.map((person) => (
+                  <TeamCard key={person.name} {...person} />
+                ))}
+              </div>
+            </div>
+          </div>
 
-      {/* Culture */}
-      <section className="bg-muted/30 py-16 lg:py-24">
-        <PageShell>
-          <SectionHeader 
-            title="Our Culture"
-            description="What it's like to work at InnoTech"
-          />
-          <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground">
-            <p>
-              We&apos;re builders at heart—engineers, designers, and operators who love solving hard problems. Our team brings together expertise from automotive, robotics, software, and industrial automation to create solutions that work in the real world.
+          {/* Engineering & Operations — compact list */}
+          <div>
+            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+              Engineering & Operations
+            </h2>
+            <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              Building and supporting our products and operations
             </p>
-            <p>
-              We value collaboration, continuous learning, and a bias toward action. We believe the best solutions come from diverse perspectives and aren&apos;t afraid to challenge assumptions or try new approaches.
-            </p>
-            <p>
-              Most importantly, we&apos;re mission-driven. We&apos;re not just building products—we&apos;re enabling the autonomous revolution that will transform how goods move, how factories operate, and how work gets done.
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {engineeringAndOperations.map((person) => (
+                <TeamCard key={person.name} {...person} compact />
+              ))}
+            </div>
+          </div>
+
+          {/* Our Culture — one short paragraph */}
+          <div className="pt-4 border-t" style={{ borderColor: "var(--it-border)" }}>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+              Our Culture
+            </h2>
+            <p className="text-base max-w-3xl" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              We&apos;re builders at heart—engineers, designers, and operators who love solving hard problems. We value collaboration, continuous learning, and a bias toward action. We&apos;re mission-driven: enabling the autonomous revolution that will transform how goods move, how factories operate, and how work gets done.
             </p>
           </div>
-        </PageShell>
-      </section>
+        </div>
+      </Section>
 
       {/* CTA */}
-      <CtaBanner 
+      <CtaBanner
         title="Join the InnoTech Team"
         description="Explore opportunities to work on cutting-edge autonomous systems technology"
         primaryCta={{ label: "View Open Positions", href: "/company/careers" }}
