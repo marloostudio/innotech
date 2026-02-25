@@ -2,7 +2,6 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Section } from "@/components/page-shell"
 
 interface CtaBannerProps {
   // Primary shape (new)
@@ -31,36 +30,45 @@ export function CtaBanner({
   const primaryHref = primaryCta?.href ?? ctaHref ?? "#"
 
   return (
-    <Section className="bg-primary text-primary-foreground">
-      <div className="text-center space-y-6 max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-          {resolvedHeadline}
-        </h2>
-        <p className="text-lg md:text-xl opacity-90 text-pretty">
-          {description}
-        </p>
-        <div className="pt-4 flex flex-col items-center justify-center gap-3">
-          {primaryLabel && (
-            <Link href={primaryHref}>
-              <Button
-                size="lg"
-                variant="secondary"
-                className="text-primary"
-              >
-                {primaryLabel}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          )}
-          {secondaryCta && (
-            <Link href={secondaryCta.href}>
-              <Button size="lg" variant="ghost" className="text-primary-foreground hover:bg-white/10">
-                {secondaryCta.label}
-              </Button>
-            </Link>
-          )}
+    <section
+      style={{
+        background: "var(--it-bg)",
+        borderTop: "1px solid var(--it-border)",
+      }}
+      className="w-full py-16 md:py-24"
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-6 max-w-3xl mx-auto" style={{ color: "var(--it-text-primary)" }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
+            {resolvedHeadline}
+          </h2>
+          <p className="text-lg md:text-xl opacity-90 text-pretty" style={{ color: "var(--it-text-secondary)" }}>
+            {description}
+          </p>
+          <div className="pt-4 flex flex-col items-center justify-center gap-3">
+            {primaryLabel && (
+              <Link href={primaryHref}>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="text-[var(--it-bg)]"
+                  style={{ background: "var(--it-blue)" }}
+                >
+                  {primaryLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                </Button>
+              </Link>
+            )}
+            {secondaryCta && (
+              <Link href={secondaryCta.href}>
+                <Button size="lg" variant="ghost" className="hover:bg-white/10" style={{ color: "var(--it-text-primary)" }}>
+                  {secondaryCta.label}
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
-    </Section>
+    </section>
   )
 }

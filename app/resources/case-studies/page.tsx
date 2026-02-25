@@ -83,7 +83,7 @@ export default function CaseStudiesPage() {
       <Section className="pt-24 pb-12">
         <h1
           className="text-4xl font-bold mb-6"
-          style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra)" }}
+          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
         >
           Case Studies — Real Results Across Industries
         </h1>
@@ -97,42 +97,42 @@ export default function CaseStudiesPage() {
       <Section className="py-8">
         <div className="grid md:grid-cols-2 gap-6">
           {caseStudies.map((study) => (
-            <Card key={study.id} className="flex flex-col hover:shadow-lg transition-shadow">
+            <Card key={study.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
-                  <Badge variant="outline">{study.industry}</Badge>
-                  <Building2 className="h-5 w-5 text-muted-foreground" />
+                  <Badge variant="outline" className="border-it-light-border text-it-light-text-secondary">{study.industry}</Badge>
+                  <Building2 className="h-5 w-5 text-it-light-text-muted" strokeWidth={1.5} />
                 </div>
-                <CardTitle className="text-2xl">
+                <CardTitle className="text-2xl text-it-light-text-primary">
                   {study.title}
                 </CardTitle>
-                <CardDescription className="text-base pt-2">
+                <CardDescription className="text-base pt-2 text-it-light-text-secondary">
                   {study.client}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 flex-1 flex flex-col">
                 <div className="space-y-3 flex-1">
                   <div>
-                    <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    <p className="text-xs font-semibold text-it-light-text-muted uppercase mb-1">
                       Challenge
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-it-light-text-secondary">
                       {study.challenge}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    <p className="text-xs font-semibold text-it-light-text-muted uppercase mb-1">
                       Solution
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-it-light-text-secondary">
                       {study.solution}
                     </p>
                   </div>
                   <div className="pt-2">
-                    <p className="text-xs font-semibold text-primary uppercase mb-1">
+                    <p className="text-xs font-semibold text-it-light-blue uppercase mb-1">
                       Outcome
                     </p>
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium text-it-light-text-primary">
                       {study.outcome}
                     </p>
                   </div>
@@ -159,7 +159,7 @@ export default function CaseStudiesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground italic">
+          <p className="text-sm text-it-light-text-muted italic">
             Note: Case studies represent typical implementations and results. Client names are anonymized. Contact us for detailed references.
           </p>
         </div>

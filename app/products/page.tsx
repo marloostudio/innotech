@@ -77,22 +77,22 @@ export default function ProductsPage() {
           {products.map((product) => {
             const Icon = product.icon
             return (
-              <Card key={product.id} className="flex flex-col">
+              <Card key={product.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
                 <CardHeader>
-                  <div className="p-4 rounded-lg bg-primary/10 w-fit mb-4">
-                    <Icon className="w-8 h-8 text-primary" />
+                  <div className="p-4 rounded-lg bg-[var(--it-light-blue-subtle)] w-fit mb-4">
+                    <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
                   </div>
-                  <CardTitle className="text-2xl mb-2">{product.name}</CardTitle>
-                  <CardDescription className="text-base">{product.tagline}</CardDescription>
+                  <CardTitle className="text-2xl mb-2 text-it-light-text-primary">{product.name}</CardTitle>
+                  <CardDescription className="text-base text-it-light-text-secondary">{product.tagline}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
-                  <p className="text-muted-foreground mb-6 text-pretty">{product.description}</p>
+                  <p className="text-it-light-text-muted mb-6 text-pretty">{product.description}</p>
                   
                   <div className="space-y-3 mb-6">
                     {product.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <LucideIcons.Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
+                        <LucideIcons.Check className="w-5 h-5 text-it-light-blue flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                        <span className="text-sm text-it-light-text-secondary">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -113,7 +113,7 @@ export default function ProductsPage() {
       </PageShell>
 
       {/* Why InnoTech Section */}
-      <section className="bg-muted/50 py-16 lg:py-24">
+      <section className="it-section-mid py-16 lg:py-24">
         <PageShell>
           <SectionHeader
             label="Why InnoTech"

@@ -79,30 +79,30 @@ export default function CaseStudiesPage() {
       <PageShell id="case-studies-grid">
         <div className="grid lg:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="flex flex-col">
+            <Card key={index} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
-                  <Badge variant="secondary">{study.industry}</Badge>
-                  <Badge variant="outline">{study.status}</Badge>
+                  <Badge variant="secondary" className="text-it-light-text-secondary">{study.industry}</Badge>
+                  <Badge variant="outline" className="border-it-light-border text-it-light-text-secondary">{study.status}</Badge>
                 </div>
-                <CardTitle className="text-xl mb-4 text-pretty">{study.title}</CardTitle>
+                <CardTitle className="text-xl mb-4 text-pretty text-it-light-text-primary">{study.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <div className="space-y-4 mb-6">
                   <div>
-                    <h4 className="font-semibold text-sm text-muted-foreground mb-2">CHALLENGE</h4>
-                    <p className="text-sm text-pretty">{study.challenge}</p>
+                    <h4 className="font-semibold text-sm text-it-light-text-muted mb-2">CHALLENGE</h4>
+                    <p className="text-sm text-pretty text-it-light-text-secondary">{study.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-muted-foreground mb-2">SOLUTION</h4>
-                    <p className="text-sm text-pretty">{study.solution}</p>
+                    <h4 className="font-semibold text-sm text-it-light-text-muted mb-2">SOLUTION</h4>
+                    <p className="text-sm text-pretty text-it-light-text-secondary">{study.solution}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-muted-foreground mb-2">RESULTS</h4>
+                    <h4 className="font-semibold text-sm text-it-light-text-muted mb-2">RESULTS</h4>
                     <ul className="space-y-2">
                       {study.results.map((result, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm">
-                          <LucideIcons.CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <li key={idx} className="flex items-start gap-2 text-sm text-it-light-text-secondary">
+                          <LucideIcons.CheckCircle className="w-4 h-4 text-it-light-blue flex-shrink-0 mt-0.5" strokeWidth={1.5} />
                           <span className="text-pretty">{result}</span>
                         </li>
                       ))}
@@ -115,7 +115,7 @@ export default function CaseStudiesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-muted-foreground mb-6">
+          <p className="text-it-light-text-muted mb-6">
             Detailed case studies coming soon. Contact us to learn more about these deployments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

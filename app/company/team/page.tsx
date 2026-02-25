@@ -82,13 +82,13 @@ export default function TeamPage() {
           {teams.map((team) => {
             const Icon = team.icon
             return (
-              <Card key={team.name}>
+              <Card key={team.name} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
                 <CardContent className="pt-6 space-y-4 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-                    <Icon className="w-8 h-8 text-primary" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--it-light-blue-subtle)]">
+                    <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-semibold">{team.name}</h3>
-                  <p className="text-muted-foreground text-pretty">
+                  <h3 className="text-xl font-semibold text-it-light-text-primary">{team.name}</h3>
+                  <p className="text-it-light-text-muted text-pretty">
                     {team.description}
                   </p>
                 </CardContent>

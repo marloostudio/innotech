@@ -27,13 +27,13 @@ export default function Error({
       </p>
       <h1
         className="text-4xl font-bold mb-4"
-        style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra)" }}
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
       >
         Something went wrong
       </h1>
       <p
         className="text-base mb-8 max-w-md"
-        style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans)" }}
+        style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}
       >
         An unexpected error occurred. Try again or return to the homepage.
       </p>
@@ -42,14 +42,14 @@ export default function Error({
           type="button"
           onClick={reset}
           className="px-6 py-3 rounded-md text-sm font-medium border transition-all duration-150"
-          style={{ borderColor: "var(--it-border)", color: "var(--it-text-secondary)" }}
+          style={{ borderColor: "var(--it-light-border)", color: "var(--it-light-text-secondary)" }}
         >
           Try Again
         </button>
         <Link
           href="/"
           className="px-6 py-3 rounded-md text-sm font-medium transition-all duration-150"
-          style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}
+          style={{ background: "var(--it-light-blue)", color: "white" }}
         >
           Back to Home
         </Link>

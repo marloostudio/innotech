@@ -93,13 +93,13 @@ export default function CareersPage() {
           {benefits.map((benefit) => {
             const Icon = benefit.icon
             return (
-              <Card key={benefit.title}>
+              <Card key={benefit.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
                 <CardContent className="pt-6 space-y-3">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10">
-                    <Icon className="w-6 h-6 text-primary" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)]">
+                    <Icon className="w-6 h-6 text-it-light-blue" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-semibold">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground text-pretty">
+                  <h3 className="font-semibold text-it-light-text-primary">{benefit.title}</h3>
+                  <p className="text-sm text-it-light-text-muted text-pretty">
                     {benefit.description}
                   </p>
                 </CardContent>
@@ -119,12 +119,12 @@ export default function CareersPage() {
           
           <div className="space-y-4 max-w-4xl mx-auto">
             {openRoles.map((role, index) => (
-              <Card key={index}>
+              <Card key={index} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
                 <CardContent className="pt-6">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2">{role.title}</h3>
-                      <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                      <h3 className="text-xl font-semibold mb-2 text-it-light-text-primary">{role.title}</h3>
+                      <div className="flex flex-wrap gap-3 text-sm text-it-light-text-muted">
                         <div className="flex items-center gap-1">
                           <LucideIcons.MapPin className="w-4 h-4" />
                           {role.location}
@@ -146,8 +146,8 @@ export default function CareersPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-4">
-              Don&apos;t see the right role? We&apos;re always interested in hearing from talented people.
+<p className="text-it-light-text-muted mb-4">
+            Don&apos;t see the right role? We&apos;re always interested in hearing from talented people.
             </p>
             <Button variant="outline" asChild>
               <Link href="/contact">Get in Touch</Link>

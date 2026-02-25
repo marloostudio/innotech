@@ -10,7 +10,7 @@ export default function Loading() {
             key={i}
             className="w-2 h-2 rounded-full animate-pulse"
             style={{
-              background: "var(--it-blue)",
+              background: "var(--it-light-blue)",
               animationDelay: `${i * 150}ms`,
             }}
           />

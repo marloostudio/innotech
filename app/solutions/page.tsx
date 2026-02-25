@@ -36,6 +36,7 @@ export default function SolutionsPage() {
         description="Not every operator knows which product they need. This section organises our capabilities by the challenge you're trying to solve — whether that's removing humans from high-voltage charging environments, coordinating dozens of autonomous vehicles in a shared space, or tracking assets across a GNSS-denied facility."
         primaryCta={{ label: "Find Your Solution", href: "#manufacturing" }}
         secondaryCta={{ label: "Book a Consultation", href: "/contact" }}
+        heroClass="it-hero-solutions"
       />
 
       <Section className="py-8">
@@ -45,22 +46,22 @@ export default function SolutionsPage() {
             
             return (
               <div key={solution.id}>
-                <Card className="overflow-hidden" id={solution.id}>
-                  <CardHeader className="bg-muted/30">
+                <Card className="overflow-hidden bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-solutions)]" id={solution.id}>
+                  <CardHeader className="bg-it-light-surface-2">
                     <div className="flex items-start gap-4">
-                      <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0">
-                        <Icon className="h-7 w-7 text-primary" />
+                      <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-[var(--it-light-blue-subtle)] flex-shrink-0">
+                        <Icon className="h-7 w-7 text-it-light-blue" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1">
-                        <CardTitle className="text-2xl md:text-3xl">{solution.title}</CardTitle>
-                        <CardDescription className="text-base mt-2">
+                        <CardTitle className="text-2xl md:text-3xl text-it-light-text-primary">{solution.title}</CardTitle>
+                        <CardDescription className="text-base mt-2 text-it-light-text-secondary">
                           {solution.tagline}
                         </CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-6 space-y-6">
-                    <p className="text-muted-foreground leading-relaxed text-lg">
+                    <p className="text-it-light-text-secondary leading-relaxed text-lg">
                       {solution.description}
                     </p>
                     
@@ -71,8 +72,8 @@ export default function SolutionsPage() {
                         </div>
                         <ul className="space-y-2">
                           {solution.benefits.map((benefit, idx) => (
-                            <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                              <LucideIcons.CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                            <li key={idx} className="text-sm text-it-light-text-muted flex items-start gap-2">
+                              <LucideIcons.CheckCircle2 className="h-4 w-4 text-it-light-blue mt-0.5 flex-shrink-0" strokeWidth={1.5} />
                               <span>{benefit}</span>
                             </li>
                           ))}
@@ -85,8 +86,8 @@ export default function SolutionsPage() {
                         </div>
                         <ul className="space-y-2">
                           {solution.capabilities.map((capability, idx) => (
-                            <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                              <LucideIcons.Zap className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                            <li key={idx} className="text-sm text-it-light-text-muted flex items-start gap-2">
+                              <LucideIcons.Zap className="h-4 w-4 text-it-light-blue mt-0.5 flex-shrink-0" strokeWidth={1.5} />
                               <span>{capability}</span>
                             </li>
                           ))}

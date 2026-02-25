@@ -2,24 +2,24 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Section } from "@/components/page-shell"
+import { PageShell } from "@/components/page-shell"
+import { cn } from "@/lib/utils"
+
+type HeroSectionClass = "it-hero-safeguard" | "it-hero-solutions"
 
 interface HeroProps {
   headline: string
   subheadline: string
-  primaryCta: {
-    text: string
-    href: string
-  }
-  secondaryCta: {
-    text: string
-    href: string
-  }
+  primaryCta: { text: string; href: string }
+  secondaryCta: { text: string; href: string }
+  /** SafeGuard page vs Drone/V2X (solutions) pages */
+  heroClass?: HeroSectionClass
 }
 
-export function Hero({ headline, subheadline, primaryCta, secondaryCta }: HeroProps) {
+export function Hero({ headline, subheadline, primaryCta, secondaryCta, heroClass = "it-hero-solutions" }: HeroProps) {
   return (
-    <Section className="pt-24 md:pt-32 pb-16 md:pb-24">
+    <section className={cn(heroClass, "pt-24 md:pt-32 pb-16 md:pb-24")}>
+      <PageShell>
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-balance">
           {headline}
@@ -41,6 +41,7 @@ export function Hero({ headline, subheadline, primaryCta, secondaryCta }: HeroPr
           </Link>
         </div>
       </div>
-    </Section>
+      </PageShell>
+    </section>
   )
 }

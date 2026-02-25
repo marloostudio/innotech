@@ -2,10 +2,8 @@ import Link from 'next/link'
 import { PageShell } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import * as LucideIcons from 'lucide-react'
 
 interface Solution {
@@ -36,7 +34,7 @@ const SOLUTION_ICON_MAP: Record<string, LucideIcons.LucideIcon> = {
 
 function SolutionIcon({ name }: { name: string }) {
   const Icon = SOLUTION_ICON_MAP[name] || LucideIcons.Box
-  return <Icon className="w-10 h-10 text-primary" />
+  return <Icon className="w-10 h-10" style={{ color: 'var(--it-solutions)' }} />
 }
 
 interface SolutionDetailProps {
@@ -47,42 +45,57 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
   return (
     <>
       {/* Breadcrumbs */}
-      <div className="border-b">
+      <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
+            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
-            <Link href="/solutions" className="hover:text-foreground transition-colors">Solutions</Link>
+            <Link href="/solutions" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Solutions</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">{solution.name}</span>
+            <span style={{ color: 'var(--it-text-primary)' }}>{solution.name}</span>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 lg:py-24">
+      <section className="it-hero-solutions py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-lg bg-primary/10">
+              <div className="p-4 rounded-lg" style={{ background: 'rgba(180, 125, 255, 0.12)' }}>
                 <SolutionIcon name={solution.icon} />
               </div>
-              <Badge variant="outline">Solution</Badge>
+              <Badge
+                variant="outline"
+                className="border-it-solutions text-it-solutions"
+              >
+                Solution
+              </Badge>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
+            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
               {solution.name}
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">
+            <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
               {solution.tagline}
             </p>
-            <p className="text-lg text-muted-foreground mb-10 text-pretty">
+            <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
               {solution.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
+              <Button
+                size="lg"
+                asChild
+                style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
+              >
                 <Link href="/demo">Request a Demo</Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-it-border hover:bg-white/5"
+                style={{ color: 'var(--it-text-primary)' }}
+              >
                 <Link href="/contact">Speak with an Expert</Link>
               </Button>
             </div>
@@ -91,81 +104,92 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
       </section>
 
       {/* Challenges & How It Works */}
-      <PageShell>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Challenges */}
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Common Challenges</h2>
-            <div className="space-y-4">
-              {solution.challenges.map((challenge, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-6 h-6 rounded-full bg-destructive/10 flex items-center justify-center">
-                      <LucideIcons.AlertCircle className="w-4 h-4 text-destructive" />
+      <section className="it-section-alt py-16 lg:py-24">
+        <PageShell>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Challenges */}
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-it-text-primary">Common Challenges</h2>
+              <div className="space-y-4">
+                {solution.challenges.map((challenge, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center bg-it-danger/10">
+                        <LucideIcons.AlertCircle className="w-4 h-4 text-it-danger" strokeWidth={1.5} />
+                      </div>
                     </div>
+                    <p className="text-lg text-pretty text-it-text-secondary">{challenge}</p>
                   </div>
-                  <p className="text-lg text-pretty">{challenge}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* How It Works */}
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-it-text-primary">How It Works</h2>
+              <div className="space-y-4">
+                {solution.howItWorks.map((step, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center text-sm font-semibold bg-it-blue text-it-bg">
+                        {index + 1}
+                      </div>
+                    </div>
+                    <p className="text-lg text-pretty text-it-text-secondary">{step}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* How It Works */}
-          <div>
-            <h2 className="text-3xl font-bold mb-6">How It Works</h2>
-            <div className="space-y-4">
-              {solution.howItWorks.map((step, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <p className="text-lg text-pretty">{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </PageShell>
-
-      <Separator />
+        </PageShell>
+      </section>
 
       {/* Benefits */}
-      <PageShell>
-        <SectionHeader
-          label="Benefits"
-          title="Value Delivered"
-          description="Key business outcomes from implementing this solution"
-        />
-        
-        <div className="grid sm:grid-cols-2 gap-6">
-          {solution.benefits.map((benefit, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle className="flex items-start gap-3">
-                  <LucideIcons.CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                  <span className="text-pretty">{benefit}</span>
-                </CardTitle>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </PageShell>
+      <section className="it-section py-16 lg:py-24">
+        <PageShell>
+          <SectionHeader
+            label="Benefits"
+            title="Value Delivered"
+            description="Key business outcomes from implementing this solution"
+          />
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {solution.benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="it-chip-dark rounded-xl p-6 flex items-start gap-3 border-l-[3px] border-l-it-safeguard"
+              >
+                <LucideIcons.CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-it-safeguard" strokeWidth={1.5} />
+                <span className="font-semibold text-pretty text-it-text-primary">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </PageShell>
+      </section>
 
       {/* Related Products */}
       {solution.relatedProducts && solution.relatedProducts.length > 0 && (
-        <section className="bg-muted/50 py-16 lg:py-24">
+        <section className="it-section-mid py-16 lg:py-24">
           <PageShell>
             <SectionHeader
+              theme="dark"
               label="Products"
               title="Powered By"
               description="InnoTech products that enable this solution"
             />
-            
+
             <div className="flex flex-wrap gap-4 justify-center">
               {solution.relatedProducts.map((product) => (
-                <Badge key={product} variant="secondary" className="text-base px-4 py-2">
+                <Badge
+                  key={product}
+                  variant="secondary"
+                  className="text-base px-4 py-2"
+                  style={{
+                    background: 'var(--it-surface-raised)',
+                    border: '1px solid var(--it-border)',
+                    color: 'var(--it-text-primary)',
+                  }}
+                >
                   {product}
                 </Badge>
               ))}

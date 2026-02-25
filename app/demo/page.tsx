@@ -173,7 +173,7 @@ export default function DemoPage() {
                 <button
                   type="submit"
                   className="w-full py-3 rounded-lg font-semibold transition-colors hover:opacity-90"
-                  style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}
+                  style={{ background: "var(--it-light-blue)", color: "white" }}
                 >
                   Request Demo
                 </button>

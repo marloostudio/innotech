@@ -79,19 +79,19 @@ export default function ResourcesPage() {
           {resourceCategories.map((category) => {
             const Icon = category.icon
             return (
-              <Card key={category.title} className="hover:shadow-lg transition-shadow">
+              <Card key={category.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4">
+                    <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
                   </div>
-                  <CardTitle className="text-2xl">{category.title}</CardTitle>
-                  <CardDescription className="text-base pt-2">
+                  <CardTitle className="text-2xl text-it-light-text-primary">{category.title}</CardTitle>
+                  <CardDescription className="text-base pt-2 text-it-light-text-secondary">
                     {category.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">{category.count}</span>
+                    <span className="text-sm text-it-light-text-muted">{category.count}</span>
                     <Link href={category.href}>
                       <Button variant="ghost" size="sm">
                         Browse
@@ -107,19 +107,19 @@ export default function ResourcesPage() {
 
         <div className="space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">Featured Topics</h2>
-            <p className="text-muted-foreground">Popular resources from our library</p>
+            <h2 className="text-3xl font-bold mb-4 text-it-light-text-primary">Featured Topics</h2>
+            <p className="text-it-light-text-muted">Popular resources from our library</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
             {featuredTopics.map((topic, index) => (
-              <Card key={index} className="hover:border-primary/50 transition-colors cursor-pointer">
+              <Card key={index} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:border-it-light-blue/50 transition-colors cursor-pointer">
                 <CardHeader>
-                  <div className="text-sm font-medium text-primary mb-2">
+                  <div className="text-sm font-medium text-it-light-blue mb-2">
                     {topic.category}
                   </div>
-                  <CardTitle className="text-xl">{topic.title}</CardTitle>
-                  <CardDescription className="text-base pt-2">
+                  <CardTitle className="text-xl text-it-light-text-primary">{topic.title}</CardTitle>
+                  <CardDescription className="text-base pt-2 text-it-light-text-secondary">
                     {topic.description}
                   </CardDescription>
                 </CardHeader>

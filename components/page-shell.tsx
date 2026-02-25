@@ -7,8 +7,8 @@ interface PageShellProps {
   id?: string
 }
 
-export function PageShell({ 
-  children, 
+export function PageShell({
+  children,
   className,
   as: Component = "div",
   id,
@@ -20,16 +20,38 @@ export function PageShell({
   )
 }
 
+export type SectionVariant = "white" | "light" | "dark" | "hero" | "accent"
+
+/* Dark theme only: all section variants use dark surfaces */
+const bgMap: Record<SectionVariant, string> = {
+  white: "var(--it-section-1)",
+  light: "var(--it-section-2)",
+  dark: "var(--it-bg)",
+  hero: "var(--it-bg)",
+  accent: "", /* CTA band: no default; use className (e.g. bg-primary) */
+}
+
 interface SectionProps {
+  variant?: SectionVariant
+  /** When true, uses it-section-alt for alternating stripe; otherwise it-section (primary) */
+  alt?: boolean
   children: React.ReactNode
   className?: string
   containerClassName?: string
   id?: string
+  style?: React.CSSProperties
 }
 
-export function Section({ children, className, containerClassName, id }: SectionProps) {
+export function Section({ variant = "white", alt = false, children, className, containerClassName, id, style: styleProp }: SectionProps) {
+  const bg = variant ? bgMap[variant] : undefined
+  const baseStyle = bg ? { background: bg } : {}
+  const style = styleProp ? { ...baseStyle, ...styleProp } : baseStyle
   return (
-    <section id={id} className={cn("py-16 md:py-24", className)}>
+    <section
+      id={id}
+      className={cn(alt ? "it-section-alt" : "it-section", "py-16 md:py-24", className)}
+      style={Object.keys(style).length ? style : undefined}
+    >
       <PageShell className={containerClassName}>
         {children}
       </PageShell>

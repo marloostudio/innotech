@@ -48,7 +48,7 @@ export default function TechnologyPage() {
       <Section className="pt-24 pb-12">
         <h1
           className="text-4xl font-bold mb-6"
-          style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra)" }}
+          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
         >
           Powering Autonomy Through Innovation
         </h1>
@@ -81,10 +81,10 @@ export default function TechnologyPage() {
         />
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {additionalTech.map((item, index) => (
-            <Card key={index}>
+            <Card key={index} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
               <CardContent className="pt-6 space-y-3">
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-it-light-text-primary">{item.title}</h3>
+                <p className="text-it-light-text-secondary leading-relaxed">
                   {item.description}
                 </p>
               </CardContent>

@@ -28,7 +28,7 @@ export default function RadarLinkPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-20 lg:py-28">
+      <section className="it-hero-solutions py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">Product</Badge>
@@ -65,26 +65,26 @@ export default function RadarLinkPage() {
           {radarLinkFeatures.map((feature) => {
             const Icon = getIcon(feature.icon)
             return (
-              <Card key={feature.id} className="group hover:shadow-lg transition-shadow">
+              <Card key={feature.id} className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-blue)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
                 <CardHeader>
                   <div className="flex items-start justify-between">
-                    <div className="p-3 rounded-lg bg-primary/10 mb-4">
-                      <Icon className="w-6 h-6 text-primary" />
+                    <div className="p-3 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4">
+                      <Icon className="w-6 h-6 text-it-light-blue" strokeWidth={1.5} />
                     </div>
                   </div>
-                  <CardTitle className="text-2xl mb-2">
+                  <CardTitle className="text-2xl mb-2 text-it-light-text-primary">
                     <Link 
                       href={`/products/radar-link/${feature.slug}`}
-                      className="hover:text-primary transition-colors"
+                      className="hover:text-it-light-blue transition-colors"
                     >
                       {feature.name}
                     </Link>
                   </CardTitle>
-                  <CardDescription className="text-base">{feature.tagline}</CardDescription>
+                  <CardDescription className="text-base text-it-light-text-secondary">{feature.tagline}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4 text-pretty">{feature.description}</p>
-                  <Button variant="outline" asChild className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <p className="text-it-light-text-muted mb-4 text-pretty">{feature.description}</p>
+                  <Button variant="outline" asChild className="border-it-light-border text-it-light-text-secondary group-hover:bg-it-light-blue group-hover:text-white transition-colors">
                     <Link href={`/products/radar-link/${feature.slug}`}>
                       Learn More
                       <LucideIcons.ArrowRight className="ml-2 w-4 h-4" />
@@ -98,7 +98,7 @@ export default function RadarLinkPage() {
       </PageShell>
 
       {/* Use Cases Section */}
-      <section className="bg-muted/50 py-16 lg:py-24">
+      <section className="it-section-mid py-16 lg:py-24">
         <PageShell>
           <SectionHeader
             label="Applications"

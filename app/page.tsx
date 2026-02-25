@@ -23,27 +23,39 @@ import {
 export default function HomePage() {
   return (
     <>
+      {/* PillarHero: dark (unchanged) */}
       <PillarHero {...heroContent} />
+      {/* LogoCloud: white */}
       <LogoCloud logos={trustLogos} />
+      {/* FeatureGrid: light */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
         description="End-to-end robotics and autonomous systems designed for enterprise operations"
         features={solutionsOverview}
+        variant="light"
       />
+      {/* IndustryGrid: white */}
       <IndustryGrid 
         title="Serving Critical Industries"
         description="Proven solutions across manufacturing, logistics, healthcare, and beyond"
         industries={industriesServed}
         showCta
       />
+      {/* TechOverview: light */}
       <TechOverview 
         title="Technology That Powers Innovation"
         description="Advanced AI, autonomous navigation, and enterprise integration in one platform"
         pillars={technologyPillars}
+        variant="light"
+        alt
       />
-      <Testimonial {...caseStudyTeaser} />
-      <Stats stats={statsPlaceholder} />
-      <Faq items={faqItems} />
+      {/* Testimonial / Case Study: white */}
+      <Testimonial {...caseStudyTeaser} variant="white" />
+      {/* Stats: light, alternating */}
+      <Stats stats={statsPlaceholder} variant="light" alt />
+      {/* FAQ: white */}
+      <Faq items={faqItems} variant="white" />
+      {/* CtaBanner: dark (unchanged) */}
       <CtaBanner {...finalCta} />
     </>
   )

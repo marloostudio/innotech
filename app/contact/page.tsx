@@ -33,7 +33,7 @@ const contactMethods = [
   {
     icon: MapPin,
     title: "Office",
-    description: `${siteConfig.company.address.street}, ${siteConfig.company.address.city}, ${siteConfig.company.address.state}`,
+    description: siteConfig.company.address,
     action: "Get directions"
   },
   {
@@ -57,13 +57,22 @@ export default function ContactPage() {
         tertiaryCta={{ label: "Contact Sales Directly", href: `mailto:${siteConfig.company.email}` }}
       />
 
-      <Section id="request-proposal" className="py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
+      <Section
+        id="request-proposal"
+        className="py-8 text-[var(--it-light-text-primary)]"
+        style={{ background: "var(--it-light-bg)" }}
+      >
+        <div className="grid lg:grid-cols-3 gap-8 contact-form-light">
           {/* Contact Form */}
-          <Card className="lg:col-span-2">
+          <Card
+            className="lg:col-span-2 border border-it-light-border bg-it-light-surface"
+            style={{ boxShadow: "var(--it-light-shadow-md)" }}
+          >
             <CardHeader>
-              <CardTitle className="text-2xl">Request a Demo or Consultation</CardTitle>
-              <CardDescription className="text-base">
+              <CardTitle className="text-2xl text-it-light-text-primary">
+                Request a Demo or Consultation
+              </CardTitle>
+              <CardDescription className="text-base text-it-light-text-secondary">
                 Fill out the form below and our team will get back to you within 24 hours
               </CardDescription>
             </CardHeader>
@@ -145,7 +154,7 @@ export default function ContactPage() {
                   Submit Request
                 </Button>
 
-                <p className="text-sm text-muted-foreground text-center">
+                <p className="text-sm text-it-light-text-muted text-center">
                   By submitting this form, you agree to our Privacy Policy and Terms of Service
                 </p>
               </form>
@@ -154,10 +163,10 @@ export default function ContactPage() {
 
           {/* Contact Info Sidebar */}
           <div className="space-y-6">
-            <Card>
+            <Card className="border border-it-light-border bg-it-light-surface">
               <CardHeader>
-                <CardTitle>Get In Touch</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-it-light-text-primary">Get In Touch</CardTitle>
+                <CardDescription className="text-it-light-text-secondary">
                   Multiple ways to reach our team
                 </CardDescription>
               </CardHeader>
@@ -165,13 +174,13 @@ export default function ContactPage() {
                 {contactMethods.map((method) => {
                   const Icon = method.icon
                   return (
-                    <div key={method.title} className="flex items-start gap-3 pb-4 last:pb-0 border-b last:border-0">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 flex-shrink-0">
+                    <div key={method.title} className="flex items-start gap-3 pb-4 last:pb-0 border-b last:border-0 border-it-light-border">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 shrink-0">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <p className="font-semibold text-sm">{method.title}</p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="font-semibold text-sm text-it-light-text-primary">{method.title}</p>
+                        <p className="text-sm text-it-light-text-muted mt-1">
                           {method.description}
                         </p>
                       </div>
@@ -181,12 +190,12 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border border-it-light-border bg-it-light-surface">
               <CardHeader>
-                <CardTitle>Sales Inquiries</CardTitle>
+                <CardTitle className="text-it-light-text-primary">Sales Inquiries</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-it-light-text-muted">
                   For pricing information, product demos, or to discuss your specific automation requirements.
                 </p>
                 <Button variant="outline" className="w-full">
@@ -196,12 +205,12 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border border-it-light-border bg-it-light-surface">
               <CardHeader>
-                <CardTitle>Technical Support</CardTitle>
+                <CardTitle className="text-it-light-text-primary">Technical Support</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-it-light-text-muted">
                   24/7 support for existing customers. Login to your account for faster service.
                 </p>
                 <Button variant="outline" className="w-full">
@@ -214,10 +223,10 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30 py-16">
+      <Section className="py-16 text-[var(--it-light-text-primary)]" style={{ background: "var(--it-light-surface-2)" }}>
         <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold">Prefer to Talk?</h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="text-3xl font-bold text-it-light-text-primary">Prefer to Talk?</h2>
+          <p className="text-lg text-it-light-text-muted">
             Schedule a call with one of our automation experts to discuss your needs in detail.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -234,3 +243,4 @@ export default function ContactPage() {
     </>
   )
 }
+

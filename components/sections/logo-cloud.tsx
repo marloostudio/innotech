@@ -1,4 +1,5 @@
-import { Section } from "@/components/page-shell"
+import { cn } from "@/lib/utils"
+import { PageShell } from "@/components/page-shell"
 
 interface LogoCloudProps {
   title?: string
@@ -7,22 +8,24 @@ interface LogoCloudProps {
 
 export function LogoCloud({ title = "Trusted by industry leaders", logos }: LogoCloudProps) {
   return (
-    <Section className="py-12 bg-muted/30">
+    <section className="it-section-mid py-12">
+      <PageShell>
       <div className="space-y-8">
-        <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-wider">
+        <p className="text-center text-sm font-medium text-it-text-muted uppercase tracking-wider">
           {title}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
           {logos.map((logo, index) => (
             <div 
               key={index} 
-              className="flex items-center justify-center h-12 text-muted-foreground font-semibold text-sm"
+              className="flex items-center justify-center min-h-12 rounded-lg py-4 px-6 font-semibold text-sm text-it-text-muted border border-[var(--it-border)] bg-[var(--it-surface)]"
             >
               {logo}
             </div>
           ))}
         </div>
       </div>
-    </Section>
+      </PageShell>
+    </section>
   )
 }

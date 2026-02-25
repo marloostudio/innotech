@@ -77,7 +77,7 @@ export default function BlogPage() {
       <Section className="pt-24 pb-12">
         <h1
           className="text-4xl font-bold mb-6"
-          style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra)" }}
+          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
         >
           Industry Insights and Technology Perspectives
         </h1>
@@ -91,21 +91,21 @@ export default function BlogPage() {
       <Section className="py-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="flex flex-col hover:shadow-lg transition-shadow">
+            <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
-                  <Badge variant="secondary">{post.category}</Badge>
-                  <span className="text-xs text-muted-foreground">{post.readTime}</span>
+                  <Badge variant="secondary" className="text-it-light-text-secondary">{post.category}</Badge>
+                  <span className="text-xs text-it-light-text-muted">{post.readTime}</span>
                 </div>
-                <CardTitle className="text-xl line-clamp-2">
+                <CardTitle className="text-xl line-clamp-2 text-it-light-text-primary">
                   {post.title}
                 </CardTitle>
-                <CardDescription className="text-base pt-2 line-clamp-3">
+                <CardDescription className="text-base pt-2 line-clamp-3 text-it-light-text-secondary">
                   {post.excerpt}
                 </CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                <div className="flex items-center justify-between text-sm text-it-light-text-muted mb-4">
                   <div className="flex items-center gap-2">
                     <User className="h-4 w-4" />
                     <span>{post.author}</span>
@@ -127,7 +127,7 @@ export default function BlogPage() {
         </div>
 
         <div className="flex justify-center mt-12">
-          <p className="text-muted-foreground">
+          <p className="text-it-light-text-muted">
             Showing 6 of 25+ articles
           </p>
         </div>

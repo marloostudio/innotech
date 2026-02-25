@@ -8,26 +8,26 @@ export default function NotFound() {
     >
       <p
         className="font-mono text-xs tracking-widest uppercase mb-4"
-        style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-ibm-mono)" }}
+        style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}
       >
         404
       </p>
       <h1
         className="text-4xl font-bold mb-4"
-        style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra)" }}
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
       >
         Page Not Found
       </h1>
       <p
         className="text-base mb-8 max-w-md"
-        style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans)" }}
+        style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}
       >
         The page you&apos;re looking for doesn&apos;t exist or has been moved.
       </p>
       <Link
         href="/"
         className="px-6 py-3 rounded-md text-sm font-medium transition-all duration-150"
-        style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}
+        style={{ background: "var(--it-light-blue)", color: "white" }}
       >
         Back to Home
       </Link>

@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Linkedin, Twitter, Github } from "lucide-react"
 
@@ -16,14 +18,14 @@ export function Footer() {
           {/* Logo + tagline + address — spans 2 cols on lg */}
           <div className="col-span-2 space-y-4">
             <div>
-              <Link href="/" className="font-bold text-xl">
+              <Link href="/" className="font-bold text-xl" style={{ color: 'var(--it-text-primary)' }}>
                 {siteConfig.name}
               </Link>
-              <p className="text-sm text-muted-foreground mt-2 max-w-xs">
+              <p className="text-sm mt-2 max-w-xs" style={{ color: 'var(--it-text-muted)' }}>
                 {siteConfig.company.tagline}
               </p>
             </div>
-            <div className="text-sm text-muted-foreground space-y-1">
+            <div className="text-sm space-y-1" style={{ color: 'var(--it-text-secondary)' }}>
               <p>{siteConfig.company.address}</p>
               <p className="pt-2">{siteConfig.company.email}</p>
               <p>{siteConfig.company.phone}</p>
@@ -33,7 +35,8 @@ export function Footer() {
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="transition-colors duration-150 hover:opacity-90"
+                style={{ color: 'var(--it-text-muted)' }}
               >
                 <Linkedin className="h-5 w-5" strokeWidth={1.5} />
                 <span className="sr-only">LinkedIn</span>
@@ -42,7 +45,8 @@ export function Footer() {
                 href={siteConfig.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="transition-colors duration-150 hover:opacity-90"
+                style={{ color: 'var(--it-text-muted)' }}
               >
                 <Twitter className="h-5 w-5" strokeWidth={1.5} />
                 <span className="sr-only">Twitter</span>
@@ -51,7 +55,8 @@ export function Footer() {
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="transition-colors duration-150 hover:opacity-90"
+                style={{ color: 'var(--it-text-muted)' }}
               >
                 <Github className="h-5 w-5" strokeWidth={1.5} />
                 <span className="sr-only">GitHub</span>
@@ -62,13 +67,16 @@ export function Footer() {
           {/* Footer Navigation — all columns preserved */}
           {footerNav.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h3 className="font-semibold text-sm">{section.title}</h3>
+              <h3 className="font-semibold text-sm" style={{ color: 'var(--it-text-primary)' }}>{section.title}</h3>
               <ul className="space-y-2">
                 {section.items.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm transition-colors duration-150"
+                      style={{ color: 'var(--it-text-muted)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--it-text-primary)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--it-text-muted)' }}
                     >
                       {item.title}
                     </Link>
@@ -83,14 +91,17 @@ export function Footer() {
         <div style={{ borderTop: "1px solid var(--it-border)" }} />
 
         {/* Bottom bar — copyright + legal links */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm text-muted-foreground">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: 'var(--it-text-muted)' }}>
           <p>© {currentYear} {siteConfig.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+            <Link href="/legal/privacy-policy" className="transition-colors duration-150 hover:opacity-90" style={{ color: 'var(--it-text-secondary)' }}>
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link href="/legal/terms" className="transition-colors duration-150 hover:opacity-90" style={{ color: 'var(--it-text-secondary)' }}>
               Terms of Service
+            </Link>
+            <Link href="/legal/cookie-policy" className="transition-colors duration-150 hover:opacity-90" style={{ color: 'var(--it-text-secondary)' }}>
+              Cookie Policy
             </Link>
           </div>
         </div>

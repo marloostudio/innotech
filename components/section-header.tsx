@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils"
 
 interface SectionHeaderProps {
+  /** "dark" = light text (default, for dark sections); "light" = dark text (for light cards/panels) */
+  theme?: "dark" | "light"
   title: string
   description?: string
   /** Small label above the title; alias for badge */
@@ -10,33 +12,54 @@ interface SectionHeaderProps {
   className?: string
 }
 
-export function SectionHeader({ 
-  title, 
-  description, 
+export function SectionHeader({
+  theme = "dark",
+  title,
+  description,
   label,
   badge,
   centered = true,
-  className 
+  className,
 }: SectionHeaderProps) {
   const displayBadge = badge ?? label
+  const isDark = theme === "dark"
   return (
-    <div className={cn(
-      "space-y-4 mb-12",
-      centered && "text-center",
-      className
-    )}>
+    <div
+      className={cn(
+        "space-y-4 mb-12",
+        centered && "text-center",
+        className
+      )}
+    >
       {displayBadge && (
         <div className={cn("inline-block", centered && "mx-auto")}>
-          <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+          <span
+            className={cn(
+              "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+              isDark
+                ? "bg-it-blue-subtle text-it-blue"
+                : "bg-(--it-light-blue-subtle) text-it-light-blue"
+            )}
+          >
             {displayBadge}
           </span>
         </div>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+      <h2
+        className={cn(
+          "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance",
+          isDark ? "text-it-text-primary" : "text-it-light-text-primary"
+        )}
+      >
         {title}
       </h2>
       {description && (
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+        <p
+          className={cn(
+            "text-lg md:text-xl max-w-3xl mx-auto text-pretty",
+            isDark ? "text-it-text-muted" : "text-it-light-text-muted"
+          )}
+        >
           {description}
         </p>
       )}

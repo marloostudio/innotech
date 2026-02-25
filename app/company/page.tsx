@@ -80,13 +80,13 @@ export default function CompanyPage() {
         />
         <div className="grid md:grid-cols-2 gap-6">
           {quickLinks.map((link) => (
-            <Card key={link.href} className="group hover:shadow-lg transition-shadow">
+            <Card key={link.href} className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
               <CardContent className="pt-6">
                 <Link href={link.href} className="block">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-semibold mb-2 text-it-light-text-primary group-hover:text-it-light-blue transition-colors">
                     {link.title}
                   </h3>
-                  <p className="text-muted-foreground">{link.description}</p>
+                  <p className="text-it-light-text-muted">{link.description}</p>
                 </Link>
               </CardContent>
             </Card>
@@ -104,15 +104,15 @@ export default function CompanyPage() {
             {values.map((value) => {
               const Icon = value.icon
               return (
-                <Card key={value.title}>
+                <Card key={value.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
                   <CardContent className="pt-6 space-y-3">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" />
+                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--it-light-blue-subtle)]">
+                        <Icon className="h-5 w-5 text-it-light-blue" strokeWidth={1.5} />
                       </div>
-                      <h3 className="text-xl font-semibold">{value.title}</h3>
+                      <h3 className="text-xl font-semibold text-it-light-text-primary">{value.title}</h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed text-pretty">
+                    <p className="text-it-light-text-secondary leading-relaxed text-pretty">
                       {value.description}
                     </p>
                   </CardContent>

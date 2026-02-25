@@ -1,7 +1,7 @@
 import * as LucideIcons from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Section } from "@/components/page-shell"
+import { Section, type SectionVariant } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 
 interface Feature {
@@ -17,6 +17,8 @@ interface FeatureGridProps {
   badge?: string
   features: Feature[]
   columns?: 2 | 3 | 4
+  variant?: SectionVariant
+  alt?: boolean
 }
 
 export function FeatureGrid({ 
@@ -24,7 +26,9 @@ export function FeatureGrid({
   description, 
   badge,
   features, 
-  columns = 4 
+  columns = 4,
+  variant,
+  alt,
 }: FeatureGridProps) {
   const getIcon = (iconName: string) => {
     // Map common icon names to Lucide icon components
@@ -60,21 +64,21 @@ export function FeatureGrid({
   }
 
   return (
-    <Section>
+    <Section variant={variant} alt={alt}>
       <SectionHeader title={title} description={description} badge={badge} />
       <div className={`grid grid-cols-1 ${gridCols[columns]} gap-6`}>
         {features.map((feature) => {
           const Icon = getIcon(feature.icon)
           return (
-            <Card key={feature.id} className="border-2 hover:border-primary/50 transition-colors">
+            <Card key={feature.id} className="border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] hover:border-it-light-blue/50 transition-colors">
               <CardHeader>
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4">
-                  <Icon className="h-6 w-6 text-primary" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4">
+                  <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
                 </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
+                <CardTitle className="text-xl text-it-light-text-primary">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-base text-it-light-text-secondary">
                   {feature.description}
                 </CardDescription>
               </CardContent>

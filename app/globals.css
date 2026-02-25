@@ -93,8 +93,111 @@
   --it-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
   --it-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
   --it-shadow-glow-blue: 0 0 20px rgba(77, 159, 255, 0.25);
+
+  /* ── InnoTech Light Surface Tokens ─────────────────── */
+  --it-light-bg:          #f8fafc;
+  --it-light-surface:     #ffffff;
+  --it-light-surface-2:   #f1f5f9;
+  --it-light-border:      #e2e8f0;
+  --it-light-border-subtle: #f1f5f9;
+
+  /* Text on light backgrounds */
+  --it-light-text-primary:   #0f172a;
+  --it-light-text-secondary: #334155;
+  --it-light-text-muted:     #64748b;
+  --it-light-text-dim:       #94a3b8;
+
+  /* Accent colours adjusted for light backgrounds */
+  --it-light-blue:           #2563eb;
+  --it-light-blue-hover:     #1d4ed8;
+  --it-light-blue-subtle:    rgba(37, 99, 235, 0.08);
+  --it-light-blue-border:    rgba(37, 99, 235, 0.2);
+  --it-light-safeguard:      #059669;
+  --it-light-autolock:       #ea580c;
+  --it-light-solutions:      #7c3aed;
+  --it-light-industries:     #d97706;
+
+  /* Shadows for light surfaces */
+  --it-light-shadow-sm:   0 1px 3px rgba(15, 23, 42, 0.08);
+  --it-light-shadow-md:   0 4px 16px rgba(15, 23, 42, 0.10);
+  --it-light-shadow-lg:   0 8px 32px rgba(15, 23, 42, 0.12);
+
+  /* ─────────────────────────────────────────────────────
+     FIX 1: Hero gradient presets
+     Use these on hero/page-header sections instead of
+     a plain background. They ground the hero in the
+     brand navy rather than rendering as flat gray.
+  ───────────────────────────────────────────────────── */
+  --it-hero-gradient:
+    radial-gradient(ellipse 80% 60% at 50% 0%,
+      rgba(77, 159, 255, 0.12) 0%,
+      transparent 70%),
+    linear-gradient(180deg, #0b1221 0%, #111827 100%);
+
+  --it-hero-gradient-light:
+    radial-gradient(ellipse 80% 60% at 50% 0%,
+      rgba(37, 99, 235, 0.06) 0%,
+      transparent 70%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+
+  /* Product-tinted hero variants */
+  --it-hero-safeguard:
+    radial-gradient(ellipse 70% 55% at 50% 0%,
+      rgba(0, 212, 170, 0.10) 0%,
+      transparent 65%),
+    linear-gradient(180deg, #0b1221 0%, #111827 100%);
+
+  --it-hero-autolock:
+    radial-gradient(ellipse 70% 55% at 50% 0%,
+      rgba(255, 107, 53, 0.10) 0%,
+      transparent 65%),
+    linear-gradient(180deg, #0b1221 0%, #111827 100%);
+
+  --it-hero-solutions:
+    radial-gradient(ellipse 70% 55% at 50% 0%,
+      rgba(180, 125, 255, 0.10) 0%,
+      transparent 65%),
+    linear-gradient(180deg, #0b1221 0%, #111827 100%);
+
+  /* ─────────────────────────────────────────────────────
+     FIX 2: Section alternation system
+     Three clearly distinct surface levels for dark pages.
+     Use them in this order: bg → section-alt → surface-raised
+     Never use an unbranded gray between them.
+  ───────────────────────────────────────────────────── */
+  --it-section-1: #0b1221;           /* primary page bg — deep navy */
+  --it-section-2: #0f1a2e;           /* subtle alt section — step up */
+  --it-section-3: #111827;           /* card/panel surface */
+  --it-section-raised: #1a2540;      /* elevated cards, modals */
+
+  /* ─────────────────────────────────────────────────────
+     FIX 3: "Powered By / Applications" mid-section
+     These replace the unbranded gray that appears in
+     those in-between sections in the screenshots.
+  ───────────────────────────────────────────────────── */
+  --it-mid-section-bg: #0f1a2e;
+  --it-mid-section-border-top: 1px solid #1e3050;
+  --it-mid-section-border-bottom: 1px solid #1e3050;
+
+  /* ─────────────────────────────────────────────────────
+     FIX 4: Card depth system
+     Replaces flat white/gray cards with layered surfaces
+     that read clearly against each section level.
+  ───────────────────────────────────────────────────── */
+  --it-card-default-bg:     #111827;
+  --it-card-default-border: #1e3050;
+  --it-card-hover-bg:       #1a2540;
+  --it-card-hover-border:   rgba(77, 159, 255, 0.35);
+  --it-card-hover-shadow:   0 8px 32px rgba(77, 159, 255, 0.12);
+
+  /* Accent-border card variants (left-accent style in screenshots) */
+  --it-card-accent-safeguard:  rgba(0, 212, 170, 0.4);
+  --it-card-accent-autolock:   rgba(255, 107, 53, 0.4);
+  --it-card-accent-solutions:  rgba(180, 125, 255, 0.4);
+  --it-card-accent-blue:       rgba(77, 159, 255, 0.4);
 }
 
+/* ── Dark mode overrides ──────────────────────────────── */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -134,8 +237,24 @@
   --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
   --font-mono: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
   --font-chakra: var(--font-chakra), 'Chakra Petch', sans-serif;
-  --color-background: #0b1221;
+
+  /* ─────────────────────────────────────────────────────
+     FIX 5: background/foreground were hardcoded to the
+     light palette (#f8fafc / #0f172a) globally, which
+     overrides dark sections. We now keep them as the
+     Tailwind defaults so dark sections can use their own
+     bg tokens without fighting this override.
+     
+     BEFORE:
+       --color-background: #f8fafc;
+       --color-foreground: #0f172a;
+     
+     AFTER: resolved via CSS variables so dark-mode
+     sections can be styled with their own surface tokens.
+  ───────────────────────────────────────────────────── */
+  --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -186,13 +305,154 @@
   --color-it-autolock: var(--it-autolock);
   --color-it-solutions: var(--it-solutions);
   --color-it-industries: var(--it-industries);
+  --color-it-danger: var(--it-danger);
+
+  /* InnoTech light surface (Tailwind utilities) */
+  --color-it-light-bg:              var(--it-light-bg);
+  --color-it-light-surface:         var(--it-light-surface);
+  --color-it-light-surface-2:       var(--it-light-surface-2);
+  --color-it-light-border:          var(--it-light-border);
+  --color-it-light-text-primary:    var(--it-light-text-primary);
+  --color-it-light-text-secondary:  var(--it-light-text-secondary);
+  --color-it-light-text-muted:      var(--it-light-text-muted);
+  --color-it-light-blue:            var(--it-light-blue);
+  --color-it-light-safeguard:       var(--it-light-safeguard);
+  --color-it-light-autolock:        var(--it-light-autolock);
+
+  /* New token utilities exposed to Tailwind */
+  --color-it-section-1:     var(--it-section-1);
+  --color-it-section-2:     var(--it-section-2);
+  --color-it-section-3:     var(--it-section-3);
+  --color-it-section-raised: var(--it-section-raised);
+  --color-it-mid-section:   var(--it-mid-section-bg);
+  --color-it-card-default:  var(--it-card-default-bg);
+  --color-it-card-hover:    var(--it-card-hover-bg);
 }
 
+/* ── Contact page: light form area ───────────────────── */
+.contact-form-light [data-slot="label"] {
+  color: var(--it-light-text-secondary);
+}
+.contact-form-light [data-slot="input"],
+.contact-form-light textarea {
+  border-color: var(--it-light-border);
+}
+.contact-form-light [data-slot="input"]:focus-visible,
+.contact-form-light textarea:focus-visible,
+.contact-form-light [data-slot="select-trigger"]:focus-visible {
+  border-color: var(--it-light-blue);
+  box-shadow: 0 0 0 3px var(--it-light-blue-border);
+}
+.contact-form-light [data-slot="input"]::placeholder,
+.contact-form-light textarea::placeholder {
+  color: var(--it-light-text-dim);
+}
+.contact-form-light [data-slot="select-trigger"] {
+  border-color: var(--it-light-border);
+}
+
+/* ─────────────────────────────────────────────────────────
+   UTILITY CLASSES — apply these directly in components
+   to replace the ad-hoc gray backgrounds showing in
+   the screenshots.
+───────────────────────────────────────────────────────── */
+
+/* Hero sections */
+.it-hero {
+  background: var(--it-hero-gradient);
+  color: var(--it-text-primary);
+}
+.it-hero-safeguard {
+  background: var(--it-hero-safeguard);
+  color: var(--it-text-primary);
+}
+.it-hero-autolock {
+  background: var(--it-hero-autolock);
+  color: var(--it-text-primary);
+}
+.it-hero-solutions {
+  background: var(--it-hero-solutions);
+  color: var(--it-text-primary);
+}
+.it-hero-light {
+  background: var(--it-hero-gradient-light);
+  color: var(--it-light-text-primary);
+}
+
+/* Section alternation (dark pages) */
+.it-section {
+  background-color: var(--it-section-1);
+  color: var(--it-text-primary);
+}
+.it-section-alt {
+  background-color: var(--it-section-2);
+  border-top: 1px solid var(--it-border-subtle);
+  border-bottom: 1px solid var(--it-border-subtle);
+  color: var(--it-text-primary);
+}
+
+/* Replaces the unbranded mid-gray "Powered By / Applications" sections */
+.it-section-mid {
+  background-color: var(--it-mid-section-bg);
+  border-top: 1px solid var(--it-border);
+  border-bottom: 1px solid var(--it-border);
+  color: var(--it-text-primary);
+}
+
+/* Card surface */
+.it-card {
+  background-color: var(--it-card-default-bg);
+  border: 1px solid var(--it-card-default-border);
+  border-radius: var(--radius);
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.it-card:hover {
+  background-color: var(--it-card-hover-bg);
+  border-color: var(--it-card-hover-border);
+  box-shadow: var(--it-card-hover-shadow);
+}
+
+/* Left-accent card (used in SafeGuard feature grid) */
+.it-card-accent-blue   { border-left: 3px solid var(--it-card-accent-blue); }
+.it-card-accent-teal   { border-left: 3px solid var(--it-card-accent-safeguard); }
+.it-card-accent-orange { border-left: 3px solid var(--it-card-accent-autolock); }
+.it-card-accent-violet { border-left: 3px solid var(--it-card-accent-solutions); }
+
+/* Value/outcome chips (the dark "Value Delivered" cards in screenshot 2) */
+.it-chip-dark {
+  background-color: var(--it-surface-raised);
+  border: 1px solid var(--it-border);
+  border-radius: var(--radius);
+  color: var(--it-text-primary);
+}
+.it-chip-dark:hover {
+  border-color: var(--it-blue-border);
+  background-color: var(--it-blue-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--it-bg);
+    color: var(--it-text-primary);
+  }
+  /* Chakra Petch for headings only (design system) */
+  h1, h2, h3, h4 {
+    font-family: var(--font-chakra), 'Chakra Petch', sans-serif;
+  }
+  /* Body copy readability */
+  .prose p, .max-w-prose p {
+    max-width: 680px;
+  }
+  /* Focus ring for keyboard nav (design: 150ms, brand blue) */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--it-blue);
+    outline-offset: 2px;
   }
 }
