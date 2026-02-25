@@ -108,13 +108,5 @@ export const footerNav: NavSection[] = [
       { title: "Whitepapers", href: "/resources/whitepapers" },
       { title: "FAQ", href: "/resources/faq" }
     ]
-  },
-  {
-    title: "Legal",
-    items: [
-      { title: "Privacy Policy", href: "/legal/privacy-policy" },
-      { title: "Cookie Policy", href: "/legal/cookie-policy" },
-      { title: "Terms of Service", href: "/legal/terms" }
-    ]
   }
 ]

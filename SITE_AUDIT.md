@@ -1,6 +1,6 @@
 # SITE_AUDIT.md
 
-Generated: 2025-02-24 | Project: InnoTech Systems | Source of truth for current setup and features
+Generated: 2025-02-25 | Project: InnoTech Systems | Source of truth for current setup and features | App version: 1.1.0
 
 ---
 
@@ -166,6 +166,8 @@ Innotech/
 │   │   ├── cta-banner.tsx
 │   │   ├── faq.tsx
 │   │   ├── feature-grid.tsx
+│   │   ├── hero-canvas.tsx
+│   │   ├── hero-v2.tsx
 │   │   ├── hero.tsx
 │   │   ├── industry-grid.tsx
 │   │   ├── logo-cloud.tsx
@@ -230,7 +232,7 @@ Innotech/
 
 | Route | File | H1 | Metadata |
 |-------|------|-----|----------|
-| / | app/page.tsx | PillarHero (from home.ts) | layout |
+| / | app/page.tsx | HeroV2 + HeroCanvas (home only) | layout |
 | /about | app/about/page.tsx | — | redirect to /company |
 | /accessibility | app/accessibility/page.tsx | Yes | Yes |
 | /case-studies | app/case-studies/page.tsx | PillarHero | Yes |
@@ -302,9 +304,13 @@ Innotech/
 
 ## 4. Components Overview
 
-- **Page/section**: `PageShell`, `Section`, `SectionHeader`; `PillarHero`, `Hero`; `CtaBanner`, `FeatureGrid`, `Faq`, `Stats`, `Testimonial`, `TechOverview`, `IndustryGrid`, `LogoCloud`. `PageShell` and `CtaBanner` use horizontal padding `px-6 lg:px-8`; `Section` provides vertical padding and optional alternating backgrounds.
+- **Page/section**: `PageShell`, `Section`, `SectionHeader`; `PillarHero`, `HeroV2`, `HeroCanvas`, `Hero`; `CtaBanner`, `FeatureGrid`, `Faq`, `Stats`, `Testimonial`, `TechOverview`, `IndustryGrid`, `LogoCloud`. `PageShell` and `CtaBanner` use horizontal padding `px-6 lg:px-8`; `Section` provides vertical padding and optional alternating backgrounds.
+- **Home hero**: `HeroV2` (home only) — style-guide hero (eyebrow, H1 with gradient line 2, subhead, CTAs); accepts optional `background` (e.g. `HeroCanvas`). `HeroCanvas` — client component: canvas particle/robot grid background with gradient and vignette overlays.
+- **PillarHero**: Optional `background?: React.ReactNode` for full-bleed background (e.g. canvas); when set, section uses `min-h-[85vh]`. Other pillar pages (Products, Solutions, etc.) use PillarHero without background.
+- **FeatureGrid**: Optional `showImagePlaceholder`, `imageOnLeft` (image on left, edge-to-edge top/bottom/left), `hideIcon`; used on home for “Comprehensive Automation Solutions” with image left and no icons.
+- **LogoCloud**: Title configurable (e.g. “Trusted by innovative companies worldwide”). Logos rendered 4× in a horizontal marquee with slow right-to-left scroll (CSS `logo-scroll` 60s, -25% translate for seamless loop).
 - **Detail pages**: `IndustryDetail`, `SolutionDetail`, `ProductFeatureDetail` (consume content from `lib/content/` and render H1 from content).
-- **Site**: `Navbar` (client, Framer Motion, mega menus, mobile drawer), `Footer`, `TeamCard` (`components/site/team-card.tsx`). **TeamCard**: team member card (avatar, name, title, optional bio/social); optional `compact` prop for horizontal, space-efficient layout with 3px left-border accent (used on `/company/team` for Engineering & Operations).
+- **Site**: `Navbar` (client, Framer Motion, mega menus, mobile drawer), `Footer`, `TeamCard` (`components/site/team-card.tsx`). **Footer** displays app version (e.g. v1.1.0) next to copyright; version from `lib/site.ts` (`APP_VERSION` / `siteConfig.version`). **TeamCard**: team member card (avatar, name, title, optional bio/social); optional `compact` prop for horizontal, space-efficient layout with 3px left-border accent (used on `/company/team` for Engineering & Operations).
 - **CtaBanner**: Accepts both shapes — `title` / `primaryCta` / `secondaryCta` and legacy `headline` / `ctaText` / `ctaHref`; `description` shared.
 - **Faq**: Uses `SectionHeader` for title/description; accordion with `FaqItem[]`; supports `variant` and `alt` from `PageShell`.
 - **Theme**: `ThemeProvider` (client, next-themes, attribute="class", defaultTheme="system").
@@ -334,7 +340,8 @@ Innotech/
 - **InnoTech (--it-*)**: Base (`--it-bg` #0b1221, `--it-surface`, `--it-surface-raised`), borders, text, blue, safeguard, autolock, solutions, industries, semantic, shadows; light surface set (`--it-light-*`); hero gradients; section alternation (`--it-section-1`–`--it-section-raised`); mid-section and card depth; exposed in `@theme` as `--color-it-*` for utilities.
 - **Fonts**: `--font-chakra`, `--font-dm-sans`, `--font-ibm-mono` from layout; `@theme`: `--font-sans`, `--font-mono`, `--font-chakra`.
 - **Body**: `style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}` on `<body>` in layout.
-- **Hardcoded hex**: InnoTech tokens in globals.css use hex/rgba for values; components reference variables. `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts Tailwind arbitrary selectors for stroke/fill (third-party chart styling).
+- **Logo cloud marquee**: `@keyframes logo-scroll` in `app/globals.css` (translateX 0 → -25%) for seamless infinite scroll; logos repeated 4× in `LogoCloud`.
+- **Hardcoded hex**: InnoTech tokens in globals.css use hex/rgba for values; components reference variables. `components/ui/chart.tsx` uses `#ccc` and `#fff` in recharts Tailwind arbitrary selectors for stroke/fill (third-party chart styling). Hero Style v2 and HeroCanvas use spec colours (e.g. #38B6FF, #060810) for the home hero only.
 
 ---
 

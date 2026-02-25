@@ -14,7 +14,7 @@ export default function FAQPage() {
         Resources
       </p>
       <h1 className="text-4xl font-bold mb-6"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
         Frequently Asked Questions
       </h1>
       <p style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>

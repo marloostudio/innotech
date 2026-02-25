@@ -83,7 +83,7 @@ export default function CaseStudiesPage() {
       <Section className="pt-24 pb-20 md:pb-28">
         <h1
           className="text-4xl font-bold mb-6"
-          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
+          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
         >
           Case Studies — Real Results Across Industries
         </h1>

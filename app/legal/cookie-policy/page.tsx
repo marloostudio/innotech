@@ -14,7 +14,7 @@ export default function CookiePolicyPage() {
         Legal
       </p>
       <h1 className="text-4xl font-bold mb-6"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
         Cookie Policy
       </h1>
       <p style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>

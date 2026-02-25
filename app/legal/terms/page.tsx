@@ -24,13 +24,13 @@ export default function TermsPage() {
       </p>
       <h1
         className="text-4xl font-bold mb-8"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
       >
         Terms & Conditions
       </h1>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Who we are
         </h2>
         <p className={bodyClass}>
@@ -42,7 +42,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What personal data we collect and why we collect it
         </h2>
 
@@ -109,14 +109,14 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Who we share your data with
         </h2>
         <p className={bodyClass}>We do not sell your personal data. We may share data with service providers necessary to operate the website and fulfil your requests, subject to appropriate agreements.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           How long we retain your data
         </h2>
         <p className={bodyClass}>
@@ -128,7 +128,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What rights you have over your data
         </h2>
         <p className={bodyClass}>
@@ -137,14 +137,14 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Where we send your data
         </h2>
         <p className={bodyClass}>Visitor comments may be checked through an automated spam detection service.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Your contact information
         </h2>
         <p className={bodyClass}>
@@ -156,42 +156,42 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Additional information
         </h2>
         <p className={bodyClass}>We may update this page from time to time. The last update date will be indicated at the bottom of the page.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           How we protect your data
         </h2>
         <p className={bodyClass}>We use appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What data breach procedures we have in place
         </h2>
         <p className={bodyClass}>In the event of a data breach that affects your personal data, we will take steps to contain the breach, assess risk, and notify affected individuals and regulators where required by law.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What third parties we receive data from
         </h2>
         <p className={bodyClass}>We may receive data from analytics providers, spam detection services, and other service providers as described in this document and in our Privacy Policy.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What automated decision making and/or profiling we do with user data
         </h2>
         <p className={bodyClass}>We do not use your data for automated decision making or profiling in a way that significantly affects you, except for automated spam detection on comments where applicable.</p>
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Industry regulatory disclosure requirements
         </h2>
         <p className={bodyClass}>If we are subject to industry-specific regulations that require additional disclosures, we will provide them in this section or in a separate notice.</p>

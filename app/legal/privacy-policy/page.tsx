@@ -24,13 +24,13 @@ export default function PrivacyPolicyPage() {
       </p>
       <h1
         className="text-4xl font-bold mb-8"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
       >
         Privacy Policy
       </h1>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Who we are
         </h2>
         <p className={bodyClass}>
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What personal data we collect and why we collect it
         </h2>
         <p className={bodyClass}>
@@ -105,7 +105,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           How long we retain your data
         </h2>
         <p className={bodyClass}>
@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           What rights you have over your data
         </h2>
         <p className={bodyClass}>
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        <h2 className={sectionTitleClass} style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
           Where we send your data
         </h2>
         <p className={bodyClass}>

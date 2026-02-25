@@ -27,7 +27,7 @@ export default function Error({
       </p>
       <h1
         className="text-4xl font-bold mb-4"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
       >
         Something went wrong
       </h1>

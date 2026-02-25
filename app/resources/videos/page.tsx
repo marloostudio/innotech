@@ -24,7 +24,7 @@ export default function VideosPage() {
 
       <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 py-24" style={{ background: "var(--it-hero-gradient)" }}>
         <div className="max-w-xl mx-auto text-center space-y-6">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-sans), 'Inter', sans-serif" }}>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
             Product Demos &amp; Webinars
           </h1>
           <p className="text-lg" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>

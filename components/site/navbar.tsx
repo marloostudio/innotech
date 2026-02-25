@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
-import { Menu, X, ChevronDown, Lock, ExternalLink } from "lucide-react"
+import { Menu, X, ChevronDown, Lock, ExternalLink, Mail, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
   productsMegaColumns,
@@ -90,7 +90,7 @@ export function Navbar() {
             <span
               className="font-bold tracking-wide uppercase"
               style={{
-                fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif",
+                fontFamily: "var(--font-inter), 'Inter', sans-serif",
                 fontSize: scrolled ? "1rem" : "1.125rem",
                 color: "var(--it-text-primary)",
               }}
@@ -100,7 +100,7 @@ export function Navbar() {
             <span
               className="font-bold tracking-wide uppercase transition-colors duration-200"
               style={{
-                fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif",
+                fontFamily: "var(--font-inter), 'Inter', sans-serif",
                 fontSize: scrolled ? "1rem" : "1.125rem",
                 color: CTA_BG,
               }}
@@ -221,7 +221,7 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-2 shrink-0">
             <Link
               href="/contact"
-              className="px-3 py-2 rounded border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
               style={{
                 fontSize: "0.9375rem",
                 color: NAV_LINK_COLOR,
@@ -238,11 +238,12 @@ export function Navbar() {
                 e.currentTarget.style.borderColor = BAR_BORDER
               }}
             >
+              <Mail size={18} strokeWidth={1.5} aria-hidden />
               Contact
             </Link>
             <Link href="/demo">
               <motion.span
-                className="inline-flex items-center justify-center font-medium px-5 py-2.5 rounded-md"
+                className="inline-flex items-center justify-center gap-2 font-medium px-5 py-2.5 rounded-md"
                 style={{
                   fontSize: "0.875rem",
                   backgroundColor: CTA_BG,
@@ -257,6 +258,7 @@ export function Navbar() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
+                <Calendar size={18} strokeWidth={1.5} aria-hidden />
                 Book a Demo
               </motion.span>
             </Link>
@@ -324,7 +326,7 @@ function ProductsMegaMenu({ onClose }: { onClose: () => void }) {
           <div>
             <h3
               className="text-lg font-semibold uppercase tracking-widest mb-1"
-              style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}
+              style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}
             >
               Products
             </h3>
@@ -343,7 +345,7 @@ function ProductsMegaMenu({ onClose }: { onClose: () => void }) {
               transition={{ delay: i * 0.06, duration: 0.2 }}
             >
               <div className="border-l-4 pl-3 mb-4" style={{ borderLeftColor: col.accentColor }}>
-                <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
+                <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
                   {col.name}
                 </h4>
                 <p className="mt-0.5" style={{ fontSize: "12.5px", color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
@@ -394,7 +396,7 @@ function SolutionsMegaMenu({ onClose }: { onClose: () => void }) {
       <div className="max-w-screen-2xl mx-auto px-8 py-6">
         <h3
           className="text-lg font-semibold uppercase tracking-widest mb-1"
-          style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}
+          style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}
         >
           Solutions
         </h3>
@@ -411,7 +413,7 @@ function SolutionsMegaMenu({ onClose }: { onClose: () => void }) {
               transition={{ delay: i * 0.06, duration: 0.2 }}
             >
               <div className="border-l-4 pl-3 mb-4" style={{ borderLeftColor: cat.accentColor }}>
-                <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
+                <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
                   {cat.name}
                 </h4>
               </div>
@@ -464,7 +466,7 @@ function IndustriesMegaMenu({ onClose }: { onClose: () => void }) {
       role="menu"
     >
       <div className="max-w-screen-2xl mx-auto px-8 py-6">
-        <h3 className="text-lg font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
+        <h3 className="text-lg font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
           Industries
         </h3>
         <p className="text-sm mb-6" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
@@ -636,8 +638,8 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
           >
             <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: "var(--it-border)" }}>
               <Link href="/" onClick={onClose} className="flex items-center gap-2">
-                <span className="font-bold tracking-wide uppercase" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>Inno</span>
-                <span className="font-bold tracking-wide uppercase" style={{ color: CTA_BG, fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>Tech</span>
+                <span className="font-bold tracking-wide uppercase" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>Inno</span>
+                <span className="font-bold tracking-wide uppercase" style={{ color: CTA_BG, fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>Tech</span>
                 <span className="text-xs uppercase tracking-wider" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>Systems</span>
               </Link>
               <button
@@ -709,7 +711,8 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
               <Link href="/company"     onClick={onClose} className="text-lg py-3" style={{ color: isActive("/company") ? "var(--it-text-primary)" : "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>Company</Link>
             </nav>
             <div className="p-6 border-t" style={{ borderColor: "var(--it-border)" }}>
-              <Link href="/demo" onClick={onClose} className="block w-full text-center text-base font-semibold py-3 rounded-lg" style={{ backgroundColor: CTA_BG, color: CTA_TEXT, fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              <Link href="/demo" onClick={onClose} className="flex items-center justify-center gap-2 w-full text-center text-base font-semibold py-3 rounded-lg" style={{ backgroundColor: CTA_BG, color: CTA_TEXT, fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+                <Calendar size={20} strokeWidth={1.5} aria-hidden />
                 Book a Demo
               </Link>
             </div>

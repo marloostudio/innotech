@@ -35,7 +35,7 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 ### Main routes
 
-- **/** – Home (PillarHero, solutions, industries, tech, testimonial, stats, FAQ, CTA).
+- **/** – Home: HeroV2 + HeroCanvas (particle/robot background), trust marquee (“Trusted by innovative companies worldwide”), Comprehensive Automation Solutions (image-left, no icons), industries, tech, testimonial, stats, FAQ, CTA. No hero image placeholder; hero height 60vh.
 - **/products** – Product catalog; **/solutions** – Solutions overview and detail; **/industries** – Industries overview and detail.
 - **/technology** – Technology overview.
 - **/resources** – Resources hub; **/resources/blog**, **/resources/case-studies**, **/resources/whitepapers**, **/resources/playbooks**, **/resources/videos**, **/resources/faq**, **/resources/docs**.
@@ -67,15 +67,19 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 ### Layout & site
 
 - **Navbar** – Sticky bar; scroll behaviour (transparent → blurred bar, 64→56px); Framer Motion. Colours via `var(--it-*)`. Products / Solutions / Industries mega menus; Case Studies / Resources / Company dropdowns; Contact + Book a Demo. Mobile: hamburger → full-screen drawer. Data: `lib/nav-mega.ts`.
-- **Footer** – Multi-column links and social links from `lib/nav`.
+- **Footer** – Multi-column links and social links from `lib/nav`. Displays app version (e.g. v1.1.0) next to copyright; version from `lib/site.ts` (`APP_VERSION` / `siteConfig.version`).
 - **PageShell / Section** – Layout and section wrappers; horizontal padding `px-6 lg:px-8` site-wide. Section provides vertical padding and optional alternating backgrounds.
 - **SectionHeader** – Reusable section title, description, badge.
 - **TeamCard** (`components/site/team-card.tsx`) – Team member card (avatar, name, title, optional bio and social links). Optional **compact** variant: horizontal layout with small avatar/initials and 3px left-border accent for dense grids (e.g. Engineering list on `/company/team`).
 
 ### Sections (home & content pages)
 
-- **PillarHero** – Above-the-fold hero for pillar pages (H1, H2, description, CTAs); used on Home, Products, Solutions, Industries, Case Studies, Resources, Company, Contact.
-- Hero (legacy), LogoCloud, FeatureGrid, IndustryGrid, TechOverview.
+- **HeroV2** – Home-only hero (style guide): eyebrow, H1 with gradient second line, subhead, CTAs; accepts optional `background` (e.g. HeroCanvas). 60vh height.
+- **HeroCanvas** – Client component: canvas particle/robot grid background; gradient and vignette overlays. Used as hero background on home.
+- **PillarHero** – Above-the-fold hero for pillar pages (H1, H2, description, CTAs); optional `background` prop. Used on Products, Solutions, Industries, Case Studies, Resources, Company, Contact (not home).
+- **LogoCloud** – Configurable title (e.g. “Trusted by innovative companies worldwide”); logos in a horizontal marquee (4× repeat, slow right-to-left scroll, seamless loop via `logo-scroll` keyframe in globals.css).
+- **FeatureGrid** – Optional `showImagePlaceholder`, `imageOnLeft` (image left, edge-to-edge top/bottom/left), `hideIcon`. Used on home for Comprehensive Automation Solutions.
+- Hero (legacy), IndustryGrid, TechOverview.
 - Testimonial, Stats, Faq.
 - **CtaBanner** – Accepts `title` / `primaryCta` / `secondaryCta` or legacy `headline` / `ctaText` / `ctaHref`; shared `description`.
 - **SolutionDetail**, **IndustryDetail**, **ProductFeatureDetail** – Content-driven detail pages (H1 from content).
@@ -96,7 +100,7 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 ## Content & Config
 
-- **lib/site.ts** – Site name, description, company info (phone, email, address), social links.
+- **lib/site.ts** – `APP_VERSION` (semver), site name, description, company info (phone, email, address), social links. Bump version here and in CHANGELOG when releasing.
 - **lib/nav.ts** – Header and footer navigation structure.
 - **lib/nav-mega.ts** – Mega menu and dropdown content (Products, Solutions, Industries, Resources, Company, Case Studies); accent colours use `--it-*` tokens.
 - **lib/content/** – Home, products, solutions, industries content models for pages.
@@ -107,9 +111,11 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 | Version   | Change |
 |-----------|--------|
-| **Unreleased** | Team page: compact layout (shorter hero, single section, Leadership + Advisors side-by-side, Engineering with compact TeamCards, Culture as one paragraph). TeamCard compact variant. Section/PageShell/CtaBanner padding standardised to px-6 lg:px-8. |
-| **0.2.0** | InnoTech design tokens (`--it-*`), tokenised navbar/nav-mega. Legal and accessibility routes; company sub-pages (values, board-advisors, investors, partners, open-roles); resources (whitepapers, playbooks, videos, faq, docs); industries (military, charge-depot). loading/error/not-found. CtaBanner dual API. SITE_AUDIT.md as source of truth. next.config `ignoreBuildErrors: false`. |
-| **0.1.1** | Navbar rebuild (v0 spec, Framer Motion, mega menus, mobile drawer). PillarHero and pillar page heroes. ThemeProvider and Toaster in layout. ESLint, CHANGELOG, FEATURES, NEXT_RECOMMENDATIONS. |
+| **Unreleased** | (Nothing yet.) |
+| **1.1.0** | Hero Style v2 (HeroV2) and HeroCanvas on home; trust marquee (“Trusted by innovative companies worldwide”, 4× logos, R→L scroll); Comprehensive Automation Solutions with image-left and no icons; footer version; PillarHero optional background; hero 60vh, no hero image placeholder. |
+| **1.0.0** | Team page compact layout; TeamCard compact variant; footer version; changelog semver. Section/PageShell padding px-6 lg:px-8. |
+| **0.2.0** | InnoTech design tokens (`--it-*`), tokenised navbar/nav-mega. Legal and accessibility routes; company sub-pages; resources; industries (military, charge-depot). loading/error/not-found. CtaBanner dual API. SITE_AUDIT.md. |
+| **0.1.1** | Navbar rebuild (Framer Motion, mega menus, mobile drawer). PillarHero and pillar heroes. ThemeProvider and Toaster in layout. ESLint, CHANGELOG, FEATURES, NEXT_RECOMMENDATIONS. |
 | **0.1.0** | Initial Next.js 16 app: App Router, pages, sections, shadcn/ui, content layer, docs. |
 
 For full detail see **[CHANGELOG.md](./CHANGELOG.md)**.

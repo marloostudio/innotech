@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Chakra_Petch, DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google'
+import { DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -9,16 +9,6 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/lib/site'
 
-const chakraPetch = Chakra_Petch({
-  weight: ['300', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-chakra',
-})
-const inter = Inter({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
 const dmSans = DM_Sans({
   weight: ['300', '400', '500', '600'],
   subsets: ['latin'],
@@ -28,6 +18,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ['400', '500'],
   subsets: ['latin'],
   variable: '--font-ibm-mono',
+})
+const inter = Inter({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-inter',
 })
 
 export const metadata: Metadata = {
@@ -77,10 +72,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${chakraPetch.variable} ${inter.variable} ${dmSans.variable} ${ibmPlexMono.variable}`}>
-      <body className="font-sans antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
+    <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${ibmPlexMono.variable} ${inter.variable}`}>
+      <body className="antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Navbar />
+          <div className="h-px w-full shrink-0" style={{ backgroundColor: 'var(--it-border)' }} aria-hidden />
           <main className="flex-1">
             {children}
           </main>

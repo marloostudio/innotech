@@ -1,4 +1,5 @@
-import { PillarHero } from "@/components/sections/pillar-hero"
+import { HeroV2 } from "@/components/sections/hero-v2"
+import { HeroCanvas } from "@/components/sections/hero-canvas"
 import { LogoCloud } from "@/components/sections/logo-cloud"
 import { FeatureGrid } from "@/components/sections/feature-grid"
 import { IndustryGrid } from "@/components/sections/industry-grid"
@@ -11,7 +12,6 @@ import { ImagePlaceholder } from "@/components/ui/image-placeholder"
 import { PageShell } from "@/components/page-shell"
 
 import {
-  heroContent,
   trustLogos,
   solutionsOverview,
   industriesServed,
@@ -25,27 +25,24 @@ import {
 export default function HomePage() {
   return (
     <>
-      {/* PillarHero: dark (unchanged) */}
-      <PillarHero {...heroContent} />
-      {/* Hero — full-width 21/9 placeholder */}
-      <div className="w-full px-6 md:px-8">
-        <div className="max-w-screen-2xl mx-auto">
-          <ImagePlaceholder
-            aspectRatio="21/9"
-            alt="Hero — Aerial/Fleet Footage"
-            label="Hero — Aerial/Fleet Footage"
-          />
-        </div>
-      </div>
+      {/* Hero Style v2 — home only */}
+      <HeroV2
+        primaryCta={{ label: "Request a Demo", href: "/demo" }}
+        secondaryCta={{ label: "Explore Solutions", href: "/products" }}
+        background={<HeroCanvas />}
+      />
       {/* LogoCloud: white */}
-      <LogoCloud logos={trustLogos} />
+      <LogoCloud title="Trusted by innovative companies worldwide" logos={trustLogos} />
       {/* FeatureGrid: light — solutions grid with 4/3 placeholder per card */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
         description="End-to-end robotics and autonomous systems designed for enterprise operations"
         features={solutionsOverview}
-        variant="light"
+        columns={2}
+        variant="light-bg"
         showImagePlaceholder
+        imageOnLeft
+        hideIcon
       />
       {/* IndustryGrid: white */}
       <IndustryGrid 

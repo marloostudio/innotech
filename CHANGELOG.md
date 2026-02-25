@@ -2,7 +2,11 @@
 
 All notable changes to the InnoTech project are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) (major.minor.patch).
+
+- **Major** (x.0.0): Breaking or major product/design changes.
+- **Minor** (0.x.0 or 1.x.0): New features, sections, or significant improvements; backward compatible.
+- **Patch** (0.0.x or 1.0.x): Bug fixes, copy tweaks, small UI fixes.
 
 ---
 
@@ -10,12 +14,51 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- (Nothing yet.)
+
+### Changed
+
+- (Nothing yet.)
+
+### Fixed
+
+- (Nothing yet.)
+
+---
+
+## [1.1.0] – 2025-02-25
+
+### Added
+
+- **Hero Style v2** (`components/sections/hero-v2.tsx`) – Home-only hero with style guide: eyebrow “AUTONOMOUS SYSTEMS · ROBOTICS · AI” with status dot, H1 “Intelligent Infrastructure” / “for Autonomous Mobility” (gradient), subhead, primary/secondary CTAs (Request a Demo, Explore Solutions). system-ui typography and spec colours; accepts optional `background` (e.g. HeroCanvas).
+- **HeroCanvas** (`components/sections/hero-canvas.tsx`) – Canvas-based background: 3D-style particles, connections, signals, and grid robots (blue-white + orange accent). Used as hero background on home. Gradient and vignette overlays for readability.
+- **PillarHero optional background** – `background?: React.ReactNode` prop; when set, renders behind content with `min-h-[85vh]` (other pages unchanged).
+
+### Changed
+
+- **Home page** – Uses `HeroV2` with `HeroCanvas` background; no PillarHero or hero content from `lib/content/home.ts` for hero block. Hero height set to 60vh so content below (trust section) is visible above the fold. Removed 21/9 image placeholder below hero.
+- **Trust section** – Title set to “Trusted by innovative companies worldwide”. Logo strip is a continuous marquee: logos repeated 4×, slow right-to-left scroll (60s loop, `logo-scroll` keyframe at -25% for seamless loop).
+- **Comprehensive Automation Solutions** – `FeatureGrid` with `imageOnLeft` and `hideIcon`: image on left edge-to-edge (top, bottom, left); no icon in cards; card uses `py-0` when image left; content column has `py-6`.
+- **Footer** – Displays app version (e.g. v1.0.0) next to copyright; version from `lib/site.ts` (`APP_VERSION` / `siteConfig.version`), IBM Plex Mono, 11px.
+
+### Fixed
+
+- (No fixes in this release.)
+
+---
+
+## [1.0.0] – 2025-02-25
+
+### Added
+
 - **TeamCard compact variant** (`components/site/team-card.tsx`) – Optional `compact` prop for a horizontal, space-efficient layout: small avatar/initials, name and title in one row, 3px left-border accent. Used on `/company/team` for Engineering & Operations.
+- **Footer version** – App version (semver) shown in footer; version sourced from `lib/site.ts` (`APP_VERSION` / `siteConfig.version`).
 
 ### Changed
 
 - **Team page layout** (`app/company/team/page.tsx`) – Reduced scroll: shorter hero (`py-10 lg:py-14`, smaller title); single main section containing Executive Leadership and Advisors side-by-side (two columns on lg), Engineering & Operations in a dense grid using compact TeamCards, and Our Culture as one short paragraph with a top border. Removed four separate `Section` blocks and full `SectionHeader` usage in favour of compact subsection titles.
 - **Section padding and containers** – Team page now uses `Section` with `className="py-12 lg:py-16"` for the main content block. `PageShell` and `CtaBanner` horizontal padding standardised to `px-6 lg:px-8` (was `px-4 sm:px-6 lg:px-8`) site-wide to match design rules (px-6 or px-8).
+- **Changelog versioning** – Standard semver (major.minor.patch) with clear Added/Changed/Fixed sections per release.
 
 ### Fixed
 
@@ -92,7 +135,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
-[Unreleased]: https://github.com/your-org/Innotech/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/your-org/Innotech/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/your-org/Innotech/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/your-org/Innotech/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/your-org/Innotech/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/your-org/Innotech/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/your-org/Innotech/releases/tag/v0.1.0

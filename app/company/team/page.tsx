@@ -68,7 +68,7 @@ export default function TeamPage() {
           {/* Leadership + Advisors in one row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
             <div>
-              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
                 Executive Leadership
               </h2>
               <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
@@ -81,7 +81,7 @@ export default function TeamPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
                 Advisors
               </h2>
               <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
@@ -97,7 +97,7 @@ export default function TeamPage() {
 
           {/* Engineering & Operations — compact list */}
           <div>
-            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
               Engineering & Operations
             </h2>
             <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
@@ -112,7 +112,7 @@ export default function TeamPage() {
 
           {/* Our Culture — one short paragraph */}
           <div className="pt-4 border-t" style={{ borderColor: "var(--it-border)" }}>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
               Our Culture
             </h2>
             <p className="text-base max-w-3xl" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>

@@ -1,12 +1,15 @@
+/** App version (semver: major.minor.patch). Bump in CHANGELOG and here together. */
+export const APP_VERSION = "1.1.0"
+
 export const siteConfig = {
   name: "InnoTech Systems",
+  version: APP_VERSION,
   description: "Leading provider of advanced robotics and autonomous systems for enterprise automation",
   company: {
     name: "InnoTech Systems",
     tagline: "Autonomous infrastructure for the future of mobility.",
     email: "info@innotech-sys.com",
-    phone: "+1 (555) 123-4567",
-    address: "2834 Paraiso Way, La Crescenta-Montrose, CA 91214"
+    address: "2834 Paraiso Way\nLa Crescenta-Montrose, CA 91214"
   },
   social: {
     linkedin: "https://www.linkedin.com/company/innotech-sys",

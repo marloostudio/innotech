@@ -14,7 +14,7 @@ export default function ChargeDepotPage() {
         Industries
       </p>
       <h1 className="text-4xl font-bold mb-6"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
         Overnight Autonomous Charging for Electric Fleets
       </h1>
       <p style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>

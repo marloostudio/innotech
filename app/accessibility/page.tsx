@@ -14,7 +14,7 @@ export default function AccessibilityPage() {
         Accessibility
       </p>
       <h1 className="text-4xl font-bold mb-6"
-        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}>
+        style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
         Accessibility Statement
       </h1>
       <p style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>

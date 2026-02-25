@@ -1,6 +1,7 @@
 # Next.js Components & Libraries – Review & Recommendations
 
-Review of the InnoTech codebase for additional Next.js components or libraries.
+Review of the InnoTech codebase for additional Next.js components or libraries.  
+**Current app version:** 1.1.0 (see `lib/site.ts`, footer, [CHANGELOG.md](./CHANGELOG.md)).
 
 ---
 
@@ -10,9 +11,11 @@ Review of the InnoTech codebase for additional Next.js components or libraries.
 - **next/font** (Chakra Petch, DM Sans, IBM Plex Mono in `app/layout.tsx`)
 - **next/link** and **next/navigation** (Link, usePathname) used across pages
 - **@vercel/analytics** in root layout
-- **next-themes** and **sonner** (ThemeProvider and Toaster are now wired in root layout)
+- **next-themes** and **sonner** (ThemeProvider and Toaster wired in root layout)
 - **shadcn/ui** (Radix-based) + **react-hook-form**, **zod**, **@hookform/resolvers**
-- **globals.css** with light/dark design tokens
+- **globals.css** with Tailwind v4, `@theme inline`, and InnoTech design tokens
+- **App Router UX**: `app/loading.tsx`, `app/error.tsx`, `app/not-found.tsx` in place
+- **Home**: HeroV2 + HeroCanvas (canvas background), trust marquee (LogoCloud), version in footer
 
 ---
 
@@ -114,7 +117,7 @@ No new library; create `middleware.ts` at the root when needed.
 | **Layout** | Done: ThemeProvider + Toaster added in root layout. |
 | **Linting** | Add `eslint` + `eslint-config-next` and an ESLint config. |
 | **Images** | Use `next/image` when you add images (built-in). |
-| **UX** | Optionally add `loading.tsx`, `error.tsx`, `not-found.tsx`, `sitemap.ts`, `robots.ts`. |
+| **UX** | `loading.tsx`, `error.tsx`, `not-found.tsx` in place; optionally add `sitemap.ts`, `robots.ts`. |
 | **Dynamic** | Use `next/dynamic` for heavy client components if needed. |
 | **Forms** | Add an API route or Server Action + email service when you connect the contact form. |
 

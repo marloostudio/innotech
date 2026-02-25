@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Calendar, User, ArrowRight } from "lucide-react"
 
 import { Section } from "@/components/page-shell"
-import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -75,17 +74,20 @@ export default function BlogPage() {
   return (
     <>
       <Section className="pt-24 pb-20 md:pb-28">
-        <h1
-          className="text-4xl font-bold mb-6"
-          style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra)" }}
-        >
-          Industry Insights and Technology Perspectives
-        </h1>
-        <SectionHeader 
-          title="Insights & Updates"
-          description="Expert perspectives on robotics, automation, and digital transformation"
-          badge="Blog"
-        />
+        <div className="space-y-4 mb-12 text-center">
+          <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-it-blue-subtle text-it-blue">
+            Blog
+          </span>
+          <h1
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance text-it-text-primary"
+            style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
+          >
+            Industry Insights and Technology Perspectives
+          </h1>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-pretty text-it-text-muted">
+            Expert perspectives on robotics, automation, and digital transformation
+          </p>
+        </div>
       </Section>
 
       <Section className="py-8">
@@ -94,7 +96,7 @@ export default function BlogPage() {
             <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
-                  <Badge variant="secondary" className="text-it-light-text-secondary">{post.category}</Badge>
+                  <Badge variant="secondary" className="bg-it-light-blue-subtle text-it-light-blue border-0">{post.category}</Badge>
                   <span className="text-xs text-it-light-text-muted">{post.readTime}</span>
                 </div>
                 <CardTitle className="text-xl line-clamp-2 text-it-light-text-primary">

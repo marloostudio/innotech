@@ -2,15 +2,17 @@
 
 ## ✅ What Has Been Built
 
-A complete, production-ready Next.js 15 website for InnoTech Systems (B2B Robotics/Autonomous Systems company).
+A complete, production-ready Next.js 16 website for InnoTech Systems (B2B Robotics/Autonomous Systems company).
 
 ### Technology Stack
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui (all components pre-installed)
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript 5.7
+- **Styling**: Tailwind CSS v4 (`@theme inline` in `app/globals.css`)
+- **UI Components**: shadcn/ui (Radix-based)
 - **Icons**: lucide-react
-- **Font**: Geist & Geist Mono
+- **Fonts**: Chakra Petch (headings), DM Sans (body), IBM Plex Mono (mono)
+- **Animations**: Framer Motion (nav, menus)
+- **Version**: App version (semver) in `lib/site.ts` and footer; CHANGELOG with semantic versioning
 
 ---
 
@@ -52,12 +54,15 @@ v0-project/
 ├── components/
 │   ├── site/
 │   │   ├── navbar.tsx                 ✅ Sticky navbar with mobile menu (Sheet)
-│   │   └── footer.tsx                 ✅ Footer with columns and social links
+│   │   └── footer.tsx                 ✅ Footer with columns, social links, app version (semver)
 │   │
 │   ├── sections/                      ✅ All reusable section components
-│   │   ├── hero.tsx                   ✅ Hero with dual CTAs
-│   │   ├── logo-cloud.tsx             ✅ Trust indicators
-│   │   ├── feature-grid.tsx           ✅ Feature cards (2/3/4 columns)
+│   │   ├── hero-v2.tsx               ✅ Home hero (style v2: eyebrow, gradient H1, CTAs)
+│   │   ├── hero-canvas.tsx            ✅ Canvas particle/robot background (home hero)
+│   │   ├── pillar-hero.tsx           ✅ Pillar hero (optional background)
+│   │   ├── hero.tsx                   ✅ Legacy hero
+│   │   ├── logo-cloud.tsx             ✅ Trust marquee (scroll, 4× repeat)
+│   │   ├── feature-grid.tsx           ✅ Feature cards (2/3/4 cols; optional image left, hide icon)
 │   │   ├── industry-grid.tsx          ✅ Industry cards with icons
 │   │   ├── tech-overview.tsx          ✅ Technology tabs
 │   │   ├── testimonial.tsx            ✅ Case study teaser
@@ -79,7 +84,7 @@ v0-project/
 │       └── ...                        └── (all others included)
 │
 ├── lib/
-│   ├── site.ts                        ✅ Company info, contact, social links
+│   ├── site.ts                        ✅ Company info, APP_VERSION, contact, social links
 │   ├── nav.ts                         ✅ Navigation structure (header + footer)
 │   ├── utils.ts                       ✅ Utility functions (cn)
 │   │
@@ -97,7 +102,7 @@ v0-project/
 │
 ├── package.json                       ✅ Dependencies configured
 ├── tsconfig.json                      ✅ TypeScript config
-├── tailwind.config.ts                 ✅ Tailwind config
+├── app/globals.css                    ✅ Tailwind v4 @theme inline (no tailwind.config.ts)
 └── next.config.mjs                    ✅ Next.js config
 ```
 
@@ -105,14 +110,14 @@ v0-project/
 
 ## 🎯 Home Page Sections (In Order)
 
-1. ✅ **Hero** - Headline, subtext, dual CTAs
-2. ✅ **Logo Cloud** - Trust indicators (6 placeholder companies)
-3. ✅ **Solutions Overview** - 4 solution cards
-4. ✅ **Industries Grid** - 6 industry cards with "View All" CTA
+1. ✅ **Hero v2** - Eyebrow “AUTONOMOUS SYSTEMS · ROBOTICS · AI”, H1 “Intelligent Infrastructure” / “for Autonomous Mobility”, subhead, Request a Demo / Explore Solutions; canvas particle/robot background; 60vh height (trust visible above fold).
+2. ✅ **Trust marquee** - “Trusted by innovative companies worldwide”; logos scroll right-to-left (4× repeat, 60s loop).
+3. ✅ **Comprehensive Automation Solutions** - FeatureGrid with image on left (edge-to-edge), no icons.
+4. ✅ **Industries Grid** - Industry cards with “View All” CTA
 5. ✅ **Technology Overview** - 3 pillars in tabs
 6. ✅ **Case Study Teaser** - Sample case with disclaimer
-7. ✅ **Stats** - 4 sample metrics with disclaimer
-8. ✅ **FAQ** - 6 questions in accordion
+7. ✅ **Stats** - Sample metrics with disclaimer
+8. ✅ **FAQ** - Accordion
 9. ✅ **Final CTA Banner** - Call to action
 
 ---

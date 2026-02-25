@@ -27,6 +27,8 @@ export interface PillarHeroProps {
   tertiaryCta?: PillarHeroCta
   /** Optional hero section class: SafeGuard page vs Drone/V2X (solutions) pages */
   heroClass?: HeroSectionClass
+  /** Optional background (e.g. canvas effect) rendered behind hero content */
+  background?: React.ReactNode
 }
 
 /**
@@ -42,13 +44,19 @@ export function PillarHero({
   secondaryCta,
   tertiaryCta,
   heroClass,
+  background,
 }: PillarHeroProps) {
   return (
     <section
-      style={!heroClass ? { background: "var(--it-bg)", color: "var(--it-text-primary)" } : { color: "var(--it-text-primary)" }}
-      className={["relative w-full pt-24 md:pt-28 pb-20 md:pb-28 min-h-0", heroClass].filter(Boolean).join(" ")}
+      style={!heroClass && !background ? { background: "var(--it-bg)", color: "var(--it-text-primary)" } : { color: "var(--it-text-primary)" }}
+      className={[
+        "relative w-full pt-24 md:pt-28 pb-20 md:pb-28 min-h-0",
+        background ? "min-h-[85vh]" : "",
+        heroClass,
+      ].filter(Boolean).join(" ")}
     >
-      <PageShell>
+      {background && <div className="absolute inset-0 z-0 overflow-hidden">{background}</div>}
+      <PageShell className="relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           {badge && (
             <Badge variant="outline" className="mb-2 border-[var(--it-border)] text-[var(--it-text-secondary)]">

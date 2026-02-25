@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Mail, MapPin, Clock } from "lucide-react"
 
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
@@ -18,12 +18,6 @@ export const metadata: Metadata = {
 }
 
 const contactMethods = [
-  {
-    icon: Phone,
-    title: "Phone",
-    description: siteConfig.company.phone,
-    action: "Call us"
-  },
   {
     icon: Mail,
     title: "Email",
@@ -59,17 +53,15 @@ export default function ContactPage() {
 
       <Section
         id="request-proposal"
-        className="py-8 text-[var(--it-light-text-primary)]"
-        style={{ background: "var(--it-light-bg)" }}
+        className="py-8 bg-it-light-bg text-it-light-text-primary"
       >
         <div className="grid lg:grid-cols-3 gap-8 contact-form-light">
           {/* Contact Form */}
           <Card
-            className="lg:col-span-2 border border-it-light-border bg-it-light-surface"
-            style={{ boxShadow: "var(--it-light-shadow-md)" }}
+            className="lg:col-span-2 border border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)"
           >
             <CardHeader>
-              <CardTitle className="text-2xl text-it-light-text-primary">
+              <CardTitle className="text-2xl font-semibold text-it-light-text-primary">
                 Request a Demo or Consultation
               </CardTitle>
               <CardDescription className="text-base text-it-light-text-secondary">
@@ -180,7 +172,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-sm text-it-light-text-primary">{method.title}</p>
-                        <p className="text-sm text-it-light-text-muted mt-1">
+                        <p className="text-sm text-it-light-text-muted mt-1 whitespace-pre-line">
                           {method.description}
                         </p>
                       </div>
@@ -227,19 +219,15 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="py-20 md:py-28 text-[var(--it-light-text-primary)]" style={{ background: "var(--it-light-surface-2)" }}>
+      <Section className="py-20 md:py-28 bg-it-light-surface-2 text-it-light-text-primary">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-it-light-text-primary">Prefer to Talk?</h2>
           <p className="text-lg text-it-light-text-muted">
             Schedule a call with one of our automation experts to discuss your needs in detail.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg">
-              <Phone className="mr-2 h-4 w-4" />
-              {siteConfig.company.phone}
-            </Button>
-            <Button size="lg" variant="outline">
-              Schedule a Call
+            <Button size="lg" variant="outline" asChild>
+              <a href={`mailto:${siteConfig.company.email}`}>Schedule a Call</a>
             </Button>
           </div>
         </div>

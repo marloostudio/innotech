@@ -34,7 +34,7 @@ export default function DemoPage() {
             </Badge>
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-balance"
-              style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }}
+              style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
             >
               See InnoTech in Action
             </h1>

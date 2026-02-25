@@ -1,23 +1,25 @@
 # InnoTech Systems - B2B Robotics Website
 
-A production-ready Next.js 15 website scaffold for InnoTech Systems, a B2B robotics and autonomous systems company.
+A production-ready Next.js 16 website for InnoTech Systems, a B2B robotics and autonomous systems company.
 
 ## 🚀 Features
 
-- **Modern Tech Stack**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS
-- **Enterprise Design**: Clean, professional B2B aesthetic with shadcn/ui components
-- **SEO Optimized**: Metadata configuration per route, semantic HTML, accessibility
-- **Fully Responsive**: Mobile-first design with sticky navigation and mobile menu
-- **Reusable Components**: Modular section components for rapid page creation
-- **Content Model**: Structured content in `/lib/content/` for easy CMS migration
+- **Modern Tech Stack**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4
+- **Enterprise Design**: Dark theme, Chakra Petch / DM Sans / IBM Plex Mono, shadcn/ui components
+- **Home Hero**: Hero Style v2 with canvas particle/robot background (HeroV2 + HeroCanvas); trust marquee (“Trusted by innovative companies worldwide”); Comprehensive Automation Solutions with image-left cards
+- **SEO Optimized**: Metadata per route, semantic HTML, accessibility
+- **Fully Responsive**: Mobile-first, sticky nav, mobile drawer (Framer Motion)
+- **Reusable Components**: PillarHero, HeroV2, FeatureGrid, LogoCloud, IndustryGrid, TechOverview, CtaBanner, Faq, etc.
+- **Content Model**: Structured content in `/lib/content/`; site config and version in `lib/site.ts`
 - **Type Safe**: Full TypeScript coverage
+- **Versioning**: App version (semver) in footer and `lib/site.ts`; CHANGELOG follows semantic versioning
 
 ## 📁 Project Structure
 
 ```
 ├── app/
 │   ├── layout.tsx                 # Root layout with Navbar + Footer
-│   ├── page.tsx                   # Home page
+│   ├── page.tsx                   # Home (HeroV2 + HeroCanvas, trust marquee, solutions grid)
 │   ├── products/page.tsx          # Products catalog with tabs
 │   ├── solutions/page.tsx         # Solutions overview
 │   ├── industries/page.tsx        # Industries served
@@ -34,9 +36,12 @@ A production-ready Next.js 15 website scaffold for InnoTech Systems, a B2B robot
 │   │   ├── navbar.tsx            # Sticky navbar with mobile menu
 │   │   └── footer.tsx            # Footer with links
 │   ├── sections/
-│   │   ├── hero.tsx              # Hero section
-│   │   ├── logo-cloud.tsx        # Trust logos
-│   │   ├── feature-grid.tsx      # Feature cards
+│   │   ├── hero-v2.tsx           # Home hero (style v2)
+│   │   ├── hero-canvas.tsx       # Canvas background (particles/robots)
+│   │   ├── hero.tsx              # Legacy hero
+│   │   ├── pillar-hero.tsx       # Pillar page hero (optional background)
+│   │   ├── logo-cloud.tsx        # Trust logos (marquee scroll)
+│   │   ├── feature-grid.tsx      # Feature cards (optional image left, hide icon)
 │   │   ├── industry-grid.tsx     # Industry cards
 │   │   ├── tech-overview.tsx     # Technology tabs
 │   │   ├── testimonial.tsx       # Case study teaser
@@ -48,7 +53,7 @@ A production-ready Next.js 15 website scaffold for InnoTech Systems, a B2B robot
 │   └── ui/                       # shadcn/ui components
 │
 ├── lib/
-│   ├── site.ts                   # Site configuration
+│   ├── site.ts                   # Site config + APP_VERSION (semver)
 │   ├── nav.ts                    # Navigation structure
 │   ├── content/
 │   │   ├── home.ts               # Home page content
@@ -69,9 +74,8 @@ The site uses a professional B2B color scheme defined in `app/globals.css`:
 - **Muted**: Backgrounds and secondary content
 
 ### Typography
-- **Headings**: Geist font family, bold weights
-- **Body**: Geist, comfortable line-height (1.5-1.6)
-- **Scale**: Responsive text sizes using Tailwind classes
+- **Headings**: Chakra Petch (H1–H4); **Body**: DM Sans; **Mono/metadata**: IBM Plex Mono (see `.cursor/rules/design-and-naming.mdc`). Home hero v2 uses system-ui per style guide.
+- **Scale**: Responsive with Tailwind; design tokens in `app/globals.css` (`@theme inline`).
 
 ### Components
 All UI components from shadcn/ui are pre-installed:
@@ -154,15 +158,10 @@ Edit `/lib/content/home.ts`:
 
 ### Home Page (`/`)
 Complete landing page with:
-- Hero with CTAs
-- Logo cloud (trust indicators)
-- Solutions overview
-- Industries grid
-- Technology tabs
-- Case study teaser
-- Stats/metrics
-- FAQ accordion
-- Final CTA
+- **Hero v2** — Eyebrow, H1 “Intelligent Infrastructure” / “for Autonomous Mobility”, subhead, Request a Demo / Explore Solutions; canvas particle/robot background (HeroCanvas); 60vh height so trust section is above the fold.
+- **Trust marquee** — “Trusted by innovative companies worldwide”; logos scroll slowly right-to-left (4× repeat, seamless loop).
+- **Comprehensive Automation Solutions** — FeatureGrid with image on left (edge-to-edge), no icons.
+- Industries grid, Technology tabs, Case study teaser, Stats, FAQ, Final CTA.
 
 ### Products (`/products`)
 Product catalog with:
@@ -210,11 +209,13 @@ Contact form with:
 
 ### Updating Site Config
 
-Edit `/lib/site.ts`:
+Edit `/lib/site.ts` (and bump `APP_VERSION` when releasing; see CHANGELOG.md):
 
 ```typescript
+export const APP_VERSION = "1.1.0"  // semver: major.minor.patch
 export const siteConfig = {
   name: "Your Company Name",
+  version: APP_VERSION,
   description: "Your description",
   company: {
     name: "Your Company",
@@ -245,26 +246,29 @@ export const mainNav: NavItem[] = [
 
 ### Styling
 
-- Global styles: `app/globals.css`
-- Tailwind config: `tailwind.config.ts`
-- Component styles: Inline with Tailwind classes
+- Global styles and tokens: `app/globals.css` (Tailwind v4, `@theme inline`; no tailwind.config.ts)
+- Design rules: `.cursorrules`, `.cursor/rules/design-and-naming.mdc`
+- Component styles: Tailwind + CSS variables (no raw hex in components)
 
 ## 🎨 Reusable Components
 
 ### Section Components
 
-All section components accept props for reusability:
+Section components accept props for reusability. Example (pillar page hero):
 
 ```tsx
-import { Hero } from "@/components/sections/hero"
+import { PillarHero } from "@/components/sections/pillar-hero"
 
-<Hero 
-  headline="Your Headline"
-  subheadline="Your subheadline"
-  primaryCta={{ text: "CTA", href: "/link" }}
-  secondaryCta={{ text: "CTA 2", href: "/link2" }}
+<PillarHero
+  h1="Your Headline"
+  h2="Subheadline"
+  description="..."
+  primaryCta={{ label: "CTA", href: "/link" }}
+  secondaryCta={{ label: "CTA 2", href: "/link2" }}
 />
 ```
+
+Home uses `HeroV2` with optional `background={<HeroCanvas />}`.
 
 ### Layout Components
 
@@ -341,4 +345,4 @@ For questions or support, contact: info@innotech-systems.com
 
 ---
 
-Built with ❤️ using Next.js 15, React 19, TypeScript, and Tailwind CSS
+Built with ❤️ using Next.js 16, React 19, TypeScript, and Tailwind CSS v4. Version in footer from `lib/site.ts`. See CHANGELOG.md for version history.

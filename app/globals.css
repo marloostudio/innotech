@@ -238,9 +238,11 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), 'Inter', sans-serif;
+  /* Body and UI: DM Sans. Headings use Inter (--font-inter). */
+  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
   --font-mono: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
-  --font-chakra: var(--font-chakra), 'Chakra Petch', sans-serif;
+  --font-chakra: var(--font-inter), 'Inter', sans-serif;
+  --font-inter: var(--font-inter), 'Inter', sans-serif;
 
   /* ─────────────────────────────────────────────────────
      FIX 5: background/foreground were hardcoded to the
@@ -333,6 +335,12 @@
   --color-it-card-hover:    var(--it-card-hover-bg);
 }
 
+/* ── Logo cloud: slow right-to-left scroll (marquee) ─── */
+@keyframes logo-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
 /* ── Hero badge: larger balloon above hero title ─────── */
 .max-w-4xl.text-center > [data-slot="badge"]:first-child {
   font-size: 0.875rem;
@@ -343,12 +351,18 @@
   height: 1rem;
 }
 
-/* ── Contact page: light form area ───────────────────── */
+/* ── Contact page: light form area ─────────────────────
+   Override dark-theme tokens so inputs/labels are readable
+   on light background. No !important; specificity via scope.
+───────────────────────────────────────────────────────── */
 .contact-form-light [data-slot="label"] {
-  color: var(--it-light-text-secondary);
+  color: var(--it-light-text-primary);
 }
 .contact-form-light [data-slot="input"],
-.contact-form-light textarea {
+.contact-form-light textarea,
+.contact-form-light [data-slot="select-trigger"] {
+  background-color: var(--it-light-surface);
+  color: var(--it-light-text-primary);
   border-color: var(--it-light-border);
 }
 .contact-form-light [data-slot="input"]:focus-visible,
@@ -361,8 +375,11 @@
 .contact-form-light textarea::placeholder {
   color: var(--it-light-text-dim);
 }
-.contact-form-light [data-slot="select-trigger"] {
-  border-color: var(--it-light-border);
+.contact-form-light [data-slot="select-trigger"][data-placeholder] {
+  color: var(--it-light-text-dim);
+}
+.contact-form-light [data-slot="select-trigger"]:not([data-placeholder]) {
+  color: var(--it-light-text-primary);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -472,9 +489,9 @@
     font-size: 16px;
     line-height: 1.65;
   }
-  /* Inter for headings (Chakra Petch reserved for logo only) */
+  /* Headings: Inter */
   h1, h2, h3, h4 {
-    font-family: var(--font-sans);
+    font-family: var(--font-chakra), 'Inter', sans-serif;
   }
   h1 {
     letter-spacing: -0.025em;
