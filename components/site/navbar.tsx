@@ -45,7 +45,7 @@ export function Navbar() {
   const [scrolled,    setScrolled]    = React.useState(false)
   const [openMenu,    setOpenMenu]    = React.useState<NavMegaKey>(null)
   const [mobileOpen,  setMobileOpen]  = React.useState(false)
-  const closeTimeoutRef = React.useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const closeTimeoutRef = React.useRef<number | null>(null)
   const navRegionRef = React.useRef<HTMLDivElement | null>(null)
 
   const { scrollY } = useScroll()
