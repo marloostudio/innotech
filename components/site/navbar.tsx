@@ -45,6 +45,8 @@ export function Navbar() {
   const [scrolled,    setScrolled]    = React.useState(false)
   const [openMenu,    setOpenMenu]    = React.useState<NavMegaKey>(null)
   const [mobileOpen,  setMobileOpen]  = React.useState(false)
+  const closeTimeoutRef = React.useRef<ReturnType<typeof window.setTimeout> | null>(null)
+  const navRegionRef = React.useRef<HTMLDivElement | null>(null)
 
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 20))
@@ -58,8 +60,56 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
-  const closeMenus = () => setOpenMenu(null)
+  const clearCloseTimeout = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+  }
+
+  const closeMenus = () => {
+    clearCloseTimeout()
+    setOpenMenu(null)
+  }
   const toggleMenu = (key: NavMegaKey) => setOpenMenu((prev) => (prev === key ? null : key))
+
+  React.useEffect(() => {
+    if (!openMenu) {
+      clearCloseTimeout()
+      return
+    }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!navRegionRef.current) return
+
+      const rect = navRegionRef.current.getBoundingClientRect()
+      const buffer = 48 // px tolerance around the nav region
+
+      const withinX = event.clientX >= rect.left - buffer && event.clientX <= rect.right + buffer
+      const withinY = event.clientY >= rect.top - buffer && event.clientY <= rect.bottom + buffer
+
+      if (withinX && withinY) {
+        // Cursor is near nav / dropdown; keep menu open
+        clearCloseTimeout()
+        return
+      }
+
+      // Cursor has moved away — start a delayed close if not already pending
+      if (!closeTimeoutRef.current) {
+        closeTimeoutRef.current = window.setTimeout(() => {
+          setOpenMenu(null)
+          closeTimeoutRef.current = null
+        }, 1200)
+      }
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      clearCloseTimeout()
+    }
+  }, [openMenu])
 
   return (
     <>
@@ -78,7 +128,10 @@ export function Navbar() {
           WebkitBackdropFilter: "blur(10px)",
         }}
       >
-        <div className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-between">
+        <div
+          ref={navRegionRef}
+          className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-between"
+        >
 
           {/* ── Logo ──────────────────────────────────────────── */}
           <Link

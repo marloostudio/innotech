@@ -3,7 +3,7 @@ import Link from 'next/link'
 import * as LucideIcons from "lucide-react"
 
 import { PillarHero } from "@/components/sections/pillar-hero"
-import { PageShell } from "@/components/page-shell"
+import { PageShell, Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -72,9 +72,8 @@ export default function ProductsPage() {
       />
 
       {/* Products Grid */}
-      <section className="py-20 md:py-28" style={{ background: "var(--it-section-2)" }}>
-        <PageShell>
-          <div className="grid lg:grid-cols-3 gap-8">
+      <Section variant="light">
+        <div className="grid lg:grid-cols-3 gap-8">
             {products.map((product) => {
             const Icon = product.icon
             return (
@@ -111,13 +110,11 @@ export default function ProductsPage() {
             )
             })}
           </div>
-        </PageShell>
-      </section>
+      </Section>
 
       {/* Why InnoTech Section */}
-      <section className="it-section-mid py-20 md:py-28">
-        <PageShell>
-          <SectionHeader
+      <Section className="it-section-mid">
+        <SectionHeader
             label="Why InnoTech"
             title="Built for the Future of Autonomous Operations"
             description="Our products are designed to work together, creating a comprehensive infrastructure for autonomous systems"
@@ -152,8 +149,7 @@ export default function ProductsPage() {
               </p>
             </div>
           </div>
-        </PageShell>
-      </section>
+      </Section>
 
       {/* CTA */}
       <CtaBanner 

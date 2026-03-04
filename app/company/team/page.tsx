@@ -12,21 +12,97 @@ export const metadata: Metadata = {
 }
 
 const executiveLeadership = [
-  { name: "Dr. Fred Daneshgaran", title: "CEO and Co-Founder" },
-  { name: "Kash Olia", title: "CTO and Co-Founder" },
+  { name: "Dr. Fred Daneshgaran", title: "CEO and Co-Founder", linkedin: "#", twitter: "#" },
+  { name: "Kash Olia", title: "CTO and Co-Founder", linkedin: "#", twitter: "#" },
 ]
 
 const advisors = [
-  { name: "Dr. Marina Mondin", title: "Advisor — Artificial Intelligence and Machine Learning" },
+  {
+    name: "Dr. Marina Mondin",
+    title: "Advisor",
+    expertise: "Artificial Intelligence and Machine Learning",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Piergiorgio lanza",
+    title: "Advisor",
+    expertise: "Machine Vision and AI",
+    linkedin: "#",
+    twitter: "#",
+  },
 ]
 
 const engineeringAndOperations = [
-  { name: "Nayer Shahri", title: "Finance Manager" },
-  { name: "Behzad Zarifkar", title: "Sr. Mechanical Engineer" },
-  { name: "Fausto Lizzio", title: "Mechanical Engineer" },
-  { name: "Antonio Marangi", title: "Software Engineer, Localization and Mapping" },
-  { name: "Jason May", title: "Software Engineer, Path Planning" },
-  { name: "Ramtin Haddadzadeh", title: "Controls Engineer, Autopilot" },
+  { name: "Nayer Shahri", title: "Finance Manager", linkedin: "#", twitter: "#" },
+  { name: "Behzad Zarifkar", title: "Sr. Mechanical Engineer", linkedin: "#", twitter: "#" },
+  { name: "Fausto Lizzio", title: "Mechanical Engineer", linkedin: "#", twitter: "#" },
+  {
+    name: "Antonio Marangi",
+    title: "Software Engineer",
+    expertise: "Localization and Mapping",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Jason May",
+    title: "Software Engineer",
+    expertise: "Path Planning",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Ramtin Haddadzadeh",
+    title: "Controls Engineer",
+    expertise: "Autopilot",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Lara Daneshgaran",
+    title: "Software & Computer Engineer",
+    expertise: "Machine Learning and AI Systems, Autonomous Robotics",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Shiva Omidzadeh",
+    title: "Engineer",
+    expertise: "Autonomous Robotics, Electrical and Systems Engineering",
+    linkedin: "#",
+    twitter: "#",
+  },
+]
+
+const consultants = [
+  {
+    name: "Amir Riahi",
+    title: "Consultant",
+    expertise: "Microcontroller Programming, Systems Engineering, Automotive Systems",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Claudio DonGiovanni",
+    title: "Consultant",
+    expertise: "Mechanical System Design, Robotics, CAD and Simulations",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Andrea Bottega",
+    title: "Consultant",
+    expertise: "3D Manufacturing, CAD and Simulations",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Paolo Trabuio",
+    title: "Consultant",
+    expertise: "3D CAD Modeling, Precision Measurements, Robotics",
+    linkedin: "#",
+    twitter: "#",
+  },
 ]
 
 export default function TeamPage() {
@@ -36,8 +112,6 @@ export default function TeamPage() {
       <div className="border-b" style={{ borderColor: "var(--it-border)" }}>
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Home</Link>
-            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
             <Link href="/company" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Company</Link>
             <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
             <span style={{ color: "var(--it-text-primary)" }}>Team</span>
@@ -63,7 +137,7 @@ export default function TeamPage() {
       </section>
 
       {/* Single section: Leadership, Advisors, Engineering, Culture */}
-      <Section variant="white" className="py-20 lg:py-28">
+      <Section variant="white">
         <div className="space-y-12 lg:space-y-14">
           {/* Leadership + Advisors in one row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
@@ -95,7 +169,7 @@ export default function TeamPage() {
             </div>
           </div>
 
-          {/* Engineering & Operations — compact list */}
+          {/* Engineering & Operations */}
           <div>
             <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
               Engineering & Operations
@@ -103,16 +177,31 @@ export default function TeamPage() {
             <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
               Building and supporting our products and operations
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {engineeringAndOperations.map((person) => (
-                <TeamCard key={person.name} {...person} compact />
+                <TeamCard key={person.name} {...person} />
+              ))}
+            </div>
+          </div>
+
+          {/* Consultants */}
+          <div>
+            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
+              Consultants
+            </h2>
+            <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              Specialists supporting our engineering programs
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {consultants.map((person) => (
+                <TeamCard key={person.name} {...person} />
               ))}
             </div>
           </div>
 
           {/* Our Culture — one short paragraph */}
           <div className="pt-4 border-t" style={{ borderColor: "var(--it-border)" }}>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
+            <h2 className="text-2xl lg:text-3xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--it-font-heading)" }}>
               Our Culture
             </h2>
             <p className="text-base max-w-3xl" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>

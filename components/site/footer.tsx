@@ -101,12 +101,12 @@ export function Footer() {
 
         {/* Bottom bar — copyright + legal links */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: 'var(--it-text-muted)' }}>
-          <p className="text-xs">
-            © {currentYear} {siteConfig.name}. All rights reserved.
-            <span className="ml-2 font-mono text-[11px]" style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace" }} title="Semantic version">
+          <div className="space-y-1">
+            <p className="text-[11px]">© {currentYear} {siteConfig.name}. All rights reserved.</p>
+            <p className="font-mono text-[11px]" style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace" }} title="Semantic version">
               v{siteConfig.version}
-            </span>
-          </p>
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-2 gap-y-1">
             <Link href="/sitemap.xml" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Sitemap

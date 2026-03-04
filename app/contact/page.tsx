@@ -53,7 +53,7 @@ export default function ContactPage() {
 
       <Section
         id="request-proposal"
-        className="py-8 bg-it-light-bg text-it-light-text-primary"
+        className="bg-it-light-bg text-it-light-text-primary"
       >
         <div className="grid lg:grid-cols-3 gap-8 contact-form-light">
           {/* Contact Form */}
@@ -219,7 +219,7 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="py-20 md:py-28 bg-it-light-surface-2 text-it-light-text-primary">
+      <Section className="bg-it-light-surface-2 text-it-light-text-primary">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-it-light-text-primary">Prefer to Talk?</h2>
           <p className="text-lg text-it-light-text-muted">

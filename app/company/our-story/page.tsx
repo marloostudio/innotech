@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PageShell } from "@/components/page-shell"
+import { PageShell, Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { CtaBanner } from "@/components/sections/cta-banner"
 import { Badge } from "@/components/ui/badge"
@@ -56,8 +56,6 @@ export default function OurStoryPage() {
       <div className="border-b">
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
             <Link href="/company" className="hover:text-foreground transition-colors">Company</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
             <span className="text-foreground">Our Story</span>
@@ -81,7 +79,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* Story */}
-      <PageShell className="pt-16 md:pt-24 pb-8">
+      <Section>
         <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
             InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly, the supporting infrastructure lagged behind. Companies were building incredible autonomous technology, but lacked the practical solutions needed to deploy them at scale.
@@ -96,37 +94,35 @@ export default function OurStoryPage() {
             Today, InnoTech solutions power autonomous fleets, industrial robots, and mobile systems across logistics, manufacturing, port operations, and mining. But we&apos;re just getting started—the autonomous revolution is accelerating, and we&apos;re committed to providing the infrastructure that makes it possible.
           </p>
         </div>
-      </PageShell>
+      </Section>
 
       {/* Timeline */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <PageShell>
-          <SectionHeader 
-            title="Our Journey"
-            description="Key milestones in building the future of autonomous infrastructure"
-          />
-          <div className="max-w-4xl mx-auto space-y-8">
-            {timeline.map((item, index) => (
-              <div key={item.year}>
-                <div className="flex gap-6">
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold flex-shrink-0">
-                      {item.year}
-                    </div>
-                    {index < timeline.length - 1 && (
-                      <div className="w-0.5 h-full bg-border mt-2 min-h-[60px]" />
-                    )}
+      <Section variant="light">
+        <SectionHeader
+          title="Our Journey"
+          description="Key milestones in building the future of autonomous infrastructure"
+        />
+        <div className="max-w-4xl mx-auto space-y-8">
+          {timeline.map((item, index) => (
+            <div key={item.year}>
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold flex-shrink-0">
+                    {item.year}
                   </div>
-                  <div className="flex-1 pb-8">
-                    <h3 className="text-xl font-semibold mb-2">{item.milestone}</h3>
-                    <p className="text-muted-foreground text-pretty">{item.description}</p>
-                  </div>
+                  {index < timeline.length - 1 && (
+                    <div className="w-0.5 h-full bg-border mt-2 min-h-[60px]" />
+                  )}
+                </div>
+                <div className="flex-1 pb-8">
+                  <h3 className="text-xl font-semibold mb-2">{item.milestone}</h3>
+                  <p className="text-muted-foreground text-pretty">{item.description}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </PageShell>
-      </section>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* CTA */}
       <CtaBanner 

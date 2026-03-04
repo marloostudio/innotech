@@ -56,8 +56,6 @@ export function ProductFeatureDetail({
       <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
-            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
             <Link href="/products" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Products</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
             <Link href={`/products/${productSlug}`} className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>{productName}</Link>

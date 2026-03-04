@@ -39,7 +39,7 @@ export default function SolutionsPage() {
         heroClass="it-hero-solutions"
       />
 
-      <Section className="py-8">
+      <Section>
         <div className="space-y-8">
           {solutions.map((solution, index) => {
             const Icon = getIcon(solution.icon)

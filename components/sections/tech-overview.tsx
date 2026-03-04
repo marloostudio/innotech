@@ -21,9 +21,10 @@ interface TechOverviewProps {
 }
 
 export function TechOverview({ title, description, pillars, variant, alt }: TechOverviewProps) {
+  const headerTheme = variant === "light-bg" ? "light" : "dark"
   return (
     <Section variant={variant} alt={alt}>
-      <SectionHeader title={title} description={description} />
+      <SectionHeader theme={headerTheme} title={title} description={description} />
       <Tabs defaultValue={pillars[0]?.id} className="w-full">
         <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto bg-it-light-surface-2 border border-it-light-border">
           {pillars.map((pillar) => (

@@ -51,8 +51,6 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
       <div style={{ background: 'var(--it-bg)', borderBottom: '1px solid var(--it-border)' }}>
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--it-text-muted)' }}>
-            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Home</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
             <Link href="/industries" className="transition-colors hover:opacity-80" style={{ color: 'var(--it-text-muted)' }}>Industries</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
             <span style={{ color: 'var(--it-text-primary)' }}>{industry.name}</span>

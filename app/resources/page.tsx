@@ -74,7 +74,7 @@ export default function ResourcesPage() {
         secondaryCta={{ label: "Subscribe for Updates", href: "/contact" }}
       />
 
-      <Section className="py-8">
+      <Section>
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           {resourceCategories.map((category) => {
             const Icon = category.icon
@@ -129,7 +129,7 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30 py-20 md:py-28">
+      <Section className="bg-muted/30">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold">Need Technical Support?</h2>
           <p className="text-lg text-muted-foreground">

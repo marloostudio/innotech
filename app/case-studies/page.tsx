@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PillarHero } from "@/components/sections/pillar-hero"
-import { PageShell } from "@/components/page-shell"
+import { PageShell, Section } from "@/components/page-shell"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -76,9 +76,8 @@ export default function CaseStudiesPage() {
       />
 
       {/* Case Studies Grid */}
-      <section className="py-20 md:py-28" style={{ background: "var(--it-section-2)" }}>
-        <PageShell id="case-studies-grid">
-          <div className="grid lg:grid-cols-2 gap-8">
+      <Section id="case-studies-grid" variant="light">
+        <div className="grid lg:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
             <Card key={index} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
               <CardHeader>
@@ -128,13 +127,11 @@ export default function CaseStudiesPage() {
             </Button>
           </div>
         </div>
-        </PageShell>
-      </section>
+      </Section>
 
       {/* CTA */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+      <Section className="bg-muted/30">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-3xl font-bold">Ready to Transform Your Operations?</h2>
             <p className="text-lg text-muted-foreground text-pretty">
               Join leading companies deploying autonomous systems with InnoTech infrastructure
@@ -148,8 +145,7 @@ export default function CaseStudiesPage() {
               </Button>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
     </>
   )
 }

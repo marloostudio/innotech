@@ -13,10 +13,14 @@ interface TestimonialProps {
   alt?: boolean
 }
 
+const lightBgVariants = ["light-bg", "light-bg-2"] as const
+
 export function Testimonial({ title, client, challenge, solution, note, variant, alt }: TestimonialProps) {
+  const headerTheme = variant && lightBgVariants.includes(variant as (typeof lightBgVariants)[number]) ? "light" : "dark"
   return (
     <Section variant={variant} alt={alt} className={!variant ? "bg-it-light-surface-2" : undefined}>
       <SectionHeader 
+        theme={headerTheme}
         title="Real Results from Real Implementations" 
         badge="Case Study"
       />

@@ -73,7 +73,7 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <>
-      <Section className="pt-24 pb-20 md:pb-28">
+      <Section>
         <div className="space-y-4 mb-12 text-center">
           <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-it-blue-subtle text-it-blue">
             Blog
@@ -90,7 +90,7 @@ export default function BlogPage() {
         </div>
       </Section>
 
-      <Section className="py-8">
+      <Section>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">

@@ -46,7 +46,7 @@ export default function DemoPage() {
       </section>
 
       {/* Form section — dark surface, card with 3px left accent */}
-      <Section variant="dark" className="py-20 md:py-28">
+      <Section variant="dark">
         <div className="max-w-2xl mx-auto">
           <Card className="overflow-hidden it-card it-card-accent-blue border-it-border shadow-(--it-shadow-md)">
             <CardContent className="pt-8 pb-8 px-6 sm:px-8">

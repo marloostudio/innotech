@@ -20,9 +20,9 @@ export function PageShell({
   )
 }
 
-export type SectionVariant = "white" | "light" | "dark" | "hero" | "accent" | "light-bg"
+export type SectionVariant = "white" | "light" | "dark" | "hero" | "accent" | "light-bg" | "light-bg-2"
 
-/* Dark theme only: all section variants use dark surfaces except light-bg (literal white) */
+/* Dark theme only: all section variants use dark surfaces except light-bg (white) and light-bg-2 (off-white) */
 const bgMap: Record<SectionVariant, string> = {
   white: "var(--it-section-1)",
   light: "var(--it-section-2)",
@@ -30,6 +30,7 @@ const bgMap: Record<SectionVariant, string> = {
   hero: "var(--it-bg)",
   accent: "", /* CTA band: no default; use className (e.g. bg-primary) */
   "light-bg": "var(--it-light-surface)",
+  "light-bg-2": "var(--it-light-surface-2)",
 }
 
 interface SectionProps {

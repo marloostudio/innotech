@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Target, Eye, Award, Users } from "lucide-react"
 
 import { PillarHero } from "@/components/sections/pillar-hero"
-import { PageShell } from "@/components/page-shell"
+import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -57,7 +57,7 @@ export default function CompanyPage() {
         secondaryCta={{ label: "View Open Roles", href: "/company/careers" }}
       />
 
-      <PageShell>
+      <Section>
         <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
             InnoTech Systems provides the critical infrastructure that enables autonomous operations across industries. From robotic charging systems to safety monitoring and V2X connectivity, our products work together to create comprehensive solutions for the future of mobility.
@@ -69,12 +69,12 @@ export default function CompanyPage() {
             What sets us apart is our commitment to real-world deployment. We don&apos;t just develop technology—we partner with clients to ensure successful implementation, providing ongoing support and continuous improvement.
           </p>
         </div>
-      </PageShell>
+      </Section>
 
       <Separator />
 
-      <PageShell>
-        <SectionHeader 
+      <Section>
+        <SectionHeader
           title="Explore InnoTech"
           description="Learn more about who we are and what we stand for"
         />
@@ -92,36 +92,34 @@ export default function CompanyPage() {
             </Card>
           ))}
         </div>
-      </PageShell>
+      </Section>
 
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <PageShell>
-          <SectionHeader 
-            title="Our Values"
-            description="The principles that guide everything we do"
-          />
-          <div className="grid md:grid-cols-2 gap-6">
-            {values.map((value) => {
-              const Icon = value.icon
-              return (
-                <Card key={value.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
-                  <CardContent className="pt-6 space-y-3">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--it-light-blue-subtle)]">
-                        <Icon className="h-5 w-5 text-it-light-blue" strokeWidth={1.5} />
-                      </div>
-                      <h3 className="text-xl font-semibold text-it-light-text-primary">{value.title}</h3>
+      <Section variant="light">
+        <SectionHeader
+          title="Our Values"
+          description="The principles that guide everything we do"
+        />
+        <div className="grid md:grid-cols-2 gap-6">
+          {values.map((value) => {
+            const Icon = value.icon
+            return (
+              <Card key={value.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
+                <CardContent className="pt-6 space-y-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--it-light-blue-subtle)]">
+                      <Icon className="h-5 w-5 text-it-light-blue" strokeWidth={1.5} />
                     </div>
-                    <p className="text-it-light-text-secondary leading-relaxed text-pretty">
-                      {value.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </PageShell>
-      </section>
+                    <h3 className="text-xl font-semibold text-it-light-text-primary">{value.title}</h3>
+                  </div>
+                  <p className="text-it-light-text-secondary leading-relaxed text-pretty">
+                    {value.description}
+                  </p>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </div>
+      </Section>
 
       <CtaBanner 
         title="Let's Build the Future Together"

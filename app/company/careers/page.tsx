@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PageShell } from "@/components/page-shell"
+import { PageShell, Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
-import { CtaBanner } from "@/components/sections/cta-banner"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -56,8 +55,6 @@ export default function CareersPage() {
       <div className="border-b">
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
             <Link href="/company" className="hover:text-foreground transition-colors">Company</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
             <span className="text-foreground">Careers</span>
@@ -71,10 +68,10 @@ export default function CareersPage() {
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">Careers</Badge>
             <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
-              Join the Team
+              Ready to Make an Impact?
             </h1>
             <p className="text-xl text-muted-foreground mb-8 text-balance">
-              Build the infrastructure for autonomous operations
+              Join us in building the future of autonomous operations.
             </p>
             <p className="text-lg text-muted-foreground text-pretty max-w-3xl mx-auto">
               We&apos;re looking for talented engineers, designers, and operators to help us scale autonomous systems infrastructure worldwide.
@@ -83,9 +80,84 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Open Roles */}
+      <section className="bg-it-light-surface py-20 lg:py-28">
+        <PageShell>
+          <div className="grid gap-10 lg:gap-16 lg:grid-cols-3 items-start">
+            <div className="lg:col-span-1 space-y-6">
+              <SectionHeader
+                theme="light"
+                title="Open Positions"
+                description="Current opportunities to join InnoTech Systems"
+                className="mb-0 text-left lg:text-left"
+              />
+              <div className="text-left">
+                <p className="mb-4 text-it-light-text-muted">
+                  Don&apos;t see the right role? We&apos;re always interested in hearing from talented people.
+                </p>
+                <Button
+                  variant="outline"
+                  className="border-it-light-border text-it-light-text-primary"
+                  asChild
+                >
+                  <Link href="/contact">Get in Touch</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="lg:col-span-2 space-y-4">
+              {openRoles.map((role, index) => (
+                <Card
+                  key={index}
+                  className="border border-it-border shadow-[var(--it-shadow-sm)]"
+                  style={{ background: "var(--it-surface)" }}
+                >
+                <CardContent className="pt-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex-1">
+                        <h3
+                          className="text-xl font-semibold mb-2"
+                          style={{ color: "var(--it-text-primary)" }}
+                        >
+                          {role.title}
+                        </h3>
+                        <div
+                          className="flex flex-wrap gap-3 text-sm"
+                          style={{ color: "var(--it-text-secondary)" }}
+                        >
+                          <div className="flex items-center gap-1">
+                            <LucideIcons.MapPin
+                              className="w-4 h-4"
+                              strokeWidth={1.5}
+                              style={{ color: "var(--it-text-muted)" }}
+                            />
+                            {role.location}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <LucideIcons.Briefcase
+                              className="w-4 h-4"
+                              strokeWidth={1.5}
+                              style={{ color: "var(--it-text-muted)" }}
+                            />
+                            {role.type}
+                          </div>
+                          <Badge variant="outline">{role.department}</Badge>
+                        </div>
+                      </div>
+                      <Button className="px-6" asChild>
+                        <Link href="/contact">Apply</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </PageShell>
+      </section>
+
       {/* Benefits */}
-      <PageShell>
-        <SectionHeader 
+      <Section variant="dark">
+        <SectionHeader
           title="Why InnoTech?"
           description="Benefits and perks of working with us"
         />
@@ -93,7 +165,10 @@ export default function CareersPage() {
           {benefits.map((benefit) => {
             const Icon = benefit.icon
             return (
-              <Card key={benefit.title} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
+              <Card
+                key={benefit.title}
+                className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]"
+              >
                 <CardContent className="pt-6 space-y-3">
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)]">
                     <Icon className="w-6 h-6 text-it-light-blue" strokeWidth={1.5} />
@@ -107,62 +182,8 @@ export default function CareersPage() {
             )
           })}
         </div>
-      </PageShell>
+      </Section>
 
-      {/* Open Roles */}
-      <section className="bg-muted/30 py-20 lg:py-28">
-        <PageShell>
-          <SectionHeader 
-            title="Open Positions"
-            description="Current opportunities to join InnoTech Systems"
-          />
-          
-          <div className="space-y-4 max-w-4xl mx-auto">
-            {openRoles.map((role, index) => (
-              <Card key={index} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2 text-it-light-text-primary">{role.title}</h3>
-                      <div className="flex flex-wrap gap-3 text-sm text-it-light-text-muted">
-                        <div className="flex items-center gap-1">
-                          <LucideIcons.MapPin className="w-4 h-4" />
-                          {role.location}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <LucideIcons.Briefcase className="w-4 h-4" />
-                          {role.type}
-                        </div>
-                        <Badge variant="outline">{role.department}</Badge>
-                      </div>
-                    </div>
-                    <Button asChild>
-                      <Link href="/contact">Apply</Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-<p className="text-it-light-text-muted mb-4">
-            Don&apos;t see the right role? We&apos;re always interested in hearing from talented people.
-            </p>
-            <Button variant="outline" asChild>
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </div>
-        </PageShell>
-      </section>
-
-      {/* CTA */}
-      <CtaBanner 
-        title="Ready to Make an Impact?"
-        description="Join us in building the future of autonomous operations"
-        primaryCta={{ label: "View All Positions", href: "/company/careers" }}
-        secondaryCta={{ label: "Contact Us", href: "/contact" }}
-      />
     </>
   )
 }

@@ -478,6 +478,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background: var(--it-bg);
     color: var(--it-text-primary);
@@ -514,4 +517,18 @@
     outline: 2px solid var(--it-blue);
     outline-offset: 2px;
   }
+}
+
+/* Legal page ribbon label */
+.legal-ribbon {
+  display: inline-block;
+  padding: 0.35rem 0.75rem 0.35rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
+  color: var(--it-light-blue);
+  background: var(--it-light-blue-subtle);
+  border-left: 3px solid var(--it-light-blue);
 }

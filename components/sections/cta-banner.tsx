@@ -34,7 +34,7 @@ export function CtaBanner({
       className="w-full py-20 md:py-28 bg-it-bg border-t border-it-border"
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center space-y-6 max-w-3xl mx-auto text-it-text-primary">
+        <div className="text-center space-y-6 max-w-4xl mx-auto text-it-text-primary">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
             {resolvedHeadline}
           </h2>

@@ -11,10 +11,8 @@ export default function VideosPage() {
   return (
     <>
       <div style={{ borderBottom: "1px solid var(--it-border)" }}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
           <nav className="flex items-center gap-2 text-sm" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-            <Link href="/" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Home</Link>
-            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
             <Link href="/resources" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Resources</Link>
             <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
             <span style={{ color: "var(--it-text-primary)" }}>Videos</span>

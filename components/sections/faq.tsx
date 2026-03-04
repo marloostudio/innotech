@@ -30,12 +30,12 @@ export function Faq({
   variant,
   alt,
 }: FaqProps) {
-  const isLightBg = variant === "light-bg"
+  const isLightBg = variant === "light-bg" || variant === "light-bg-2"
   const titleCls = isLightBg ? "text-it-light-text-primary" : "text-it-text-primary"
   const descCls = isLightBg ? "text-it-light-text-muted" : "text-it-text-muted"
   const triggerCls = isLightBg
-    ? "text-it-light-text-primary opacity-90 hover:opacity-100 hover:font-[550] hover:no-underline transition-all duration-300 ease-out [&>svg]:text-it-light-text-muted"
-    : "text-it-text-primary opacity-90 hover:opacity-100 hover:font-[550] hover:no-underline transition-all duration-300 ease-out [&>svg]:text-it-text-muted"
+    ? "text-it-light-text-primary opacity-90 hover:opacity-100 hover:no-underline transition-all duration-300 ease-out [&>svg]:text-it-light-text-muted"
+    : "text-it-text-primary opacity-90 hover:opacity-100 hover:no-underline transition-all duration-300 ease-out [&>svg]:text-it-text-muted"
   const contentCls = isLightBg ? "text-it-light-text-secondary" : "text-it-text-secondary"
   const borderCls = isLightBg ? "border-it-light-border" : "border-it-border"
 
@@ -45,22 +45,22 @@ export function Faq({
         <div className="lg:col-span-1 space-y-4">
           <h2
             className={cn(
-              "font-inter text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance",
+              "font-inter text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-balance",
               titleCls
             )}
           >
             {title}
           </h2>
           {description && (
-            <p className={cn("text-lg md:text-xl text-pretty max-w-xl", descCls)}>
+            <p className={cn("text-base md:text-lg leading-snug text-pretty max-w-xl", descCls)}>
               {description}
             </p>
           )}
-          <Link href="/contact" className="inline-block">
+          <Link href="/contact" className="block w-full">
             <Button
               size="lg"
               className={cn(
-                "gap-2 font-medium",
+                "w-full gap-2 font-medium",
                 isLightBg
                   ? "bg-it-light-blue text-white hover:bg-it-light-blue-hover"
                   : "bg-it-blue text-it-bg hover:opacity-90"

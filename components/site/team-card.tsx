@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 export interface TeamCardProps {
   name: string
   title: string
+  expertise?: string
   bio?: string
   imageSrc?: string
   linkedin?: string
@@ -23,6 +24,7 @@ const iconSize = 16
 export function TeamCard({
   name,
   title,
+  expertise,
   bio,
   imageSrc,
   linkedin,
@@ -34,15 +36,14 @@ export function TeamCard({
     return (
       <article
         className={cn(
-          "flex items-center gap-4 rounded-lg border-l-[3px] p-4 transition-colors duration-150",
+          "flex items-center gap-4 rounded-lg p-4 transition-colors duration-150",
           "hover:bg-it-surface-raised"
         )}
         style={{
           background: "var(--it-surface)",
-          borderLeftColor: "var(--it-blue)",
         }}
       >
-        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-it-surface-raised">
+        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-it-surface-raised">
           {imageSrc ? (
             <Image
               src={imageSrc}
@@ -78,6 +79,17 @@ export function TeamCard({
           >
             {title}
           </p>
+          {expertise ? (
+            <p
+              className="text-xs truncate"
+              style={{
+                color: "var(--it-text-muted)",
+                fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+              }}
+            >
+              {expertise}
+            </p>
+          ) : null}
         </div>
       </article>
     )
@@ -133,6 +145,17 @@ export function TeamCard({
         >
           {title}
         </p>
+        {expertise ? (
+          <p
+            className="text-sm"
+            style={{
+              color: "var(--it-text-secondary)",
+              fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+            }}
+          >
+            {expertise}
+          </p>
+        ) : null}
         {bio ? (
           <p
             className="text-sm line-clamp-3"

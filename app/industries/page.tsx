@@ -38,7 +38,7 @@ export default function IndustriesPage() {
         secondaryCta={{ label: "Request a Site Assessment", href: "/contact" }}
       />
 
-      <Section className="py-8">
+      <Section>
         <div className="space-y-8">
           {industries.map((industry, index) => {
             const Icon = getIcon(industry.icon)

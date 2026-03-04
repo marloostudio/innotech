@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { PageShell } from "@/components/page-shell"
+import { Section, PageShell, type SectionVariant } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 
 interface Industry {
@@ -19,9 +19,10 @@ interface IndustryGridProps {
   description?: string
   industries: Industry[]
   showCta?: boolean
+  variant?: SectionVariant
 }
 
-export function IndustryGrid({ title, description, industries, showCta = false }: IndustryGridProps) {
+export function IndustryGrid({ title, description, industries, showCta = false, variant }: IndustryGridProps) {
   const getIcon = (iconName: string) => {
     // Map common icon names to Lucide icon components
     const iconMap: Record<string, LucideIcons.LucideIcon> = {
@@ -49,20 +50,22 @@ export function IndustryGrid({ title, description, industries, showCta = false }
     return iconMap[iconName] || LucideIcons.Building2
   }
 
-  return (
-    <section className="it-section-mid py-20 md:py-28">
-      <PageShell>
-      <SectionHeader title={title} description={description} />
+  const headerTheme = variant === "light-bg" || variant === "light-bg-2" ? "light" : "dark"
+  const content = (
+    <>
+      <SectionHeader theme={headerTheme} title={title} description={description} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {industries.map((industry) => {
           const Icon = getIcon(industry.icon)
           return (
             <Card key={industry.id} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
               <CardHeader>
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4">
-                  <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
+                <div className="flex items-center gap-4">
+                  <div className="flex shrink-0 items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)]">
+                    <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
+                  </div>
+                  <CardTitle className="text-2xl text-it-light-text-primary min-w-0">{industry.title}</CardTitle>
                 </div>
-                <CardTitle className="text-xl text-it-light-text-primary">{industry.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base text-it-light-text-secondary">
@@ -83,6 +86,21 @@ export function IndustryGrid({ title, description, industries, showCta = false }
           </Link>
         </div>
       )}
+    </>
+  )
+
+  if (variant) {
+    return (
+      <Section variant={variant} alt={false}>
+        {content}
+      </Section>
+    )
+  }
+
+  return (
+    <section className="it-section-mid py-20 md:py-28">
+      <PageShell>
+        {content}
       </PageShell>
     </section>
   )

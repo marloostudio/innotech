@@ -97,11 +97,12 @@ export function FeatureGrid({
                       aspectRatio="4/3"
                       alt={`${feature.title} — solution`}
                       label={feature.title}
-                      className={
+                      className={cn(
+                        "border-0",
                         isImageLeft
                           ? "absolute inset-0 w-full h-full rounded-none !aspect-auto min-h-0"
                           : "w-full h-full min-h-[160px]"
-                      }
+                      )}
                       variant="light"
                     />
                   </div>
