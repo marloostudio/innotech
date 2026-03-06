@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { PageShell } from '@/components/page-shell'
+import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
+import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
@@ -28,6 +29,7 @@ export default function AutoLockPage() {
 
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "AutoLock" }]} />
       {/* Hero Section — two-column with 16/9 placeholder on right */}
       <section className="it-hero-solutions py-20 lg:py-28">
         <div className="container mx-auto px-4">
@@ -63,14 +65,14 @@ export default function AutoLockPage() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <PageShell>
+      {/* Features Grid → light-bg */}
+      <Section variant="light-bg">
         <SectionHeader
+          theme="light"
           label="Features"
           title="Complete Autonomous Charging Platform"
           description="Four integrated modules delivering end-to-end charging automation and fleet management"
         />
-        
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {autolockFeatures.map((feature, index) => {
             const Icon = getIcon(feature.icon)
@@ -132,9 +134,9 @@ export default function AutoLockPage() {
             )
           })}
         </div>
-      </PageShell>
+      </Section>
 
-      {/* Use Cases Section */}
+      {/* Industries Using AutoLock → dark (it-section-mid) */}
       <section className="it-section-mid py-20 lg:py-28">
         <PageShell>
           <SectionHeader

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Target, Eye, Award, Users } from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
@@ -48,6 +49,7 @@ const quickLinks = [
 export default function CompanyPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Company" }]} />
       <PillarHero
         badge="Company"
         h1="We're Building the Infrastructure Layer for Autonomous Mobility."

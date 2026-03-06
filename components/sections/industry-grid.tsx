@@ -2,6 +2,7 @@ import Link from "next/link"
 import * as LucideIcons from "lucide-react"
 import { ArrowRight } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Section, PageShell, type SectionVariant } from "@/components/page-shell"
@@ -51,6 +52,7 @@ export function IndustryGrid({ title, description, industries, showCta = false, 
   }
 
   const headerTheme = variant === "light-bg" || variant === "light-bg-2" ? "light" : "dark"
+  const isLightSection = variant === "light-bg" || variant === "light-bg-2"
   const content = (
     <>
       <SectionHeader theme={headerTheme} title={title} description={description} />
@@ -58,17 +60,25 @@ export function IndustryGrid({ title, description, industries, showCta = false, 
         {industries.map((industry) => {
           const Icon = getIcon(industry.icon)
           return (
-            <Card key={industry.id} className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
+            <Card key={industry.id} className={cn(
+              isLightSection
+                ? "bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)]"
+                : "bg-[var(--it-surface-raised)] border border-it-border hover:border-[var(--it-card-hover-border)] hover:shadow-[var(--it-card-hover-shadow)]",
+              "transition-all duration-200"
+            )}>
               <CardHeader>
                 <div className="flex items-center gap-4">
-                  <div className="flex shrink-0 items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)]">
-                    <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
+                  <div className={cn(
+                    "flex shrink-0 items-center justify-center w-12 h-12 rounded-lg",
+                    isLightSection ? "bg-[var(--it-light-blue-subtle)]" : "bg-[var(--it-blue-subtle)]"
+                  )}>
+                    <Icon className={cn("h-6 w-6", isLightSection ? "text-it-light-blue" : "text-it-blue")} strokeWidth={1.5} />
                   </div>
-                  <CardTitle className="text-2xl text-it-light-text-primary min-w-0">{industry.title}</CardTitle>
+                  <CardTitle className={cn("text-2xl min-w-0", isLightSection ? "text-it-light-text-primary" : "text-it-text-primary")}>{industry.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base text-it-light-text-secondary">
+                <CardDescription className={cn("text-base", isLightSection ? "text-it-light-text-secondary" : "text-it-text-secondary")}>
                   {industry.description}
                 </CardDescription>
               </CardContent>
@@ -79,7 +89,11 @@ export function IndustryGrid({ title, description, industries, showCta = false, 
       {showCta && (
         <div className="flex justify-center mt-12">
           <Link href="/industries">
-            <Button variant="outline" size="lg" className="border-it-light-border text-it-light-text-secondary hover:bg-it-light-surface-2 hover:text-it-light-text-primary">
+            <Button variant="outline" size="lg" className={cn(
+              isLightSection
+                ? "border-it-light-border text-it-light-text-secondary hover:bg-it-light-surface-2 hover:text-it-light-text-primary"
+                : "border-it-border text-it-text-secondary hover:bg-it-surface hover:text-it-text-primary hover:border-[var(--it-blue-border)]"
+            )}>
               View All Industries
               <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
             </Button>

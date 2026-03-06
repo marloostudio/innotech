@@ -43,7 +43,7 @@
   /* Base surfaces */
   --it-bg: #0b1221;
   --it-surface: #111827;
-  --it-surface-raised: #1a2540;
+  --it-surface-raised: #1c2a48;
 
   /* Borders */
   --it-border: #1e3050;
@@ -51,8 +51,8 @@
 
   /* Text */
   --it-text-primary: #eaf2ff;
-  --it-text-secondary: #c8d8f0;
-  --it-text-muted: #7a90b0;
+  --it-text-secondary: #d0dff5;
+  --it-text-muted: #8599b8;
   --it-text-dim: #4a6080;
 
   /* Primary brand — Radar Link blue */
@@ -170,7 +170,7 @@
      Never use an unbranded gray between them.
   ───────────────────────────────────────────────────── */
   --it-section-1: #0b1221;           /* primary page bg — deep navy */
-  --it-section-2: #0f1a2e;           /* subtle alt section — step up */
+  --it-section-2: #121d33;           /* subtle alt section — step up */
   --it-section-3: #111827;           /* card/panel surface */
   --it-section-raised: #1a2540;      /* elevated cards, modals */
 
@@ -179,7 +179,7 @@
      These replace the unbranded gray that appears in
      those in-between sections in the screenshots.
   ───────────────────────────────────────────────────── */
-  --it-mid-section-bg: #0f1a2e;
+  --it-mid-section-bg: #121d33;
   --it-mid-section-border-top: 1px solid #1e3050;
   --it-mid-section-border-bottom: 1px solid #1e3050;
 
@@ -191,14 +191,31 @@
   --it-card-default-bg:     #111827;
   --it-card-default-border: #1e3050;
   --it-card-hover-bg:       #1a2540;
-  --it-card-hover-border:   rgba(77, 159, 255, 0.35);
-  --it-card-hover-shadow:   0 8px 32px rgba(77, 159, 255, 0.12);
+  --it-card-hover-border:   rgba(77, 159, 255, 0.55);
+  --it-card-hover-shadow:   0 8px 32px rgba(77, 159, 255, 0.18);
 
   /* Accent-border card variants (left-accent style in screenshots) */
   --it-card-accent-safeguard:  rgba(0, 212, 170, 0.4);
   --it-card-accent-autolock:   rgba(255, 107, 53, 0.4);
   --it-card-accent-solutions:  rgba(180, 125, 255, 0.4);
   --it-card-accent-blue:       rgba(77, 159, 255, 0.4);
+
+  /* ── CTA Banner gradient (dark-to-navy with blue tint) ── */
+  --it-cta-gradient:
+    radial-gradient(ellipse 90% 70% at 50% 100%,
+      rgba(77, 159, 255, 0.06) 0%,
+      transparent 60%),
+    linear-gradient(180deg, #0e1729 0%, #0b1221 100%);
+
+  /* ── Light section subtle top/bottom edge for transition ── */
+  --it-light-edge-top: 1px solid #e2e8f0;
+  --it-light-edge-bottom: 1px solid #e2e8f0;
+
+  /* ── Improved image placeholder gradient ── */
+  --it-placeholder-dark:
+    linear-gradient(135deg, #141f35 0%, #1a2540 50%, #162035 100%);
+  --it-placeholder-light:
+    linear-gradient(135deg, #f1f5f9 0%, #e8eef6 50%, #f1f5f9 100%);
 }
 
 /* ── Dark mode overrides ──────────────────────────────── */
@@ -449,6 +466,41 @@
 .it-card-accent-teal   { border-left: 3px solid var(--it-card-accent-safeguard); }
 .it-card-accent-orange { border-left: 3px solid var(--it-card-accent-autolock); }
 .it-card-accent-violet { border-left: 3px solid var(--it-card-accent-solutions); }
+
+/* CTA banner with subtle gradient instead of flat bg */
+.it-cta-banner {
+  background: var(--it-cta-gradient);
+  border-top: 1px solid var(--it-border);
+  color: var(--it-text-primary);
+}
+
+/* Light section wrapper — use on 1-2 sections per page for breathing room */
+.it-section-light {
+  background-color: var(--it-light-bg);
+  border-top: var(--it-light-edge-top);
+  border-bottom: var(--it-light-edge-bottom);
+  color: var(--it-light-text-primary);
+}
+
+/* Slightly warmer light section for variety */
+.it-section-light-alt {
+  background-color: var(--it-light-surface-2);
+  border-top: var(--it-light-edge-top);
+  border-bottom: var(--it-light-edge-bottom);
+  color: var(--it-light-text-primary);
+}
+
+/* Dark section divider — subtle horizontal rule between dark sections */
+.it-section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, var(--it-border) 30%, var(--it-border) 70%, transparent 95%);
+}
+
+/* Enhanced headings on dark backgrounds — pure white for stronger hierarchy */
+.it-heading-bright {
+  color: #ffffff;
+  text-shadow: 0 0 40px rgba(77, 159, 255, 0.08);
+}
 
 /* Value/outcome chips (the dark "Value Delivered" cards in screenshot 2) */
 .it-chip-dark {

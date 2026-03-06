@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BookOpen, FileText, Video, Download, ArrowRight } from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
@@ -65,6 +66,7 @@ const featuredTopics = [
 export default function ResourcesPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Resources" }]} />
       <PillarHero
         badge="Resources"
         h1="The Technical Library for Autonomous Operations."

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Calendar, User, ArrowRight } from "lucide-react"
+import { Calendar, User, ArrowRight, ChevronRight } from "lucide-react"
 
 import { Section } from "@/components/page-shell"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -73,14 +73,26 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <>
-      <Section>
+      {/* Breadcrumbs */}
+      <div className="border-b border-it-border" style={{ background: "var(--it-bg)" }}>
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-it-text-muted" style={{ fontFamily: "var(--font-dm-sans)" }}>
+            <Link href="/resources" className="hover:text-it-text-primary transition-colors">Resources</Link>
+            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
+            <span className="text-it-text-primary">Blog</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Hero → dark */}
+      <Section variant="dark">
         <div className="space-y-4 mb-12 text-center">
           <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-it-blue-subtle text-it-blue">
             Blog
           </span>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance text-it-text-primary"
-            style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
           >
             Industry Insights and Technology Perspectives
           </h1>
@@ -90,7 +102,8 @@ export default function BlogPage() {
         </div>
       </Section>
 
-      <Section>
+      {/* Article Grid → light-bg */}
+      <Section variant="light-bg">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">

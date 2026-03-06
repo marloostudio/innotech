@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
 import { PageShell } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
@@ -28,6 +29,7 @@ export default function RadarLinkPage() {
 
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "RADARLink" }]} />
       {/* Hero Section — two-column with 16/9 placeholder on right */}
       <section className="it-hero-solutions py-20 lg:py-28">
         <div className="container mx-auto px-4">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PageShell, Section } from "@/components/page-shell"
 import { siteConfig } from "@/lib/site"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,6 +17,7 @@ const inputBase =
 export default function DemoPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Demo" }]} />
       {/* Hero — dark theme, brand gradient */}
       <section
         className="relative w-full pt-24 md:pt-28 pb-14 md:pb-20"

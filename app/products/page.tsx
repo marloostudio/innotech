@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from 'next/link'
 import * as LucideIcons from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { PageShell, Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
@@ -62,6 +63,7 @@ const products = [
 export default function ProductsPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Products" }]} />
       <PillarHero
         badge="Products"
         h1="Three Product Lines. One Autonomous Platform."

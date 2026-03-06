@@ -10,6 +10,97 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [1.4.8] – 2026-03-05 14:00 UTC
+
+### Summary
+
+Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page with search, filters, and expand-all controls.
+
+### Highlights
+
+- Added a new design rhythm guide for page section flow
+- Refined homepage section balance across light and dark backgrounds
+- Updated product and solution page layout consistency
+- Improved About page timeline and story presentation
+- Updated blog hero typography
+- Refined Contact page CTA styling
+- Changelog page: all releases start collapsed; added Expand all / Collapse all for easier scanning
+
+### Added
+
+- **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 documents recommended `variant` (and `alt`) per page type: Homepage, Product pages (SafeGuard, AutoLock), Solution pages (SolutionDetail), About / Our Story, Blog, and Contact. Ensures consistent dark→light→dark rhythm across the site.
+- **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – New component and rollout across pillar and key sub-pages: Products, Solutions, Industries, Resources (including Blog, FAQ, Case Studies, Docs), Company, Contact, Technology, Case Studies, Demo, Accessibility, Careers (and Open Roles). Uses `max-w-screen-2xl`, dark-theme tokens, DM Sans. Blog and FAQ show Resources → Blog / FAQ; product pages show Products → [Product]; careers show Company → Careers → Open Roles where applicable.
+
+### Changed
+
+- **Homepage** (`app/page.tsx`) – Section rhythm applied: Feature Grid and Tech Overview `light-bg`; Industry Grid dark (`it-section-mid`, no variant); Testimonial and FAQ `dark` (+ `alt` on Testimonial); Stats `light-bg`; CTA Banner unchanged (dark with gradient). Comments aligned to rhythm guide.
+- **Product pages** (`app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`) – Features block wrapped in `<Section variant="light-bg">` with `SectionHeader theme="light"`; Industries Using [X] remains `it-section-mid`; CTA Banner unchanged.
+- **Solution pages** (`components/solution-detail.tsx`) – Key Benefits section uses `<Section variant="light-bg">` and light-theme benefit cards; How It Works remains `it-section-alt`; Related Solutions (Powered By) changed from `it-section-mid` to `it-section-alt`.
+- **About / Our Story** (`app/company/our-story/page.tsx`) – Hero and breadcrumbs use dark tokens and `it-section`; story prose `<Section variant="dark">`; Timeline `<Section variant="light-bg">` with `SectionHeader theme="light"` and light-theme timeline content; CTA Banner unchanged.
+- **Blog** (`app/resources/blog/page.tsx`) – Hero `<Section variant="dark">`; article card grid wrapped in `<Section variant="light-bg">`; hero title font set to DM Sans (no Inter).
+- **Contact** (`app/contact/page.tsx`) – CTA / Schedule section (“Prefer to Talk?”) changed from light to `<Section variant="dark">` with dark text and button styling; Hero and form area unchanged.
+- **Changelog page** (`app/changelog/`, `lib/changelog.ts`, `components/changelog-accordion.tsx`, `changelog-layout.tsx`, `changelog-sidebar.tsx`) – New `/changelog` route: release history parsed from CHANGELOG.md, with search, filter by type (Added/Changed/Fixed), sidebar with filter and related links (Keep a Changelog, Semantic Versioning, Contact, Resources), optional Git push timestamp per version when tag exists, and accordion with all items closed on load plus "Expand all" / "Collapse all" buttons.
+- **PillarHero** (`components/sections/pillar-hero.tsx`) – Optional `primaryCta` / `secondaryCta` and new `compact` prop for minimal heroes (reduced height, no CTA block); new `align` prop (`center` | `left`). Changelog page uses compact hero without CTAs.
+- **Footer** (`components/site/footer.tsx`) – Version number (e.g. v1.4.8) now links to `/changelog`; added Changelog link in bottom legal row.
+
+---
+
+## [1.4.7] – 2026-03-05
+
+### Changed
+
+- **Design tokens** (`app/globals.css`) – Card hover border opacity increased: `--it-card-hover-border` from `0.45` to `0.55` so hover states on cards are more noticeable. Other quick-win tokens (`--it-section-2`, `--it-text-secondary`, `--it-text-muted`, `--it-surface-raised`, `.it-heading-bright`) were already in place from earlier token refinements.
+
+---
+
+## [1.4.6] – 2025-03-05
+
+### Changed
+
+- **Feature grid** (`components/sections/feature-grid.tsx`) – Cards, icon container, title, and description now switch between light and dark tokens based on section variant (`isLightSection`). On dark sections cards use `it-card`, raised surface, and blue hover border/shadow; on light sections they keep light surface and shadow.
+- **Industry grid** (`components/sections/industry-grid.tsx`) – Industry cards and “View All Industries” button are variant-aware: light sections use light surface/border/text; dark sections use `--it-surface-raised`, `--it-card-hover-border`/shadow, and dark text. Added `cn` import.
+- **Stats** (`components/sections/stats.tsx`) – Title, stat values, labels, notes, and footer paragraph use `isLightSection` to choose light vs dark text tokens; dark sections use `it-heading-bright` for the title and `text-it-blue` for values.
+- **Tech overview** (`components/sections/tech-overview.tsx`) – TabsList, TabsTrigger, Card, CardTitle, CardDescription, check icon, and feature list text are conditional on `isLightSection`. Dark sections use `--it-surface`, `--it-surface-raised`, `--it-blue-subtle`, and dark text tokens. Added `cn` import.
+- **Testimonial** (`components/sections/testimonial.tsx`) – Card and all content (title, client, Challenge/Solution badges and copy, note) use `isLightSection` for light vs dark tokens. Removed default `className` fallback on `Section`; card uses raised surface and dark borders/shadows on dark sections. Added `cn` import.
+
+---
+
+## [1.4.5] – 2025-03-05
+
+### Changed
+
+- **Design tokens** (`app/globals.css`) – Refined dark-theme tokens: `--it-surface-raised` (#1a2540 → #1c2a48), `--it-text-secondary` and `--it-text-muted` (slightly lighter for readability), `--it-section-2` and `--it-mid-section-bg` (#0f1a2e → #121d33). Card hover: stronger blue border and shadow (`--it-card-hover-border`, `--it-card-hover-shadow`).
+- **Section component** (`components/page-shell.tsx`) – Section alternation: `variant="light-bg"` / `variant="light-bg-2"` now use utility classes `it-section-light` and `it-section-light-alt` (with edge borders) instead of inline background; dark sections continue to use `it-section` / `it-section-alt`. Light sections no longer receive inline `background` so the utility classes control gradient and borders.
+- **CTA banner** (`components/sections/cta-banner.tsx`) – Replaced `bg-it-bg border-t border-it-border` with utility class `it-cta-banner` for subtle radial blue-tinted gradient at the bottom edge and top border, giving a clearer visual “destination” at the bottom of each page.
+- **SectionHeader** (`components/section-header.tsx`) – Section headings on dark backgrounds now use the `it-heading-bright` utility (pure white with subtle blue text-shadow) instead of `text-it-text-primary` for stronger visual hierarchy against body text.
+
+### Added
+
+- **Design tokens & utilities** (`app/globals.css`) – New tokens: `--it-cta-gradient` (dark-to-navy with blue tint for CTA banner), `--it-light-edge-top` / `--it-light-edge-bottom` (light section edges), `--it-placeholder-dark` / `--it-placeholder-light` (image placeholder gradients). New utility classes: `.it-cta-banner` (gradient background, top border), `.it-section-light` and `.it-section-light-alt` (light section with edge borders), `.it-section-divider` (gradient horizontal rule between dark sections), `.it-heading-bright` (pure white headings with subtle blue glow on dark backgrounds).
+
+---
+
+## [1.4.4] – 2025-03-05
+
+### Fixed
+
+- **Navbar dropdown close timing** – Added a 300ms delay before closing the nav dropdown when the cursor leaves the nav/dropdown area so users have time to move the cursor into the dropdown panel. Closing is cancelled if the cursor re-enters the nav or dropdown within the delay (`components/site/navbar.tsx`).
+
+---
+
+## [1.4.4] – 2025-03-05
+
+### Added
+
+- **Image folder structure** – `public/images/` with subfolders `team/`, `hero/`, `products/`, `company/`, `og/` for site assets. `public/images/README.md` documents the hierarchy and naming convention for team member photos (e.g. `fred-daneshgaran.jpg`); team photos go in `public/images/team/`.
+- **Design style guide** – `docs/DESIGN_STYLE.md`: in-depth documentation of the design system (tokens, typography, colour palettes, surfaces, hero gradients, motion, utility classes, component conventions) with reference to `app/globals.css` as the token source.
+
+### Changed
+
+- **Team page – hero subtitle** – "Passionate experts building the future of autonomous operations" → "Passionate experts building the future of intelligent infrastructure".
+
+---
+
 ## [1.4.3] – 2025-03-05
 
 ### Changed
@@ -219,9 +310,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
-[Unreleased]: https://github.com/your-org/Innotech/compare/v1.4.3...HEAD
+[Unreleased]: https://github.com/your-org/Innotech/compare/v1.4.6...HEAD
+[1.4.6]: https://github.com/your-org/Innotech/compare/v1.4.5...v1.4.6
+[1.4.5]: https://github.com/your-org/Innotech/compare/v1.4.4...v1.4.5
+[1.4.4]: https://github.com/your-org/Innotech/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/your-org/Innotech/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/your-org/Innotech/compare/v1.4.1...v1.4.2
+[1.4.1]: https://github.com/your-org/Innotech/compare/v1.4.0...v1.4.1
 [1.1.0]: https://github.com/your-org/Innotech/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/your-org/Innotech/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/your-org/Innotech/compare/v0.1.1...v0.2.0

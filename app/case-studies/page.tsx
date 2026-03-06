@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { PageShell, Section } from "@/components/page-shell"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -66,6 +67,7 @@ const caseStudies = [
 export default function CaseStudiesPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Case Studies" }]} />
       <PillarHero
         badge="Case Studies"
         h1="Outcomes, Not Promises."

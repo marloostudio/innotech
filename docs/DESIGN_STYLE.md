@@ -222,7 +222,77 @@ Apply these in components instead of ad-hoc backgrounds.
 
 ---
 
-## 10. Tailwind integration
+## 10. Page-Level Section Rhythm Guide
+
+Use this as the reference when setting `variant` (and where applicable `alt`) on each page’s section components.
+
+**Homepage** (`app/page.tsx`)
+
+| Section       | Variant / treatment |
+|---------------|----------------------|
+| Hero          | dark (HeroV2 + HeroCanvas — keep as-is) |
+| Logo Cloud    | dark alt (`it-section-mid` — keep as-is) |
+| Feature Grid  | `light-bg` |
+| Industry Grid | dark (`it-section-mid` — no variant so component uses own section) |
+| Tech Overview | `light-bg` |
+| Testimonial   | `dark` + `alt` |
+| Stats         | `dark` |
+| FAQ           | `dark` |
+| CTA Banner    | dark with gradient (`it-cta-banner`) |
+| Footer        | dark (keep as-is) |
+
+**Product pages** (SafeGuard, AutoLock — `app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`)
+
+| Section              | Variant / treatment |
+|----------------------|----------------------|
+| Pillar Hero          | dark (product-tinted — keep as-is) |
+| Feature Grid (features) | `light-bg` |
+| Industries Using [X]  | dark (`it-section-mid`) |
+| CTA Banner           | dark with gradient (`it-cta-banner`) |
+| Footer               | dark (keep as-is) |
+
+**Solution pages** (Autonomous Charging, V2X, etc. — `SolutionDetail`)
+
+| Section              | Variant / treatment |
+|----------------------|----------------------|
+| Hero                 | dark |
+| Key Benefits         | `light-bg` (one light section) |
+| How It Works         | dark alt (`it-section-alt`) |
+| Industry Applications | dark |
+| Related Solutions    | dark alt (`it-section-alt`) |
+| CTA Banner           | dark with gradient (`it-cta-banner`) |
+| Footer               | dark (keep as-is) |
+
+**About / Our Story** (`app/company/our-story/page.tsx`)
+
+| Section     | Variant / treatment |
+|-------------|----------------------|
+| Hero        | dark |
+| Story prose | dark |
+| Timeline    | `light-bg` (one light section) |
+| CTA Banner  | dark with gradient (`it-cta-banner`) |
+| Footer      | dark (keep as-is) |
+
+**Blog** (`app/resources/blog/page.tsx`)
+
+| Section      | Variant / treatment |
+|--------------|----------------------|
+| Hero         | dark |
+| Article Grid | `light-bg` (whole card grid on light) |
+| Footer       | dark (keep as-is) |
+
+**Contact** (`app/contact/page.tsx`)
+
+| Section               | Variant / treatment |
+|-----------------------|----------------------|
+| Hero                  | dark |
+| Form area             | light (already correct) |
+| CTA / Schedule section | dark |
+| Footer                | dark (keep as-is) |
+
+---
+
+## 11. Tailwind integration
 
 In `@theme inline`, CSS variables are mapped to Tailwind colour utilities, e.g.:
 
@@ -234,7 +304,7 @@ Use these instead of raw hex in class names. For inline styles, use `var(--it-*)
 
 ---
 
-## 11. File reference
+## 12. File reference
 
 | File | Purpose |
 |------|--------|

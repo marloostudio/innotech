@@ -93,13 +93,22 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: 'var(--it-text-muted)' }}>
           <div className="space-y-1">
             <p className="text-[11px]">© {currentYear} {siteConfig.name}. All rights reserved.</p>
-            <p className="font-mono text-[11px]" style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace" }} title="Semantic version">
+            <Link
+              href="/changelog"
+              className="font-mono text-[11px] transition-colors duration-150 hover:text-it-text-primary block"
+              style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: 'inherit' }}
+              title="View changelog"
+            >
               v{siteConfig.version}
-            </p>
+            </Link>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-2 gap-y-1">
             <Link href="/sitemap.xml" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Sitemap
+            </Link>
+            <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
+            <Link href="/changelog" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+              Changelog
             </Link>
             <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
             <Link href="/legal/privacy-policy" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">

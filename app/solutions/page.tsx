@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import * as LucideIcons from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
@@ -17,6 +18,15 @@ export const metadata: Metadata = {
 }
 
 export default function SolutionsPage() {
+  return (
+    <>
+      <BreadcrumbStrip items={[{ label: "Solutions" }]} />
+      <SolutionsContent />
+    </>
+  )
+}
+
+function SolutionsContent() {
   const getIcon = (iconName: string) => {
     const Icon = (LucideIcons as any)[
       iconName.split('-').map((word: string) => 
@@ -113,3 +123,4 @@ export default function SolutionsPage() {
     </>
   )
 }
+

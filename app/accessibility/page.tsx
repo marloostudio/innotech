@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 
 export const metadata: Metadata = {
   title: "Accessibility — InnoTech Systems",
@@ -7,8 +8,10 @@ export const metadata: Metadata = {
 
 export default function AccessibilityPage() {
   return (
-    <main className="min-h-screen px-6 py-32 max-w-3xl mx-auto"
-      style={{ background: "var(--it-light-bg)" }}>
+    <>
+      <BreadcrumbStrip items={[{ label: "Accessibility" }]} />
+      <main className="min-h-screen px-6 py-32 max-w-3xl mx-auto"
+        style={{ background: "var(--it-light-bg)" }}>
       <p className="text-xs font-mono tracking-widest uppercase mb-4"
         style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}>
         Accessibility
@@ -22,5 +25,6 @@ export default function AccessibilityPage() {
           style={{ color: "var(--it-light-blue)" }}>Contact us</a> in the meantime.
       </p>
     </main>
+    </>
   )
 }

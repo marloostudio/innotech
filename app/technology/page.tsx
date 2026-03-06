@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { TechOverview } from "@/components/sections/tech-overview"
@@ -46,6 +47,7 @@ const additionalTech = [
 export default function TechnologyPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Technology" }]} />
       <Section>
         <h1
           className="text-4xl font-bold mb-6"

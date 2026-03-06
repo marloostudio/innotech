@@ -45,13 +45,20 @@ interface SectionProps {
 }
 
 export function Section({ variant = "white", alt = false, children, className, containerClassName, id, style: styleProp }: SectionProps) {
-  const bg = variant ? bgMap[variant] : undefined
+  const isLightSection = variant === "light-bg" || variant === "light-bg-2"
+  const bg = variant && !isLightSection ? bgMap[variant] : undefined
   const baseStyle = bg ? { background: bg } : {}
   const style = styleProp ? { ...baseStyle, ...styleProp } : baseStyle
   return (
     <section
       id={id}
-      className={cn(alt ? "it-section-alt" : "it-section", "py-20 md:py-28", className)}
+      className={cn(
+        variant === "light-bg" || variant === "light-bg-2"
+          ? (variant === "light-bg" ? "it-section-light" : "it-section-light-alt")
+          : alt ? "it-section-alt" : "it-section",
+        "py-20 md:py-28",
+        className
+      )}
       style={Object.keys(style).length ? style : undefined}
     >
       <PageShell className={containerClassName}>

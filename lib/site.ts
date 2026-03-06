@@ -1,5 +1,5 @@
 /** App version (semver: major.minor.patch). Bump in CHANGELOG and here together. */
-export const APP_VERSION = "1.4.3"
+export const APP_VERSION = "1.4.8"
 
 export const siteConfig = {
   name: "InnoTech Systems",

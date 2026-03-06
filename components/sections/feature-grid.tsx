@@ -75,6 +75,7 @@ export function FeatureGrid({
   }
 
   const headerTheme = variant === "light-bg" ? "light" : "dark"
+  const isLightSection = variant === "light-bg" || variant === "light-bg-2"
   return (
     <Section variant={variant} alt={alt}>
       <SectionHeader title={title} description={description} badge={badge} theme={headerTheme} />
@@ -83,7 +84,13 @@ export function FeatureGrid({
           const Icon = getIcon(feature.icon)
           const isImageLeft = showImagePlaceholder && imageOnLeft
           return (
-            <Card key={feature.id} className={cn("border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] hover:border-it-light-blue/50 transition-colors overflow-hidden", isImageLeft && "py-0")}>
+            <Card key={feature.id} className={cn(
+              isLightSection
+                ? "border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] hover:border-it-light-blue/50 hover:shadow-[var(--it-light-shadow-md)]"
+                : "it-card border border-it-border bg-it-surface-raised hover:border-[var(--it-card-hover-border)] hover:shadow-[var(--it-card-hover-shadow)]",
+              "transition-all duration-200 overflow-hidden",
+              isImageLeft && "py-0"
+            )}>
               <div className={showImagePlaceholder ? `grid grid-cols-1 md:grid-cols-2 gap-0 ${isImageLeft ? "md:grid-flow-dense" : ""}` : ""}>
                 {showImagePlaceholder && (
                   <div
@@ -110,14 +117,17 @@ export function FeatureGrid({
                 <div className={cn(isImageLeft && "md:col-[2] py-6")}>
                   <CardHeader>
                     {!hideIcon && (
-                      <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4">
-                        <Icon className="h-6 w-6 text-it-light-blue" strokeWidth={1.5} />
+                      <div className={cn(
+                        "flex items-center justify-center w-12 h-12 rounded-lg mb-4",
+                        isLightSection ? "bg-[var(--it-light-blue-subtle)]" : "bg-[var(--it-blue-subtle)]"
+                      )}>
+                        <Icon className={cn("h-6 w-6", isLightSection ? "text-it-light-blue" : "text-it-blue")} strokeWidth={1.5} />
                       </div>
                     )}
-                    <CardTitle className="text-xl text-it-light-text-primary">{feature.title}</CardTitle>
+                    <CardTitle className={cn("text-xl", isLightSection ? "text-it-light-text-primary" : "text-it-text-primary")}>{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-base text-it-light-text-secondary">
+                    <CardDescription className={cn("text-base", isLightSection ? "text-it-light-text-secondary" : "text-it-text-secondary")}>
                       {feature.description}
                     </CardDescription>
                   </CardContent>

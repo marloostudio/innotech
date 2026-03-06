@@ -31,7 +31,7 @@ export function CtaBanner({
 
   return (
     <section
-      className="w-full py-20 md:py-28 bg-it-bg border-t border-it-border"
+      className="w-full py-20 md:py-28 it-cta-banner"
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-6 max-w-4xl mx-auto text-it-text-primary">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Mail, MapPin, Clock } from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -41,6 +42,8 @@ const contactMethods = [
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Contact" }]} />
+      {/* Hero → dark */}
       <PillarHero
         badge="Contact"
         h1="See It Running in Your Environment."
@@ -51,6 +54,7 @@ export default function ContactPage() {
         tertiaryCta={{ label: "Contact Sales Directly", href: `mailto:${siteConfig.company.email}` }}
       />
 
+      {/* Form area → light (already correct) */}
       <Section
         id="request-proposal"
         className="bg-it-light-bg text-it-light-text-primary"
@@ -219,14 +223,20 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="bg-it-light-surface-2 text-it-light-text-primary">
+      {/* CTA / Schedule section → dark */}
+      <Section variant="dark">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-it-light-text-primary">Prefer to Talk?</h2>
-          <p className="text-lg text-it-light-text-muted">
+          <h2 className="text-3xl font-bold text-it-text-primary">Prefer to Talk?</h2>
+          <p className="text-lg text-it-text-muted">
             Schedule a call with one of our automation experts to discuss your needs in detail.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" variant="outline" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-it-border text-it-text-primary hover:bg-it-surface hover:border-(--it-blue-border) focus-visible:ring-it-blue"
+              asChild
+            >
               <a href={`mailto:${siteConfig.company.email}`}>Schedule a Call</a>
             </Button>
           </div>

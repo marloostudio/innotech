@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PageShell } from '@/components/page-shell'
+import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
@@ -111,7 +111,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
         </div>
       </section>
 
-      {/* Challenges & How It Works */}
+      {/* How It Works → dark alt */}
       <section className="it-section-alt py-20 lg:py-28">
         <PageShell>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
@@ -152,32 +152,30 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
         </PageShell>
       </section>
 
-      {/* Benefits */}
-      <section className="it-section py-20 lg:py-28">
-        <PageShell>
-          <SectionHeader
-            label="Benefits"
-            title="Value Delivered"
-            description="Key business outcomes from implementing this solution"
-          />
+      {/* Key Benefits → light-bg */}
+      <Section variant="light-bg">
+        <SectionHeader
+          theme="light"
+          label="Benefits"
+          title="Value Delivered"
+          description="Key business outcomes from implementing this solution"
+        />
+        <div className="grid sm:grid-cols-2 gap-6">
+          {solution.benefits.map((benefit, index) => (
+            <div
+              key={index}
+              className="rounded-xl p-6 flex items-start gap-3 border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-it-light-safeguard hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+            >
+              <LucideIcons.CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-it-light-safeguard" strokeWidth={1.5} />
+              <span className="font-semibold text-pretty text-it-light-text-primary">{benefit}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {solution.benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="it-chip-dark rounded-xl p-6 flex items-start gap-3 border-l-[3px] border-l-it-safeguard"
-              >
-                <LucideIcons.CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-it-safeguard" strokeWidth={1.5} />
-                <span className="font-semibold text-pretty text-it-text-primary">{benefit}</span>
-              </div>
-            ))}
-          </div>
-        </PageShell>
-      </section>
-
-      {/* Related Products */}
+      {/* Related Solutions → dark alt */}
       {solution.relatedProducts && solution.relatedProducts.length > 0 && (
-        <section className="it-section-mid py-20 lg:py-28">
+        <section className="it-section-alt py-20 lg:py-28">
           <PageShell>
             <SectionHeader
               theme="dark"

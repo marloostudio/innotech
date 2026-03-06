@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Building2, ArrowRight } from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -80,6 +81,7 @@ const caseStudies = [
 export default function CaseStudiesPage() {
   return (
     <>
+      <BreadcrumbStrip items={[{ label: "Resources", href: "/resources" }, { label: "Case Studies" }]} />
       <Section>
         <h1
           className="text-4xl font-bold mb-6"

@@ -21,14 +21,20 @@ export interface PillarHeroProps {
   h2: string
   /** Short description paragraph, visible above the fold */
   description: string
-  primaryCta: PillarHeroCta
-  secondaryCta: PillarHeroCta
+  /** Optional primary CTA; omit for minimal hero (e.g. changelog) */
+  primaryCta?: PillarHeroCta
+  /** Optional secondary CTA; omit for minimal hero */
+  secondaryCta?: PillarHeroCta
   /** Optional tertiary CTA as text link (e.g. "Contact Sales Directly") */
   tertiaryCta?: PillarHeroCta
   /** Optional hero section class: SafeGuard page vs Drone/V2X (solutions) pages */
   heroClass?: HeroSectionClass
   /** Optional background (e.g. canvas effect) rendered behind hero content */
   background?: React.ReactNode
+  /** Reduced height and no CTA block; use with minimal content pages */
+  compact?: boolean
+  /** Text alignment: "center" (default) or "left" */
+  align?: "center" | "left"
 }
 
 /**
@@ -45,46 +51,63 @@ export function PillarHero({
   tertiaryCta,
   heroClass,
   background,
+  compact,
+  align = "center",
 }: PillarHeroProps) {
+  const showCtas = (primaryCta ?? secondaryCta) && !compact
+  const isLeft = align === "left"
   return (
     <section
       style={!heroClass && !background ? { background: "var(--it-bg)", color: "var(--it-text-primary)" } : { color: "var(--it-text-primary)" }}
       className={[
-        "relative w-full pt-24 md:pt-28 pb-20 md:pb-28 min-h-0",
+        "relative w-full min-h-0",
+        compact ? "pt-16 md:pt-20 pb-12 md:pb-16" : "pt-24 md:pt-28 pb-20 md:pb-28",
         background ? "min-h-[85vh]" : "",
         heroClass,
       ].filter(Boolean).join(" ")}
     >
       {background && <div className="absolute inset-0 z-0 overflow-hidden">{background}</div>}
       <PageShell className="relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div
+          className={
+            compact
+              ? `max-w-4xl space-y-3 ${isLeft ? "text-left mr-auto" : "mx-auto text-center"}`
+              : `max-w-4xl space-y-6 ${isLeft ? "text-left mr-auto" : "mx-auto text-center"}`
+          }
+        >
           {badge && (
             <Badge variant="outline" className="mb-2 border-[var(--it-border)] text-[var(--it-text-secondary)]">
               {badge}
             </Badge>
           )}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+          <h1 className={compact ? "text-3xl md:text-4xl font-bold tracking-tight text-balance" : "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"}>
             {h1}
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-balance" style={{ color: "var(--it-text-muted)" }}>
+          <h2 className={compact ? "text-lg md:text-xl font-semibold text-balance" : "text-xl md:text-2xl lg:text-3xl font-semibold text-balance"} style={{ color: "var(--it-text-muted)" }}>
             {h2}
           </h2>
-          <p className="text-lg text-pretty max-w-3xl mx-auto" style={{ color: "var(--it-text-muted)" }}>
+          <p className={compact ? `text-base text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}` : `text-lg text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}`} style={{ color: "var(--it-text-muted)" }}>
             {description}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Link href={primaryCta.href}>
-              <Button size="lg" className="w-full sm:w-auto" style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}>
-                {primaryCta.label}
-                <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-              </Button>
-            </Link>
-            <Link href={secondaryCta.href}>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-[var(--it-border)] text-[var(--it-text-primary)] hover:bg-[var(--it-surface)]">
-                {secondaryCta.label}
-              </Button>
-            </Link>
-          </div>
+          {showCtas && (primaryCta || secondaryCta) && (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              {primaryCta && (
+                <Link href={primaryCta.href}>
+                  <Button size="lg" className="w-full sm:w-auto" style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}>
+                    {primaryCta.label}
+                    <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                  </Button>
+                </Link>
+              )}
+              {secondaryCta && (
+                <Link href={secondaryCta.href}>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-[var(--it-border)] text-[var(--it-text-primary)] hover:bg-[var(--it-surface)]">
+                    {secondaryCta.label}
+                  </Button>
+                </Link>
+              )}
+            </div>
+          )}
           {tertiaryCta && (
             <p className="pt-2 text-sm" style={{ color: "var(--it-text-muted)" }}>
               <Link

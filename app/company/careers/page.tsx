@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PageShell, Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent } from "@/components/ui/card"
@@ -51,16 +52,7 @@ const openRoles = [
 export default function CareersPage() {
   return (
     <>
-      {/* Breadcrumbs */}
-      <div className="border-b">
-        <div className="max-w-screen-2xl mx-auto px-8 py-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/company" className="hover:text-foreground transition-colors">Company</Link>
-            <LucideIcons.ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">Careers</span>
-          </div>
-        </div>
-      </div>
+      <BreadcrumbStrip items={[{ label: "Company", href: "/company" }, { label: "Careers" }]} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-20 lg:py-28">

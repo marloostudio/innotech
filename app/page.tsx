@@ -29,9 +29,9 @@ export default function HomePage() {
         secondaryCta={{ label: "Explore Solutions", href: "/products" }}
         background={<HeroCanvas />}
       />
-      {/* LogoCloud: white */}
+      {/* Logo Cloud → dark alt (it-section-mid) */}
       <LogoCloud title="Trusted by innovative companies worldwide" logos={trustLogos} />
-      {/* FeatureGrid: light — solutions grid with 4/3 placeholder per card */}
+      {/* Feature Grid → light-bg */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
         description="End-to-end robotics and autonomous systems designed for enterprise operations"
@@ -42,14 +42,13 @@ export default function HomePage() {
         imageOnLeft
         hideIcon
       />
-      {/* IndustryGrid: white background */}
+      {/* Industry Grid → dark (it-section-mid) */}
       <IndustryGrid 
         title="Serving Critical Industries"
         description="Advanced AI, computer vision and telecommunication for autonomous charging, safe robot-human collaboration and V2X"
         industries={industriesServed}
-        variant="light-bg"
       />
-      {/* TechOverview: white bg, dark headline */}
+      {/* Tech Overview → light-bg */}
       <TechOverview 
         title="Technology That Powers Innovation"
         description="Advanced AI, autonomous navigation, and enterprise integration in one platform"
@@ -57,13 +56,13 @@ export default function HomePage() {
         variant="light-bg"
         alt
       />
-      {/* Testimonial / Case Study: off-white bg, dark headline */}
-      <Testimonial {...caseStudyTeaser} variant="light-bg-2" />
-      {/* Stats: white background */}
-      <Stats stats={statsPlaceholder} variant="light-bg" alt />
-      {/* FAQ: white */}
-      <Faq items={faqItems} variant="white" />
-      {/* CtaBanner: dark (unchanged) */}
+      {/* Testimonial → dark alt */}
+      <Testimonial {...caseStudyTeaser} variant="dark" alt />
+      {/* Stats → light-bg (breaks navy monotony) */}
+      <Stats stats={statsPlaceholder} variant="light-bg" />
+      {/* FAQ → dark */}
+      <Faq items={faqItems} variant="dark" />
+      {/* CTA Banner → dark with gradient (it-cta-banner) */}
       <CtaBanner {...finalCta} />
     </>
   )

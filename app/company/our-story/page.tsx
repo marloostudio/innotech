@@ -52,35 +52,35 @@ const timeline = [
 export default function OurStoryPage() {
   return (
     <>
-      {/* Breadcrumbs */}
-      <div className="border-b">
+      {/* Breadcrumbs → dark */}
+      <div className="border-b border-it-border" style={{ background: "var(--it-bg)" }}>
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/company" className="hover:text-foreground transition-colors">Company</Link>
+          <div className="flex items-center gap-2 text-sm text-it-text-muted">
+            <Link href="/company" className="hover:text-it-text-primary transition-colors">Company</Link>
             <LucideIcons.ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">Our Story</span>
+            <span className="text-it-text-primary">Our Story</span>
           </div>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-20 lg:py-28">
+      {/* Hero → dark */}
+      <section className="py-20 lg:py-28 it-section">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="outline" className="mb-4">Our Story</Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
+            <Badge variant="outline" className="mb-4 border-it-border text-it-text-muted">Our Story</Badge>
+            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance text-it-text-primary">
               How InnoTech Systems Came to Be
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty">
+            <p className="text-xl text-it-text-secondary text-pretty">
               From a founding vision to building the infrastructure powering autonomous operations worldwide
             </p>
           </div>
         </div>
       </section>
 
-      {/* Story */}
-      <Section>
-        <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
+      {/* Story prose → dark */}
+      <Section variant="dark">
+        <div className="max-w-3xl mx-auto space-y-6 text-lg text-it-text-secondary leading-relaxed">
           <p>
             InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly, the supporting infrastructure lagged behind. Companies were building incredible autonomous technology, but lacked the practical solutions needed to deploy them at scale.
           </p>
@@ -96,9 +96,10 @@ export default function OurStoryPage() {
         </div>
       </Section>
 
-      {/* Timeline */}
-      <Section variant="light">
+      {/* Timeline → light-bg */}
+      <Section variant="light-bg">
         <SectionHeader
+          theme="light"
           title="Our Journey"
           description="Key milestones in building the future of autonomous infrastructure"
         />
@@ -107,16 +108,16 @@ export default function OurStoryPage() {
             <div key={item.year}>
               <div className="flex gap-6">
                 <div className="flex flex-col items-center">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold flex-shrink-0">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-it-light-blue text-white font-bold shrink-0">
                     {item.year}
                   </div>
                   {index < timeline.length - 1 && (
-                    <div className="w-0.5 h-full bg-border mt-2 min-h-[60px]" />
+                    <div className="w-0.5 h-full bg-it-light-border mt-2 min-h-[60px]" />
                   )}
                 </div>
                 <div className="flex-1 pb-8">
-                  <h3 className="text-xl font-semibold mb-2">{item.milestone}</h3>
-                  <p className="text-muted-foreground text-pretty">{item.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-it-light-text-primary">{item.milestone}</h3>
+                  <p className="text-it-light-text-secondary text-pretty">{item.description}</p>
                 </div>
               </div>
             </div>
@@ -124,7 +125,7 @@ export default function OurStoryPage() {
         </div>
       </Section>
 
-      {/* CTA */}
+      {/* CTA Banner → dark with gradient */}
       <CtaBanner 
         title="Join Us on the Journey"
         description="Be part of building the infrastructure for autonomous operations"
