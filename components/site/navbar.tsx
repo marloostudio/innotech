@@ -47,6 +47,7 @@ export function Navbar() {
   const [mobileOpen,  setMobileOpen]  = React.useState(false)
   const navRegionRef = React.useRef<HTMLDivElement | null>(null)
   const dropdownPanelRef = React.useRef<HTMLDivElement | null>(null)
+  const closeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 20))
@@ -63,6 +64,9 @@ export function Navbar() {
   const closeMenus = () => setOpenMenu(null)
   const toggleMenu = (key: NavMegaKey) => setOpenMenu((prev) => (prev === key ? null : key))
 
+  // Delay before closing so the cursor has time to move into the dropdown (design: dropdowns 200ms; we use 300ms for comfort)
+  const DROPDOWN_CLOSE_DELAY_MS = 300
+
   React.useEffect(() => {
     if (!openMenu) return
 
@@ -78,12 +82,29 @@ export function Navbar() {
       const inNav = navRegionRef.current && withinRect(navRegionRef.current.getBoundingClientRect())
       const inDropdown = dropdownPanelRef.current && withinRect(dropdownPanelRef.current.getBoundingClientRect())
 
-      if (inNav || inDropdown) return
-      setOpenMenu(null)
+      if (inNav || inDropdown) {
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current)
+          closeTimeoutRef.current = null
+        }
+        return
+      }
+
+      if (closeTimeoutRef.current) return
+      closeTimeoutRef.current = setTimeout(() => {
+        closeTimeoutRef.current = null
+        setOpenMenu(null)
+      }, DROPDOWN_CLOSE_DELAY_MS)
     }
 
     window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current)
+        closeTimeoutRef.current = null
+      }
+    }
   }, [openMenu])
 
   return (
