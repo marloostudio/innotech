@@ -64,7 +64,7 @@ export const industries: Industry[] = [
     solutions: [
       "Fully automated charging for overnight and opportunity charging",
       "V2V and V2I communication for coordination",
-      "Micro-localization for precise positioning",
+      "Cm-level localization and tracking for precise positioning",
       "Dynamic safety zones and collision avoidance",
       "Centralized fleet management and monitoring"
     ],
@@ -80,7 +80,7 @@ export const industries: Industry[] = [
       { label: "Autonomy Level", value: "L4", description: "full operational autonomy" },
       { label: "Safety", value: "Zero", description: "charging-related incidents" }
     ],
-    relatedProducts: ["AutoLock", "Radar Link", "SafeGuard"],
+    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
     icon: "car"
   },
   {
@@ -150,7 +150,7 @@ export const industries: Industry[] = [
       { label: "Safety", value: "95%", description: "reduction in equipment incidents" },
       { label: "Uptime", value: "99.5%", description: "equipment availability" }
     ],
-    relatedProducts: ["AutoLock", "Radar Link", "SafeGuard"],
+    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
     icon: "ship"
   },
   {
@@ -167,7 +167,7 @@ export const industries: Industry[] = [
       "Passenger experience and safety expectations"
     ],
     solutions: [
-      "Indoor micro-localization for GPS-denied navigation",
+      "Indoor cm-level localization and tracking for GPS-denied navigation",
       "Autonomous charging for shuttles and service vehicles",
       "Advanced pedestrian detection and avoidance",
       "Coordinated multi-vehicle scheduling",
@@ -185,7 +185,7 @@ export const industries: Industry[] = [
       { label: "Passenger Safety", value: "Zero", description: "incidents since deployment" },
       { label: "Service Availability", value: "24/7", description: "continuous operations" }
     ],
-    relatedProducts: ["AutoLock", "Radar Link", "SafeGuard"],
+    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
     icon: "plane"
   },
   {
@@ -220,7 +220,7 @@ export const industries: Industry[] = [
       { label: "Safety", value: "Zero", description: "operator exposure to hazards" },
       { label: "Uptime", value: "99%", description: "fleet availability" }
     ],
-    relatedProducts: ["AutoLock", "Radar Link", "SafeGuard"],
+    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
     icon: "mountain"
   }
 ]

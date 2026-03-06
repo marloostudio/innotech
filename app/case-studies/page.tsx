@@ -29,7 +29,7 @@ const caseStudies = [
     title: "Port Terminal Automation - Container Operations",
     industry: "Port Operations",
     challenge: "Container terminal required V2X coordination for autonomous reach stackers and AGVs",
-    solution: "Radar Link V2X communication with micro-localization",
+    solution: "RADARLink V2X communication with Cm-level Localization and Tracking",
     results: [
       "25% increase in container handling throughput",
       "Zero equipment collisions since deployment",
@@ -41,7 +41,7 @@ const caseStudies = [
     title: "Mining Operation - Underground Haul Truck Fleet",
     industry: "Mining",
     challenge: "Underground mine needed GPS-denied localization and automated charging for autonomous haul trucks",
-    solution: "Radar Link micro-localization + AutoLock heavy-duty charging",
+    solution: "RADARLink Cm-level Localization and Tracking + AutoLock heavy-duty charging",
     results: [
       "30% increase in equipment utilization",
       "Continuous 24/7 autonomous operations",

@@ -10,6 +10,55 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [1.4.3] – 2025-03-05
+
+### Changed
+
+- **Footer tagline** – Updated company tagline under InnoTech Systems: "Autonomous infrastructure for the future of mobility." → "Intelligent Infrastructure for Autonomous Mobility" (`lib/site.ts`).
+- **Team page – roster and structure** – Executive Leadership: removed Kash Olia; kept Fred Daneshgaran only. Removed all "Dr." from names (Fred Daneshgaran, Marina Mondin). Removed from Engineering & Operations: Behzad Zarifkar, Fausto Lizzio, Antonio Marangi, Jason May, Ramtin Haddadzadeh. Moved Marina Mondin from Advisors to Engineering & Operations; moved Claudio DonGiovanni from Consultants to Advisors. Removed Consultants section and all consultant entries (Amir Riahi, Andrea Bottega, Paolo Trabuio).
+- **Team page – titles** – Nayer Shahri → Business Development and Finance; Marina Mondin → AI and ML; Lara Daneshgaran and Shiva Omidzadeh → Robotics Application Engineer; Claudio DonGiovanni → Hardware Design.
+- **Team page – Advisors subtitle** – "AI, ML, and technology strategy" → "AI, ML and Hardware".
+- **Social – Twitter logos removed** – Twitter/X icon and link removed from footer "Follow" section and from team cards (`components/site/footer.tsx`, `components/site/team-card.tsx`). TeamCard no longer renders Twitter link; footer shows LinkedIn and YouTube only.
+- **Team page – LinkedIn links** – Set real LinkedIn URLs for Fred Daneshgaran, Lara Daneshgaran, Marina Mondin, Nayer Shahri, and Piergiorgio lanza. Shiva Omidzadeh has no LinkedIn (link cleared so no icon is shown).
+
+---
+
+## [1.4.2] – 2025-03-05
+
+### Changed
+
+- **Technology That Powers Innovation (home)** – Tab styling updated to align with design tokens: active tab uses 3px left-border accent in `--it-light-blue`, subtle blue background (`--it-light-blue-subtle`), and medium font weight; inactive tabs use `--it-light-text-muted`; tab list uses light shadow and 150ms transition for state changes.
+- **Final CTA (home)** – Removed "robotics" from description: "Schedule a consultation with our robotics experts..." → "Schedule a consultation with our experts to discuss your automation goals." (`lib/content/home.ts`).
+
+---
+
+## [1.4.1] – 2025-03-05
+
+### Changed
+
+- **Hero (home) – eyebrow ribbon** – Removed the blue status dot before “AUTONOMOUS SYSTEMS · ROBOTICS · AI” in the hero ribbon (`components/sections/hero-v2.tsx`).
+- **Hero (home) – subhead copy** – Updated description: “robotic monitoring” → “robotic safety monitoring”, “electric fleets” → “intelligent fleets”.
+- **Navbar dropdowns** – Dropdowns no longer auto-close after a delay. They stay open until the cursor leaves both the nav bar and the open dropdown panel; cursor-over-dropdown is treated as “inside” the nav region so the menu does not close when hovering the panel. Ref is forwarded from mega menus (Products, Solutions, Industries) and simple dropdowns (Case Studies, Resources, Company) for accurate hit-testing.
+
+---
+
+## [1.4.1] – 2025-03-05
+
+### Changed
+
+- **Serving Critical Industries (home)** – Section subtitle updated to “Advanced AI, computer vision and telecommunication for autonomous charging, safe robot-human collaboration and V2X”. “View All Industries” CTA button removed (home no longer passes `showCta` to `IndustryGrid`).
+- **Serving Critical Industries – industry list** – Removed Agriculture and Healthcare. Added Autonomous Driving (subtitle: “Automated hands-free charging”). Warehousing subtitle set to “Dynamic safety zoning for human-robot collaboration”. Aerospace & Defense subtitle set to “Reliable and ultra-precise drone tracking”.
+
+---
+
+## [1.4.1] – 2025-03-05
+
+### Changed
+
+- **Product naming and copy** – SafeGuard: tagline updated to “Safety and Hazard Detection”; submenu features set to Hazard Detection, Dynamic Zoning, Asset and Human Monitoring, Real-Time Alerting. AutoLock renamed to **AutoDuck** across nav, product content, and site copy; tagline “Autonomous charging & fleet control” → “Autonomous Charging and Fleet Management”; CTA “View AutoDuck”. **Radar Link** renamed to **RADARLink** site-wide (nav, product pages, whitepapers, legal, case studies, industries/solutions content; slugs and URLs unchanged). RADARLink tagline/descriptions: “V2X, localization and drone tracking” → “V2X, Microlocalization and Drone Tracking”, then “Micro-localization” / “Microlocalization” replaced with **Cm-level Localization and Tracking** (product dropdown, solutions link, RADARLink content, case studies, our story, industries). “Drone Tracking & ID” → “Drone Tracking” in Product and Solutions menus. “Real-Time Analytics” → “Real-Time Asset Tracking” for RADARLink feature name (slug `real-time-analytics` retained). Design rules (`.cursorrules`, `.cursor/rules/design-and-naming.mdc`) updated to reflect AutoDuck, RADARLink, and Cm-level Localization and Tracking.
+
+---
+
 ## [1.4.0] – 2025-03-04
 
 ### Added
@@ -170,7 +219,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
-[Unreleased]: https://github.com/your-org/Innotech/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/your-org/Innotech/compare/v1.4.3...HEAD
+[1.4.3]: https://github.com/your-org/Innotech/compare/v1.4.2...v1.4.3
+[1.4.2]: https://github.com/your-org/Innotech/compare/v1.4.1...v1.4.2
 [1.1.0]: https://github.com/your-org/Innotech/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/your-org/Innotech/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/your-org/Innotech/compare/v0.1.1...v0.2.0

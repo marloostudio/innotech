@@ -93,7 +93,7 @@ export const solutions: Solution[] = [
     ],
     howItWorks: [
       "Robot navigates to charging station during idle time",
-      "Precision docking using micro-localization",
+      "Precision docking using cm-level localization and tracking",
       "Contact or inductive charging initiated automatically",
       "Robot returns to service when battery threshold reached",
       "Fleet orchestration manages charging queue"
@@ -104,7 +104,7 @@ export const solutions: Solution[] = [
       "Support heterogeneous robot fleets",
       "Reduce facility power infrastructure costs"
     ],
-    relatedProducts: ["AutoLock", "Radar Link"],
+    relatedProducts: ["AutoLock", "RADARLink"],
     icon: "bot"
   },
 
@@ -135,7 +135,7 @@ export const solutions: Solution[] = [
       "Enable flexible reconfiguration",
       "Maintain ISO 10218 compliance automatically"
     ],
-    relatedProducts: ["SafeGuard", "Radar Link"],
+    relatedProducts: ["SafeGuard", "RADARLink"],
     icon: "shield"
   },
   {
@@ -164,7 +164,7 @@ export const solutions: Solution[] = [
       "Maintain productivity in dynamic environments",
       "Comprehensive safety audit trails"
     ],
-    relatedProducts: ["SafeGuard", "Radar Link"],
+    relatedProducts: ["SafeGuard", "RADARLink"],
     icon: "bot"
   },
   {
@@ -193,7 +193,7 @@ export const solutions: Solution[] = [
       "Maximize productivity safely",
       "Meet ISO/TS 15066 requirements"
     ],
-    relatedProducts: ["SafeGuard", "Radar Link"],
+    relatedProducts: ["SafeGuard", "RADARLink"],
     icon: "users"
   },
 
@@ -224,7 +224,7 @@ export const solutions: Solution[] = [
       "Coordinate complex multi-vehicle maneuvers",
       "Sub-50ms communication latency"
     ],
-    relatedProducts: ["Radar Link"],
+    relatedProducts: ["RADARLink"],
     icon: "radio"
   },
   {
@@ -253,12 +253,12 @@ export const solutions: Solution[] = [
       "Improve facility throughput",
       "Provide operational visibility and control"
     ],
-    relatedProducts: ["Radar Link", "AutoLock"],
+    relatedProducts: ["RADARLink", "AutoLock"],
     icon: "building"
   },
   {
     id: "micro-localization",
-    name: "Indoor & Outdoor Micro-Localization",
+    name: "Indoor & Outdoor Cm-level Localization and Tracking",
     slug: "micro-localization",
     category: "connectivity",
     tagline: "Precise Localization for GNSS-Denied and Complex Environments",
@@ -282,7 +282,7 @@ export const solutions: Solution[] = [
       "Navigate complex multi-level facilities",
       "Support hundreds of simultaneous vehicles"
     ],
-    relatedProducts: ["Radar Link"],
+    relatedProducts: ["RADARLink"],
     icon: "map-pin"
   },
   {
@@ -311,7 +311,7 @@ export const solutions: Solution[] = [
       "Maintain airspace situational awareness",
       "Meet regulatory airspace requirements"
     ],
-    relatedProducts: ["Radar Link", "SafeGuard"],
+    relatedProducts: ["RADARLink", "SafeGuard"],
     icon: "plane"
   }
 ]

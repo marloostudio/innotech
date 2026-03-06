@@ -11,12 +11,12 @@ export interface ProductFeature {
 }
 
 export const radarLinkProduct = {
-  name: "Radar Link",
-  tagline: "V2X Communication, Localization and Tracking",
-  description: "Radar Link enables precise vehicle-to-everything communication, centimeter-level localization, and autonomous drone tracking for connected mobility ecosystems.",
+  name: "RADARLink",
+  tagline: "V2X Communication, Cm-level Localization and Drone Tracking",
+  description: "RADARLink enables precise vehicle-to-everything communication, centimeter-level localization and tracking, and autonomous drone tracking for connected mobility ecosystems.",
   hero: {
-    title: "Radar Link",
-    subtitle: "V2X Communication, Localization and Tracking",
+    title: "RADARLink",
+    subtitle: "V2X Communication, Cm-level Localization and Drone Tracking",
     description: "Connect, locate, and track autonomous assets with radar-based intelligence"
   }
 }
@@ -51,7 +51,7 @@ export const radarLinkFeatures: ProductFeature[] = [
   },
   {
     id: "micro-localization",
-    name: "Micro-Localization",
+    name: "Cm-level Localization and Tracking",
     slug: "micro-localization",
     tagline: "Centimetre-Level Indoor and Outdoor Localization",
     description: "Ultra-precise positioning system providing centimeter-level accuracy in GPS-denied environments and complex operational areas.",
@@ -105,7 +105,7 @@ export const radarLinkFeatures: ProductFeature[] = [
   },
   {
     id: "real-time-analytics",
-    name: "Real-Time Analytics",
+    name: "Real-Time Asset Tracking",
     slug: "real-time-analytics",
     tagline: "Predictive Insights and System Monitoring via Radar Intelligence",
     description: "Transform radar data into actionable insights with real-time analytics, predictive algorithms, and comprehensive system monitoring.",

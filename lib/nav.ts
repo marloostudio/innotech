@@ -16,8 +16,8 @@ export const mainNav: NavItem[] = [
     href: "/products",
     children: [
       { title: "SafeGuard", href: "/products/safeguard", description: "Intelligent Safety Monitoring" },
-      { title: "AutoLock", href: "/products/autolock", description: "Autonomous Charging & Fleet Orchestration" },
-      { title: "Radar Link", href: "/products/radar-link", description: "V2X Communication & Localization" }
+      { title: "AutoDuck", href: "/products/autolock", description: "Autonomous Charging & Fleet Orchestration" },
+      { title: "RADARLink", href: "/products/radar-link", description: "V2X, Cm-level Localization and Drone Tracking" }
     ]
   },
   {
@@ -69,8 +69,8 @@ export const footerNav: NavSection[] = [
     title: "Products",
     items: [
       { title: "SafeGuard", href: "/products/safeguard" },
-      { title: "AutoLock", href: "/products/autolock" },
-      { title: "Radar Link", href: "/products/radar-link" }
+      { title: "AutoDuck", href: "/products/autolock" },
+      { title: "RADARLink", href: "/products/radar-link" }
     ]
   },
   {
@@ -79,7 +79,7 @@ export const footerNav: NavSection[] = [
       { title: "Autonomous Charging", href: "/solutions/charging-autonomous-vehicles" },
       { title: "Dynamic Safety", href: "/solutions/safety-industrial-robots" },
       { title: "V2X Communication", href: "/solutions/connectivity-v2v" },
-      { title: "Micro-Localization", href: "/solutions/micro-localization" }
+      { title: "Cm-level Localization and Tracking", href: "/solutions/micro-localization" }
     ]
   },
   {

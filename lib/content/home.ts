@@ -53,14 +53,14 @@ export const industriesServed = [
   {
     id: "aerospace",
     title: "Aerospace & Defense",
-    description: "Precision systems for complex manufacturing and inspection.",
+    description: "Reliable and ultra-precise drone tracking.",
     icon: "plane"
   },
   {
-    id: "healthcare",
-    title: "Healthcare",
-    description: "Autonomous systems for labs, pharmacies, and medical facilities.",
-    icon: "heart-pulse"
+    id: "autonomous-driving",
+    title: "Autonomous Driving",
+    description: "Automated hands-free charging.",
+    icon: "car"
   },
   {
     id: "energy",
@@ -71,14 +71,8 @@ export const industriesServed = [
   {
     id: "warehousing",
     title: "Warehousing",
-    description: "Intelligent material handling and inventory management.",
+    description: "Dynamic safety zoning for human-robot collaboration.",
     icon: "warehouse"
-  },
-  {
-    id: "agriculture",
-    title: "Agriculture",
-    description: "Automated harvesting and precision farming solutions.",
-    icon: "sprout"
   }
 ]
 
@@ -163,7 +157,7 @@ export const faqItems = [
 
 export const finalCta = {
   headline: "Ready to Transform Your Operations?",
-  description: "Schedule a consultation with our robotics experts to discuss your automation goals.",
+  description: "Schedule a consultation with our experts to discuss your automation goals.",
   ctaText: "Request a Demo",
   ctaHref: "/contact"
 }

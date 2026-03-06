@@ -13,7 +13,7 @@ export default function MicroLocalizationPage() {
   return (
     <ProductFeatureDetail
       feature={feature}
-      productName="Radar Link"
+      productName="RADARLink"
       productSlug="radar-link"
     />
   )

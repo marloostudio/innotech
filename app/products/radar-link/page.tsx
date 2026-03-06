@@ -11,7 +11,7 @@ import { radarLinkProduct, radarLinkFeatures } from '@/lib/content/radar-link'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Radar Link — V2X Communication, Localization and Tracking',
+  title: 'RADARLink — V2X Communication, Cm-level Localization and Drone Tracking',
   description: 'Connect, locate, and track autonomous assets with radar-based intelligence.'
 }
 
@@ -55,8 +55,8 @@ export default function RadarLinkPage() {
             <div className="w-full">
               <ImagePlaceholder
                 aspectRatio="16/9"
-                alt="Radar Link Product Hero"
-                label="Radar Link Product Hero"
+                alt="RADARLink Product Hero"
+                label="RADARLink Product Hero"
               />
             </div>
           </div>
@@ -82,8 +82,8 @@ export default function RadarLinkPage() {
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`Radar Link — ${feature.name}`}
-                        label={`Radar Link — ${feature.name}`}
+                        alt={`RADARLink — ${feature.name}`}
+                        label={`RADARLink — ${feature.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -120,8 +120,8 @@ export default function RadarLinkPage() {
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`Radar Link — ${feature.name}`}
-                        label={`Radar Link — ${feature.name}`}
+                        alt={`RADARLink — ${feature.name}`}
+                        label={`RADARLink — ${feature.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -139,8 +139,8 @@ export default function RadarLinkPage() {
         <PageShell>
           <SectionHeader
             label="Applications"
-            title="Industries Using Radar Link"
-            description="From autonomous fleets to critical infrastructure, Radar Link enables connected mobility"
+            title="Industries Using RADARLink"
+            description="From autonomous fleets to critical infrastructure, RADARLink enables connected mobility"
           />
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -162,7 +162,7 @@ export default function RadarLinkPage() {
       {/* CTA Section */}
       <CtaBanner
         title="Ready to Connect Your Autonomous Fleet?"
-        description="See how Radar Link can enable coordinated autonomous operations with V2X connectivity"
+        description="See how RADARLink can enable coordinated autonomous operations with V2X connectivity"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
       />

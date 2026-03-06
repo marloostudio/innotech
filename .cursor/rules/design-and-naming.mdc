@@ -26,7 +26,7 @@ alwaysApply: true
 |-----|-----------|
 | **SafeGuard** (safety monitoring) | — |
 | **AutoLock** (autonomous charging + fleet) | — |
-| **Radar Link** (V2X + localization + drone tracking) | — |
+| **RADARLink** (V2X + Cm-level Localization and Drone Tracking) | — |
 | autonomous charging | automated charging |
 | Congregate Detection | Congreagate / Congregate (as product name) |
 | Mining | Minning |

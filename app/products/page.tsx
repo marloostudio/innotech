@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { CtaBanner } from "@/components/sections/cta-banner"
 
 export const metadata: Metadata = {
-  title: "Our Products — SafeGuard, AutoLock & Radar Link",
+  title: "Our Products — SafeGuard, AutoLock & RADARLink",
   description: "Autonomous charging, safety monitoring, and V2X connectivity for the future of autonomous systems."
 }
 
@@ -45,9 +45,9 @@ const products = [
   },
   {
     id: "radar-link",
-    name: "Radar Link",
+    name: "RADARLink",
     slug: "radar-link",
-    tagline: "V2X Communication, Localization and Tracking",
+    tagline: "V2X Communication, Cm-level Localization and Drone Tracking",
     description: "Vehicle-to-everything communication, centimeter-level localization, and drone tracking for connected autonomous ecosystems.",
     icon: LucideIcons.Radio,
     features: [
@@ -65,7 +65,7 @@ export default function ProductsPage() {
       <PillarHero
         badge="Products"
         h1="Three Product Lines. One Autonomous Platform."
-        h2="SafeGuard, AutoLock, and Radar Link — engineered to work independently or as a fully integrated system."
+        h2="SafeGuard, AutoLock, and RADARLink — engineered to work independently or as a fully integrated system."
         description="Every InnoTech product is built for environments where reliability is non-negotiable: extreme temperatures, 24/7 operations, hazardous conditions, and complex multi-vehicle coordination. Choose the capability you need today and expand as your operation grows."
         primaryCta={{ label: "Compare Product Lines", href: "/products#safeguard" }}
         secondaryCta={{ label: "Talk to an Engineer", href: "/contact" }}

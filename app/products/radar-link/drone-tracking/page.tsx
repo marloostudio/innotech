@@ -13,7 +13,7 @@ export default function DroneTrackingPage() {
   return (
     <ProductFeatureDetail
       feature={feature}
-      productName="Radar Link"
+      productName="RADARLink"
       productSlug="radar-link"
     />
   )

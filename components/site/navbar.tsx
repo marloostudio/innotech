@@ -45,8 +45,8 @@ export function Navbar() {
   const [scrolled,    setScrolled]    = React.useState(false)
   const [openMenu,    setOpenMenu]    = React.useState<NavMegaKey>(null)
   const [mobileOpen,  setMobileOpen]  = React.useState(false)
-  const closeTimeoutRef = React.useRef<number | null>(null)
   const navRegionRef = React.useRef<HTMLDivElement | null>(null)
+  const dropdownPanelRef = React.useRef<HTMLDivElement | null>(null)
 
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 20))
@@ -60,55 +60,30 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
-  const clearCloseTimeout = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current)
-      closeTimeoutRef.current = null
-    }
-  }
-
-  const closeMenus = () => {
-    clearCloseTimeout()
-    setOpenMenu(null)
-  }
+  const closeMenus = () => setOpenMenu(null)
   const toggleMenu = (key: NavMegaKey) => setOpenMenu((prev) => (prev === key ? null : key))
 
   React.useEffect(() => {
-    if (!openMenu) {
-      clearCloseTimeout()
-      return
-    }
+    if (!openMenu) return
 
     const handleMouseMove = (event: MouseEvent) => {
-      if (!navRegionRef.current) return
+      const x = event.clientX
+      const y = event.clientY
+      const buffer = 48
 
-      const rect = navRegionRef.current.getBoundingClientRect()
-      const buffer = 48 // px tolerance around the nav region
+      const withinRect = (rect: DOMRect) =>
+        x >= rect.left - buffer && x <= rect.right + buffer &&
+        y >= rect.top - buffer && y <= rect.bottom + buffer
 
-      const withinX = event.clientX >= rect.left - buffer && event.clientX <= rect.right + buffer
-      const withinY = event.clientY >= rect.top - buffer && event.clientY <= rect.bottom + buffer
+      const inNav = navRegionRef.current && withinRect(navRegionRef.current.getBoundingClientRect())
+      const inDropdown = dropdownPanelRef.current && withinRect(dropdownPanelRef.current.getBoundingClientRect())
 
-      if (withinX && withinY) {
-        // Cursor is near nav / dropdown; keep menu open
-        clearCloseTimeout()
-        return
-      }
-
-      // Cursor has moved away — start a delayed close if not already pending
-      if (!closeTimeoutRef.current) {
-        closeTimeoutRef.current = window.setTimeout(() => {
-          setOpenMenu(null)
-          closeTimeoutRef.current = null
-        }, 1200)
-      }
+      if (inNav || inDropdown) return
+      setOpenMenu(null)
     }
 
     window.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      clearCloseTimeout()
-    }
+    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [openMenu])
 
   return (
@@ -256,13 +231,13 @@ export function Navbar() {
                   {/* ── Simple dropdowns anchored to their own button ── */}
                   <AnimatePresence>
                     {isOpen && simpleDrop && item.key === "case-studies" && (
-                      <CaseStudiesDropdown onClose={closeMenus} />
+                      <CaseStudiesDropdown ref={dropdownPanelRef} onClose={closeMenus} />
                     )}
                     {isOpen && simpleDrop && item.key === "resources" && (
-                      <SimpleDropdown items={resourcesDropdownItems} width={240} align="left" onClose={closeMenus} />
+                      <SimpleDropdown ref={dropdownPanelRef} items={resourcesDropdownItems} width={240} align="left" onClose={closeMenus} />
                     )}
                     {isOpen && simpleDrop && item.key === "company" && (
-                      <SimpleDropdown items={companyDropdownItems} width={220} align="left" onClose={closeMenus} />
+                      <SimpleDropdown ref={dropdownPanelRef} items={companyDropdownItems} width={220} align="left" onClose={closeMenus} />
                     )}
                   </AnimatePresence>
                 </div>
@@ -331,9 +306,9 @@ export function Navbar() {
 
         {/* ── Full-width mega menus (Products / Solutions / Industries) ── */}
         <AnimatePresence>
-          {openMenu === "products"   && isMega("products")   && <ProductsMegaMenu   key="products"   onClose={closeMenus} />}
-          {openMenu === "solutions"  && isMega("solutions")  && <SolutionsMegaMenu  key="solutions"  onClose={closeMenus} />}
-          {openMenu === "industries" && isMega("industries") && <IndustriesMegaMenu key="industries" onClose={closeMenus} />}
+          {openMenu === "products"   && isMega("products")   && <ProductsMegaMenu   ref={dropdownPanelRef} key="products"   onClose={closeMenus} />}
+          {openMenu === "solutions"  && isMega("solutions")  && <SolutionsMegaMenu  ref={dropdownPanelRef} key="solutions"  onClose={closeMenus} />}
+          {openMenu === "industries" && isMega("industries") && <IndustriesMegaMenu ref={dropdownPanelRef} key="industries" onClose={closeMenus} />}
         </AnimatePresence>
       </motion.header>
 
@@ -363,9 +338,10 @@ export function Navbar() {
 // Mega menu panels (full-width, anchored to header bottom)
 // ─────────────────────────────────────────────────────────────
 
-function ProductsMegaMenu({ onClose }: { onClose: () => void }) {
+const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function ProductsMegaMenu({ onClose }, ref) {
   return (
     <motion.div
+      ref={ref}
       className="absolute left-0 right-0 top-full z-50 border-t-2"
       style={{ backgroundColor: PANEL_BG, borderTopColor: CTA_BG }}
       initial={{ opacity: 0, y: -8 }}
@@ -433,11 +409,12 @@ function ProductsMegaMenu({ onClose }: { onClose: () => void }) {
       </div>
     </motion.div>
   )
-}
+})
 
-function SolutionsMegaMenu({ onClose }: { onClose: () => void }) {
+const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function SolutionsMegaMenu({ onClose }, ref) {
   return (
     <motion.div
+      ref={ref}
       className="absolute left-0 right-0 top-full z-50 border-t-2"
       style={{ backgroundColor: PANEL_BG, borderTopColor: "var(--it-solutions)" }}
       initial={{ opacity: 0, y: -8 }}
@@ -504,12 +481,13 @@ function SolutionsMegaMenu({ onClose }: { onClose: () => void }) {
       </div>
     </motion.div>
   )
-}
+})
 
-function IndustriesMegaMenu({ onClose }: { onClose: () => void }) {
+const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function IndustriesMegaMenu({ onClose }, ref) {
   const { headline, description, ctaLabel, ctaHref, accentColor } = industriesMegaFeatured
   return (
     <motion.div
+      ref={ref}
       className="absolute left-0 right-0 top-full z-50 border-t-2"
       style={{ backgroundColor: PANEL_BG, borderTopColor: accentColor }}
       initial={{ opacity: 0, y: -8 }}
@@ -572,16 +550,17 @@ function IndustriesMegaMenu({ onClose }: { onClose: () => void }) {
       </div>
     </motion.div>
   )
-}
+})
 
 // ─────────────────────────────────────────────────────────────
 // Small dropdowns — now rendered inside each nav item's
 // div.relative so they always anchor directly below the trigger
 // ─────────────────────────────────────────────────────────────
 
-function CaseStudiesDropdown({ onClose }: { onClose: () => void }) {
+const CaseStudiesDropdown = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function CaseStudiesDropdown({ onClose }, ref) {
   return (
     <motion.div
+      ref={ref}
       className="absolute left-0 top-full z-50 mt-1 rounded-lg border p-4"
       style={{ backgroundColor: PANEL_BG, borderColor: BAR_BORDER, width: 260, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
       initial={{ opacity: 0, y: -4 }}
@@ -613,21 +592,17 @@ function CaseStudiesDropdown({ onClose }: { onClose: () => void }) {
       </button>
     </motion.div>
   )
-}
+})
 
-function SimpleDropdown({
-  items,
-  width,
-  align = "left",
-  onClose,
-}: {
+const SimpleDropdown = React.forwardRef<HTMLDivElement, {
   items: typeof resourcesDropdownItems
   width: number
   align?: "left" | "right"
   onClose: () => void
-}) {
+}>(function SimpleDropdown({ items, width, align = "left", onClose }, ref) {
   return (
     <motion.div
+      ref={ref}
       className={cn("absolute top-full z-50 mt-1 rounded-lg border py-2", align === "right" ? "right-0" : "left-0")}
       style={{ backgroundColor: PANEL_BG, borderColor: BAR_BORDER, width, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
       initial={{ opacity: 0, y: -4 }}
@@ -662,7 +637,7 @@ function SimpleDropdown({
       ))}
     </motion.div>
   )
-}
+})
 
 // ─────────────────────────────────────────────────────────────
 // Mobile drawer (unchanged structure, colour tokens updated)

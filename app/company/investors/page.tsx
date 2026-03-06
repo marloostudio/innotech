@@ -56,7 +56,7 @@ export default function InvestorsPage() {
         />
         <div className="max-w-3xl space-y-4" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
           <p className="text-lg">
-            [CONTENT NEEDED] Integrated platform (SafeGuard, AutoLock, Radar Link), proven deployments, and a team with deep domain expertise in autonomy and industrial systems.
+            [CONTENT NEEDED] Integrated platform (SafeGuard, AutoLock, RADARLink), proven deployments, and a team with deep domain expertise in autonomy and industrial systems.
           </p>
         </div>
       </PageShell>

@@ -46,16 +46,6 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
         >
           <span
             style={{
-              width: 5,
-              height: 5,
-              borderRadius: "50%",
-              background: "#38B6FF",
-              boxShadow: "0 0 6px rgba(56, 182, 255, 0.5)",
-              flexShrink: 0,
-            }}
-          />
-          <span
-            style={{
               fontFamily: fontStack,
               fontSize: "11.5px",
               fontWeight: 500,
@@ -108,8 +98,8 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
             margin: "0 auto 40px",
           }}
         >
-          Autonomous charging, robotic monitoring, and V2X systems that keep
-          electric fleets running 24/7 — without human intervention.
+          Autonomous charging, robotic safety monitoring, and V2X systems that keep
+          intelligent fleets running 24/7 — without human intervention.
         </p>
 
         {/* CTA Buttons */}

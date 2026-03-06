@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Linkedin, Twitter, Github } from "lucide-react"
+import { Linkedin, Github } from "lucide-react"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
 import { cn } from "@/lib/utils"
 
@@ -177,17 +177,6 @@ export function TeamCard({
               aria-label={`${name} on LinkedIn`}
             >
               <Linkedin size={iconSize} strokeWidth={1.5} />
-            </Link>
-          )}
-          {twitter && (
-            <Link
-              href={twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors text-it-text-muted hover:text-it-text-primary"
-              aria-label={`${name} on Twitter`}
-            >
-              <Twitter size={iconSize} strokeWidth={1.5} />
             </Link>
           )}
           {github && (

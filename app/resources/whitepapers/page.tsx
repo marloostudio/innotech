@@ -21,9 +21,9 @@ const dummyWhitepapers = [
     accent: "var(--it-card-accent-autolock)",
   },
   {
-    title: "Radar Link: V2X and Localization",
+    title: "RADARLink: V2X and Localization",
     description: "V2X communication, precise localization, and drone tracking. Use cases for mining, logistics, and smart infrastructure.",
-    topic: "Radar Link",
+    topic: "RADARLink",
     accent: "var(--it-card-accent-solutions)",
   },
   {
@@ -62,7 +62,7 @@ export default function WhitepapersPage() {
             Technical Whitepapers and Architecture Briefs
           </h1>
           <p className="text-lg max-w-[680px] mb-16" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans)" }}>
-            In-depth technical documents and architecture briefs for SafeGuard, AutoLock, and Radar Link. Request access to download the latest versions.
+            In-depth technical documents and architecture briefs for SafeGuard, AutoLock, and RADARLink. Request access to download the latest versions.
           </p>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -12,95 +12,47 @@ export const metadata: Metadata = {
 }
 
 const executiveLeadership = [
-  { name: "Dr. Fred Daneshgaran", title: "CEO and Co-Founder", linkedin: "#", twitter: "#" },
-  { name: "Kash Olia", title: "CTO and Co-Founder", linkedin: "#", twitter: "#" },
+  { name: "Fred Daneshgaran", title: "CEO and Co-Founder", linkedin: "https://www.linkedin.com/in/fred-daneshgaran-a4284b7/", twitter: "#" },
 ]
 
 const advisors = [
   {
-    name: "Dr. Marina Mondin",
-    title: "Advisor",
-    expertise: "Artificial Intelligence and Machine Learning",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
     name: "Piergiorgio lanza",
     title: "Advisor",
     expertise: "Machine Vision and AI",
+    linkedin: "https://www.linkedin.com/in/piergiorgiolanza/",
+    twitter: "#",
+  },
+  {
+    name: "Claudio DonGiovanni",
+    title: "Hardware Design",
+    expertise: "Mechanical System Design, Robotics, CAD and Simulations",
     linkedin: "#",
     twitter: "#",
   },
 ]
 
 const engineeringAndOperations = [
-  { name: "Nayer Shahri", title: "Finance Manager", linkedin: "#", twitter: "#" },
-  { name: "Behzad Zarifkar", title: "Sr. Mechanical Engineer", linkedin: "#", twitter: "#" },
-  { name: "Fausto Lizzio", title: "Mechanical Engineer", linkedin: "#", twitter: "#" },
+  { name: "Nayer Shahri", title: "Business Development and Finance", linkedin: "https://www.linkedin.com/in/nayer-shahri-2b15a1a9/", twitter: "#" },
   {
-    name: "Antonio Marangi",
-    title: "Software Engineer",
-    expertise: "Localization and Mapping",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Jason May",
-    title: "Software Engineer",
-    expertise: "Path Planning",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Ramtin Haddadzadeh",
-    title: "Controls Engineer",
-    expertise: "Autopilot",
-    linkedin: "#",
+    name: "Marina Mondin",
+    title: "AI and ML",
+    expertise: "Artificial Intelligence and Machine Learning",
+    linkedin: "https://www.linkedin.com/in/marinamondin/",
     twitter: "#",
   },
   {
     name: "Lara Daneshgaran",
-    title: "Software & Computer Engineer",
+    title: "Robotics Application Engineer",
     expertise: "Machine Learning and AI Systems, Autonomous Robotics",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/lara-daneshgaran/",
     twitter: "#",
   },
   {
     name: "Shiva Omidzadeh",
-    title: "Engineer",
+    title: "Robotics Application Engineer",
     expertise: "Autonomous Robotics, Electrical and Systems Engineering",
-    linkedin: "#",
-    twitter: "#",
-  },
-]
-
-const consultants = [
-  {
-    name: "Amir Riahi",
-    title: "Consultant",
-    expertise: "Microcontroller Programming, Systems Engineering, Automotive Systems",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Claudio DonGiovanni",
-    title: "Consultant",
-    expertise: "Mechanical System Design, Robotics, CAD and Simulations",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Andrea Bottega",
-    title: "Consultant",
-    expertise: "3D Manufacturing, CAD and Simulations",
-    linkedin: "#",
-    twitter: "#",
-  },
-  {
-    name: "Paolo Trabuio",
-    title: "Consultant",
-    expertise: "3D CAD Modeling, Precision Measurements, Robotics",
-    linkedin: "#",
+    linkedin: "",
     twitter: "#",
   },
 ]
@@ -130,7 +82,7 @@ export default function TeamPage() {
               The Team Behind the Technology
             </h1>
             <p className="text-lg text-pretty" style={{ color: "var(--it-text-muted)" }}>
-              Passionate experts building the future of autonomous operations
+              Passionate experts building the future of intelligent infrastructure
             </p>
           </div>
         </div>
@@ -159,7 +111,7 @@ export default function TeamPage() {
                 Advisors
               </h2>
               <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                AI, ML, and technology strategy
+                AI, ML and Hardware
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {advisors.map((person) => (
@@ -179,21 +131,6 @@ export default function TeamPage() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {engineeringAndOperations.map((person) => (
-                <TeamCard key={person.name} {...person} />
-              ))}
-            </div>
-          </div>
-
-          {/* Consultants */}
-          <div>
-            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
-              Consultants
-            </h2>
-            <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-              Specialists supporting our engineering programs
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {consultants.map((person) => (
                 <TeamCard key={person.name} {...person} />
               ))}
             </div>

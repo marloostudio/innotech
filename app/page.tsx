@@ -45,9 +45,8 @@ export default function HomePage() {
       {/* IndustryGrid: white background */}
       <IndustryGrid 
         title="Serving Critical Industries"
-        description="Proven solutions across manufacturing, logistics, healthcare, and beyond"
+        description="Advanced AI, computer vision and telecommunication for autonomous charging, safe robot-human collaboration and V2X"
         industries={industriesServed}
-        showCta
         variant="light-bg"
       />
       {/* TechOverview: white bg, dark headline */}

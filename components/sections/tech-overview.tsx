@@ -26,12 +26,12 @@ export function TechOverview({ title, description, pillars, variant, alt }: Tech
     <Section variant={variant} alt={alt}>
       <SectionHeader theme={headerTheme} title={title} description={description} />
       <Tabs defaultValue={pillars[0]?.id} className="w-full">
-        <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto bg-it-light-surface-2 border border-it-light-border">
+        <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto gap-0 p-0 rounded-lg overflow-hidden bg-it-light-surface-2 border border-it-light-border shadow-(--it-light-shadow-sm)">
           {pillars.map((pillar) => (
             <TabsTrigger 
               key={pillar.id} 
               value={pillar.id}
-              className="text-sm md:text-base py-3 text-it-light-text-secondary data-[state=active]:bg-it-light-surface data-[state=active]:text-it-light-text-primary data-[state=active]:border-it-light-border"
+              className="text-sm md:text-base py-3.5 px-4 text-it-light-text-muted border-l-[3px] border-l-transparent rounded-none data-[state=active]:bg-(--it-light-blue-subtle) data-[state=active]:text-it-light-text-primary data-[state=active]:border-l-it-light-blue data-[state=active]:font-medium data-[state=active]:shadow-none transition-colors duration-150"
             >
               {pillar.title}
             </TabsTrigger>
@@ -39,7 +39,7 @@ export function TechOverview({ title, description, pillars, variant, alt }: Tech
         </TabsList>
         {pillars.map((pillar) => (
           <TabsContent key={pillar.id} value={pillar.id} className="mt-6">
-            <Card className="bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
+            <Card className="bg-it-light-surface border border-it-light-border shadow-(--it-light-shadow-sm)">
               <CardHeader>
                 <CardTitle className="text-2xl text-it-light-text-primary">{pillar.title}</CardTitle>
                 <CardDescription className="text-base pt-2 text-it-light-text-secondary">

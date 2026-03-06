@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Linkedin, Mail, MapPin, Twitter, Youtube } from "lucide-react"
+import { Linkedin, Mail, MapPin, Youtube } from "lucide-react"
 
 import { footerNav } from "@/lib/nav"
 import { siteConfig } from "@/lib/site"
@@ -69,16 +69,6 @@ export function Footer() {
                   >
                     <Linkedin className="h-5 w-5" strokeWidth={1.5} />
                     <span className="sr-only">LinkedIn</span>
-                  </Link>
-                  <Link
-                    href={siteConfig.social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors duration-150 hover:opacity-90"
-                    style={{ color: 'var(--it-text-muted)' }}
-                  >
-                    <Twitter className="h-5 w-5" strokeWidth={1.5} />
-                    <span className="sr-only">Twitter</span>
                   </Link>
                   <Link
                     href="https://www.youtube.com/channel/UCWS8SE_2VAz1hkRKlhlu_Iw?view_as=subscriber"

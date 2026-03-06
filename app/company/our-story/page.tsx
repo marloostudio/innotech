@@ -35,7 +35,7 @@ const timeline = [
   {
     year: "2022",
     milestone: "V2X Technology Integration",
-    description: "Introduced Radar Link platform, enabling vehicle-to-everything communication and micro-localization."
+    description: "Introduced RADARLink platform, enabling vehicle-to-everything communication and cm-level localization and tracking."
   },
   {
     year: "2023",
@@ -88,7 +88,7 @@ export default function OurStoryPage() {
             Our founders—veterans of the automotive, robotics, and software industries—recognized that three critical problems needed solving: autonomous charging without human intervention, comprehensive safety monitoring for human-robot environments, and reliable vehicle-to-everything communication.
           </p>
           <p>
-            Rather than tackle these as separate problems, we built an integrated platform. SafeGuard monitors safety and compliance. AutoLock handles autonomous charging and fleet orchestration. Radar Link provides V2X connectivity and precise localization. Together, they create the foundation for autonomous operations.
+            Rather than tackle these as separate problems, we built an integrated platform. SafeGuard monitors safety and compliance. AutoLock handles autonomous charging and fleet orchestration. RADARLink provides V2X connectivity and precise localization. Together, they create the foundation for autonomous operations.
           </p>
           <p>
             Today, InnoTech solutions power autonomous fleets, industrial robots, and mobile systems across logistics, manufacturing, port operations, and mining. But we&apos;re just getting started—the autonomous revolution is accelerating, and we&apos;re committed to providing the infrastructure that makes it possible.
