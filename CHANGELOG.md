@@ -31,12 +31,17 @@ Improved layout consistency across key pages, refined section styling for a smoo
 - Industries mega menu: two-column card grid with one-line descriptors; Charge Depot removed (content merged into Automated Depots); featured card removed; "See all industries" footer
 - Resources and Company dropdowns: one-line descriptors for every item; Case Studies as second item under Resources; Product Docs with divider; Partners and Careers badges (Coming soon / We're hiring)
 - Nav hover consistency: 150ms ease-out, surface-raised background, and description text brightening across all mega menus and dropdowns
+- Navbar subtitle no longer shifts layout on hover: fixed-height container and opacity/transform reveal so labels stay anchored
 
 ### Added
 
 - **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 documents recommended `variant` (and `alt`) per page type: Homepage, Product pages (SafeGuard, AutoLock), Solution pages (SolutionDetail), About / Our Story, Blog, and Contact. Ensures consistent dark→light→dark rhythm across the site.
 - **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – New component and rollout across pillar and key sub-pages: Products, Solutions, Industries, Resources (including Blog, FAQ, Case Studies, Docs), Company, Contact, Technology, Case Studies, Demo, Accessibility, Careers (and Open Roles). Uses `max-w-screen-2xl`, dark-theme tokens, DM Sans. Blog and FAQ show Resources → Blog / FAQ; product pages show Products → [Product]; careers show Company → Careers → Open Roles where applicable.
 - **Navigation descriptors and structure** (`lib/nav-mega.ts`, `components/site/navbar.tsx`) – One-line descriptors for all Resources and Company dropdown items; Case Studies added to Resources (second item); contextual subtitles under each top-level nav item (e.g. "What we build", "Problems we solve") shown when menu is open; Industries items given descriptors (e.g. "Fleet charging and monitoring for delivery operations"); Military "Defence applications" with Coming soon badge; SimpleDropdown and Industries mega menu render descriptors; mobile drawer Resources and Company expandable with same items.
+
+### Fixed
+
+- **Navbar subtitle layout shift** (`components/site/navbar.tsx`) – Top-level nav items (Products, Solutions, Industries, Resources, Company) no longer push the label upward on hover. Subtitle is always in the DOM inside a fixed-height container (`h-[44px]`); visibility toggled with `opacity` and `translate-y` (default `opacity-0 -translate-y-1`, hover/open `opacity-100 translate-y-0`) and `transition-all duration-150` so the label stays anchored and no layout shift occurs.
 
 ### Changed
 

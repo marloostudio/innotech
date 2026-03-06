@@ -189,7 +189,7 @@ export function Navbar() {
                       onClick={() => toggleMenu(item.key)}
                       onMouseEnter={() => setOpenMenu(item.key)}
                       className={cn(
-                        "flex flex-col items-center gap-0 py-2 px-3 rounded transition-colors duration-150",
+                        "relative flex flex-col items-center py-2 px-3 rounded transition-colors duration-150",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
                       style={{
@@ -200,24 +200,29 @@ export function Navbar() {
                       aria-haspopup="true"
                       aria-expanded={isOpen}
                     >
-                      <span className="flex items-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
-                        {item.label}
-                        <motion.span
-                          animate={{ rotate: isOpen ? 180 : 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="ml-0.5"
-                        >
-                          <ChevronDown size={14} strokeWidth={1.5} />
-                        </motion.span>
-                      </span>
-                      {item.subtitle && isOpen && (
-                        <span
-                          className="block text-[10px] uppercase tracking-wider mt-0.5"
-                          style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-                        >
-                          {item.subtitle}
+                      <div className="flex flex-col items-center justify-center h-[44px]">
+                        <span className="flex items-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
+                          {item.label}
+                          <motion.span
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="ml-0.5"
+                          >
+                            <ChevronDown size={14} strokeWidth={1.5} />
+                          </motion.span>
                         </span>
-                      )}
+                        {item.subtitle ? (
+                          <span
+                            className={cn(
+                              "block text-[10px] uppercase tracking-wider mt-0.5 transition-all duration-150",
+                              active || isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+                            )}
+                            style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
+                          >
+                            {item.subtitle}
+                          </span>
+                        ) : null}
+                      </div>
                       {active && (
                         <motion.span
                           layoutId="nav-underline"
@@ -367,8 +372,8 @@ const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void 
   return (
     <motion.div
       ref={ref}
-      className="absolute left-0 right-0 top-full z-50 border-t-2"
-      style={{ backgroundColor: PANEL_BG, borderTopColor: CTA_BG }}
+      className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
+      style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -442,8 +447,8 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
   return (
     <motion.div
       ref={ref}
-      className="absolute left-0 right-0 top-full z-50 border-t-2"
-      style={{ backgroundColor: PANEL_BG, borderTopColor: "var(--it-solutions)" }}
+      className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
+      style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -577,8 +582,8 @@ const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => voi
   return (
     <motion.div
       ref={ref}
-      className="absolute left-0 right-0 top-full z-50 border-t-2"
-      style={{ backgroundColor: PANEL_BG, borderTopColor: INDUSTRIES_AMBER }}
+      className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
+      style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -624,8 +629,8 @@ const SimpleDropdown = React.forwardRef<HTMLDivElement, {
   return (
     <motion.div
       ref={ref}
-      className={cn("absolute top-full z-50 mt-1 rounded-lg border py-2", align === "right" ? "right-0" : "left-0")}
-      style={{ backgroundColor: PANEL_BG, borderColor: BAR_BORDER, width, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
+      className={cn("absolute top-full z-50 mt-1 rounded-lg border border-[var(--it-border)] py-2 backdrop-blur-sm", align === "right" ? "right-0" : "left-0")}
+      style={{ backgroundColor: "#0d1526", width, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
       initial={{ opacity: 0, y: -4 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -4 }}
