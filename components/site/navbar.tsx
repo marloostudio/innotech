@@ -62,8 +62,9 @@ export function Navbar() {
   const closeMenus = () => setOpenMenu(null)
   const toggleMenu = (key: NavMegaKey) => setOpenMenu((prev) => (prev === key ? null : key))
 
-  // Delay before closing so the cursor has time to move into the dropdown (design: dropdowns 200ms; we use 300ms for comfort)
-  const DROPDOWN_CLOSE_DELAY_MS = 300
+  // Delay before closing so the cursor has time to move from nav into the dropdown (generous for diagonal movement)
+  const DROPDOWN_CLOSE_DELAY_MS = 500
+  const DROPDOWN_HOVER_BUFFER_PX = 64
 
   React.useEffect(() => {
     if (!openMenu) return
@@ -71,7 +72,7 @@ export function Navbar() {
     const handleMouseMove = (event: MouseEvent) => {
       const x = event.clientX
       const y = event.clientY
-      const buffer = 48
+      const buffer = DROPDOWN_HOVER_BUFFER_PX
 
       const withinRect = (rect: DOMRect) =>
         x >= rect.left - buffer && x <= rect.right + buffer &&

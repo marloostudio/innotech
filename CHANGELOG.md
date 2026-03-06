@@ -14,7 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Summary
 
-Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page that is easy to scan. Navigation was restructured for clearer information architecture: Case Studies moved under Resources, top-level items gained contextual subtitles, and all mega menus and dropdowns now use consistent card-style layouts with one-line descriptors and unified hover behaviour.
+Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page that is easy to scan. Navigation was restructured for clearer information architecture: Case Studies moved under Resources, top-level items gained contextual subtitles, and all mega menus and dropdowns now use consistent card-style layouts with one-line descriptors and unified hover behaviour. Mega menu and dropdown panels now have a clearer visual boundary so they read as floating panels above the page.
 
 ### Highlights
 
@@ -32,6 +32,7 @@ Improved layout consistency across key pages, refined section styling for a smoo
 - Resources and Company dropdowns: one-line descriptors for every item; Case Studies as second item under Resources; Product Docs with divider; Partners and Careers badges (Coming soon / We're hiring)
 - Nav hover consistency: 150ms ease-out, surface-raised background, and description text brightening across all mega menus and dropdowns
 - Navbar subtitle no longer shifts layout on hover: fixed-height container and opacity/transform reveal so labels stay anchored
+- Mega menus and dropdowns: stronger border, shadow, and subtle backdrop so panels are clearly separated from page content
 
 ### Added
 
@@ -45,6 +46,7 @@ Improved layout consistency across key pages, refined section styling for a smoo
 
 ### Changed
 
+- **Navbar mega menu and dropdown boundaries** (`components/site/navbar.tsx`) – Visible boundary for all dropdown panels: full border using `var(--it-border)`, strong bottom shadow (`0 8px 32px rgba(0,0,0,0.5)`), background `#0d1526`, and `backdrop-blur-sm`. Mega menus (Products, Solutions, Industries) also have a subtle top-edge highlight (1px `rgba(77, 159, 255, 0.15)`). Simple dropdowns (Resources, Company) use the same border, shadow, background, and backdrop. Replaces previous `border-t-2` / PANEL_BG styling.
 - **Navbar and nav-mega** (`components/site/navbar.tsx`, `lib/nav-mega.ts`) – Case Studies removed from top-level nav and placed in Resources dropdown. Solutions category "Dynamic Safety" renamed to "Safety & Monitoring"; Solutions accent colours set per column (blue, teal, violet). Industries: Charge Depot removed; "Automated Depot" → "Automated Depots" with descriptor; two-column card grid with left-border accents and descriptors; featured "Operating in extreme environments?" card removed; "See all industries" footer link. Company dropdown: Board & Advisors → `/company/board-advisors`, Investor Relations → `/company/investors`, Partners → `/company/partners` with "Coming soon" badge; all items given descriptors. Products mega: taglines and feature labels aligned to spec (e.g. AutoDuck "Robotic Charging", "Fleet Orchestrat."); 3px left-border accents. All interactive nav items: hover uses `var(--it-surface-raised)`, 150ms ease-out, description text brightens (muted → secondary); no underlines. CaseStudiesDropdown removed. NavMegaKey type no longer includes `case-studies`.
 - **Footer and main nav data** (`lib/nav.ts`) – "Dynamic Safety" → "Safety & Monitoring" in mainNav and footerNav; Case Studies moved under Resources in mainNav; Resources children aligned with nav-mega (Blog & Insights, Case Studies, Whitepapers, etc.).
 - **Homepage** (`app/page.tsx`) – Section rhythm applied: Feature Grid and Tech Overview `light-bg`; Industry Grid dark (`it-section-mid`, no variant); Testimonial and FAQ `dark` (+ `alt` on Testimonial); Stats `light-bg`; CTA Banner unchanged (dark with gradient). Comments aligned to rhythm guide.
