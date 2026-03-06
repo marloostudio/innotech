@@ -32,6 +32,7 @@ export interface IndustryMegaItem {
 export interface SimpleDropdownItem {
   title: string
   href: string
+  descriptor?: string
   external?: boolean
   dividerAbove?: boolean
   badge?: string
@@ -43,7 +44,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
     name: "SafeGuard",
     tagline: "Safety and Hazard Detection",
     description: "Intelligent safety monitoring for robotic environments",
-    features: ["Hazard Detection", "Dynamic Zoning", "Asset and Human Monitoring", "Real-Time Alerting"],
+    features: ["Hazard Detection", "Dynamic Zoning", "Asset & Human Monitoring", "Real-Time Alerting"],
     href: "/products/safeguard",
     ctaLabel: "View SafeGuard",
     accentColor: "var(--it-safeguard)",
@@ -51,9 +52,9 @@ export const productsMegaColumns: ProductMegaColumn[] = [
   {
     id: "autolock",
     name: "AutoDuck",
-    tagline: "Autonomous Charging and Fleet Management",
+    tagline: "Autonomous Charging and Fleet Mgmt",
     description: "Autonomous charging and fleet orchestration",
-    features: ["Autonomous Charging", "Fleet Orchestration", "Process Automation", "Access Control"],
+    features: ["Robotic Charging", "Fleet Orchestrat.", "Process Automat.", "Access Control"],
     href: "/products/autolock",
     ctaLabel: "View AutoDuck",
     accentColor: "var(--it-autolock)",
@@ -63,7 +64,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
     name: "RADARLink",
     tagline: "V2X, Cm-level Localization and Drone Tracking",
     description: "V2X Communication, Cm-level Localization and Drone Tracking",
-    features: ["V2X Communication", "Cm-level Localization and Tracking", "Drone Tracking", "Real-Time Asset Tracking"],
+    features: ["V2X Communic.", "Cm-level Loc. and Tracking", "Drone Tracking", "Real-Time Asset Tracking"],
     href: "/products/radar-link",
     ctaLabel: "View RADARLink",
     accentColor: "var(--it-blue)",
@@ -74,7 +75,7 @@ export const solutionsMegaCategories: SolutionMegaCategory[] = [
   {
     id: "charging",
     name: "Autonomous Charging",
-    accentColor: "var(--it-solutions)",
+    accentColor: "var(--it-blue)",
     solutions: [
       { name: "For AV Fleets", href: "/solutions/charging-autonomous-vehicles", description: "Autonomous EV charging for self-driving fleets" },
       { name: "Heavy-Duty", href: "/solutions/charging-heavy-duty", description: "Robotic charging for commercial trucks and buses" },
@@ -83,8 +84,8 @@ export const solutionsMegaCategories: SolutionMegaCategory[] = [
   },
   {
     id: "safety",
-    name: "Dynamic Safety",
-    accentColor: "var(--it-solutions)",
+    name: "Safety & Monitoring",
+    accentColor: "var(--it-safeguard)",
     solutions: [
       { name: "Industrial Robots", href: "/solutions/safety-industrial-robots", description: "Safety monitoring for industrial automation" },
       { name: "Mobile Robots", href: "/solutions/safety-mar", description: "Safety for mobile autonomous robots" },
@@ -105,41 +106,33 @@ export const solutionsMegaCategories: SolutionMegaCategory[] = [
 ]
 
 export const industriesMegaItems: IndustryMegaItem[] = [
-  { name: "Logistics", href: "/industries/logistics" },
-  { name: "Autonomous Fleets", href: "/industries/autonomous-fleets" },
-  { name: "Charge Depot", href: "/industries/autonomous-fleets#charging", isSubItem: true },
-  { name: "Automated Depot", href: "/industries/automated-depot" },
-  { name: "Port Operations", href: "/industries/port" },
-  { name: "Airport & Shopping Mall", href: "/industries/airport-shopping-mall" },
-  { name: "Mining", href: "/industries/mining" },
-  { name: "Military", href: "#", comingSoon: true },
+  { name: "Logistics", href: "/industries/logistics", descriptor: "Fleet charging and monitoring for delivery operations" },
+  { name: "Autonomous Fleets", href: "/industries/autonomous-fleets", descriptor: "Infrastructure for driverless vehicle operations" },
+  { name: "Automated Depots", href: "/industries/automated-depot", descriptor: "Smart charging and vehicle management facilities" },
+  { name: "Port Operations", href: "/industries/port", descriptor: "Terminal automation and container vehicle coordination" },
+  { name: "Mining", href: "/industries/mining", descriptor: "Ruggedized systems for extreme conditions" },
+  { name: "Airport & Shopping Mall", href: "/industries/airport-shopping-mall", descriptor: "Public hub charging and traffic management" },
+  { name: "Military", href: "#", descriptor: "Defence applications", comingSoon: true },
 ]
 
-export const industriesMegaFeatured = {
-  headline: "Operating in extreme environments?",
-  description: "See how InnoTech is deployed in mining, ports, and defence.",
-  ctaLabel: "Request a Site Assessment",
-  ctaHref: "/contact",
-  accentColor: "var(--it-industries)",
-}
-
 export const resourcesDropdownItems: SimpleDropdownItem[] = [
-  { title: "Blog & Insights", href: "/resources/blog" },
-  { title: "Whitepapers", href: "/resources/whitepapers" },
-  { title: "Playbooks", href: "/resources/playbooks" },
-  { title: "Webinars & Videos", href: "/resources/videos" },
-  { title: "FAQ", href: "/resources/faq" },
-  { title: "Product Docs", href: "/resources/docs", external: true, dividerAbove: true },
+  { title: "Blog & Insights", href: "/resources/blog", descriptor: "Industry analysis and technical perspectives" },
+  { title: "Case Studies", href: "/case-studies", descriptor: "Real deployment results and outcomes" },
+  { title: "Whitepapers", href: "/resources/whitepapers", descriptor: "Technical deep-dives and frameworks" },
+  { title: "Playbooks", href: "/resources/playbooks", descriptor: "Step-by-step implementation guides" },
+  { title: "Webinars & Videos", href: "/resources/videos", descriptor: "Product demos and expert discussions" },
+  { title: "FAQ", href: "/resources/faq", descriptor: "Common questions answered" },
+  { title: "Product Docs", href: "/resources/docs", descriptor: "Technical documentation", external: true, dividerAbove: true },
 ]
 
 export const companyDropdownItems: SimpleDropdownItem[] = [
-  { title: "Our Story", href: "/company/our-story" },
-  { title: "Our Team", href: "/company/team" },
-  { title: "Mission & Values", href: "/company" },
-  { title: "Board & Advisors", href: "/company" },
-  { title: "Investor Relations", href: "/company", dividerAbove: true },
-  { title: "Careers", href: "/company/careers", badge: "We're hiring" },
-  { title: "Partners", href: "/company" },
+  { title: "Our Story", href: "/company/our-story", descriptor: "How InnoTech started and where we're going" },
+  { title: "Our Team", href: "/company/team", descriptor: "Leadership and engineering team" },
+  { title: "Mission & Values", href: "/company", descriptor: "What drives our work" },
+  { title: "Board & Advisors", href: "/company/board-advisors", descriptor: "Strategic guidance and expertise" },
+  { title: "Investor Relations", href: "/company/investors", descriptor: "Growth, funding, and market opportunity" },
+  { title: "Careers", href: "/company/careers", descriptor: "Open positions and culture", badge: "We're hiring" },
+  { title: "Partners", href: "/company/partners", descriptor: "Integration and channel partners", badge: "Coming soon" },
 ]
 
-export type NavMegaKey = "products" | "solutions" | "industries" | "case-studies" | "resources" | "company" | null
+export type NavMegaKey = "products" | "solutions" | "industries" | "resources" | "company" | null

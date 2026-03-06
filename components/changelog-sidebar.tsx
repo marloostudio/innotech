@@ -35,10 +35,10 @@ export function ChangelogSidebar({
 }: ChangelogSidebarProps) {
   return (
     <aside
-      className="w-full lg:w-56 xl:w-64 shrink-0"
+      className="w-full lg:w-56 xl:w-64 shrink-0 lg:sticky lg:top-24 lg:self-start"
       aria-label="Changelog filters and links"
     >
-      <nav className="sticky top-24 space-y-8" style={{ fontFamily: "var(--font-dm-sans)" }}>
+      <nav className="space-y-8" style={{ fontFamily: "var(--font-dm-sans)" }}>
         {/* Search */}
         {onSearchQueryChange && (
           <div>

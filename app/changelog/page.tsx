@@ -14,16 +14,7 @@ export default function ChangelogPage() {
 
   return (
     <>
-      <PillarHero
-        badge="Changelog"
-        h1="Release history"
-        h2="Versions and notable changes"
-        description="What’s new across the site: design updates, new features, and improvements, grouped by area with optional technical details."
-        compact
-        align="left"
-      />
-
-      <Section variant="light" alt id="releases">
+      <Section variant="light" alt id="releases" containerClassName="max-w-screen-2xl mx-auto px-8">
         <ChangelogLayout entries={entries} />
       </Section>
 

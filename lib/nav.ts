@@ -25,7 +25,7 @@ export const mainNav: NavItem[] = [
     href: "/solutions",
     children: [
       { title: "Autonomous Charging", href: "/solutions#charging" },
-      { title: "Dynamic Safety", href: "/solutions#safety" },
+      { title: "Safety & Monitoring", href: "/solutions#safety" },
       { title: "Connectivity & Localization", href: "/solutions#connectivity" }
     ]
   },
@@ -40,17 +40,15 @@ export const mainNav: NavItem[] = [
     ]
   },
   {
-    title: "Case Studies",
-    href: "/case-studies"
-  },
-  {
     title: "Resources",
     href: "/resources",
     children: [
-      { title: "Blog", href: "/resources/blog" },
+      { title: "Blog & Insights", href: "/resources/blog" },
+      { title: "Case Studies", href: "/case-studies" },
       { title: "Whitepapers", href: "/resources/whitepapers" },
       { title: "Playbooks", href: "/resources/playbooks" },
-      { title: "Videos", href: "/resources/videos" }
+      { title: "Webinars & Videos", href: "/resources/videos" },
+      { title: "FAQ", href: "/resources/faq" }
     ]
   },
   {
@@ -77,7 +75,7 @@ export const footerNav: NavSection[] = [
     title: "Solutions",
     items: [
       { title: "Autonomous Charging", href: "/solutions/charging-autonomous-vehicles" },
-      { title: "Dynamic Safety", href: "/solutions/safety-industrial-robots" },
+      { title: "Safety & Monitoring", href: "/solutions/safety-industrial-robots" },
       { title: "V2X Communication", href: "/solutions/connectivity-v2v" },
       { title: "Cm-level Localization and Tracking", href: "/solutions/micro-localization" }
     ]

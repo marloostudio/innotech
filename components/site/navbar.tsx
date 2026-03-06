@@ -4,13 +4,12 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
-import { Menu, X, ChevronDown, Lock, ExternalLink, Mail, Calendar } from "lucide-react"
+import { Menu, X, ChevronDown, ExternalLink, Mail, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
   productsMegaColumns,
   solutionsMegaCategories,
   industriesMegaItems,
-  industriesMegaFeatured,
   resourcesDropdownItems,
   companyDropdownItems,
   type NavMegaKey,
@@ -29,15 +28,14 @@ const CTA_HOVER       = "var(--it-blue-hover)"
 const CTA_TEXT        = "var(--it-bg)"
 
 // ── "simple dropdown" nav items (these anchor to their own trigger button) ──
-const SIMPLE_KEYS: NavMegaKey[] = ["case-studies", "resources", "company"]
+const SIMPLE_KEYS: NavMegaKey[] = ["resources", "company"]
 
-const navItems: { key: NavMegaKey; label: string; href: string }[] = [
-  { key: "products",     label: "Products",     href: "/products"    },
-  { key: "solutions",    label: "Solutions",    href: "/solutions"   },
-  { key: "industries",   label: "Industries",   href: "/industries"  },
-  { key: "case-studies", label: "Case Studies", href: "/case-studies"},
-  { key: "resources",    label: "Resources",    href: "/resources"   },
-  { key: "company",      label: "Company",      href: "/company"     },
+const navItems: { key: NavMegaKey; label: string; href: string; subtitle?: string }[] = [
+  { key: "products",   label: "Products",   href: "/products",   subtitle: "What we build" },
+  { key: "solutions",  label: "Solutions",  href: "/solutions",  subtitle: "Problems we solve" },
+  { key: "industries", label: "Industries",  href: "/industries", subtitle: "Where we deploy" },
+  { key: "resources",  label: "Resources",   href: "/resources",  subtitle: "Insights and guides" },
+  { key: "company",    label: "Company",     href: "/company",     subtitle: "About InnoTech" },
 ]
 
 export function Navbar() {
@@ -191,11 +189,10 @@ export function Navbar() {
                       onClick={() => toggleMenu(item.key)}
                       onMouseEnter={() => setOpenMenu(item.key)}
                       className={cn(
-                        "flex items-center gap-0.5 py-2 px-3 rounded transition-colors duration-150",
+                        "flex flex-col items-center gap-0 py-2 px-3 rounded transition-colors duration-150",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
                       style={{
-                        fontSize: "0.9375rem",
                         color: active || isOpen ? NAV_LINK_HOVER : NAV_LINK_COLOR,
                         fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
                         fontWeight: 500,
@@ -203,14 +200,24 @@ export function Navbar() {
                       aria-haspopup="true"
                       aria-expanded={isOpen}
                     >
-                      {item.label}
-                      <motion.span
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-0.5"
-                      >
-                        <ChevronDown size={14} strokeWidth={2} />
-                      </motion.span>
+                      <span className="flex items-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
+                        {item.label}
+                        <motion.span
+                          animate={{ rotate: isOpen ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-0.5"
+                        >
+                          <ChevronDown size={14} strokeWidth={1.5} />
+                        </motion.span>
+                      </span>
+                      {item.subtitle && isOpen && (
+                        <span
+                          className="block text-[10px] uppercase tracking-wider mt-0.5"
+                          style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
+                        >
+                          {item.subtitle}
+                        </span>
+                      )}
                       {active && (
                         <motion.span
                           layoutId="nav-underline"
@@ -251,14 +258,11 @@ export function Navbar() {
 
                   {/* ── Simple dropdowns anchored to their own button ── */}
                   <AnimatePresence>
-                    {isOpen && simpleDrop && item.key === "case-studies" && (
-                      <CaseStudiesDropdown ref={dropdownPanelRef} onClose={closeMenus} />
-                    )}
                     {isOpen && simpleDrop && item.key === "resources" && (
-                      <SimpleDropdown ref={dropdownPanelRef} items={resourcesDropdownItems} width={240} align="left" onClose={closeMenus} />
+                      <SimpleDropdown ref={dropdownPanelRef} items={resourcesDropdownItems} width={320} align="left" onClose={closeMenus} />
                     )}
                     {isOpen && simpleDrop && item.key === "company" && (
-                      <SimpleDropdown ref={dropdownPanelRef} items={companyDropdownItems} width={220} align="left" onClose={closeMenus} />
+                      <SimpleDropdown ref={dropdownPanelRef} items={companyDropdownItems} width={320} align="left" onClose={closeMenus} />
                     )}
                   </AnimatePresence>
                 </div>
@@ -394,7 +398,7 @@ const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void 
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06, duration: 0.2 }}
             >
-              <div className="border-l-4 pl-3 mb-4" style={{ borderLeftColor: col.accentColor }}>
+              <div className="pl-3 mb-4 border-l-[3px]" style={{ borderLeftColor: col.accentColor }}>
                 <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
                   {col.name}
                 </h4>
@@ -414,8 +418,10 @@ const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void 
               <Link
                 href={col.href}
                 onClick={onClose}
-                className="font-mono uppercase tracking-wider inline-block transition-colors hover:opacity-90"
+                className="font-mono uppercase tracking-wider inline-block rounded px-2 py-1 -mx-2 transition-[background-color,opacity] duration-150 ease-out no-underline"
                 style={{ fontSize: "14px", color: col.accentColor, fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace" }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.opacity = "1" }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.opacity = "0.9" }}
               >
                 {col.ctaLabel} →
               </Link>
@@ -423,7 +429,7 @@ const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void 
           ))}
         </div>
         <div className="border-t border-[var(--it-border)] pt-3 mt-4 text-center">
-          <Link href="/products" onClick={onClose} className="text-sm transition-colors hover:opacity-90" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+          <Link href="/products" onClick={onClose} className="text-sm rounded px-2 py-1 inline-block transition-[background-color,color] duration-150 ease-out no-underline" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.color = "var(--it-text-primary)" }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--it-text-muted)" }}>
             See all products
           </Link>
         </div>
@@ -452,7 +458,7 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
           Solutions
         </h3>
         <p className="text-sm mb-6" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-          Browse by the problem you&apos;re solving, not the product
+          Browse by the problem you&apos;re solving
         </p>
         <div className="grid grid-cols-3 gap-0 border-t border-[var(--it-border)] pt-6">
           {solutionsMegaCategories.map((cat, i) => (
@@ -463,7 +469,7 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06, duration: 0.2 }}
             >
-              <div className="border-l-4 pl-3 mb-4" style={{ borderLeftColor: cat.accentColor }}>
+              <div className="pl-3 mb-4 border-l-[3px]" style={{ borderLeftColor: cat.accentColor }}>
                 <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
                   {cat.name}
                 </h4>
@@ -474,19 +480,23 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
                     <Link
                       href={s.href}
                       onClick={onClose}
-                      className="block py-2 px-3 -mx-3 rounded border border-transparent transition-colors"
+                      className="block py-2 px-3 -mx-3 rounded border border-transparent no-underline transition-[background-color,border-color,color] duration-150 ease-out"
                       style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", backgroundColor: "transparent" }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = "var(--it-solutions-subtle)"
+                        e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"
                         e.currentTarget.style.borderColor = "var(--it-solutions-border)"
+                        const desc = e.currentTarget.querySelector("[data-solution-desc]") as HTMLElement
+                        if (desc) desc.style.color = "var(--it-text-secondary)"
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = "transparent"
                         e.currentTarget.style.borderColor = "transparent"
+                        const desc = e.currentTarget.querySelector("[data-solution-desc]") as HTMLElement
+                        if (desc) desc.style.color = "var(--it-text-muted)"
                       }}
                     >
                       <span className="block" style={{ fontSize: "14px", color: "var(--it-text-primary)" }}>{s.name}</span>
-                      <span style={{ fontSize: "12.5px", color: "var(--it-text-muted)" }}>{s.description}</span>
+                      <span data-solution-desc style={{ fontSize: "12.5px", color: "var(--it-text-muted)" }}>{s.description}</span>
                     </Link>
                   </li>
                 ))}
@@ -495,7 +505,7 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
           ))}
         </div>
         <div className="border-t border-[var(--it-border)] pt-3 mt-4 text-right">
-          <Link href="/contact" onClick={onClose} className="text-sm transition-colors" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+          <Link href="/contact" onClick={onClose} className="text-sm rounded px-2 py-1 inline-block transition-[background-color,color] duration-150 ease-out no-underline" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.color = "var(--it-text-primary)" }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--it-text-muted)" }}>
             Not sure which solution fits? → Talk to an engineer
           </Link>
         </div>
@@ -504,13 +514,71 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
   )
 })
 
+const INDUSTRIES_AMBER = "var(--it-industries)"
+
 const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function IndustriesMegaMenu({ onClose }, ref) {
-  const { headline, description, ctaLabel, ctaHref, accentColor } = industriesMegaFeatured
+  const leftColumn = industriesMegaItems.filter((_, i) => i % 2 === 0)
+  const rightColumn = industriesMegaItems.filter((_, i) => i % 2 === 1)
+  const renderIndustryCard = (item: (typeof industriesMegaItems)[0]) => (
+    <div
+      key={item.href + item.name}
+      className={cn(
+        "border-l-[3px] pl-3 py-2 border-t border-[var(--it-border)] first:border-t-0",
+        item.comingSoon && "opacity-70"
+      )}
+      style={{ borderLeftColor: item.comingSoon ? "var(--it-border)" : INDUSTRIES_AMBER }}
+    >
+      {item.comingSoon ? (
+        <div className="flex flex-col gap-0.5">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-medium" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              {item.name}
+            </span>
+            <span className="text-[10px] rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.06)", color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              Coming soon
+            </span>
+          </div>
+          {item.descriptor && (
+            <span className="block text-xs" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              {item.descriptor}
+            </span>
+          )}
+        </div>
+      ) : (
+        <Link
+          href={item.href}
+          onClick={onClose}
+          className="block group rounded-md -mx-1 px-1 py-1 transition-[background-color,color] duration-150 ease-out no-underline"
+          style={{ color: "var(--it-text-primary)" }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"
+            const desc = e.currentTarget.querySelector("[data-industry-descriptor]") as HTMLElement
+            if (desc) desc.style.color = "var(--it-text-secondary)"
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent"
+            const desc = e.currentTarget.querySelector("[data-industry-descriptor]") as HTMLElement
+            if (desc) desc.style.color = "var(--it-text-muted)"
+          }}
+        >
+          <span className="text-sm font-medium flex items-center gap-2" style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+            <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: INDUSTRIES_AMBER }} aria-hidden />
+            {item.name}
+          </span>
+          {item.descriptor && (
+            <span data-industry-descriptor className="block text-xs mt-0.5" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+              {item.descriptor}
+            </span>
+          )}
+        </Link>
+      )}
+    </div>
+  )
   return (
     <motion.div
       ref={ref}
       className="absolute left-0 right-0 top-full z-50 border-t-2"
-      style={{ backgroundColor: PANEL_BG, borderTopColor: accentColor }}
+      style={{ backgroundColor: PANEL_BG, borderTopColor: INDUSTRIES_AMBER }}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -518,55 +586,24 @@ const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => voi
       role="menu"
     >
       <div className="max-w-screen-2xl mx-auto px-8 py-6">
-        <h3 className="text-lg font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
+        <h3 className="text-lg font-semibold uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif", color: "var(--it-text-secondary)" }}>
           Industries
         </h3>
         <p className="text-sm mb-6" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
           Configured for environments where failure is not an option
         </p>
         <div className="grid grid-cols-2 gap-8 border-t border-[var(--it-border)] pt-6">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-2">
-            {industriesMegaItems.map((item) => (
-              <div key={item.href + item.name} className={cn(item.isSubItem && "pl-4")}>
-                {item.comingSoon ? (
-                  <span className="text-sm flex items-center gap-2" style={{ color: "var(--it-text-dim)" }}>
-                    <span style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>{item.name}</span>
-                    <span className="text-xs rounded px-1" style={{ background: "rgba(255,255,255,0.06)", color: "var(--it-text-dim)" }}>coming soon</span>
-                  </span>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
-                    className="transition-colors flex items-center gap-2"
-                    style={{ fontSize: "14px", color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--it-text-primary)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--it-text-muted)")}
-                  >
-                    {item.isSubItem && <span style={{ color: "var(--it-text-dim)" }}>└</span>}
-                    <span className="w-4 h-4 shrink-0" style={{ color: accentColor }}>
-                      <svg viewBox="0 0 16 16" fill="currentColor" className="w-full h-full">
-                        <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2zm0 1a5 5 0 1 0 0 10A5 5 0 0 0 8 3z" />
-                      </svg>
-                    </span>
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+          <div className="min-w-0">
+            {leftColumn.map(renderIndustryCard)}
           </div>
-          <div>
-            <div className="rounded-lg p-5 border" style={{ backgroundColor: "rgba(245, 158, 11, 0.05)", borderColor: "rgba(245, 158, 11, 0.2)" }}>
-              <h4 className="font-medium mb-2" style={{ fontSize: "14px", color: "var(--it-text-primary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                {headline}
-              </h4>
-              <p className="mb-4" style={{ fontSize: "12.5px", color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                {description}
-              </p>
-              <Link href={ctaHref} onClick={onClose} className="text-xs font-medium transition-colors hover:opacity-80" style={{ color: accentColor, fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                {ctaLabel}
-              </Link>
-            </div>
+          <div className="min-w-0">
+            {rightColumn.map(renderIndustryCard)}
           </div>
+        </div>
+        <div className="border-t border-[var(--it-border)] pt-3 mt-4 text-center">
+          <Link href="/industries" onClick={onClose} className="text-sm rounded px-2 py-1 inline-block transition-[background-color,color] duration-150 ease-out no-underline" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.color = "var(--it-text-primary)" }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--it-text-muted)" }}>
+            See all industries
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -577,43 +614,6 @@ const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => voi
 // Small dropdowns — now rendered inside each nav item's
 // div.relative so they always anchor directly below the trigger
 // ─────────────────────────────────────────────────────────────
-
-const CaseStudiesDropdown = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function CaseStudiesDropdown({ onClose }, ref) {
-  return (
-    <motion.div
-      ref={ref}
-      className="absolute left-0 top-full z-50 mt-1 rounded-lg border p-4"
-      style={{ backgroundColor: PANEL_BG, borderColor: BAR_BORDER, width: 260, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
-      initial={{ opacity: 0, y: -4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -4 }}
-      transition={{ duration: 0.15 }}
-      role="dialog"
-    >
-      <div className="flex items-start gap-3 mb-4">
-        <Lock size={16} style={{ color: "var(--it-text-dim)", flexShrink: 0 }} />
-        <div>
-          <p className="text-sm" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-            Case studies launching soon. Join the list.
-          </p>
-          <p className="text-xs mt-1" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-            Get notified when we publish.
-          </p>
-        </div>
-      </div>
-      <button
-        type="button"
-        onClick={onClose}
-        className="w-full text-left text-xs py-1.5 px-3 rounded border transition-colors"
-        style={{ borderColor: BAR_BORDER, color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-        onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--it-blue)"; e.currentTarget.style.color = "var(--it-text-primary)" }}
-        onMouseLeave={(e) => { e.currentTarget.style.borderColor = BAR_BORDER; e.currentTarget.style.color = "var(--it-text-muted)" }}
-      >
-        Notify Me
-      </button>
-    </motion.div>
-  )
-})
 
 const SimpleDropdown = React.forwardRef<HTMLDivElement, {
   items: typeof resourcesDropdownItems
@@ -638,21 +638,47 @@ const SimpleDropdown = React.forwardRef<HTMLDivElement, {
           <Link
             href={item.href}
             onClick={onClose}
-            className="flex items-center justify-between px-4 py-2.5 text-sm rounded mx-1 transition-colors"
+            className="flex flex-col items-start gap-0.5 px-4 py-2.5 rounded mx-1 no-underline transition-[background-color,color] duration-150 ease-out"
             style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "var(--it-text-primary)"; e.currentTarget.style.background = "rgba(255,255,255,0.04)" }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "var(--it-text-secondary)"; e.currentTarget.style.background = "transparent" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"
+              e.currentTarget.style.color = "var(--it-text-primary)"
+              const desc = e.currentTarget.querySelector("[data-dropdown-descriptor]") as HTMLElement
+              if (desc) desc.style.color = "var(--it-text-secondary)"
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent"
+              e.currentTarget.style.color = "var(--it-text-secondary)"
+              const desc = e.currentTarget.querySelector("[data-dropdown-descriptor]") as HTMLElement
+              if (desc) desc.style.color = "var(--it-text-muted)"
+            }}
           >
-            {item.title}
-            {item.badge && (
-              <span
-                className="text-[10px] rounded px-1 ml-2 border"
-                style={{ backgroundColor: "rgba(0, 212, 170, 0.125)", color: "var(--it-safeguard)", borderColor: "rgba(0, 212, 170, 0.25)" }}
-              >
-                {item.badge}
+            <span className="flex items-center justify-between w-full">
+              <span className="text-sm font-medium">{item.title}</span>
+              <span className="flex items-center gap-1.5 shrink-0 ml-2">
+                {item.badge && (
+                  <span
+                    className={cn(
+                      "text-[10px] rounded px-1.5 py-0.5",
+                      item.badge === "Coming soon"
+                        ? "border"
+                        : "border"
+                    )}
+                    style={
+                      item.badge === "Coming soon"
+                        ? { backgroundColor: "rgba(255,255,255,0.06)", color: "var(--it-text-dim)", borderColor: BAR_BORDER }
+                        : { backgroundColor: "rgba(0, 212, 170, 0.125)", color: "var(--it-safeguard)", borderColor: "rgba(0, 212, 170, 0.25)" }
+                    }
+                  >
+                    {item.badge}
+                  </span>
+                )}
+                {item.external && <ExternalLink size={12} strokeWidth={1.5} className="opacity-60" />}
               </span>
+            </span>
+            {item.descriptor && (
+              <span data-dropdown-descriptor className="text-xs" style={{ color: "var(--it-text-muted)" }}>{item.descriptor}</span>
             )}
-            {item.external && <ExternalLink size={12} className="ml-1 opacity-60" />}
           </Link>
         </React.Fragment>
       ))}
@@ -755,9 +781,42 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
                   )}
                 </AnimatePresence>
               </div>
-              <Link href="/case-studies" onClick={onClose} className="text-lg py-3" style={{ color: isActive("/case-studies") ? "var(--it-text-primary)" : "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>Case Studies</Link>
-              <Link href="/resources"   onClick={onClose} className="text-lg py-3" style={{ color: isActive("/resources") ? "var(--it-text-primary)" : "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>Resources</Link>
-              <Link href="/company"     onClick={onClose} className="text-lg py-3" style={{ color: isActive("/company") ? "var(--it-text-primary)" : "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>Company</Link>
+              {/* Resources (includes Case Studies) */}
+              <div>
+                <button type="button" onClick={() => setExpanded(expanded === "resources" ? null : "resources")} className="w-full text-left text-lg py-3 flex items-center justify-between" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>
+                  Resources
+                  <motion.span animate={{ rotate: expanded === "resources" ? 180 : 0 }}><ChevronDown size={20} strokeWidth={1.5} /></motion.span>
+                </button>
+                <AnimatePresence>
+                  {expanded === "resources" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="pl-4 space-y-1 pb-2">
+                        {resourcesDropdownItems.map((item) => (
+                          <Link key={item.href + item.title} href={item.href} onClick={onClose} className="block text-sm py-1.5" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>{item.title}{item.badge ? ` (${item.badge})` : ""}</Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              {/* Company */}
+              <div>
+                <button type="button" onClick={() => setExpanded(expanded === "company" ? null : "company")} className="w-full text-left text-lg py-3 flex items-center justify-between" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>
+                  Company
+                  <motion.span animate={{ rotate: expanded === "company" ? 180 : 0 }}><ChevronDown size={20} strokeWidth={1.5} /></motion.span>
+                </button>
+                <AnimatePresence>
+                  {expanded === "company" && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="pl-4 space-y-1 pb-2">
+                        {companyDropdownItems.map((item) => (
+                          <Link key={item.href + item.title} href={item.href} onClick={onClose} className="block text-sm py-1.5" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>{item.title}{item.badge ? ` (${item.badge})` : ""}</Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </nav>
             <div className="p-6 border-t" style={{ borderColor: "var(--it-border)" }}>
               <Link href="/demo" onClick={onClose} className="flex items-center justify-center gap-2 w-full text-center text-base font-semibold py-3 rounded-lg" style={{ backgroundColor: CTA_BG, color: CTA_TEXT, fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>

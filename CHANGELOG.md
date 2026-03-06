@@ -10,11 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
-## [1.4.8] – 2026-03-05 14:00 UTC
+## [1.4.8] – 2026-03-05 22:15 UTC
 
 ### Summary
 
-Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page with search, filters, and expand-all controls.
+Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page that is easy to scan. Navigation was restructured for clearer information architecture: Case Studies moved under Resources, top-level items gained contextual subtitles, and all mega menus and dropdowns now use consistent card-style layouts with one-line descriptors and unified hover behaviour.
 
 ### Highlights
 
@@ -24,23 +24,32 @@ Improved layout consistency across key pages, refined section styling for a smoo
 - Improved About page timeline and story presentation
 - Updated blog hero typography
 - Refined Contact page CTA styling
-- Changelog page: all releases start collapsed; added Expand all / Collapse all for easier scanning
+- Changelog page: search and filters in sidebar; sticky sidebar while scrolling; collapsed rows show only version, date, and time for faster scanning
+- Changelog page: summary and details appear when you expand a release; optional technical details in a collapsible section
+- Navigation restructure: Case Studies moved into Resources dropdown; top-level nav shows Products, Solutions, Industries, Resources, Company with contextual subtitles when open
+- Solutions mega menu: "Dynamic Safety" renamed to "Safety & Monitoring"; left-border accents (blue, teal, violet) per category
+- Industries mega menu: two-column card grid with one-line descriptors; Charge Depot removed (content merged into Automated Depots); featured card removed; "See all industries" footer
+- Resources and Company dropdowns: one-line descriptors for every item; Case Studies as second item under Resources; Product Docs with divider; Partners and Careers badges (Coming soon / We're hiring)
+- Nav hover consistency: 150ms ease-out, surface-raised background, and description text brightening across all mega menus and dropdowns
 
 ### Added
 
 - **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 documents recommended `variant` (and `alt`) per page type: Homepage, Product pages (SafeGuard, AutoLock), Solution pages (SolutionDetail), About / Our Story, Blog, and Contact. Ensures consistent dark→light→dark rhythm across the site.
 - **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – New component and rollout across pillar and key sub-pages: Products, Solutions, Industries, Resources (including Blog, FAQ, Case Studies, Docs), Company, Contact, Technology, Case Studies, Demo, Accessibility, Careers (and Open Roles). Uses `max-w-screen-2xl`, dark-theme tokens, DM Sans. Blog and FAQ show Resources → Blog / FAQ; product pages show Products → [Product]; careers show Company → Careers → Open Roles where applicable.
+- **Navigation descriptors and structure** (`lib/nav-mega.ts`, `components/site/navbar.tsx`) – One-line descriptors for all Resources and Company dropdown items; Case Studies added to Resources (second item); contextual subtitles under each top-level nav item (e.g. "What we build", "Problems we solve") shown when menu is open; Industries items given descriptors (e.g. "Fleet charging and monitoring for delivery operations"); Military "Defence applications" with Coming soon badge; SimpleDropdown and Industries mega menu render descriptors; mobile drawer Resources and Company expandable with same items.
 
 ### Changed
 
+- **Navbar and nav-mega** (`components/site/navbar.tsx`, `lib/nav-mega.ts`) – Case Studies removed from top-level nav and placed in Resources dropdown. Solutions category "Dynamic Safety" renamed to "Safety & Monitoring"; Solutions accent colours set per column (blue, teal, violet). Industries: Charge Depot removed; "Automated Depot" → "Automated Depots" with descriptor; two-column card grid with left-border accents and descriptors; featured "Operating in extreme environments?" card removed; "See all industries" footer link. Company dropdown: Board & Advisors → `/company/board-advisors`, Investor Relations → `/company/investors`, Partners → `/company/partners` with "Coming soon" badge; all items given descriptors. Products mega: taglines and feature labels aligned to spec (e.g. AutoDuck "Robotic Charging", "Fleet Orchestrat."); 3px left-border accents. All interactive nav items: hover uses `var(--it-surface-raised)`, 150ms ease-out, description text brightens (muted → secondary); no underlines. CaseStudiesDropdown removed. NavMegaKey type no longer includes `case-studies`.
+- **Footer and main nav data** (`lib/nav.ts`) – "Dynamic Safety" → "Safety & Monitoring" in mainNav and footerNav; Case Studies moved under Resources in mainNav; Resources children aligned with nav-mega (Blog & Insights, Case Studies, Whitepapers, etc.).
 - **Homepage** (`app/page.tsx`) – Section rhythm applied: Feature Grid and Tech Overview `light-bg`; Industry Grid dark (`it-section-mid`, no variant); Testimonial and FAQ `dark` (+ `alt` on Testimonial); Stats `light-bg`; CTA Banner unchanged (dark with gradient). Comments aligned to rhythm guide.
 - **Product pages** (`app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`) – Features block wrapped in `<Section variant="light-bg">` with `SectionHeader theme="light"`; Industries Using [X] remains `it-section-mid`; CTA Banner unchanged.
 - **Solution pages** (`components/solution-detail.tsx`) – Key Benefits section uses `<Section variant="light-bg">` and light-theme benefit cards; How It Works remains `it-section-alt`; Related Solutions (Powered By) changed from `it-section-mid` to `it-section-alt`.
 - **About / Our Story** (`app/company/our-story/page.tsx`) – Hero and breadcrumbs use dark tokens and `it-section`; story prose `<Section variant="dark">`; Timeline `<Section variant="light-bg">` with `SectionHeader theme="light"` and light-theme timeline content; CTA Banner unchanged.
 - **Blog** (`app/resources/blog/page.tsx`) – Hero `<Section variant="dark">`; article card grid wrapped in `<Section variant="light-bg">`; hero title font set to DM Sans (no Inter).
 - **Contact** (`app/contact/page.tsx`) – CTA / Schedule section (“Prefer to Talk?”) changed from light to `<Section variant="dark">` with dark text and button styling; Hero and form area unchanged.
-- **Changelog page** (`app/changelog/`, `lib/changelog.ts`, `components/changelog-accordion.tsx`, `changelog-layout.tsx`, `changelog-sidebar.tsx`) – New `/changelog` route: release history parsed from CHANGELOG.md, with search, filter by type (Added/Changed/Fixed), sidebar with filter and related links (Keep a Changelog, Semantic Versioning, Contact, Resources), optional Git push timestamp per version when tag exists, and accordion with all items closed on load plus "Expand all" / "Collapse all" buttons.
-- **PillarHero** (`components/sections/pillar-hero.tsx`) – Optional `primaryCta` / `secondaryCta` and new `compact` prop for minimal heroes (reduced height, no CTA block); new `align` prop (`center` | `left`). Changelog page uses compact hero without CTAs.
+- **Changelog page** (`app/changelog/`, `lib/changelog.ts`, `components/changelog-accordion.tsx`, `changelog-layout.tsx`, `changelog-sidebar.tsx`) – New `/changelog` route: release history parsed from CHANGELOG.md with optional `### Summary` and `### Highlights` for user-facing display. Parser groups changes by area (Homepage, Product Pages, etc.), strips file paths from main view, and collects paths for an optional “Technical details” collapsible. Search and filter by type (Added/Changed/Fixed) live in the sidebar; sidebar is sticky on desktop (`lg:sticky lg:top-24 lg:self-start`). Accordion trigger when closed shows only version, date, and optional Git push time; summary and body (highlights, grouped details, technical) appear in expanded content. Page uses no hero; title block (badge, H1, H2, description) is at top of main column. Section container uses `max-w-screen-2xl mx-auto px-8` to match header width. “Expand all” / “Collapse all” buttons above the list.
+- **PillarHero** (`components/sections/pillar-hero.tsx`) – Optional `primaryCta` / `secondaryCta` and new `compact` prop for minimal heroes (reduced height, no CTA block); new `align` prop (`center` | `left`). Changelog no longer uses PillarHero; title moved into layout.
 - **Footer** (`components/site/footer.tsx`) – Version number (e.g. v1.4.8) now links to `/changelog`; added Changelog link in bottom legal row.
 
 ---

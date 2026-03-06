@@ -150,41 +150,40 @@ function ReleaseCard({ entry }: { entry: ChangelogEntry }) {
           "text-it-text-primary [&[data-state=open]>svg]:rotate-180"
         )}
       >
-        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-1 gap-x-4 text-left">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <span
-              className="inline-flex items-center gap-1.5 font-semibold"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              <Tag className="h-4 w-4 text-it-blue shrink-0" strokeWidth={1.5} />
-              v{entry.version}
-            </span>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-left">
+          <span
+            className="inline-flex items-center gap-1.5 font-semibold"
+            style={{ fontFamily: "var(--font-chakra)" }}
+          >
+            <Tag className="h-4 w-4 text-it-blue shrink-0" strokeWidth={1.5} />
+            v{entry.version}
+          </span>
+          <span
+            className="inline-flex items-center gap-1.5 text-sm text-it-text-muted"
+            style={{ fontFamily: "var(--font-ibm-mono)" }}
+            title="Release date"
+          >
+            <Calendar className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+            {formatDate(entry.date)}
+          </span>
+          {entry.gitPushedAt && (
             <span
               className="inline-flex items-center gap-1.5 text-sm text-it-text-muted"
               style={{ fontFamily: "var(--font-ibm-mono)" }}
-              title="Release date"
+              title="Git push / tag date"
             >
-              <Calendar className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
-              {formatDate(entry.date)}
+              <Clock className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              Pushed {formatDateTime(entry.gitPushedAt)}
             </span>
-            {entry.gitPushedAt && (
-              <span
-                className="inline-flex items-center gap-1.5 text-sm text-it-text-muted"
-                style={{ fontFamily: "var(--font-ibm-mono)" }}
-                title="Git push / tag date"
-              >
-                <Clock className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
-                Pushed {formatDateTime(entry.gitPushedAt)}
-              </span>
-            )}
-          </div>
-          <p className="text-sm text-it-text-secondary font-normal mt-1 sm:mt-0 max-w-2xl" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            {entry.summary}
-          </p>
+          )}
         </div>
       </AccordionTrigger>
       <AccordionContent className="text-it-text-secondary pb-6">
         <div className="space-y-6">
+          {/* Summary (only visible when expanded) */}
+          <p className="text-sm text-it-text-primary font-normal max-w-2xl" style={{ fontFamily: "var(--font-dm-sans)" }}>
+            {entry.summary}
+          </p>
           {/* Highlights */}
           {entry.highlights && entry.highlights.length > 0 && (
             <div>
