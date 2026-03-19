@@ -62,49 +62,49 @@ export function Navbar() {
   const closeMenus = () => setOpenMenu(null)
   const toggleMenu = (key: NavMegaKey) => setOpenMenu((prev) => (prev === key ? null : key))
 
-  // Delay before closing so the cursor has time to move from nav into the dropdown (generous for diagonal movement)
+  // Delay before closing so the cursor has time to move from nav into the dropdown.
+  // We use hover enter/leave tracking instead of global bounding-rect hit-testing, which can be flaky during transitions.
   const DROPDOWN_CLOSE_DELAY_MS = 500
-  const DROPDOWN_HOVER_BUFFER_PX = 64
+  const hoverNavRef = React.useRef(false)
+  const hoverPanelRef = React.useRef(false)
+
+  const cancelScheduledClose = React.useCallback(() => {
+    if (!closeTimeoutRef.current) return
+    clearTimeout(closeTimeoutRef.current)
+    closeTimeoutRef.current = null
+  }, [])
+
+  const scheduleClose = React.useCallback(() => {
+    cancelScheduledClose()
+    closeTimeoutRef.current = setTimeout(() => {
+      closeTimeoutRef.current = null
+      if (!hoverNavRef.current && !hoverPanelRef.current) setOpenMenu(null)
+    }, DROPDOWN_CLOSE_DELAY_MS)
+  }, [cancelScheduledClose])
+
+  const handleNavMouseEnter = React.useCallback(() => {
+    hoverNavRef.current = true
+    cancelScheduledClose()
+  }, [cancelScheduledClose])
+
+  const handleNavMouseLeave = React.useCallback(() => {
+    hoverNavRef.current = false
+    scheduleClose()
+  }, [scheduleClose])
+
+  const handlePanelMouseEnter = React.useCallback(() => {
+    hoverPanelRef.current = true
+    cancelScheduledClose()
+  }, [cancelScheduledClose])
+
+  const handlePanelMouseLeave = React.useCallback(() => {
+    hoverPanelRef.current = false
+    scheduleClose()
+  }, [scheduleClose])
 
   React.useEffect(() => {
-    if (!openMenu) return
-
-    const handleMouseMove = (event: MouseEvent) => {
-      const x = event.clientX
-      const y = event.clientY
-      const buffer = DROPDOWN_HOVER_BUFFER_PX
-
-      const withinRect = (rect: DOMRect) =>
-        x >= rect.left - buffer && x <= rect.right + buffer &&
-        y >= rect.top - buffer && y <= rect.bottom + buffer
-
-      const inNav = navRegionRef.current && withinRect(navRegionRef.current.getBoundingClientRect())
-      const inDropdown = dropdownPanelRef.current && withinRect(dropdownPanelRef.current.getBoundingClientRect())
-
-      if (inNav || inDropdown) {
-        if (closeTimeoutRef.current) {
-          clearTimeout(closeTimeoutRef.current)
-          closeTimeoutRef.current = null
-        }
-        return
-      }
-
-      if (closeTimeoutRef.current) return
-      closeTimeoutRef.current = setTimeout(() => {
-        closeTimeoutRef.current = null
-        setOpenMenu(null)
-      }, DROPDOWN_CLOSE_DELAY_MS)
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current)
-        closeTimeoutRef.current = null
-      }
-    }
-  }, [openMenu])
+    return () => cancelScheduledClose()
+  }, [cancelScheduledClose])
 
   return (
     <>
@@ -126,6 +126,8 @@ export function Navbar() {
         <div
           ref={navRegionRef}
           className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-between"
+          onMouseEnter={handleNavMouseEnter}
+          onMouseLeave={handleNavMouseLeave}
         >
 
           {/* ── Logo ──────────────────────────────────────────── */}
@@ -265,10 +267,26 @@ export function Navbar() {
                   {/* ── Simple dropdowns anchored to their own button ── */}
                   <AnimatePresence>
                     {isOpen && simpleDrop && item.key === "resources" && (
-                      <SimpleDropdown ref={dropdownPanelRef} items={resourcesDropdownItems} width={320} align="left" onClose={closeMenus} />
+                      <SimpleDropdown
+                        ref={dropdownPanelRef}
+                        items={resourcesDropdownItems}
+                        width={320}
+                        align="left"
+                        onClose={closeMenus}
+                        onHoverStart={handlePanelMouseEnter}
+                        onHoverEnd={handlePanelMouseLeave}
+                      />
                     )}
                     {isOpen && simpleDrop && item.key === "company" && (
-                      <SimpleDropdown ref={dropdownPanelRef} items={companyDropdownItems} width={320} align="left" onClose={closeMenus} />
+                      <SimpleDropdown
+                        ref={dropdownPanelRef}
+                        items={companyDropdownItems}
+                        width={320}
+                        align="left"
+                        onClose={closeMenus}
+                        onHoverStart={handlePanelMouseEnter}
+                        onHoverEnd={handlePanelMouseLeave}
+                      />
                     )}
                   </AnimatePresence>
                 </div>
@@ -337,9 +355,33 @@ export function Navbar() {
 
         {/* ── Full-width mega menus (Products / Solutions / Industries) ── */}
         <AnimatePresence>
-          {openMenu === "products"   && isMega("products")   && <ProductsMegaMenu   ref={dropdownPanelRef} key="products"   onClose={closeMenus} />}
-          {openMenu === "solutions"  && isMega("solutions")  && <SolutionsMegaMenu  ref={dropdownPanelRef} key="solutions"  onClose={closeMenus} />}
-          {openMenu === "industries" && isMega("industries") && <IndustriesMegaMenu ref={dropdownPanelRef} key="industries" onClose={closeMenus} />}
+          {openMenu === "products"   && isMega("products")   && (
+            <ProductsMegaMenu
+              ref={dropdownPanelRef}
+              key="products"
+              onClose={closeMenus}
+              onHoverStart={handlePanelMouseEnter}
+              onHoverEnd={handlePanelMouseLeave}
+            />
+          )}
+          {openMenu === "solutions"  && isMega("solutions")  && (
+            <SolutionsMegaMenu
+              ref={dropdownPanelRef}
+              key="solutions"
+              onClose={closeMenus}
+              onHoverStart={handlePanelMouseEnter}
+              onHoverEnd={handlePanelMouseLeave}
+            />
+          )}
+          {openMenu === "industries" && isMega("industries") && (
+            <IndustriesMegaMenu
+              ref={dropdownPanelRef}
+              key="industries"
+              onClose={closeMenus}
+              onHoverStart={handlePanelMouseEnter}
+              onHoverEnd={handlePanelMouseLeave}
+            />
+          )}
         </AnimatePresence>
       </motion.header>
 
@@ -369,12 +411,17 @@ export function Navbar() {
 // Mega menu panels (full-width, anchored to header bottom)
 // ─────────────────────────────────────────────────────────────
 
-const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function ProductsMegaMenu({ onClose }, ref) {
+const ProductsMegaMenu = React.forwardRef<
+  HTMLDivElement,
+  { onClose: () => void; onHoverStart: () => void; onHoverEnd: () => void }
+>(function ProductsMegaMenu({ onClose, onHoverStart, onHoverEnd }, ref) {
   return (
     <motion.div
       ref={ref}
       className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
       style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -444,12 +491,17 @@ const ProductsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void 
   )
 })
 
-const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function SolutionsMegaMenu({ onClose }, ref) {
+const SolutionsMegaMenu = React.forwardRef<
+  HTMLDivElement,
+  { onClose: () => void; onHoverStart: () => void; onHoverEnd: () => void }
+>(function SolutionsMegaMenu({ onClose, onHoverStart, onHoverEnd }, ref) {
   return (
     <motion.div
       ref={ref}
       className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
       style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -522,7 +574,10 @@ const SolutionsMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void
 
 const INDUSTRIES_AMBER = "var(--it-industries)"
 
-const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => void }>(function IndustriesMegaMenu({ onClose }, ref) {
+const IndustriesMegaMenu = React.forwardRef<
+  HTMLDivElement,
+  { onClose: () => void; onHoverStart: () => void; onHoverEnd: () => void }
+>(function IndustriesMegaMenu({ onClose, onHoverStart, onHoverEnd }, ref) {
   const leftColumn = industriesMegaItems.filter((_, i) => i % 2 === 0)
   const rightColumn = industriesMegaItems.filter((_, i) => i % 2 === 1)
   const renderIndustryCard = (item: (typeof industriesMegaItems)[0]) => (
@@ -585,6 +640,8 @@ const IndustriesMegaMenu = React.forwardRef<HTMLDivElement, { onClose: () => voi
       ref={ref}
       className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
       style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -626,12 +683,16 @@ const SimpleDropdown = React.forwardRef<HTMLDivElement, {
   width: number
   align?: "left" | "right"
   onClose: () => void
-}>(function SimpleDropdown({ items, width, align = "left", onClose }, ref) {
+  onHoverStart: () => void
+  onHoverEnd: () => void
+}>(function SimpleDropdown({ items, width, align = "left", onClose, onHoverStart, onHoverEnd }, ref) {
   return (
     <motion.div
       ref={ref}
-      className={cn("absolute top-full z-50 mt-1 rounded-lg border border-[var(--it-border)] py-2 backdrop-blur-sm", align === "right" ? "right-0" : "left-0")}
+      className={cn("absolute top-full z-50 mt-1 rounded-none border border-[var(--it-border)] py-2 backdrop-blur-sm", align === "right" ? "right-0" : "left-0")}
       style={{ backgroundColor: "#0d1526", width, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       initial={{ opacity: 0, y: -4 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -4 }}

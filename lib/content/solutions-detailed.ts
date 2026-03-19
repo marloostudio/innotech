@@ -35,7 +35,7 @@ export const solutions: Solution[] = [
     ],
     howItWorks: [
       "Vehicle autonomously navigates to charging station",
-      "AutoLock system authenticates and identifies vehicle",
+      "AutoDuck system authenticates and identifies vehicle",
       "Robotic arm precisely connects charging cable",
       "Charging session managed by fleet orchestration platform",
       "Vehicle released when charging complete or needed for mission"
@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
       "Maximize fleet utilization and uptime",
       "Support mixed vehicle types and charging standards"
     ],
-    relatedProducts: ["AutoLock", "FleetCommander"],
+    relatedProducts: ["AutoDuck", "FleetCommander"],
     icon: "plug"
   },
   {
@@ -75,7 +75,7 @@ export const solutions: Solution[] = [
       "Support vehicles with varied connector locations",
       "Enable overnight unattended charging operations"
     ],
-    relatedProducts: ["AutoLock"],
+    relatedProducts: ["AutoDuck"],
     icon: "truck"
   },
   {
@@ -104,7 +104,7 @@ export const solutions: Solution[] = [
       "Support heterogeneous robot fleets",
       "Reduce facility power infrastructure costs"
     ],
-    relatedProducts: ["AutoLock", "RADARLink"],
+    relatedProducts: ["AutoDuck", "RADARLink"],
     icon: "bot"
   },
 
@@ -253,7 +253,7 @@ export const solutions: Solution[] = [
       "Improve facility throughput",
       "Provide operational visibility and control"
     ],
-    relatedProducts: ["RADARLink", "AutoLock"],
+    relatedProducts: ["RADARLink", "AutoDuck"],
     icon: "building"
   },
   {

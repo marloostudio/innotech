@@ -16,7 +16,7 @@ export function Footer() {
         {/* Row 1 — 1/3 InnoTech + 2/3 links (2 rows × 3 cols) */}
         <div className="py-12 border-b border-it-border">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-            {/* 1/3 — logo, tagline, address, email */}
+            {/* 1/3 — logo, tagline, address, email, social */}
             <div className="lg:w-1/3 min-w-0 text-sm space-y-1" style={{ color: 'var(--it-text-secondary)' }}>
               <Link href="/" className="font-bold text-xl block" style={{ color: 'var(--it-text-primary)' }}>
                 {siteConfig.name}
@@ -34,30 +34,8 @@ export function Footer() {
                   {siteConfig.company.email}
                 </a>
               </p>
-            </div>
-            {/* 2/3 — links in 2 rows × 3 columns */}
-            <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-8 sm:gap-x-10">
-              {footerNav.map((section) => (
-                <div key={section.title} className="space-y-3">
-                  <h3 className="font-semibold text-base" style={{ color: 'var(--it-text-primary)' }}>{section.title}</h3>
-                  <ul className="space-y-2">
-                    {section.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className="text-sm transition-colors duration-150"
-                          style={{ color: 'var(--it-text-muted)' }}
-                          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--it-text-primary)' }}
-                          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--it-text-muted)' }}
-                        >
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <div className="space-y-3">
+
+              <div className="space-y-3 pt-2 lg:pt-8">
                 <h3 className="font-semibold text-base" style={{ color: 'var(--it-text-primary)' }}>Follow</h3>
                 <div className="flex items-center gap-3">
                   <Link
@@ -82,6 +60,29 @@ export function Footer() {
                   </Link>
                 </div>
               </div>
+            </div>
+            {/* 2/3 — links in 2 rows × 3 columns */}
+            <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-8 sm:gap-x-10">
+              {footerNav.map((section) => (
+                <div key={section.title} className="space-y-3">
+                  <h3 className="font-semibold text-base" style={{ color: 'var(--it-text-primary)' }}>{section.title}</h3>
+                  <ul className="space-y-2">
+                    {section.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="text-sm transition-colors duration-150"
+                          style={{ color: 'var(--it-text-muted)' }}
+                          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--it-text-primary)' }}
+                          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--it-text-muted)' }}
+                        >
+                          {item.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </div>

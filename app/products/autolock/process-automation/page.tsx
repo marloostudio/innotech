@@ -13,7 +13,7 @@ export default function ProcessAutomationPage() {
   return (
     <ProductFeatureDetail
       feature={feature}
-      productName="AutoLock"
+      productName="AutoDuck"
       productSlug="autolock"
     />
   )

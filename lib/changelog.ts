@@ -50,7 +50,13 @@ function getGitTagDate(version: string, cwd: string): string | undefined {
   }
 }
 
-const RELEASE_HEADER = /^## \[([^\]]+)\]\s*[–-]\s*(\d{4}-\d{2}-\d{2})/gm
+// Release header examples:
+// - ## [1.4.8] – 2026-03-05 22:15 UTC
+// - ## [1.4.7] – 2026-03-05
+//
+// We capture optional time + timezone so the UI can show the intended timestamp
+// even when no git tag exists for the version.
+const RELEASE_HEADER = /^## \[([^\]]+)\]\s*[–-]\s*(\d{4}-\d{2}-\d{2})(?:\s+(\d{2}:\d{2})\s+([A-Z]{2,5}))?/gm
 const SECTION_HEADER = /^### (Added|Changed|Fixed)\s*$/m
 
 /** Extract area from bold lead e.g. "**Homepage**" or "**Product pages**" */
@@ -198,14 +204,28 @@ function parseChangelogMarkdown(content: string): ChangelogEntry[] {
     linkRefLineIndex === -1 ? raw : lines.slice(0, linkRefLineIndex).join("\n")
 
   RELEASE_HEADER.lastIndex = 0
-  const blocks: { version: string; date: string; start: number; end: number }[] = []
+  const blocks: {
+    version: string
+    date: string
+    time?: string
+    tz?: string
+    start: number
+    end: number
+  }[] = []
 
   const allMatches = [...body.matchAll(RELEASE_HEADER)]
   for (let i = 0; i < allMatches.length; i++) {
     const m = allMatches[i]
     const start = m.index! + m[0].length
     const end = i + 1 < allMatches.length ? allMatches[i + 1].index! : body.length
-    blocks.push({ version: m[1], date: m[2], start, end })
+    blocks.push({
+      version: m[1],
+      date: m[2],
+      time: m[3],
+      tz: m[4],
+      start,
+      end,
+    })
   }
 
   for (const block of blocks) {
@@ -263,6 +283,12 @@ function parseChangelogMarkdown(content: string): ChangelogEntry[] {
     }
 
     const parsed = buildParsed({ added, changed, fixed })
+    let gitPushedAt: string | undefined
+    // If the changelog header includes an explicit UTC timestamp, use it as the
+    // "Pushed" timestamp for UI display.
+    if (block.time && block.tz && block.tz.toUpperCase() === "UTC") {
+      gitPushedAt = new Date(`${block.date}T${block.time}:00Z`).toISOString()
+    }
     const entry: ChangelogEntry = {
       version: block.version,
       date: block.date,
@@ -272,6 +298,7 @@ function parseChangelogMarkdown(content: string): ChangelogEntry[] {
       changed,
       fixed,
       parsed,
+      gitPushedAt,
     }
     entries.push(entry)
   }

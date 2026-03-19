@@ -8,7 +8,7 @@ This document describes the current design system: tokens, typography, colours, 
 
 - **Dark-first:** The site is dark-themed only. Base background is a deep navy; no white or light page backgrounds except for intentional contrast (e.g. some sections, contact form, legal pages).
 - **Token-driven:** All colours, spacing, and typography use CSS variables. No raw hex or magic numbers in components.
-- **Product-aligned:** Brand blue (RADARLink), teal (SafeGuard), orange (AutoLock), violet (Solutions), amber (Industries) are used for accents, borders, and hero tints.
+- **Product-aligned:** Brand blue (RADARLink), teal (SafeGuard), orange (AutoDuck), violet (Solutions), amber (Industries) are used for accents, borders, and hero tints.
 - **Accessible:** Focus rings use brand blue; contrast levels are chosen for readability on dark and light surfaces.
 
 ---
@@ -81,7 +81,7 @@ All values live in `:root` in `app/globals.css`.
 | `--it-blue-border` | `rgba(77,159,255,0.25)` | Blue borders |
 | `--it-blue-glow`   | `rgba(77,159,255,0.2)`  | Glow effects |
 | `--it-safeguard`   | `#00d4aa`     | SafeGuard (teal) |
-| `--it-autolock`    | `#ff6b35`     | AutoLock (orange) |
+| `--it-autolock`    | `#ff6b35`     | AutoDuck (orange) |
 | `--it-solutions`   | `#b47dff`     | Solutions (violet) |
 | `--it-industries`  | `#f59e0b`     | Industries (amber) |
 
@@ -154,7 +154,7 @@ Defined in `globals.css`; use as `background: var(--token)`.
 | `--it-hero-gradient`   | Default hero (blue radial + navy gradient) |
 | `--it-hero-gradient-light` | Light-theme hero |
 | `--it-hero-safeguard`  | SafeGuard product hero tint |
-| `--it-hero-autolock`   | AutoLock product hero tint |
+| `--it-hero-autolock`   | AutoDuck product hero tint |
 | `--it-hero-solutions`  | Solutions hero tint |
 
 ---
@@ -241,7 +241,7 @@ Use this as the reference when setting `variant` (and where applicable `alt`) on
 | CTA Banner    | dark with gradient (`it-cta-banner`) |
 | Footer        | dark (keep as-is) |
 
-**Product pages** (SafeGuard, AutoLock — `app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`)
+**Product pages** (SafeGuard, AutoDuck — `app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`)
 
 | Section              | Variant / treatment |
 |----------------------|----------------------|

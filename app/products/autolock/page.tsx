@@ -12,11 +12,11 @@ import { autolockProduct, autolockFeatures } from '@/lib/content/autolock'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'AutoLock — Autonomous Charging and Fleet Orchestration',
+  title: 'AutoDuck — Autonomous Charging and Fleet Orchestration',
   description: 'Robotic charging, intelligent fleet scheduling, and depot automation for the future of mobility.'
 }
 
-export default function AutoLockPage() {
+export default function AutoDuckPage() {
   const getIcon = (iconName: string) => {
     const iconMap: Record<string, LucideIcons.LucideIcon> = {
       'plug': LucideIcons.Plug,
@@ -29,7 +29,7 @@ export default function AutoLockPage() {
 
   return (
     <>
-      <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "AutoLock" }]} />
+      <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "AutoDuck" }]} />
       {/* Hero Section — two-column with 16/9 placeholder on right */}
       <section className="it-hero-solutions py-20 lg:py-28">
         <div className="container mx-auto px-4">
@@ -57,8 +57,8 @@ export default function AutoLockPage() {
             <div className="w-full">
               <ImagePlaceholder
                 aspectRatio="16/9"
-                alt="AutoLock Product Hero"
-                label="AutoLock Product Hero"
+                alt="AutoDuck Product Hero"
+                label="AutoDuck Product Hero"
               />
             </div>
           </div>
@@ -84,8 +84,8 @@ export default function AutoLockPage() {
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`AutoLock — ${feature.name}`}
-                        label={`AutoLock — ${feature.name}`}
+                        alt={`AutoDuck — ${feature.name}`}
+                        label={`AutoDuck — ${feature.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -122,8 +122,8 @@ export default function AutoLockPage() {
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`AutoLock — ${feature.name}`}
-                        label={`AutoLock — ${feature.name}`}
+                        alt={`AutoDuck — ${feature.name}`}
+                        label={`AutoDuck — ${feature.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -136,13 +136,13 @@ export default function AutoLockPage() {
         </div>
       </Section>
 
-      {/* Industries Using AutoLock → dark (it-section-mid) */}
+      {/* Industries Using AutoDuck → dark (it-section-mid) */}
       <section className="it-section-mid py-20 lg:py-28">
         <PageShell>
           <SectionHeader
             label="Applications"
-            title="Industries Using AutoLock"
-            description="From autonomous vehicles to commercial fleets, AutoLock powers the future of mobility"
+            title="Industries Using AutoDuck"
+            description="From autonomous vehicles to commercial fleets, AutoDuck powers the future of mobility"
           />
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -164,7 +164,7 @@ export default function AutoLockPage() {
       {/* CTA Section */}
       <CtaBanner
         title="Ready to Automate Your Fleet Charging?"
-        description="See how AutoLock can transform your operations with fully autonomous charging and orchestration"
+        description="See how AutoDuck can transform your operations with fully autonomous charging and orchestration"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
       />

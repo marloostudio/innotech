@@ -11,11 +11,11 @@ export interface ProductFeature {
 }
 
 export const autolockProduct = {
-  name: "AutoLock",
+  name: "AutoDuck",
   tagline: "Autonomous Charging and Fleet Orchestration",
-  description: "AutoLock delivers fully automated EV charging and fleet management for autonomous vehicles, commercial fleets, and mobile robots. No human intervention required.",
+  description: "AutoDuck delivers fully automated EV charging and fleet management for autonomous vehicles, commercial fleets, and mobile robots. No human intervention required.",
   hero: {
-    title: "AutoLock",
+    title: "AutoDuck",
     subtitle: "Autonomous Charging and Fleet Orchestration",
     description: "Robotic charging, intelligent fleet scheduling, and depot automation for the future of mobility"
   }

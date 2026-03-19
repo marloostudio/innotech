@@ -325,7 +325,7 @@ Innotech/
 - **Scroll**: Idle `backgroundColor: rgba(7,12,24,0.35)`; scrolled `rgba(7,12,24,0.94)`, border, `backdropFilter: blur(10px)`. Height animates 64px → 56px on scroll.
 - **Colours**: Navbar uses constants and CSS variables: link colour `rgba(255,255,255,0.72)` / hover `rgba(255,255,255,1)`, underline `var(--it-blue)`, bar `var(--it-border)`, panel `var(--it-surface)`, CTA `var(--it-blue)` / `var(--it-blue-hover)` / `var(--it-bg)`.
 - **Top-level**: Home, Products, Solutions, Industries, Case Studies, Resources, Company; Contact link and "Book a Demo" (→ `/demo`).
-- **Mega menus**: Products (SafeGuard, AutoLock, Radar Link), Solutions (categories), Industries (with Charge Depot sub-item; Military coming soon).
+- **Mega menus**: Products (SafeGuard, AutoDuck, Radar Link), Solutions (categories), Industries (with Charge Depot sub-item; Military coming soon).
 - **Dropdowns**: Case Studies, Resources, Company.
 - **Mobile**: Hamburger opens drawer with full nav and "Book a Demo".
 - **Fonts**: Chakra Petch (logo), DM Sans (links, CTAs), IBM Plex Mono (product CTA labels in mega).
@@ -365,7 +365,7 @@ All planned areas have corresponding routes:
 | Use | Avoid |
 |-----|--------|
 | SafeGuard (safety monitoring) | — |
-| AutoLock (autonomous charging + fleet) | — |
+| AutoDuck (autonomous charging + fleet) | — |
 | Radar Link (V2X + localization + drone tracking) | — |
 | autonomous charging | automated charging |
 | Congregate Detection | Congreagate / Congregate as product name |

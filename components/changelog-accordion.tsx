@@ -40,22 +40,25 @@ const AREA_ORDER = [
 ]
 
 function formatDate(iso: string): string {
-  const d = new Date(iso + "T00:00:00")
+  const d = new Date(iso + "T00:00:00Z")
   return d.toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
+    timeZone: "UTC",
   })
 }
 
 function formatDateTime(iso: string): string {
   const d = new Date(iso)
-  return d.toLocaleDateString("en-GB", {
+  return d.toLocaleString("en-GB", {
+    timeZone: "UTC",
     day: "numeric",
     month: "short",
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    hour12: false,
   })
 }
 

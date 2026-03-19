@@ -143,7 +143,7 @@ export const faqItems = [
   },
   {
     question: "What kind of training and support do you provide?",
-    answer: "We offer comprehensive onboarding including on-site training, detailed documentation, and ongoing support. Our global support team is available 24/7 to ensure optimal system performance. We also provide regular software updates and continuous improvement recommendations."
+    answer: "We offer comprehensive onboarding including on-site training, detailed documentation, and ongoing support."
   },
   {
     question: "How do you ensure safety in human-robot collaboration?",

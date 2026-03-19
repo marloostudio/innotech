@@ -10,19 +10,71 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [1.5] – 2026-03-19 03:02 UTC
+
+### Summary
+Improved navigation usability and page-section rhythm across the site, alongside refined AutoDuck/SafeGuard/RADARLink product copy and clearer onboarding/support messaging, plus an updated `/products` hero layout with a more reliable full-height image panel.
+
+### Highlights
+- Updated AutoDuck naming and CTA copy across navigation and product pages
+- Refreshed SafeGuard wording and RADARLink labels for clearer product messaging
+- Added “24/7 365” depot automation label in AutoDuck feature copy
+- Improved mega menu and dropdown usability with clearer panel boundaries, anchored navbar subtitles, and more reliable hover stability
+- Updated the `/products` hero with a full-height/full-width right image panel and refined top spacing for the hero text
+- Refined footer "Follow" social block spacing for improved row alignment
+- Rolled out consistent breadcrumbs and one-line navigation descriptors across key pages
+- Applied section rhythm (light/dark variants) across homepage, products, solutions, About, Blog, and Contact, including cleaned-up `/products` grid backgrounds and card/button hover polish
+- Enhanced the `/changelog` release history experience with UTC timestamp rendering
+- Updated the Home FAQ onboarding answer for clearer training and support
+
+### Added
+- **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 guidance for recommended section `variant`/`alt` per page type.
+- **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – Added breadcrumb navigation across Products, Solutions, Industries, Resources, Company, and Contact.
+- **Navigation descriptors and structure** (`lib/nav-mega.ts`, `components/site/navbar.tsx`) – Added one-line dropdown descriptors and contextual subtitles (including moving Case Studies under Resources).
+- **/changelog release history page** (`app/changelog/`) – Added searchable, accordion-based release history for easier browsing of updates.
+- **Product pages** (`components/sections/products-hero-image-slider.tsx`, `public/images/products/hero/`) – Added products hero media assets and a dot-only slider component for future hero variations.
+
+### Changed
+- **AutoDuck product naming + CTAs** – Renamed AutoLock to AutoDuck across product navigation and site copy; updated “Talk to an Engineer” → “Talk to our experts” (`app/products/page.tsx`, `app/products/autolock/*`, `app/demo/page.tsx`, `lib/content/autolock.ts`).
+- **AutoDuck naming across site content** – Replaced AutoLock references with AutoDuck in case studies, investor copy, legal trademarks, whitepapers, and product feature detail pages (`app/case-studies/page.tsx`, `app/company/investors/page.tsx`, `app/legal/terms/page.tsx`, `app/resources/whitepapers/page.tsx`, `app/products/autolock/access-control/page.tsx`, `app/products/autolock/autonomous-charging/page.tsx`, `app/products/autolock/fleet-orchestration/page.tsx`, `app/products/autolock/process-automation/page.tsx`).
+- **SafeGuard feature wording** – Replaced “Real-time threat detection” with “Real-time hazard detection” in product copy (`app/products/page.tsx`, `lib/content/safeguard.ts`, `app/products/safeguard/page.tsx`).
+- **RADARLink and industry content** – Updated “V2V and V2I communication” → “V2V and V2X communication” (`app/products/page.tsx`, `lib/content/industries-detailed.ts`).
+- **Solutions detail copy updates** – Updated how-it-works and related product lists to reference AutoDuck instead of AutoLock (`lib/content/solutions-detailed.ts`).
+- **AutoDuck feature detail labels** – Added “24/7 365” to the depot automation feature label on the Products page (`app/products/page.tsx`).
+- **Products page section messaging** – Updated Integrated Platform, Scalable Solutions, and Enterprise Grade copy blocks on `/products` (`app/products/page.tsx`).
+- **Product pages** – Refined the `/products` grid section styling with a true white (`light-bg`) background and subtle card shadow + hover-shadow feedback, including consistent hover for the primary “Compare Product Lines” CTA (`app/products/page.tsx`).
+- **SEO and metadata wording** – Updated site description/keywords to focus on AMRs and industrial robots (`app/layout.tsx`, `lib/site.ts`).
+- **Changelog timestamp formatting** – Updated changelog UI formatting and parsing so timestamps render in UTC consistently (`components/changelog-accordion.tsx`, `lib/changelog.ts`).
+- **Navbar mega menu and dropdown boundaries** (`components/site/navbar.tsx`) – Visible boundary for all dropdown panels: full border using `var(--it-border)`, strong bottom shadow (`0 8px 32px rgba(0,0,0,0.5)`), background `#0d1526`, and `backdrop-blur-sm`. Mega menus (Products, Solutions, Industries) also have a subtle top-edge highlight (1px `rgba(77, 159, 255, 0.15)`). Simple dropdowns (Resources, Company) use the same border, shadow, background, and backdrop. Replaces previous `border-t-2` / PANEL_BG styling.
+- **Product pages** – Updated the `/products` hero image panel to be full-height/full-width with improved alignment and top spacing (`app/products/page.tsx`).
+- **Homepage** – Applied section rhythm variants and removed legacy Testimonial and Performance Metrics sections from the home page to improve content focus and scannable flow (`app/page.tsx`).
+- **Design tokens** – Increased global font sizing for section ribbon/pill badges via the `it-ribbon-badge` utility so labels read more clearly across the site (`app/globals.css`, `components/section-header.tsx`, `app/resources/blog/page.tsx`).
+- **Navigation restructure and dropdown descriptors** (`lib/nav-mega.ts`, `lib/nav.ts`) – Moved Case Studies under Resources and standardized one-line descriptors across Resources and Company dropdowns.
+- **Section rhythm across key pages** (`app/page.tsx`, `app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`, `components/solution-detail.tsx`, `app/company/our-story/page.tsx`, `app/resources/blog/page.tsx`, `app/contact/page.tsx`) – Applied light/dark section variants consistently across main content blocks for improved contrast and flow.
+- **Home FAQ onboarding answer** (`lib/content/home.ts`) – Updated the training and support answer to clarify on-site training, detailed documentation, and ongoing support.
+- **Blog hero typography and Contact CTA readability** (`app/resources/blog/page.tsx`, `app/contact/page.tsx`) – Refined blog hero typography and updated the “Prefer to Talk?” section styling for clearer readability.
+
+### Fixed
+
+- **Navbar subtitle layout shift** (`components/site/navbar.tsx`) – Anchored navbar subtitles in a fixed-height container so labels don’t jump on hover.
+- **Navbar mega menu hover stability** (`components/site/navbar.tsx`) – Prevented mega menu panels from closing randomly while moving the cursor across panel options.
+- **Footer** (`components/site/footer.tsx`) – Refined spacing/vertical rhythm for the footer “Follow” social block so it aligns with other footer column headings.
+- **Products** (`app/products/page.tsx`) – Simplified `/products` hero media rendering so the right image reliably fills the column (static full-height image panel).
+- **Blog** – Updated Tailwind arbitrary shadow class formatting on the Blog page to avoid lint warnings while preserving existing visuals (`app/resources/blog/page.tsx`).
+
 ## [1.4.8] – 2026-03-05 22:15 UTC
 
 ### Summary
 
-Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page that is easy to scan. Navigation was restructured for clearer information architecture: Case Studies moved under Resources, top-level items gained contextual subtitles, and all mega menus and dropdowns now use consistent card-style layouts with one-line descriptors and unified hover behaviour. Mega menu and dropdown panels now have a clearer visual boundary so they read as floating panels above the page.
+Improved layout consistency across key pages, refined section styling for a smoother visual flow, and added a dedicated changelog page that is easy to scan. Navigation was restructured for clearer information architecture: Case Studies moved under Resources, top-level items gained contextual subtitles, and all mega menus and dropdowns now use consistent card-style layouts with one-line descriptors and unified hover behaviour.
 
 ### Highlights
 
 - Added a new design rhythm guide for page section flow
 - Refined homepage section balance across light and dark backgrounds
+- Updated blog hero typography
 - Updated product and solution page layout consistency
 - Improved About page timeline and story presentation
-- Updated blog hero typography
 - Refined Contact page CTA styling
 - Changelog page: search and filters in sidebar; sticky sidebar while scrolling; collapsed rows show only version, date, and time for faster scanning
 - Changelog page: summary and details appear when you expand a release; optional technical details in a collapsible section
@@ -32,11 +84,10 @@ Improved layout consistency across key pages, refined section styling for a smoo
 - Resources and Company dropdowns: one-line descriptors for every item; Case Studies as second item under Resources; Product Docs with divider; Partners and Careers badges (Coming soon / We're hiring)
 - Nav hover consistency: 150ms ease-out, surface-raised background, and description text brightening across all mega menus and dropdowns
 - Navbar subtitle no longer shifts layout on hover: fixed-height container and opacity/transform reveal so labels stay anchored
-- Mega menus and dropdowns: stronger border, shadow, and subtle backdrop so panels are clearly separated from page content
 
 ### Added
 
-- **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 documents recommended `variant` (and `alt`) per page type: Homepage, Product pages (SafeGuard, AutoLock), Solution pages (SolutionDetail), About / Our Story, Blog, and Contact. Ensures consistent dark→light→dark rhythm across the site.
+- **Page-Level Section Rhythm Guide** (`docs/DESIGN_STYLE.md`) – New Section 10 documents recommended `variant` (and `alt`) per page type: Homepage, Product pages (SafeGuard, AutoDuck), Solution pages (SolutionDetail), About / Our Story, Blog, and Contact. Ensures consistent dark→light→dark rhythm across the site.
 - **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – New component and rollout across pillar and key sub-pages: Products, Solutions, Industries, Resources (including Blog, FAQ, Case Studies, Docs), Company, Contact, Technology, Case Studies, Demo, Accessibility, Careers (and Open Roles). Uses `max-w-screen-2xl`, dark-theme tokens, DM Sans. Blog and FAQ show Resources → Blog / FAQ; product pages show Products → [Product]; careers show Company → Careers → Open Roles where applicable.
 - **Navigation descriptors and structure** (`lib/nav-mega.ts`, `components/site/navbar.tsx`) – One-line descriptors for all Resources and Company dropdown items; Case Studies added to Resources (second item); contextual subtitles under each top-level nav item (e.g. "What we build", "Problems we solve") shown when menu is open; Industries items given descriptors (e.g. "Fleet charging and monitoring for delivery operations"); Military "Defence applications" with Coming soon badge; SimpleDropdown and Industries mega menu render descriptors; mobile drawer Resources and Company expandable with same items.
 
@@ -46,7 +97,6 @@ Improved layout consistency across key pages, refined section styling for a smoo
 
 ### Changed
 
-- **Navbar mega menu and dropdown boundaries** (`components/site/navbar.tsx`) – Visible boundary for all dropdown panels: full border using `var(--it-border)`, strong bottom shadow (`0 8px 32px rgba(0,0,0,0.5)`), background `#0d1526`, and `backdrop-blur-sm`. Mega menus (Products, Solutions, Industries) also have a subtle top-edge highlight (1px `rgba(77, 159, 255, 0.15)`). Simple dropdowns (Resources, Company) use the same border, shadow, background, and backdrop. Replaces previous `border-t-2` / PANEL_BG styling.
 - **Navbar and nav-mega** (`components/site/navbar.tsx`, `lib/nav-mega.ts`) – Case Studies removed from top-level nav and placed in Resources dropdown. Solutions category "Dynamic Safety" renamed to "Safety & Monitoring"; Solutions accent colours set per column (blue, teal, violet). Industries: Charge Depot removed; "Automated Depot" → "Automated Depots" with descriptor; two-column card grid with left-border accents and descriptors; featured "Operating in extreme environments?" card removed; "See all industries" footer link. Company dropdown: Board & Advisors → `/company/board-advisors`, Investor Relations → `/company/investors`, Partners → `/company/partners` with "Coming soon" badge; all items given descriptors. Products mega: taglines and feature labels aligned to spec (e.g. AutoDuck "Robotic Charging", "Fleet Orchestrat."); 3px left-border accents. All interactive nav items: hover uses `var(--it-surface-raised)`, 150ms ease-out, description text brightens (muted → secondary); no underlines. CaseStudiesDropdown removed. NavMegaKey type no longer includes `case-studies`.
 - **Footer and main nav data** (`lib/nav.ts`) – "Dynamic Safety" → "Safety & Monitoring" in mainNav and footerNav; Case Studies moved under Resources in mainNav; Resources children aligned with nav-mega (Blog & Insights, Case Studies, Whitepapers, etc.).
 - **Homepage** (`app/page.tsx`) – Section rhythm applied: Feature Grid and Tech Overview `light-bg`; Industry Grid dark (`it-section-mid`, no variant); Testimonial and FAQ `dark` (+ `alt` on Testimonial); Stats `light-bg`; CTA Banner unchanged (dark with gradient). Comments aligned to rhythm guide.
@@ -185,7 +235,7 @@ Improved layout consistency across key pages, refined section styling for a smoo
 
 ### Changed
 
-- **Whitepapers page** – Layout aligned with standard wrapper: hero and content use `max-w-7xl mx-auto px-6 lg:px-8`; blue hero gradient removed in favour of `var(--it-bg)`. Added dummy whitepaper cards (SafeGuard, AutoLock, Radar Link, Congregate Detection, Mining) with 3px left-border accents, topic labels, and “Request PDF” links to showcase how whitepapers will appear.
+- **Whitepapers page** – Layout aligned with standard wrapper: hero and content use `max-w-7xl mx-auto px-6 lg:px-8`; blue hero gradient removed in favour of `var(--it-bg)`. Added dummy whitepaper cards (SafeGuard, AutoDuck, Radar Link, Congregate Detection, Mining) with 3px left-border accents, topic labels, and “Request PDF” links to showcase how whitepapers will appear.
 - **Breadcrumb wrapper – uniform with header** – Resources (whitepapers, playbooks, videos) and Company (values, partners, investors, board-advisors) pages now use the same breadcrumb container as the navbar: `max-w-screen-2xl mx-auto px-8 py-4` so the breadcrumb strip is full width within the same wrapper as the header. Team, our-story, careers, and legal pages already used this wrapper.
 - **Footer** – Version number moved below the copyright line (“© {year} InnoTech Systems. All rights reserved.”) on its own line; copyright and version wrapped in a block with `space-y-1`. Copyright text size reduced to `text-[11px]`.
 - **Technology That Powers Innovation** – White background and dark headline (`TechOverview` variant `light-bg`; header theme `light` when variant is light-bg).
@@ -292,7 +342,7 @@ Improved layout consistency across key pages, refined section styling for a smoo
 - **ESLint** – `eslint` and `eslint-config-next` (v16.1.6) as dev dependencies; `pnpm lint` now runs Next-aware linting.
 - **.eslintrc.json** – ESLint config extending `next/core-web-vitals`.
 - **Framer Motion** – `framer-motion` dependency for all navigation animations (scroll, menus, mobile drawer).
-- **Navigation mega menu data** (`lib/nav-mega.ts`) – Structured content for Products (3 columns: SafeGuard, AutoLock, Radar Link with accents and CTAs), Solutions (3 categories with solution links), Industries (list + featured callout), Resources dropdown, Company dropdown, and Case Studies “coming soon” dropdown.
+- **Navigation mega menu data** (`lib/nav-mega.ts`) – Structured content for Products (3 columns: SafeGuard, AutoDuck, Radar Link with accents and CTAs), Solutions (3 categories with solution links), Industries (list + featured callout), Resources dropdown, Company dropdown, and Case Studies “coming soon” dropdown.
 
 ### Changed
 

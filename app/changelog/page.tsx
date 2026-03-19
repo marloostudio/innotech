@@ -4,6 +4,9 @@ import { ChangelogLayout } from "@/components/changelog-layout"
 import { Section } from "@/components/page-shell"
 import { CtaBanner } from "@/components/sections/cta-banner"
 
+// Changelog UI is generated from `CHANGELOG.md` via `getChangelogEntries()`
+// (public-facing copy comes from each release entry's `### Summary` and `### Highlights` blocks).
+// This keeps the public changelog synchronized with the developer record (e.g. the 1.5 /products hero reliability updates).
 export const metadata: Metadata = {
   title: "Changelog",
   description: "Release history and notable changes to the InnoTech Systems site and products.",

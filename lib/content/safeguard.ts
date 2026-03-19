@@ -12,12 +12,12 @@ export interface ProductFeature {
 
 export const safeguardProduct = {
   name: "SafeGuard",
-  tagline: "Intelligent Safety Monitoring for Robotic Environments",
+  tagline: "Intelligent Safety Monitoring for robot-human collaboration",
   description: "SafeGuard provides real-time monitoring and predictive safety solutions for industrial and autonomous robotic operations. Our AI-powered platform ensures compliance, prevents incidents, and enables safe human-robot collaboration.",
   hero: {
     title: "SafeGuard",
-    subtitle: "Intelligent Safety Monitoring for Robotic Environments",
-    description: "Real-time threat detection, compliance monitoring, and predictive maintenance for autonomous systems"
+    subtitle: "Intelligent Safety Monitoring for robot-human collaboration",
+    description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots"
   }
 }
 
@@ -26,7 +26,7 @@ export const safeguardFeatures: ProductFeature[] = [
     id: "threat-detection",
     name: "Threat Detection",
     slug: "threat-detection",
-    tagline: "Real-Time Threat Detection for Industrial and Autonomous Systems",
+    tagline: "Real-Time Threat Detection for Industrial AMRs and industrial robots",
     description: "Advanced AI-powered threat detection that identifies anomalies, potential hazards, and safety risks in real-time across your robotic infrastructure.",
     benefits: [
       "Prevent incidents before they occur with predictive alerts",

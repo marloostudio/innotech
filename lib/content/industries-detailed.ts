@@ -45,7 +45,7 @@ export const industries: Industry[] = [
       { label: "Fleet Utilization", value: "+35%", description: "increase in vehicle availability" },
       { label: "Charging Efficiency", value: "99.5%", description: "successful autonomous connections" }
     ],
-    relatedProducts: ["AutoLock", "SafeGuard", "FleetCommander"],
+    relatedProducts: ["AutoDuck", "SafeGuard", "FleetCommander"],
     icon: "truck"
   },
   {
@@ -80,7 +80,7 @@ export const industries: Industry[] = [
       { label: "Autonomy Level", value: "L4", description: "full operational autonomy" },
       { label: "Safety", value: "Zero", description: "charging-related incidents" }
     ],
-    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
+    relatedProducts: ["AutoDuck", "RADARLink", "SafeGuard"],
     icon: "car"
   },
   {
@@ -115,7 +115,7 @@ export const industries: Industry[] = [
       { label: "Turnaround Time", value: "-50%", description: "faster vehicle processing" },
       { label: "Infrastructure Use", value: "+40%", description: "charging bay utilization" }
     ],
-    relatedProducts: ["AutoLock", "SafeGuard", "FleetCommander"],
+    relatedProducts: ["AutoDuck", "SafeGuard", "FleetCommander"],
     icon: "warehouse"
   },
   {
@@ -133,7 +133,7 @@ export const industries: Industry[] = [
     ],
     solutions: [
       "Heavy-duty robotic charging up to 350kW",
-      "V2V and V2I communication for terminal coordination",
+      "V2V and V2X communication for terminal coordination",
       "Centimeter-level localization for container handling",
       "Automated equipment safety and collision avoidance",
       "Integrated terminal management system connectivity"
@@ -150,7 +150,7 @@ export const industries: Industry[] = [
       { label: "Safety", value: "95%", description: "reduction in equipment incidents" },
       { label: "Uptime", value: "99.5%", description: "equipment availability" }
     ],
-    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
+    relatedProducts: ["AutoDuck", "RADARLink", "SafeGuard"],
     icon: "ship"
   },
   {
@@ -185,7 +185,7 @@ export const industries: Industry[] = [
       { label: "Passenger Safety", value: "Zero", description: "incidents since deployment" },
       { label: "Service Availability", value: "24/7", description: "continuous operations" }
     ],
-    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
+    relatedProducts: ["AutoDuck", "RADARLink", "SafeGuard"],
     icon: "plane"
   },
   {
@@ -220,7 +220,7 @@ export const industries: Industry[] = [
       { label: "Safety", value: "Zero", description: "operator exposure to hazards" },
       { label: "Uptime", value: "99%", description: "fleet availability" }
     ],
-    relatedProducts: ["AutoLock", "RADARLink", "SafeGuard"],
+    relatedProducts: ["AutoDuck", "RADARLink", "SafeGuard"],
     icon: "mountain"
   }
 ]

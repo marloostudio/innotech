@@ -12,8 +12,8 @@ import { safeguardProduct, safeguardFeatures } from '@/lib/content/safeguard'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'SafeGuard — Intelligent Safety Monitoring for Robotic Environments',
-  description: 'Real-time threat detection, compliance monitoring, and predictive maintenance for autonomous systems.'
+  title: 'SafeGuard — Intelligent Safety Monitoring for robot-human collaboration',
+  description: 'Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots.'
 }
 
 export default function SafeGuardPage() {

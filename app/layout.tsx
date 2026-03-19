@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
-  keywords: ['robotics', 'automation', 'autonomous systems', 'industrial robots', 'AI', 'manufacturing'],
+  keywords: ['robotics', 'automation', 'AMRs and industrial robots', 'AI', 'manufacturing'],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   openGraph: {

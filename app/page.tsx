@@ -4,8 +4,6 @@ import { LogoCloud } from "@/components/sections/logo-cloud"
 import { FeatureGrid } from "@/components/sections/feature-grid"
 import { IndustryGrid } from "@/components/sections/industry-grid"
 import { TechOverview } from "@/components/sections/tech-overview"
-import { Testimonial } from "@/components/sections/testimonial"
-import { Stats } from "@/components/sections/stats"
 import { Faq } from "@/components/sections/faq"
 import { CtaBanner } from "@/components/sections/cta-banner"
 
@@ -14,8 +12,6 @@ import {
   solutionsOverview,
   industriesServed,
   technologyPillars,
-  caseStudyTeaser,
-  statsPlaceholder,
   faqItems,
   finalCta
 } from "@/lib/content/home"
@@ -56,10 +52,6 @@ export default function HomePage() {
         variant="light-bg"
         alt
       />
-      {/* Testimonial → dark alt */}
-      <Testimonial {...caseStudyTeaser} variant="dark" alt />
-      {/* Stats → light-bg (breaks navy monotony) */}
-      <Stats stats={statsPlaceholder} variant="light-bg" />
       {/* FAQ → dark */}
       <Faq items={faqItems} variant="dark" />
       {/* CTA Banner → dark with gradient (it-cta-banner) */}

@@ -147,7 +147,7 @@ export default function TermsPage() {
                 3.2 Trademarks
               </h3>
               <p className={bodyClass}>
-                &quot;InnoTech Systems,&quot; &quot;SafeGuard,&quot; &quot;AutoLock,&quot; &quot;RADARLink,&quot; and related product names are trademarks or service marks of InnoTech Systems. You may not use these marks without prior written permission.
+                &quot;InnoTech Systems,&quot; &quot;SafeGuard,&quot; &quot;AutoDuck,&quot; &quot;RADARLink,&quot; and related product names are trademarks or service marks of InnoTech Systems. You may not use these marks without prior written permission.
               </p>
             </div>
             <div className={subsectionBlockClass}>

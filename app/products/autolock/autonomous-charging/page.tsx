@@ -13,7 +13,7 @@ export default function AutonomousChargingPage() {
   return (
     <ProductFeatureDetail
       feature={feature}
-      productName="AutoLock"
+      productName="AutoDuck"
       productSlug="autolock"
     />
   )

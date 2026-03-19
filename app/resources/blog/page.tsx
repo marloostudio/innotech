@@ -87,7 +87,7 @@ export default function BlogPage() {
       {/* Hero → dark */}
       <Section variant="dark">
         <div className="space-y-4 mb-12 text-center">
-          <span className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-it-blue-subtle text-it-blue">
+          <span className="inline-flex items-center rounded-full px-3 py-1 it-ribbon-badge font-medium bg-it-blue-subtle text-it-blue">
             Blog
           </span>
           <h1
@@ -106,7 +106,7 @@ export default function BlogPage() {
       <Section variant="light-bg">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow">
+            <Card key={post.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-(--it-light-shadow-sm) hover:shadow-(--it-light-shadow-md) transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between mb-3">
                   <Badge variant="secondary" className="bg-it-light-blue-subtle text-it-light-blue border-0">{post.category}</Badge>

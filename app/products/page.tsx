@@ -3,16 +3,17 @@ import Link from 'next/link'
 import * as LucideIcons from "lucide-react"
 
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
-import { PillarHero } from "@/components/sections/pillar-hero"
-import { PageShell, Section } from "@/components/page-shell"
+import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { CtaBanner } from "@/components/sections/cta-banner"
+import { ProductsHeroFadeSlider, type ProductsHeroFadeSlide } from "@/components/sections/products-hero-fade-slider"
 
 export const metadata: Metadata = {
-  title: "Our Products — SafeGuard, AutoLock & RADARLink",
-  description: "Autonomous charging, safety monitoring, and V2X connectivity for the future of autonomous systems."
+  title: "Our Products — SafeGuard, AutoDuck & RADARLink",
+  description: "Autonomous charging, safety monitoring, and V2X connectivity for the future of AMRs and industrial robots."
 }
 
 const products = [
@@ -20,11 +21,11 @@ const products = [
     id: "safeguard",
     name: "SafeGuard",
     slug: "safeguard",
-    tagline: "Intelligent Safety Monitoring for Robotic Environments",
-    description: "Real-time threat detection, compliance monitoring, and predictive maintenance for autonomous systems. Ensure safe operations and regulatory compliance.",
+    tagline: "Intelligent Safety Monitoring for robot-human collaboration",
+    description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots. Ensure safe operations and regulatory compliance.",
     icon: LucideIcons.Shield,
     features: [
-      "Real-time threat detection",
+      "Real-time hazard detection",
       "Automated compliance monitoring",
       "Instant anomaly alerts",
       "Predictive maintenance"
@@ -32,7 +33,7 @@ const products = [
   },
   {
     id: "autolock",
-    name: "AutoLock",
+    name: "AutoDuck",
     slug: "autolock",
     tagline: "Autonomous Charging and Fleet Orchestration",
     description: "Fully automated robotic charging and fleet management for autonomous vehicles, commercial fleets, and mobile robots. No human intervention required.",
@@ -40,7 +41,7 @@ const products = [
     features: [
       "Robotic autonomous charging",
       "Intelligent fleet orchestration",
-      "Depot process automation",
+      "Depot process automation 24/7 365",
       "Secure access control"
     ]
   },
@@ -52,7 +53,7 @@ const products = [
     description: "Vehicle-to-everything communication, centimeter-level localization, and drone tracking for connected autonomous ecosystems.",
     icon: LucideIcons.Radio,
     features: [
-      "V2V and V2I communication",
+      "V2V and V2X communication",
       "Centimeter-level localization",
       "Drone tracking & identification",
       "Real-time analytics"
@@ -60,28 +61,87 @@ const products = [
   }
 ]
 
+const heroSlides: ProductsHeroFadeSlide[] = [
+  { src: "/images/products/hero/products-hero-1.png", alt: "Products overview visual 1" },
+  { src: "/images/products/hero/products-hero-2.png", alt: "Products overview visual 2" },
+  { src: "/images/products/hero/products-hero-3.png", alt: "Products overview visual 3" },
+  { src: "/images/products/hero/products-hero-4.png", alt: "Products overview visual 4" },
+]
+
 export default function ProductsPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Products" }]} />
-      <PillarHero
-        badge="Products"
-        h1="Three Product Lines. One Autonomous Platform."
-        h2="SafeGuard, AutoLock, and RADARLink — engineered to work independently or as a fully integrated system."
-        description="Every InnoTech product is built for environments where reliability is non-negotiable: extreme temperatures, 24/7 operations, hazardous conditions, and complex multi-vehicle coordination. Choose the capability you need today and expand as your operation grows."
-        primaryCta={{ label: "Compare Product Lines", href: "/products#safeguard" }}
-        secondaryCta={{ label: "Talk to an Engineer", href: "/contact" }}
-      />
+      <section
+        style={{ background: "var(--it-bg)", color: "var(--it-text-primary)" }}
+        className="relative w-full min-h-0 pt-0 pb-0 md:pb-0"
+      >
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:pr-0 grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[420px] lg:min-h-[648px]">
+          <div className="w-full">
+            <div className="max-w-4xl space-y-6 pt-20 md:pt-24 pb-20 md:pb-28">
+              <Badge variant="outline" className="mb-2 border-it-border text-it-text-secondary">
+                Products
+              </Badge>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+                Three Product Lines. One Autonomous Platform.
+              </h1>
+
+              <h2
+                className="text-xl md:text-2xl lg:text-3xl font-semibold text-balance"
+                style={{ color: "var(--it-text-muted)" }}
+              >
+                SafeGuard, AutoDuck, and RADARLink — engineered to work independently or as a fully integrated system.
+              </h2>
+
+              <p className="text-lg text-pretty max-w-3xl" style={{ color: "var(--it-text-muted)" }}>
+                Every InnoTech product is built for environments where reliability is non-negotiable: extreme temperatures, 24/7 operations, hazardous conditions, and complex multi-vehicle coordination. Choose the capability you need today and expand as your operation grows.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-start gap-4 pt-4">
+                <Link href="/products#safeguard">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-it-blue text-it-bg hover:bg-it-blue-hover"
+                  >
+                    Compare Product Lines
+                    <LucideIcons.ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-it-border text-it-text-primary hover:bg-it-surface"
+                  >
+                    Talk to our experts
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative w-full h-[420px] lg:h-[648px] overflow-hidden">
+            <ProductsHeroFadeSlider slides={heroSlides} />
+          </div>
+        </div>
+      </section>
 
       {/* Products Grid */}
-      <Section variant="light">
+      <Section
+        variant="light-bg"
+        style={{ backgroundColor: "var(--it-light-surface)" }}
+      >
         <div className="grid lg:grid-cols-3 gap-8">
             {products.map((product) => {
             const Icon = product.icon
             return (
-              <Card key={product.id} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
+              <Card
+                key={product.id}
+                className="flex flex-col bg-it-light-surface border border-it-light-border shadow-(--it-light-shadow-sm) transition-shadow duration-200 hover:shadow-(--it-light-shadow-md)"
+              >
                 <CardHeader>
-                  <div className="p-4 rounded-lg bg-[var(--it-light-blue-subtle)] w-fit mb-4">
+                  <div className="p-4 rounded-lg bg-(--it-light-blue-subtle) w-fit mb-4">
                     <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
                   </div>
                   <CardTitle className="text-2xl mb-2 text-it-light-text-primary">{product.name}</CardTitle>
@@ -93,14 +153,14 @@ export default function ProductsPage() {
                   <div className="space-y-3 mb-6">
                     {product.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <LucideIcons.Check className="w-5 h-5 text-it-light-blue flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                        <LucideIcons.Check className="w-5 h-5 text-it-light-blue shrink-0 mt-0.5" strokeWidth={1.5} />
                         <span className="text-sm text-it-light-text-secondary">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
                   <div className="mt-auto">
-                    <Button asChild className="w-full">
+                    <Button asChild size="lg" className="w-full">
                       <Link href={`/products/${product.slug}`}>
                         Explore {product.name}
                         <LucideIcons.ArrowRight className="ml-2 w-4 h-4" />
@@ -119,7 +179,7 @@ export default function ProductsPage() {
         <SectionHeader
             label="Why InnoTech"
             title="Built for the Future of Autonomous Operations"
-            description="Our products are designed to work together, creating a comprehensive infrastructure for autonomous systems"
+            description="Our products are designed to work together, creating a comprehensive infrastructure for AMRs and industrial robots"
           />
           
           <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -129,7 +189,7 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Integrated Platform</h3>
               <p className="text-muted-foreground text-pretty">
-                All products work seamlessly together for complete autonomous infrastructure
+                A fully integrated ecosystem, powering the future of autonomous infrastructure.
               </p>
             </div>
             <div className="text-center">
@@ -138,7 +198,7 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Scalable Solutions</h3>
               <p className="text-muted-foreground text-pretty">
-                From pilot programs to full production fleets, scale with confidence
+                Prove it in the pilot. Dominate in production. Scale your fleet without the growing pains.
               </p>
             </div>
             <div className="text-center">
@@ -147,7 +207,7 @@ export default function ProductsPage() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Enterprise Grade</h3>
               <p className="text-muted-foreground text-pretty">
-                Proven reliability, security, and compliance for mission-critical operations
+                Deploy with absolute certainty. We deliver the rigorous security, reliability, and compliance that mission-critical environments demand.
               </p>
             </div>
           </div>

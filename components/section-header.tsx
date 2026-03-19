@@ -35,7 +35,7 @@ export function SectionHeader({
         <div className={cn("inline-block", centered && "mx-auto")}>
           <span
             className={cn(
-              "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+              "inline-flex items-center rounded-full px-3 py-1 it-ribbon-badge font-medium",
               isDark
                 ? "bg-it-blue-subtle text-it-blue"
                 : "bg-(--it-light-blue-subtle) text-it-light-blue"

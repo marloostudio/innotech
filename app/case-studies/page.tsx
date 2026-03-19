@@ -18,7 +18,7 @@ const caseStudies = [
     title: "Autonomous Logistics Fleet - 150 Vehicle Deployment",
     industry: "Logistics",
     challenge: "Major delivery company needed automated charging for growing autonomous delivery fleet",
-    solution: "AutoLock robotic charging with fleet orchestration",
+    solution: "AutoDuck robotic charging with fleet orchestration",
     results: [
       "99.7% successful autonomous charging connections",
       "60% reduction in depot operational costs",
@@ -42,7 +42,7 @@ const caseStudies = [
     title: "Mining Operation - Underground Haul Truck Fleet",
     industry: "Mining",
     challenge: "Underground mine needed GPS-denied localization and automated charging for autonomous haul trucks",
-    solution: "RADARLink Cm-level Localization and Tracking + AutoLock heavy-duty charging",
+    solution: "RADARLink Cm-level Localization and Tracking + AutoDuck heavy-duty charging",
     results: [
       "30% increase in equipment utilization",
       "Continuous 24/7 autonomous operations",

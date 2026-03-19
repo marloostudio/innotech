@@ -4,7 +4,7 @@ export const APP_VERSION = "1.4.8"
 export const siteConfig = {
   name: "InnoTech Systems",
   version: APP_VERSION,
-  description: "Leading provider of advanced robotics and autonomous systems for enterprise automation",
+  description: "Leading provider of advanced robotics, AMRs and industrial robots for enterprise automation",
   company: {
     name: "InnoTech Systems",
     tagline: "Intelligent Infrastructure for Autonomous Mobility",

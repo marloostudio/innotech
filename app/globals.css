@@ -39,6 +39,9 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* ── InnoTech Brand Tokens ─────────────────────────── */
+  /* Typography */
+  --it-ribbon-font-size: 1rem; /* was Tailwind's text-sm (0.875rem) */
+  --it-ribbon-line-height: 1.25rem;
 
   /* Base surfaces */
   --it-bg: #0b1221;
@@ -67,7 +70,7 @@
   --it-safeguard-subtle: rgba(0, 212, 170, 0.08);
   --it-safeguard-border: rgba(0, 212, 170, 0.25);
 
-  /* Product — AutoLock orange */
+  /* Product — AutoDuck orange */
   --it-autolock: #ff6b35;
   --it-autolock-subtle: rgba(255, 107, 53, 0.08);
   --it-autolock-border: rgba(255, 107, 53, 0.25);
@@ -521,6 +524,12 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--it-blue);
+}
+
+/* Section “ribbon” badges (pill labels under hero/title) */
+.it-ribbon-badge {
+  font-size: var(--it-ribbon-font-size);
+  line-height: var(--it-ribbon-line-height);
 }
 
 /* ─────────────────────────────────────────────────────────
