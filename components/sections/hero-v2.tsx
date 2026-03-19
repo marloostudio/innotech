@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 
 /**
@@ -106,7 +104,7 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
         <div className="flex flex-wrap justify-center gap-3">
           <Link href={primaryCta.href}>
             <span
-              className="inline-block cursor-pointer transition-all duration-250"
+              className="inline-block cursor-pointer transition-all duration-250 shadow-[0_0_24px_rgba(56,182,255,0.18)] hover:shadow-[0_0_32px_rgba(56,182,255,0.32)] hover:-translate-y-px"
               style={{
                 fontFamily: fontStack,
                 fontSize: 14,
@@ -116,17 +114,6 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
                 border: "none",
                 borderRadius: 8,
                 padding: "13px 30px",
-                boxShadow: "0 0 24px rgba(56, 182, 255, 0.18)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 0 32px rgba(56, 182, 255, 0.32)"
-                e.currentTarget.style.transform = "translateY(-1px)"
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 0 24px rgba(56, 182, 255, 0.18)"
-                e.currentTarget.style.transform = "translateY(0)"
               }}
             >
               {primaryCta.label}
@@ -134,26 +121,14 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
           </Link>
           <Link href={secondaryCta.href}>
             <span
-              className="inline-block cursor-pointer transition-all duration-250"
+              className="inline-block cursor-pointer transition-all duration-250 border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.6)] hover:text-[rgba(255,255,255,0.85)] hover:border-[rgba(56,182,255,0.25)]"
               style={{
                 fontFamily: fontStack,
                 fontSize: 14,
                 fontWeight: 500,
-                color: "rgba(255, 255, 255, 0.6)",
                 background: "rgba(255, 255, 255, 0.02)",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
                 borderRadius: 8,
                 padding: "13px 30px",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor =
-                  "rgba(56, 182, 255, 0.25)"
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)"
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor =
-                  "rgba(255, 255, 255, 0.08)"
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"
               }}
             >
               {secondaryCta.label}

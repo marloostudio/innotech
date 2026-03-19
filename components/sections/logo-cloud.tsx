@@ -1,3 +1,7 @@
+/* This component only controls play/pause for the existing CSS marquee animation. */
+'use client'
+
+import * as React from 'react'
 import { PageShell } from "@/components/page-shell"
 
 interface LogoCloudProps {
@@ -6,6 +10,47 @@ interface LogoCloudProps {
 }
 
 export function LogoCloud({ title = "Trusted by industry leaders", logos }: LogoCloudProps) {
+  const marqueeRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    const el = marqueeRef.current
+    if (!el) return
+
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let isIntersecting = true
+
+    const applyState = () => {
+      el.style.animationPlayState =
+        isIntersecting && !mql.matches ? "running" : "paused"
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        isIntersecting = entry?.isIntersecting ?? true
+        applyState()
+      },
+      { threshold: 0.1 },
+    )
+
+    observer.observe(el)
+    applyState()
+
+    const onVisibilityChange = () => applyState()
+    document.addEventListener("visibilitychange", onVisibilityChange)
+
+    const onReduceChange = () => {
+      applyState()
+    }
+    mql.addEventListener?.("change", onReduceChange)
+
+    return () => {
+      observer.disconnect()
+      document.removeEventListener("visibilitychange", onVisibilityChange)
+      mql.removeEventListener?.("change", onReduceChange)
+    }
+  }, [])
+
   return (
     <section className="it-section-mid py-16 md:py-20">
       <PageShell>
@@ -15,8 +60,8 @@ export function LogoCloud({ title = "Trusted by industry leaders", logos }: Logo
           </p>
           <div className="overflow-hidden">
             <div
-              className="flex w-max gap-8 items-center"
-              style={{ animation: "logo-scroll 60s linear infinite" }}
+              ref={marqueeRef}
+              className="flex w-max gap-8 items-center logo-cloud-scroll"
             >
               {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
                 <div

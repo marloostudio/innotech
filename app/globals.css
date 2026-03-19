@@ -115,6 +115,10 @@
   --it-light-blue-hover:     #1d4ed8;
   --it-light-blue-subtle:    rgba(37, 99, 235, 0.08);
   --it-light-blue-border:    rgba(37, 99, 235, 0.2);
+  
+  /* Light-surface CTA buttons (e.g. Products grid "Explore ...") */
+  --it-light-cta:            var(--it-light-blue);
+  --it-light-cta-hover:      var(--it-light-blue-hover);
   --it-light-safeguard:      #059669;
   --it-light-autolock:       #ea580c;
   --it-light-solutions:      #7c3aed;
@@ -342,6 +346,9 @@
   --color-it-light-text-secondary:  var(--it-light-text-secondary);
   --color-it-light-text-muted:      var(--it-light-text-muted);
   --color-it-light-blue:            var(--it-light-blue);
+  --color-it-light-blue-hover:      var(--it-light-blue-hover);
+  --color-it-light-cta:             var(--it-light-cta);
+  --color-it-light-cta-hover:       var(--it-light-cta-hover);
   --color-it-light-safeguard:       var(--it-light-safeguard);
   --color-it-light-autolock:        var(--it-light-autolock);
 
@@ -359,6 +366,16 @@
 @keyframes logo-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-25%); }
+}
+
+.logo-cloud-scroll {
+  animation: logo-scroll 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-cloud-scroll {
+    animation: none !important;
+  }
 }
 
 /* ── Hero badge: larger balloon above hero title ─────── */
@@ -530,6 +547,15 @@
 .it-ribbon-badge {
   font-size: var(--it-ribbon-font-size);
   line-height: var(--it-ribbon-line-height);
+  border: 1px solid var(--it-blue-border);
+  box-shadow: inset 0 1px 0 var(--it-blue-subtle);
+}
+
+@supports (color: color-mix(in oklab, white, black)) {
+  .it-ribbon-badge {
+    border-color: color-mix(in oklab, currentColor 35%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in oklab, currentColor 18%, transparent);
+  }
 }
 
 /* ─────────────────────────────────────────────────────────

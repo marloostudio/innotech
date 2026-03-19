@@ -121,7 +121,7 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <div className="relative w-full h-[420px] lg:h-[648px] overflow-hidden">
+          <div className="relative w-full min-h-[420px] lg:min-h-[648px] overflow-hidden">
             <ProductsHeroFadeSlider slides={heroSlides} />
           </div>
         </div>
@@ -160,10 +160,17 @@ export default function ProductsPage() {
                   </div>
                   
                   <div className="mt-auto">
-                    <Button asChild size="lg" className="w-full">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="group w-full h-12 bg-it-light-cta text-it-text-primary hover:bg-it-light-cta-hover hover:brightness-90"
+                    >
                       <Link href={`/products/${product.slug}`}>
                         Explore {product.name}
-                        <LucideIcons.ArrowRight className="ml-2 w-4 h-4" />
+                        <LucideIcons.ArrowRight
+                          strokeWidth={1.5}
+                          className="ml-2 w-4 h-4 transition-transform duration-150 group-hover:translate-x-1"
+                        />
                       </Link>
                     </Button>
                   </div>

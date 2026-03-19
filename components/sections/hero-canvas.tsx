@@ -165,6 +165,16 @@ export function HeroCanvas() {
     if (!ctx) return
     let w: number, h: number
 
+    // Gate the expensive simulation work:
+    // - pause when the canvas is offscreen
+    // - pause when the tab is hidden
+    // - respect `prefers-reduced-motion`
+    let isInView = true
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)")
+    let prefersReducedMotion = mql.matches
+    const shouldRunNow = () =>
+      isInView && !prefersReducedMotion && !document.hidden
+
     const buildGrid = () => {
       const linesX: number[] = []
       const linesY: number[] = []
@@ -287,6 +297,10 @@ export function HeroCanvas() {
     }
 
     const animate = () => {
+      if (!shouldRunNow()) {
+        animRef.current = null
+        return
+      }
       timeRef.current += 1
       ctx.clearRect(0, 0, w, h)
       const cx = w / 2
@@ -556,15 +570,56 @@ export function HeroCanvas() {
         }
       }
 
-      animRef.current = requestAnimationFrame(animate)
+      if (shouldRunNow()) {
+        animRef.current = requestAnimationFrame(animate)
+      } else {
+        animRef.current = null
+      }
     }
 
-    animRef.current = requestAnimationFrame(animate)
+    let observer: IntersectionObserver | null = null
+
+    const onVisibilityChange = () => {
+      if (!shouldRunNow() && animRef.current) {
+        cancelAnimationFrame(animRef.current)
+        animRef.current = null
+        return
+      }
+
+      if (shouldRunNow() && !animRef.current) {
+        animRef.current = requestAnimationFrame(animate)
+      }
+    }
+
+    const onReduceChange = () => {
+      prefersReducedMotion = mql.matches
+      onVisibilityChange()
+    }
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        isInView = entry?.isIntersecting ?? true
+        onVisibilityChange()
+      },
+      { threshold: 0.1 },
+    )
+
+    observer.observe(canvas)
+    mql.addEventListener?.("change", onReduceChange)
+    document.addEventListener("visibilitychange", onVisibilityChange)
+
+    if (shouldRunNow()) {
+      animRef.current = requestAnimationFrame(animate)
+    }
 
     return () => {
       window.removeEventListener("resize", resize)
       canvas.removeEventListener("mousemove", handleMouse)
       canvas.removeEventListener("mouseleave", handleLeave)
+      observer?.disconnect()
+      document.removeEventListener("visibilitychange", onVisibilityChange)
+      mql.removeEventListener?.("change", onReduceChange)
       if (animRef.current) cancelAnimationFrame(animRef.current)
     }
   }, [])

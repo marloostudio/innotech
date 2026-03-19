@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import { Linkedin, Mail, MapPin, Youtube } from "lucide-react"
 
@@ -71,10 +69,7 @@ export function Footer() {
                       <li key={item.href}>
                         <Link
                           href={item.href}
-                          className="text-sm transition-colors duration-150"
-                          style={{ color: 'var(--it-text-muted)' }}
-                          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--it-text-primary)' }}
-                          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--it-text-muted)' }}
+                          className="text-sm transition-colors duration-150 text-it-text-muted hover:text-it-text-primary"
                         >
                           {item.title}
                         </Link>

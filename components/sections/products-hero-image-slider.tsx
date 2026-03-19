@@ -56,7 +56,6 @@ export function ProductsHeroImageSlider({ slides }: { slides: ProductsHeroSlide[
                   fill
                   className="object-cover"
                   priority={slide === slides[0]}
-                  unoptimized
                 />
               </div>
             </CarouselItem>

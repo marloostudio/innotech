@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [1.5] – 2026-03-19 03:02 UTC
 
 ### Summary
-Improved navigation usability and page-section rhythm across the site, alongside refined AutoDuck/SafeGuard/RADARLink product copy and clearer onboarding/support messaging, plus an updated `/products` hero layout with a more reliable full-height image panel.
+Improved navigation usability and page-section rhythm across the site, alongside refined AutoDuck/SafeGuard/RADARLink product copy and clearer onboarding/support messaging, plus an updated `/products` hero layout with a more reliable full-height image panel and targeted performance optimizations (image optimization and animation gating).
 
 ### Highlights
 - Updated AutoDuck naming and CTA copy across navigation and product pages
@@ -21,10 +21,12 @@ Improved navigation usability and page-section rhythm across the site, alongside
 - Added “24/7 365” depot automation label in AutoDuck feature copy
 - Improved mega menu and dropdown usability with clearer panel boundaries, anchored navbar subtitles, and more reliable hover stability
 - Updated the `/products` hero with a full-height/full-width right image panel and refined top spacing for the hero text
+- Refined section ribbon badges with a clearer boxed pill style
 - Refined footer "Follow" social block spacing for improved row alignment
 - Rolled out consistent breadcrumbs and one-line navigation descriptors across key pages
 - Applied section rhythm (light/dark variants) across homepage, products, solutions, About, Blog, and Contact, including cleaned-up `/products` grid backgrounds and card/button hover polish
 - Enhanced the `/changelog` release history experience with UTC timestamp rendering
+- Improved overall site performance by re-enabling image optimization and pausing heavy animations when offscreen, in background tabs, or with reduced-motion enabled
 - Updated the Home FAQ onboarding answer for clearer training and support
 
 ### Added
@@ -45,10 +47,16 @@ Improved navigation usability and page-section rhythm across the site, alongside
 - **Product pages** – Refined the `/products` grid section styling with a true white (`light-bg`) background and subtle card shadow + hover-shadow feedback, including consistent hover for the primary “Compare Product Lines” CTA (`app/products/page.tsx`).
 - **SEO and metadata wording** – Updated site description/keywords to focus on AMRs and industrial robots (`app/layout.tsx`, `lib/site.ts`).
 - **Changelog timestamp formatting** – Updated changelog UI formatting and parsing so timestamps render in UTC consistently (`components/changelog-accordion.tsx`, `lib/changelog.ts`).
+- **Next.js image optimization** (`next.config.mjs`, `components/sections/products-hero-*.tsx`) – Re-enabled Next Image optimization by removing global `images.unoptimized` and `unoptimized` overrides in Products hero sliders.
 - **Navbar mega menu and dropdown boundaries** (`components/site/navbar.tsx`) – Visible boundary for all dropdown panels: full border using `var(--it-border)`, strong bottom shadow (`0 8px 32px rgba(0,0,0,0.5)`), background `#0d1526`, and `backdrop-blur-sm`. Mega menus (Products, Solutions, Industries) also have a subtle top-edge highlight (1px `rgba(77, 159, 255, 0.15)`). Simple dropdowns (Resources, Company) use the same border, shadow, background, and backdrop. Replaces previous `border-t-2` / PANEL_BG styling.
 - **Product pages** – Updated the `/products` hero image panel to be full-height/full-width with improved alignment and top spacing (`app/products/page.tsx`).
+- **Homepage hero canvas performance gating** (`components/sections/hero-canvas.tsx`) – Paused the heavy canvas simulation when offscreen, when the tab is hidden, and when `prefers-reduced-motion` is enabled.
+- **Logo marquee behavior** (`components/sections/logo-cloud.tsx`, `app/globals.css`) – Paused the infinite logo scroll when offscreen and disabled it entirely under reduced-motion.
+- **Products hero slider behavior** (`components/sections/products-hero-fade-slider.tsx`, `app/products/page.tsx`) – Simplified the fade slider to a reliable stacked-image opacity transition with interval-based auto-advance; moved dot navigation onto the image overlay and made dot clicks jump to the selected slide while resetting the autoplay timer.
+- **/products CTA button polish** (`app/products/page.tsx`) – Refined the primary “Explore” button hover feedback and ensured the arrow icon uses consistent `strokeWidth={1.5}`.
 - **Homepage** – Applied section rhythm variants and removed legacy Testimonial and Performance Metrics sections from the home page to improve content focus and scannable flow (`app/page.tsx`).
 - **Design tokens** – Increased global font sizing for section ribbon/pill badges via the `it-ribbon-badge` utility so labels read more clearly across the site (`app/globals.css`, `components/section-header.tsx`, `app/resources/blog/page.tsx`).
+- **Section ribbon badges** (`app/globals.css`) – Added a subtle bordered “boxed pill” treatment to `it-ribbon-badge` for clearer separation on both dark and light surfaces.
 - **Navigation restructure and dropdown descriptors** (`lib/nav-mega.ts`, `lib/nav.ts`) – Moved Case Studies under Resources and standardized one-line descriptors across Resources and Company dropdowns.
 - **Section rhythm across key pages** (`app/page.tsx`, `app/products/safeguard/page.tsx`, `app/products/autolock/page.tsx`, `components/solution-detail.tsx`, `app/company/our-story/page.tsx`, `app/resources/blog/page.tsx`, `app/contact/page.tsx`) – Applied light/dark section variants consistently across main content blocks for improved contrast and flow.
 - **Home FAQ onboarding answer** (`lib/content/home.ts`) – Updated the training and support answer to clarify on-site training, detailed documentation, and ongoing support.
@@ -61,6 +69,12 @@ Improved navigation usability and page-section rhythm across the site, alongside
 - **Footer** (`components/site/footer.tsx`) – Refined spacing/vertical rhythm for the footer “Follow” social block so it aligns with other footer column headings.
 - **Products** (`app/products/page.tsx`) – Simplified `/products` hero media rendering so the right image reliably fills the column (static full-height image panel).
 - **Blog** – Updated Tailwind arbitrary shadow class formatting on the Blog page to avoid lint warnings while preserving existing visuals (`app/resources/blog/page.tsx`).
+- **Carousel listener cleanup** (`components/ui/carousel.tsx`) – Fixed Embla event cleanup to unsubscribe `reInit` listeners to avoid accumulating handlers.
+- **Toast listener churn** (`hooks/use-toast.ts`) – Prevented re-registering toast listeners on every state update.
+
+### Removed
+
+- **Duplicate toast hook implementation** – Removed unused duplicate `components/ui/use-toast.ts` to reduce bundle/maintenance surface area.
 
 ## [1.4.8] – 2026-03-05 22:15 UTC
 
