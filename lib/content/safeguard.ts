@@ -12,14 +12,91 @@ export interface ProductFeature {
 
 export const safeguardProduct = {
   name: "SafeGuard",
-  tagline: "Intelligent Safety Monitoring for robot-human collaboration",
+  tagline: "Software-Defined Safety for Robots",
   description: "SafeGuard provides real-time monitoring and predictive safety solutions for industrial and autonomous robotic operations. Our AI-powered platform ensures compliance, prevents incidents, and enables safe human-robot collaboration.",
   hero: {
-    title: "SafeGuard",
-    subtitle: "Intelligent Safety Monitoring for robot-human collaboration",
+    title: "SafeGuard™",
+    subtitle: "Software-Defined Safety for Robots",
     description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots"
   }
 }
+
+/** “Static Safety is Dead” — problem/solution narrative (main product page). */
+export const safeguardStaticSafetyNarrative = {
+  headline: "Static Safety is Dead",
+  intro:
+    "Legacy safety systems treat every human presence as a hard stop, forcing a compromise between safety and throughput. A software-defined safety layer that upgrades your existing fleet with Dynamic Intelligence.",
+  pillars: [
+    {
+      title: "Speed Dependent Zoning",
+      description:
+        "The safety field changes based on the robot's velocity and trajectory.",
+    },
+    {
+      title: "Safety at the Speed of Sight",
+    },
+  ],
+  legacyProblems: [
+    {
+      title: "Static LiDAR Zones Kill Efficiency",
+      description:
+        "Rigid safety zones cause a 20%+ drop in throughput by forcing unnecessary stops when humans are nearby.",
+    },
+    {
+      title: "Physical Barriers Limit Flexibility",
+      description:
+        "Fences and mats lock your operations into a fixed layout and a simple change becomes costly downtime.",
+    },
+    {
+      title: "No Collaboration",
+      description:
+        "Caging robots isolates them from humans and kills cobot applications.",
+    },
+  ],
+}
+
+/** Main SafeGuard product page — “Comprehensive Safety Monitoring” grid (brochure). */
+export interface SafeguardBrochureCard {
+  id: string
+  name: string
+  description?: string
+  bullets?: string[]
+  icon: string
+}
+
+export const safeguardBrochureCards: SafeguardBrochureCard[] = [
+  {
+    id: "certified-safety",
+    name: "Certified Safety",
+    description:
+      "Functional and AI Safety certified, including ISO 13849-1 (Cat 3/Performance Level d), ISO 61508 (SIL 3), and ISO 22440",
+    icon: "badge-check",
+  },
+  {
+    id: "collaboration-ready",
+    name: "Collaboration Ready",
+    description:
+      "Aligned with ISO 10218 guidelines for safe human-robot interaction to share workspaces without static physical guards",
+    icon: "handshake",
+  },
+  {
+    id: "high-speed-fault-detection",
+    name: "High-Speed Fault Detection",
+    description:
+      "Rapid hazard mitigation with a validated Fault Detection Time Interval of under 50 milliseconds",
+    icon: "zap",
+  },
+  {
+    id: "pilot-program",
+    name: "Join our Pilot Program today!",
+    bullets: [
+      "Offer: Installation & operation for 4 weeks at $0 cost",
+      "Goal: Validate efficiency gains on your specific floor plan",
+      "Requirement: Letter of Intent tied to certification roadmap",
+    ],
+    icon: "rocket",
+  },
+]
 
 export const safeguardFeatures: ProductFeature[] = [
   {

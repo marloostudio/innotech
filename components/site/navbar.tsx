@@ -8,7 +8,6 @@ import { Menu, X, ChevronDown, ExternalLink, Mail, Calendar } from "lucide-react
 import { cn } from "@/lib/utils"
 import {
   productsMegaColumns,
-  solutionsMegaCategories,
   industriesMegaItems,
   resourcesDropdownItems,
   companyDropdownItems,
@@ -32,7 +31,6 @@ const SIMPLE_KEYS: NavMegaKey[] = ["resources", "company"]
 
 const navItems: { key: NavMegaKey; label: string; href: string; subtitle?: string }[] = [
   { key: "products",   label: "Products",   href: "/products",   subtitle: "What we build" },
-  { key: "solutions",  label: "Solutions",  href: "/solutions",  subtitle: "Problems we solve" },
   { key: "industries", label: "Industries",  href: "/industries", subtitle: "Where we deploy" },
   { key: "resources",  label: "Resources",   href: "/resources",  subtitle: "Insights and guides" },
   { key: "company",    label: "Company",     href: "/company",     subtitle: "About InnoTech" },
@@ -353,21 +351,12 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* ── Full-width mega menus (Products / Solutions / Industries) ── */}
+        {/* ── Full-width mega menus (Products / Industries) ── */}
         <AnimatePresence>
           {openMenu === "products"   && isMega("products")   && (
             <ProductsMegaMenu
               ref={dropdownPanelRef}
               key="products"
-              onClose={closeMenus}
-              onHoverStart={handlePanelMouseEnter}
-              onHoverEnd={handlePanelMouseLeave}
-            />
-          )}
-          {openMenu === "solutions"  && isMega("solutions")  && (
-            <SolutionsMegaMenu
-              ref={dropdownPanelRef}
-              key="solutions"
               onClose={closeMenus}
               onHoverStart={handlePanelMouseEnter}
               onHoverEnd={handlePanelMouseLeave}
@@ -438,7 +427,7 @@ const ProductsMegaMenu = React.forwardRef<
               Products
             </h3>
             <p className="text-sm" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-              Browse our three core product lines
+              Product lines and related use cases
             </p>
           </div>
         </div>
@@ -459,12 +448,30 @@ const ProductsMegaMenu = React.forwardRef<
                   {col.tagline}
                 </p>
               </div>
-              <ul className="space-y-1.5 mb-4">
-                {col.features.map((f) => (
-                  <li key={f}>
-                    <span className="transition-colors" style={{ fontSize: "12.5px", color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                      — {f}
-                    </span>
+              <ul className="space-y-2 mb-4">
+                {col.solutionLinks.map((s) => (
+                  <li key={s.href}>
+                    <Link
+                      href={s.href}
+                      onClick={onClose}
+                      className="block py-2 px-3 -mx-3 rounded border border-transparent no-underline transition-[background-color,border-color,color] duration-150 ease-out"
+                      style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", backgroundColor: "transparent" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"
+                        e.currentTarget.style.borderColor = "var(--it-solutions-border)"
+                        const desc = e.currentTarget.querySelector("[data-product-sublink-desc]") as HTMLElement
+                        if (desc) desc.style.color = "var(--it-text-secondary)"
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent"
+                        e.currentTarget.style.borderColor = "transparent"
+                        const desc = e.currentTarget.querySelector("[data-product-sublink-desc]") as HTMLElement
+                        if (desc) desc.style.color = "var(--it-text-muted)"
+                      }}
+                    >
+                      <span className="block" style={{ fontSize: "14px", color: "var(--it-text-primary)" }}>{s.name}</span>
+                      <span data-product-sublink-desc style={{ fontSize: "12.5px", color: "var(--it-text-muted)" }}>{s.description}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -484,87 +491,6 @@ const ProductsMegaMenu = React.forwardRef<
         <div className="border-t border-[var(--it-border)] pt-3 mt-4 text-center">
           <Link href="/products" onClick={onClose} className="text-sm rounded px-2 py-1 inline-block transition-[background-color,color] duration-150 ease-out no-underline" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.color = "var(--it-text-primary)" }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--it-text-muted)" }}>
             See all products
-          </Link>
-        </div>
-      </div>
-    </motion.div>
-  )
-})
-
-const SolutionsMegaMenu = React.forwardRef<
-  HTMLDivElement,
-  { onClose: () => void; onHoverStart: () => void; onHoverEnd: () => void }
->(function SolutionsMegaMenu({ onClose, onHoverStart, onHoverEnd }, ref) {
-  return (
-    <motion.div
-      ref={ref}
-      className="absolute left-0 right-0 top-full z-50 border border-[var(--it-border)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0d1526] backdrop-blur-sm"
-      style={{ borderTopColor: "rgba(77, 159, 255, 0.15)" }}
-      onMouseEnter={onHoverStart}
-      onMouseLeave={onHoverEnd}
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      role="menu"
-    >
-      <div className="max-w-screen-2xl mx-auto px-8 py-6">
-        <h3
-          className="text-lg font-semibold uppercase tracking-widest mb-1"
-          style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}
-        >
-          Solutions
-        </h3>
-        <p className="text-sm mb-6" style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-          Browse by the problem you&apos;re solving
-        </p>
-        <div className="grid grid-cols-3 gap-0 border-t border-[var(--it-border)] pt-6">
-          {solutionsMegaCategories.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              className="px-6 border-r border-[var(--it-border)] last:border-r-0"
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06, duration: 0.2 }}
-            >
-              <div className="pl-3 mb-4 border-l-[3px]" style={{ borderLeftColor: cat.accentColor }}>
-                <h4 className="font-semibold uppercase tracking-widest" style={{ fontSize: "14px", fontFamily: "var(--font-inter), 'Inter', sans-serif", color: "var(--it-text-secondary)" }}>
-                  {cat.name}
-                </h4>
-              </div>
-              <ul className="space-y-2">
-                {cat.solutions.map((s) => (
-                  <li key={s.href}>
-                    <Link
-                      href={s.href}
-                      onClick={onClose}
-                      className="block py-2 px-3 -mx-3 rounded border border-transparent no-underline transition-[background-color,border-color,color] duration-150 ease-out"
-                      style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", backgroundColor: "transparent" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"
-                        e.currentTarget.style.borderColor = "var(--it-solutions-border)"
-                        const desc = e.currentTarget.querySelector("[data-solution-desc]") as HTMLElement
-                        if (desc) desc.style.color = "var(--it-text-secondary)"
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = "transparent"
-                        e.currentTarget.style.borderColor = "transparent"
-                        const desc = e.currentTarget.querySelector("[data-solution-desc]") as HTMLElement
-                        if (desc) desc.style.color = "var(--it-text-muted)"
-                      }}
-                    >
-                      <span className="block" style={{ fontSize: "14px", color: "var(--it-text-primary)" }}>{s.name}</span>
-                      <span data-solution-desc style={{ fontSize: "12.5px", color: "var(--it-text-muted)" }}>{s.description}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-        <div className="border-t border-[var(--it-border)] pt-3 mt-4 text-right">
-          <Link href="/contact" onClick={onClose} className="text-sm rounded px-2 py-1 inline-block transition-[background-color,color] duration-150 ease-out no-underline" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--it-surface-raised)"; e.currentTarget.style.color = "var(--it-text-primary)" }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--it-text-muted)" }}>
-            Not sure which solution fits? → Talk to an engineer
           </Link>
         </div>
       </div>
@@ -803,27 +729,20 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
                 <AnimatePresence>
                   {expanded === "products" && (
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                      <div className="pl-4 space-y-1 pb-2">
+                      <div className="pl-4 space-y-4 pb-2">
                         {productsMegaColumns.map((col) => (
-                          <Link key={col.id} href={col.href} onClick={onClose} className="block text-sm py-1.5" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>{col.name}</Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              {/* Solutions */}
-              <div>
-                <button type="button" onClick={() => setExpanded(expanded === "solutions" ? null : "solutions")} className="w-full text-left text-lg py-3 flex items-center justify-between" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif", fontWeight: 500 }}>
-                  Solutions
-                  <motion.span animate={{ rotate: expanded === "solutions" ? 180 : 0 }}><ChevronDown size={20} /></motion.span>
-                </button>
-                <AnimatePresence>
-                  {expanded === "solutions" && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                      <div className="pl-4 space-y-1 pb-2">
-                        {solutionsMegaCategories.flatMap((c) => c.solutions).slice(0, 6).map((s) => (
-                          <Link key={s.href} href={s.href} onClick={onClose} className="block text-sm py-1.5" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>{s.name}</Link>
+                          <div key={col.id} className="space-y-1">
+                            <Link href={col.href} onClick={onClose} className="block text-sm font-medium py-1" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+                              {col.name}
+                            </Link>
+                            <div className="pl-2 space-y-0.5 border-l border-[var(--it-border)]">
+                              {col.solutionLinks.map((s) => (
+                                <Link key={s.href} href={s.href} onClick={onClose} className="block text-xs py-1.5 pl-2" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+                                  {s.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                       </div>
                     </motion.div>

@@ -3,7 +3,7 @@ import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 
 export const metadata: Metadata = {
   title: "Open Roles — InnoTech Systems",
-  description: "Current job openings at InnoTech Systems.",
+  description: "Hiring updates and open positions at InnoTech Systems.",
 }
 
 export default function OpenRolesPage() {
@@ -18,11 +18,13 @@ export default function OpenRolesPage() {
       </p>
       <h1 className="text-4xl font-bold mb-6"
         style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
-        Current Job Openings at InnoTech Systems
+        Open roles
       </h1>
-      <p style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>
-        This page is coming soon. <a href="/contact"
-          style={{ color: "var(--it-light-blue)" }}>Contact us</a> in the meantime.
+      <p className="text-lg text-pretty" style={{ color: "var(--it-light-text-primary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+        We are not currently hiring, check this page soon for updates.
+      </p>
+      <p className="mt-6" style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
+        <a href="/contact" style={{ color: "var(--it-light-blue)" }}>Contact us</a> if you&apos;d like to get in touch.
       </p>
     </main>
     </>

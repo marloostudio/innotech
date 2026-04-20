@@ -15,18 +15,9 @@ export const mainNav: NavItem[] = [
     title: "Products",
     href: "/products",
     children: [
-      { title: "SafeGuard", href: "/products/safeguard", description: "Intelligent Safety Monitoring" },
+      { title: "SafeGuard", href: "/products/safeguard", description: "Software-defined safety for robots" },
       { title: "AutoDuck", href: "/products/autolock", description: "Autonomous Charging & Fleet Orchestration" },
-      { title: "RADARLink", href: "/products/radar-link", description: "V2X, Cm-level Localization and Drone Tracking" }
-    ]
-  },
-  {
-    title: "Solutions",
-    href: "/solutions",
-    children: [
-      { title: "Autonomous Charging", href: "/solutions#charging" },
-      { title: "Safety & Monitoring", href: "/solutions#safety" },
-      { title: "Connectivity & Localization", href: "/solutions#connectivity" }
+      { title: "RADARLink", href: "/products/radar-link", description: "V2X, Cm-level Localization and Drone Tracking" },
     ]
   },
   {
@@ -56,8 +47,8 @@ export const mainNav: NavItem[] = [
     href: "/company",
     children: [
       { title: "Our Story", href: "/company/our-story" },
-      { title: "Team", href: "/company/team" },
-      { title: "Careers", href: "/company/careers" }
+      { title: "Our Team", href: "/company/team" },
+      { title: "Careers", href: "/company/careers" },
     ]
   }
 ]
@@ -68,16 +59,17 @@ export const footerNav: NavSection[] = [
     items: [
       { title: "SafeGuard", href: "/products/safeguard" },
       { title: "AutoDuck", href: "/products/autolock" },
-      { title: "RADARLink", href: "/products/radar-link" }
-    ]
-  },
-  {
-    title: "Solutions",
-    items: [
-      { title: "Autonomous Charging", href: "/solutions/charging-autonomous-vehicles" },
-      { title: "Safety & Monitoring", href: "/solutions/safety-industrial-robots" },
-      { title: "V2X Communication", href: "/solutions/connectivity-v2v" },
-      { title: "Cm-level Localization and Tracking", href: "/solutions/micro-localization" }
+      { title: "RADARLink", href: "/products/radar-link" },
+      { title: "Industrial Robots (safety)", href: "/solutions/safety-industrial-robots" },
+      { title: "Mobile Robots (safety)", href: "/solutions/safety-mar" },
+      { title: "Human–Robot Collaboration", href: "/solutions/safety-human-robot" },
+      { title: "For AV Fleets", href: "/solutions/charging-autonomous-vehicles" },
+      { title: "Heavy-Duty Charging", href: "/solutions/charging-heavy-duty" },
+      { title: "Mobile Robots (MAR)", href: "/solutions/charging-mar" },
+      { title: "V2V Communication", href: "/solutions/connectivity-v2v" },
+      { title: "V2I Communication", href: "/solutions/connectivity-v2i" },
+      { title: "Cm-level Localization and Tracking", href: "/solutions/micro-localization" },
+      { title: "Drone Tracking", href: "/solutions/drone-tracking" },
     ]
   },
   {
@@ -92,10 +84,9 @@ export const footerNav: NavSection[] = [
   {
     title: "Company",
     items: [
-      { title: "About Us", href: "/company" },
       { title: "Our Story", href: "/company/our-story" },
+      { title: "Our Team", href: "/company/team" },
       { title: "Careers", href: "/company/careers" },
-      { title: "Contact", href: "/contact" }
     ]
   },
   {

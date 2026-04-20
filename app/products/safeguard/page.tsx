@@ -4,25 +4,25 @@ import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
 import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ImagePlaceholder } from '@/components/ui/image-placeholder'
-import { safeguardProduct, safeguardFeatures } from '@/lib/content/safeguard'
+import { safeguardProduct, safeguardBrochureCards, safeguardStaticSafetyNarrative } from '@/lib/content/safeguard'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'SafeGuard — Intelligent Safety Monitoring for robot-human collaboration',
+  title: 'SafeGuard™ — Software-Defined Safety for Robots',
   description: 'Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots.'
 }
 
 export default function SafeGuardPage() {
   const getIcon = (iconName: string) => {
     const iconMap: Record<string, LucideIcons.LucideIcon> = {
-      'shield-alert': LucideIcons.ShieldAlert,
-      'clipboard-check': LucideIcons.ClipboardCheck,
-      'bell': LucideIcons.Bell,
-      'wrench': LucideIcons.Wrench,
+      'badge-check': LucideIcons.BadgeCheck,
+      handshake: LucideIcons.Handshake,
+      zap: LucideIcons.Zap,
+      rocket: LucideIcons.Rocket,
     }
     return iconMap[iconName] || LucideIcons.Shield
   }
@@ -65,27 +65,75 @@ export default function SafeGuardPage() {
         </div>
       </section>
 
+      {/* Static vs dynamic safety narrative */}
+      <section className="py-20 lg:py-28 border-t border-border/50">
+        <PageShell>
+          <div className="max-w-[680px] mb-14 lg:mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight font-chakra text-balance mb-6">
+              {safeguardStaticSafetyNarrative.headline}
+            </h2>
+            <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
+              {safeguardStaticSafetyNarrative.intro}
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start mb-16 lg:mb-20">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold tracking-tight">
+                {safeguardStaticSafetyNarrative.pillars[0].title}
+              </h3>
+              <p className="text-muted-foreground text-pretty leading-relaxed">
+                {safeguardStaticSafetyNarrative.pillars[0].description}
+              </p>
+            </div>
+            <div className="lg:pt-2">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-primary text-balance leading-tight font-chakra">
+                {safeguardStaticSafetyNarrative.pillars[1].title}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {safeguardStaticSafetyNarrative.legacyProblems.map((item) => (
+              <Card
+                key={item.title}
+                className="bg-background border-l-[3px] border-l-primary shadow-sm"
+              >
+                <CardHeader>
+                  <CardTitle className="text-lg leading-snug">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground text-pretty leading-relaxed">
+                    {item.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </PageShell>
+      </section>
+
       {/* Features Grid → light-bg */}
       <Section variant="light-bg">
         <SectionHeader
           theme="light"
           label="Features"
           title="Comprehensive Safety Monitoring"
-          description="Four integrated modules providing end-to-end safety and compliance for your robotic operations"
+          description="Certification, collaboration, fault response, and a pilot program built for your floor plan"
         />
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {safeguardFeatures.map((feature, index) => {
-            const Icon = getIcon(feature.icon)
+          {safeguardBrochureCards.map((card, index) => {
+            const Icon = getIcon(card.icon)
             const imageLeft = index % 2 === 1
             return (
-              <Card key={feature.id} className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-safeguard)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow overflow-hidden">
+              <Card key={card.id} className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-safeguard)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow overflow-hidden">
                 <div className="grid md:grid-cols-2 gap-0">
                   {imageLeft && (
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`SafeGuard Feature — ${feature.name}`}
-                        label={`SafeGuard Feature — ${feature.name}`}
+                        alt={`SafeGuard — ${card.name}`}
+                        label={`SafeGuard — ${card.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -99,20 +147,22 @@ export default function SafeGuardPage() {
                         </div>
                       </div>
                       <CardTitle className="text-2xl mb-2 text-it-light-text-primary">
-                        <Link 
-                          href={`/products/safeguard/${feature.slug}`}
-                          className="hover:text-it-light-safeguard transition-colors"
-                        >
-                          {feature.name}
-                        </Link>
+                        {card.name}
                       </CardTitle>
-                      <CardDescription className="text-base text-it-light-text-secondary">{feature.tagline}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-it-light-text-muted mb-4 text-pretty">{feature.description}</p>
+                      {card.bullets ? (
+                        <ul className="text-it-light-text-muted mb-6 space-y-3 text-pretty list-disc pl-5">
+                          {card.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-it-light-text-muted mb-6 text-pretty">{card.description}</p>
+                      )}
                       <Button variant="outline" asChild className="border-it-light-border text-it-light-text-secondary group-hover:bg-it-light-safeguard group-hover:text-white transition-colors">
-                        <Link href={`/products/safeguard/${feature.slug}`}>
-                          Learn More
+                        <Link href="/contact">
+                          {card.bullets ? "Join the pilot" : "Contact us"}
                           <LucideIcons.ArrowRight className="ml-2 w-4 h-4" />
                         </Link>
                       </Button>
@@ -122,8 +172,8 @@ export default function SafeGuardPage() {
                     <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
                       <ImagePlaceholder
                         aspectRatio="4/3"
-                        alt={`SafeGuard Feature — ${feature.name}`}
-                        label={`SafeGuard Feature — ${feature.name}`}
+                        alt={`SafeGuard — ${card.name}`}
+                        label={`SafeGuard — ${card.name}`}
                         className="w-full h-full min-h-[180px]"
                         variant="light"
                       />
@@ -164,7 +214,7 @@ export default function SafeGuardPage() {
       {/* CTA Section */}
       <CtaBanner
         title="Ready to Enhance Your Safety Systems?"
-        description="See how SafeGuard can transform your robotic operations with intelligent safety monitoring"
+        description="See how SafeGuard brings software-defined safety to your robotic operations"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
       />

@@ -64,7 +64,7 @@ export default function PartnersPage() {
         title="Interested in Partnering?"
         description="Whether you're a technology provider, integrator, or operator, we'd like to hear from you."
         primaryCta={{ label: "Contact Us", href: "/contact" }}
-        secondaryCta={{ label: "Our Solutions", href: "/solutions" }}
+        secondaryCta={{ label: "Our Products", href: "/products" }}
       />
     </>
   )

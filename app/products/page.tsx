@@ -21,7 +21,7 @@ const products = [
     id: "safeguard",
     name: "SafeGuard",
     slug: "safeguard",
-    tagline: "Intelligent Safety Monitoring for robot-human collaboration",
+    tagline: "Software-Defined Safety for Robots",
     description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots. Ensure safe operations and regulatory compliance.",
     icon: LucideIcons.Shield,
     features: [
