@@ -23,8 +23,7 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
   }
 
   const raw = {
-    firstName: str(formData, "firstName"),
-    lastName: str(formData, "lastName"),
+    fullName: str(formData, "fullName"),
     email: str(formData, "email"),
     company: str(formData, "company"),
     phone: str(formData, "phone"),

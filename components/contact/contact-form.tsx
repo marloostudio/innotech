@@ -60,75 +60,74 @@ export function ContactForm() {
         <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6">
         <div className="space-y-2">
-          <Label htmlFor="firstName">First Name *</Label>
-          <Input id="firstName" name="firstName" placeholder="John" required autoComplete="given-name" />
+          <Label htmlFor="fullName">Full name *</Label>
+          <Input
+            id="fullName"
+            name="fullName"
+            placeholder="Jane Doe"
+            required
+            autoComplete="name"
+          />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="lastName">Last Name *</Label>
-          <Input id="lastName" name="lastName" placeholder="Doe" required autoComplete="family-name" />
+          <Label htmlFor="phone">Phone</Label>
+          <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" autoComplete="tel" />
         </div>
-      </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="email">Email *</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="john.doe@company.com"
-          required
-          autoComplete="email"
-        />
-      </div>
+        <div className="space-y-2">
+          <Label htmlFor="email">Email *</Label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="john.doe@company.com"
+            required
+            autoComplete="email"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="company">Company *</Label>
+          <Input id="company" name="company" placeholder="Your Company Name" required autoComplete="organization" />
+        </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="company">Company *</Label>
-        <Input id="company" name="company" placeholder="Your Company Name" required autoComplete="organization" />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="phone">Phone</Label>
-        <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" autoComplete="tel" />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="industry">Industry</Label>
-        <Select
-          value={industry === "" ? undefined : industry}
-          onValueChange={(v) => setIndustry(v)}
-        >
-          <SelectTrigger id="industry" className="w-full">
-            <SelectValue placeholder="Select your industry" />
-          </SelectTrigger>
-          <SelectContent>
-            {contactIndustryOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="interest">Area of Interest</Label>
-        <Select
-          value={interest === "" ? undefined : interest}
-          onValueChange={(v) => setInterest(v)}
-        >
-          <SelectTrigger id="interest" className="w-full">
-            <SelectValue placeholder="What are you interested in?" />
-          </SelectTrigger>
-          <SelectContent>
-            {contactInterestOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="space-y-2">
+          <Label htmlFor="industry">Industry</Label>
+          <Select
+            value={industry === "" ? undefined : industry}
+            onValueChange={(v) => setIndustry(v)}
+          >
+            <SelectTrigger id="industry" className="w-full" aria-label="Industry — choose one">
+              <SelectValue placeholder="Choose an industry…" />
+            </SelectTrigger>
+            <SelectContent>
+              {contactIndustryOptions.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="interest">Area of Interest</Label>
+          <Select
+            value={interest === "" ? undefined : interest}
+            onValueChange={(v) => setInterest(v)}
+          >
+            <SelectTrigger id="interest" className="w-full" aria-label="Area of interest — choose one">
+              <SelectValue placeholder="Choose a topic…" />
+            </SelectTrigger>
+            <SelectContent>
+              {contactInterestOptions.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="space-y-2">

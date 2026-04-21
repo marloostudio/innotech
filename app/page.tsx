@@ -16,6 +16,7 @@ import {
   faqItems,
   finalCta
 } from "@/lib/content/home"
+import { siteUrl } from "@/lib/site"
 
 export default function HomePage() {
   return (
@@ -55,7 +56,7 @@ export default function HomePage() {
         alt
       />
       {/* FAQ → dark */}
-      <Faq items={faqItems} variant="dark" />
+      <Faq items={faqItems} variant="dark" pageUrl={`${siteUrl}/`} />
       {/* CTA Banner → dark with gradient (it-cta-banner) */}
       <CtaBanner {...finalCta} />
     </>

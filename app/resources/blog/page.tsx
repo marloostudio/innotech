@@ -130,12 +130,10 @@ export default function BlogPage() {
                     <span>{post.date}</span>
                   </div>
                 </div>
-                <Link href={`#`}>
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <Button variant="ghost" size="sm" className="w-full" type="button" disabled title="Full articles coming soon">
+                  Read More
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </CardContent>
             </Card>
           ))}

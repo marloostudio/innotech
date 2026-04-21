@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { Section, type SectionVariant } from "@/components/page-shell"
+import { buildFaqPageJsonLd } from "@/lib/seo/faq-json-ld"
 import { cn } from "@/lib/utils"
 
 interface FaqItem {
@@ -21,6 +22,12 @@ interface FaqProps {
   items: FaqItem[]
   variant?: SectionVariant
   alt?: boolean
+  /** Stable id for anchor links and crawlers (default: `faq`). */
+  sectionId?: string
+  /** Emit FAQPage JSON-LD for Google rich results (default: true when items are non-empty). */
+  jsonLd?: boolean
+  /** Full canonical URL of this page for the FAQPage `url` field. */
+  pageUrl?: string
 }
 
 export function Faq({
@@ -29,6 +36,9 @@ export function Faq({
   items,
   variant,
   alt,
+  sectionId = "faq",
+  jsonLd = true,
+  pageUrl,
 }: FaqProps) {
   const isLightBg = variant === "light-bg" || variant === "light-bg-2"
   const titleCls = isLightBg ? "text-it-light-text-primary" : "text-it-text-primary"
@@ -39,8 +49,19 @@ export function Faq({
   const contentCls = isLightBg ? "text-it-light-text-secondary" : "text-it-text-secondary"
   const borderCls = isLightBg ? "border-it-light-border" : "border-it-border"
 
+  const faqJsonLd =
+    jsonLd && items.length > 0
+      ? buildFaqPageJsonLd(items, pageUrl ? { pageUrl } : undefined)
+      : null
+
   return (
-    <Section variant={variant} alt={alt}>
+    <Section variant={variant} alt={alt} id={sectionId}>
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-start">
         <div className="lg:col-span-1 space-y-4">
           <h2

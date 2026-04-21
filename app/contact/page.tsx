@@ -102,40 +102,6 @@ export default function ContactPage() {
                 })}
               </CardContent>
             </Card>
-
-            <Card className="border border-it-light-border bg-it-light-surface">
-              <CardHeader>
-                <CardTitle className="text-it-light-text-primary">Sales Inquiries</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-it-light-text-muted">
-                  For pricing information, product demos, or to discuss your specific automation requirements.
-                </p>
-                <Button variant="outline" className="w-full" asChild>
-                  <a href={`mailto:${siteConfig.company.email}`}>
-                    <Mail className="mr-2 h-4 w-4" />
-                    {siteConfig.company.email}
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-it-light-border bg-it-light-surface">
-              <CardHeader>
-                <CardTitle className="text-it-light-text-primary">Technical Support</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-it-light-text-muted">
-                  24/7 support for existing customers. Login to your account for faster service.
-                </p>
-                <Button variant="outline" className="w-full" asChild>
-                  <a href={`mailto:${siteConfig.company.email}`}>
-                    <Mail className="mr-2 h-4 w-4" />
-                    {siteConfig.company.email}
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </Section>

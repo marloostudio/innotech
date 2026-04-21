@@ -8,6 +8,14 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Radix Select (and other overlays) use react-remove-scroll, which adds margin/padding to `body` to
+   offset scrollbar width. `scrollbar-gutter: stable` on `html` already reserves that space, so both
+   together shift the page horizontally when a dropdown opens. */
+body[data-scroll-locked] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -406,6 +414,18 @@ html {
   background-color: var(--it-light-surface);
   color: var(--it-light-text-primary);
   border-color: var(--it-light-border);
+}
+/* Selects: distinct from text fields — tint + obvious chevron */
+.contact-form-light [data-slot="select-trigger"] {
+  cursor: pointer;
+  background-color: var(--it-light-blue-subtle);
+  border-color: color-mix(in srgb, var(--it-light-blue) 28%, var(--it-light-border));
+}
+.contact-form-light [data-slot="select-trigger"] svg:last-child {
+  color: var(--it-light-blue);
+  opacity: 1;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 .contact-form-light [data-slot="input"]:focus-visible,
 .contact-form-light textarea:focus-visible,

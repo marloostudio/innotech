@@ -9,8 +9,7 @@ const optionalIndustry = z.union([z.enum(industryValues), z.literal("")])
 const optionalInterest = z.union([z.enum(interestValues), z.literal("")])
 
 export const contactPayloadSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required").max(100),
-  lastName: z.string().trim().min(1, "Last name is required").max(100),
+  fullName: z.string().trim().min(1, "Name is required").max(200),
   email: z.string().trim().email().max(320),
   company: z.string().trim().min(1, "Company is required").max(200),
   phone: z.string().trim().max(40),

@@ -19,7 +19,7 @@ export async function sendContactNotifications(payload: ContactPayload) {
 
   const resend = new Resend(apiKey)
 
-  const fullName = `${payload.firstName} ${payload.lastName}`.trim()
+  const fullName = payload.fullName.trim()
   const ind = industryLabel(payload.industry)
   const intr = interestLabel(payload.interest)
   const phoneDisplay = payload.phone?.trim() ? payload.phone.trim() : "—"
@@ -55,7 +55,7 @@ export async function sendContactNotifications(payload: ContactPayload) {
     `Page: ${siteUrl}/contact`,
   ].join("\n")
 
-  const first = payload.firstName.split(/\s+/)[0] ?? "there"
+  const first = fullName.split(/\s+/)[0] ?? "there"
   const submitterHtml = `
     <p>Hi ${escapeHtml(first)},</p>
     <p>Thanks for reaching out to <strong>InnoTech Systems</strong>. We received your message and our team will get back to you within <strong>24 hours</strong>.</p>

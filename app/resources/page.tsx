@@ -33,14 +33,14 @@ const resourceCategories = [
     title: "White Papers",
     description: "In-depth technical analysis and research on automation technologies",
     icon: Download,
-    href: "#whitepapers",
+    href: "/resources/whitepapers",
     count: "Coming soon"
   },
   {
     title: "Video Library",
     description: "Product demonstrations, customer testimonials, and educational content",
     icon: Video,
-    href: "#videos",
+    href: "/resources/videos",
     count: "Coming soon"
   }
 ]
@@ -72,7 +72,7 @@ export default function ResourcesPage() {
         h1="The Technical Library for Autonomous Operations."
         h2="Whitepapers, playbooks, product demos, and industry analysis — written for engineers and operations leaders, not marketers."
         description="InnoTech's resource library is built for the people who evaluate, specify, and operate autonomous infrastructure. Whether you're building a business case, assessing technical fit, or troubleshooting an existing deployment, start here."
-        primaryCta={{ label: "Browse All Resources", href: "#" }}
+        primaryCta={{ label: "Browse All Resources", href: "/resources/blog" }}
         secondaryCta={{ label: "Subscribe for Updates", href: "/contact" }}
       />
 
