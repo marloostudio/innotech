@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.innotech-sys.com"
+import { siteUrl } from "@/lib/site"
 
-/** All public routes for the sitemap (excluding dynamic/private). */
+/** All public indexable routes (exclude noindex pages e.g. /thank-you). */
 const routes: string[] = [
   "",
   "/about",
   "/accessibility",
   "/case-studies",
+  "/changelog",
   "/company",
   "/company/board-advisors",
   "/company/careers",
@@ -19,6 +20,7 @@ const routes: string[] = [
   "/company/values",
   "/contact",
   "/demo",
+  "/events/automate-2026",
   "/industries",
   "/industries/airport-shopping-mall",
   "/industries/automated-depot",
@@ -71,7 +73,7 @@ const routes: string[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((path) => ({
-    url: `${baseUrl}${path || "/"}`,
+    url: `${siteUrl}${path || "/"}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: path === "" ? 1 : path.split("/").length <= 2 ? 0.9 : 0.7,

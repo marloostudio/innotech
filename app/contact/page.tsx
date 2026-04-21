@@ -6,10 +6,7 @@ import { PillarHero } from "@/components/sections/pillar-hero"
 import { Section } from "@/components/page-shell"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ContactForm } from "@/components/contact/contact-form"
 
 import { siteConfig } from "@/lib/site"
 
@@ -73,87 +70,7 @@ export default function ContactPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name *</Label>
-                    <Input id="firstName" placeholder="John" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name *</Label>
-                    <Input id="lastName" placeholder="Doe" required />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input id="email" type="email" placeholder="john.doe@company.com" required />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="company">Company *</Label>
-                  <Input id="company" placeholder="Your Company Name" required />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="industry">Industry</Label>
-                  <Select>
-                    <SelectTrigger id="industry">
-                      <SelectValue placeholder="Select your industry" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="automotive">Automotive</SelectItem>
-                      <SelectItem value="aerospace">Aerospace & Defense</SelectItem>
-                      <SelectItem value="healthcare">Healthcare</SelectItem>
-                      <SelectItem value="energy">Energy</SelectItem>
-                      <SelectItem value="warehousing">Warehousing & Logistics</SelectItem>
-                      <SelectItem value="agriculture">Agriculture</SelectItem>
-                      <SelectItem value="manufacturing">General Manufacturing</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="interest">Area of Interest</Label>
-                  <Select>
-                    <SelectTrigger id="interest">
-                      <SelectValue placeholder="What are you interested in?" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="amr">Autonomous Mobile Robots</SelectItem>
-                      <SelectItem value="manipulators">Robotic Manipulators</SelectItem>
-                      <SelectItem value="inspection">Inspection Systems</SelectItem>
-                      <SelectItem value="software">Software Platforms</SelectItem>
-                      <SelectItem value="consultation">General Consultation</SelectItem>
-                      <SelectItem value="support">Technical Support</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your automation needs, challenges, or questions..."
-                    rows={5}
-                    required
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full">
-                  Submit Request
-                </Button>
-
-                <p className="text-sm text-it-light-text-muted text-center">
-                  By submitting this form, you agree to our Privacy Policy and Terms of Service
-                </p>
-              </form>
+              <ContactForm />
             </CardContent>
           </Card>
 

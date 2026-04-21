@@ -3,6 +3,7 @@ import { DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
+import { GoogleTagManagerBody, GoogleTagManagerHead } from '@/components/analytics/google-tag-manager'
 import { Navbar } from '@/components/site/navbar'
 import { Footer } from '@/components/site/footer'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -74,6 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${ibmPlexMono.variable} ${inter.variable}`}>
       <body className="antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
+        {/* GTM: noscript first, then loader (env NEXT_PUBLIC_GTM_ID) */}
+        <GoogleTagManagerBody />
+        <GoogleTagManagerHead />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Navbar />
           <div className="h-px w-full shrink-0" style={{ backgroundColor: 'var(--it-border)' }} aria-hidden />

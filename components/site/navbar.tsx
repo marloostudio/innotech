@@ -13,6 +13,7 @@ import {
   companyDropdownItems,
   type NavMegaKey,
 } from "@/lib/nav-mega"
+import { SiteLogo } from "@/components/site/site-logo"
 
 // ── Colour tokens ─────────────────────────────────────────
 const NAV_LINK_COLOR  = "rgba(255,255,255,0.85)"      // neutral white at 85% — more legible on dark
@@ -123,56 +124,30 @@ export function Navbar() {
       >
         <div
           ref={navRegionRef}
-          className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-between"
+          className={cn(
+            "max-w-screen-2xl mx-auto px-8 h-full",
+            "flex items-center justify-between",
+            "lg:grid lg:grid-cols-[minmax(11rem,auto)_minmax(0,1fr)_auto] lg:items-center lg:justify-normal lg:gap-x-6 xl:gap-x-8",
+          )}
           onMouseEnter={handleNavMouseEnter}
           onMouseLeave={handleNavMouseLeave}
         >
 
-          {/* ── Logo ──────────────────────────────────────────── */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 shrink-0"
-            onClick={() => { closeMenus(); setMobileOpen(false) }}
-            aria-label="InnoTech Systems Home"
-          >
-            <span
-              className="font-bold tracking-wide uppercase"
-              style={{
-                fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                fontSize: scrolled ? "1rem" : "1.125rem",
-                color: "var(--it-text-primary)",
-              }}
+          {/* ── Logo (fixed-width slot so centered nav doesn’t shift when logo height changes on scroll) ── */}
+          <div className="flex shrink-0 items-center justify-start min-w-[11rem] sm:min-w-[12rem] lg:min-w-[13rem]">
+            <Link
+              href="/"
+              className="flex items-center"
+              onClick={() => { closeMenus(); setMobileOpen(false) }}
+              aria-label="InnoTech Systems Home"
             >
-              Inno
-            </span>
-            <span
-              className="font-bold tracking-wide uppercase transition-colors duration-200"
-              style={{
-                fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                fontSize: scrolled ? "1rem" : "1.125rem",
-                color: CTA_BG,
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = CTA_HOVER)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = CTA_BG)}
-            >
-              Tech
-            </span>
-            <span
-              className="w-px self-center"
-              style={{ height: 18, backgroundColor: BAR_BORDER }}
-              aria-hidden
-            />
-            <span
-              className="text-xs uppercase tracking-wider font-light text-slate-400"
-              style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-            >
-              Systems
-            </span>
-          </Link>
+              <SiteLogo heightClass={scrolled ? "h-10" : "h-12"} priority />
+            </Link>
+          </div>
 
-          {/* ── Desktop nav ───────────────────────────────────── */}
+          {/* ── Desktop nav (centered in middle grid column when bar is short) ── */}
           <nav
-            className="hidden lg:flex items-center justify-center gap-1 flex-1 max-w-3xl mx-8"
+            className="hidden lg:flex lg:w-full lg:max-w-3xl lg:justify-self-center lg:mx-auto items-center justify-center gap-1 min-h-0 min-w-0"
             role="navigation"
             aria-label="Main"
           >
@@ -190,7 +165,8 @@ export function Navbar() {
                       onClick={() => toggleMenu(item.key)}
                       onMouseEnter={() => setOpenMenu(item.key)}
                       className={cn(
-                        "relative flex flex-col items-center py-2 px-3 rounded transition-colors duration-150",
+                        "relative flex flex-col items-center px-3 rounded transition-colors duration-150",
+                        scrolled ? "py-1.5" : "py-2",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
                       style={{
@@ -201,7 +177,12 @@ export function Navbar() {
                       aria-haspopup="true"
                       aria-expanded={isOpen}
                     >
-                      <div className="flex flex-col items-center justify-center h-[44px]">
+                      <div
+                        className={cn(
+                          "flex flex-col items-center justify-center",
+                          scrolled ? "h-10" : "h-11",
+                        )}
+                      >
                         <span className="flex items-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
                           {item.label}
                           <motion.span
@@ -238,7 +219,8 @@ export function Navbar() {
                       href={item.href}
                       onClick={closeMenus}
                       className={cn(
-                        "relative flex items-center py-2 px-3 rounded transition-colors duration-150",
+                        "relative flex items-center px-3 rounded transition-colors duration-150",
+                        scrolled ? "py-1.5" : "py-2",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
                       style={{
@@ -293,10 +275,13 @@ export function Navbar() {
           </nav>
 
           {/* ── Right buttons ─────────────────────────────────── */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <div className="hidden lg:flex items-center justify-self-end gap-2 shrink-0">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-3 py-2 rounded border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
+              className={cn(
+                "inline-flex items-center gap-2 px-3 rounded border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]",
+                scrolled ? "py-1.5" : "py-2",
+              )}
               style={{
                 fontSize: "0.9375rem",
                 color: NAV_LINK_COLOR,
@@ -318,7 +303,10 @@ export function Navbar() {
             </Link>
             <Link href="/demo">
               <motion.span
-                className="inline-flex items-center justify-center gap-2 font-medium px-5 py-2.5 rounded-md"
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 font-medium px-5 rounded-md",
+                  scrolled ? "py-2" : "py-2.5",
+                )}
                 style={{
                   fontSize: "0.875rem",
                   backgroundColor: CTA_BG,
@@ -705,10 +693,8 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
             role="dialog" aria-label="Mobile menu"
           >
             <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: "var(--it-border)" }}>
-              <Link href="/" onClick={onClose} className="flex items-center gap-2">
-                <span className="font-bold tracking-wide uppercase" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>Inno</span>
-                <span className="font-bold tracking-wide uppercase" style={{ color: CTA_BG, fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>Tech</span>
-                <span className="text-xs uppercase tracking-wider" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>Systems</span>
+              <Link href="/" onClick={onClose} className="flex items-center shrink-0">
+                <SiteLogo heightClass="h-10" />
               </Link>
               <button
                 type="button" onClick={onClose}

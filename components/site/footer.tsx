@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Linkedin, Mail, MapPin, Youtube } from "lucide-react"
 
+import { SiteLogo } from "@/components/site/site-logo"
 import { footerNav } from "@/lib/nav"
 import { siteConfig } from "@/lib/site"
 
@@ -16,8 +17,8 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
             {/* 1/3 — logo, tagline, address, email, social */}
             <div className="lg:w-1/3 min-w-0 text-sm space-y-1" style={{ color: 'var(--it-text-secondary)' }}>
-              <Link href="/" className="font-bold text-xl block" style={{ color: 'var(--it-text-primary)' }}>
-                {siteConfig.name}
+              <Link href="/" className="inline-block mb-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded">
+                <SiteLogo heightClass="h-12 sm:h-14" />
               </Link>
               <p className="text-sm max-w-xs mb-4" style={{ color: 'var(--it-text-muted)' }}>
                 {siteConfig.company.tagline}

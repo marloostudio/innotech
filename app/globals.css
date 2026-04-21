@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Reserve space for the vertical scrollbar so centered layouts (e.g. nav) don’t shift when it appears */
+html {
+  scrollbar-gutter: stable;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -417,6 +422,15 @@
 }
 .contact-form-light [data-slot="select-trigger"]:not([data-placeholder]) {
   color: var(--it-light-text-primary);
+}
+.contact-form-light select {
+  background-color: var(--it-light-surface);
+  color: var(--it-light-text-primary);
+  border-color: var(--it-light-border);
+}
+.contact-form-light select:focus-visible {
+  border-color: var(--it-light-blue);
+  box-shadow: 0 0 0 3px var(--it-light-blue-border);
 }
 
 /* ─────────────────────────────────────────────────────────

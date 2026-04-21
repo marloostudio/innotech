@@ -7,6 +7,7 @@ Static images for the InnoTech website. Files under `public/` are served at the 
 ```
 public/images/
 ├── README.md          (this file)
+├── brand/             ← Site logo and master brand assets (`innotech-logo.png`)
 ├── team/              ← Team member headshots (Our Team page)
 ├── hero/              (future: hero / banner images)
 ├── products/          (future: product shots, diagrams)

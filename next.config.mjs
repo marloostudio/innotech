@@ -10,6 +10,15 @@ const nextConfig = {
   turbopack: {
     root: projectRoot,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.automateshow.com',
+        pathname: '/userAssets/**',
+      },
+    ],
+  },
   typescript: {
     ignoreBuildErrors: false,
   },
