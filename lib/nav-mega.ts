@@ -58,7 +58,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
     name: "AutoDuck",
     tagline: "Autonomous Charging and Fleet Mgmt",
     description: "Autonomous charging and fleet orchestration",
-    href: "/products/autolock",
+    href: "/products/autoduck",
     ctaLabel: "View AutoDuck",
     accentColor: "var(--it-autolock)",
     solutionLinks: [
@@ -102,7 +102,6 @@ export const resourcesDropdownItems: SimpleDropdownItem[] = [
 export const companyDropdownItems: SimpleDropdownItem[] = [
   { title: "Our Story", href: "/company/our-story", descriptor: "How InnoTech started and where we're going" },
   { title: "Our Team", href: "/company/team", descriptor: "Leadership and engineering team" },
-  { title: "Careers", href: "/company/careers", descriptor: "Life at InnoTech and hiring updates" },
 ]
 
 export type NavMegaKey = "products" | "industries" | "resources" | "company" | null

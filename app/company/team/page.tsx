@@ -11,67 +11,38 @@ export const metadata: Metadata = {
   description: "Meet the experts building the infrastructure for autonomous operations.",
 }
 
+const fredBio =
+  "InnoTech Systems was founded in early 2018 by Fred Daneshgaran with the purpose of helping people and improving the quality of their lives using Artificial Intelligence technology. Dr. Daneshgaran brings a wealth of experience from his involvement in several startup companies and his extensive R&D background in telecommunications, RF systems, VLSI, and quantum electronics."
+
 const executiveLeadership = [
-  { name: "Fred Daneshgaran", title: "CEO and Co-Founder", linkedin: "https://www.linkedin.com/in/fred-daneshgaran-a4284b7/", twitter: "#" },
-]
-
-const advisors = [
   {
-    name: "Piergiorgio lanza",
-    title: "Advisor",
-    expertise: "Machine Vision and AI",
-    linkedin: "https://www.linkedin.com/in/piergiorgiolanza/",
+    name: "Fred Daneshgaran",
+    title: "CEO and Co-Founder",
+    bio: fredBio,
+    linkedin: "https://www.linkedin.com/in/fred-daneshgaran-a4284b7/",
     twitter: "#",
-  },
-  {
-    name: "Claudio DonGiovanni",
-    title: "Hardware Design",
-    expertise: "Mechanical System Design, Robotics, CAD and Simulations",
-    linkedin: "#",
-    twitter: "#",
-  },
-]
-
-const engineeringAndOperations = [
-  { name: "Nayer Shahri", title: "Business Development and Finance", linkedin: "https://www.linkedin.com/in/nayer-shahri-2b15a1a9/", twitter: "#" },
-  {
-    name: "Marina Mondin",
-    title: "AI and ML",
-    expertise: "Artificial Intelligence and Machine Learning",
-    linkedin: "https://www.linkedin.com/in/marinamondin/",
-    twitter: "#",
-  },
-  {
-    name: "Lara Daneshgaran",
-    title: "Robotics Application Engineer",
-    expertise: "Machine Learning and AI Systems, Autonomous Robotics",
-    linkedin: "https://www.linkedin.com/in/lara-daneshgaran/",
-    twitter: "#",
-  },
-  {
-    name: "Shiva Omidzadeh",
-    title: "Robotics Application Engineer",
-    expertise: "Autonomous Robotics, Electrical and Systems Engineering",
-    linkedin: "",
-    twitter: "#",
+    omitImage: true as const,
   },
 ]
 
 export default function TeamPage() {
   return (
     <>
-      {/* Breadcrumbs */}
       <div className="border-b" style={{ borderColor: "var(--it-border)" }}>
         <div className="max-w-screen-2xl mx-auto px-8 py-4">
-          <div className="flex items-center gap-2 text-sm" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-            <Link href="/company" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>Company</Link>
+          <div
+            className="flex items-center gap-2 text-sm"
+            style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
+          >
+            <Link href="/company" className="transition-colors hover:opacity-80" style={{ color: "var(--it-text-muted)" }}>
+              Company
+            </Link>
             <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
             <span style={{ color: "var(--it-text-primary)" }}>Team</span>
           </div>
         </div>
       </div>
 
-      {/* Hero — compact */}
       <section className="py-10 lg:py-14" style={{ background: "var(--it-hero-gradient)" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -88,72 +59,40 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Single section: Leadership, Advisors, Engineering, Culture */}
       <Section variant="white">
-        <div className="space-y-12 lg:space-y-14">
-          {/* Leadership + Advisors in one row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-            <div>
-              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
-                Executive Leadership
-              </h2>
-              <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                Strategy and technology vision
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {executiveLeadership.map((person) => (
-                  <TeamCard key={person.name} {...person} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
-                Advisors
-              </h2>
-              <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-                AI, ML and Hardware
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {advisors.map((person) => (
-                  <TeamCard key={person.name} {...person} />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Engineering & Operations */}
-          <div>
-            <h2 className="text-xl font-semibold mb-1" style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
-              Engineering & Operations
-            </h2>
-            <p className="text-sm mb-6" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-              Building and supporting our products and operations
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {engineeringAndOperations.map((person) => (
-                <TeamCard key={person.name} {...person} />
-              ))}
-            </div>
-          </div>
-
-          {/* Our Culture — one short paragraph */}
-          <div className="pt-4 border-t" style={{ borderColor: "var(--it-border)" }}>
-            <h2 className="text-2xl lg:text-3xl font-semibold mb-3" style={{ color: "var(--it-text-primary)", fontFamily: "var(--it-font-heading)" }}>
-              Our Culture
-            </h2>
-            <p className="text-base max-w-3xl" style={{ color: "var(--it-text-secondary)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}>
-              We&apos;re builders at heart—engineers, designers, and operators who love solving hard problems. We value collaboration, continuous learning, and a bias toward action. We&apos;re mission-driven: enabling the autonomous revolution that will transform how goods move, how factories operate, and how work gets done.
-            </p>
+        <div>
+          <h2
+            className="text-xl font-semibold mb-1"
+            style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
+          >
+            Executive Leadership
+          </h2>
+          <p
+            className="text-sm mb-6"
+            style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
+          >
+            Strategy and technology vision
+          </p>
+          <div className="max-w-2xl">
+            {executiveLeadership.map((person) => (
+              <TeamCard
+                key={person.name}
+                name={person.name}
+                title={person.title}
+                bio={person.bio}
+                linkedin={person.linkedin}
+                omitImage={person.omitImage}
+              />
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* CTA */}
       <CtaBanner
-        title="Join the InnoTech Team"
-        description="Explore opportunities to work on cutting-edge autonomous systems technology"
-        primaryCta={{ label: "View Open Positions", href: "/company/careers" }}
-        secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        title="Get in touch"
+        description="Learn how InnoTech can support your autonomous operations"
+        primaryCta={{ label: "Contact Us", href: "/contact" }}
+        secondaryCta={{ label: "Request a Demo", href: "/demo" }}
       />
     </>
   )

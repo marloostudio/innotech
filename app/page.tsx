@@ -1,6 +1,5 @@
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
-import { ExhibitionTeaser } from "@/components/sections/exhibition-teaser"
 import { LogoCloud } from "@/components/sections/logo-cloud"
 import { FeatureGrid } from "@/components/sections/feature-grid"
 import { IndustryGrid } from "@/components/sections/industry-grid"
@@ -27,7 +26,6 @@ export default function HomePage() {
         secondaryCta={{ label: "Explore Solutions", href: "/products" }}
         background={<HeroCanvas />}
       />
-      <ExhibitionTeaser />
       {/* Logo Cloud → dark alt (it-section-mid) */}
       <LogoCloud title="Trusted by innovative companies worldwide" logos={trustLogos} />
       {/* Feature Grid → light-bg */}
@@ -37,12 +35,11 @@ export default function HomePage() {
         features={solutionsOverview}
         columns={2}
         variant="light-bg"
-        showImagePlaceholder
-        imageOnLeft
+        showImagePlaceholder={false}
         hideIcon
       />
-      {/* Industry Grid → dark (it-section-mid) */}
-      <IndustryGrid 
+      {/* Industry Grid → dark (it-section-mid) — Serving Critical Industries */}
+      <IndustryGrid
         title="Serving Critical Industries"
         description="Advanced AI, computer vision and telecommunication for autonomous charging, safe robot-human collaboration and V2X"
         industries={industriesServed}

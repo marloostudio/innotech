@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Mail, MapPin, Clock } from "lucide-react"
+import { Mail, Clock } from "lucide-react"
 
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PillarHero } from "@/components/sections/pillar-hero"
@@ -21,12 +21,6 @@ const contactMethods = [
     title: "Email",
     description: siteConfig.company.email,
     action: "Send email"
-  },
-  {
-    icon: MapPin,
-    title: "Office",
-    description: siteConfig.company.address,
-    action: "Get directions"
   },
   {
     icon: Clock,

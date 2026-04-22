@@ -17,6 +17,8 @@ export interface TeamCardProps {
   github?: string
   /** Compact horizontal layout for denser grids (e.g. Engineering list) */
   compact?: boolean
+  /** No photo area — text-focused card (e.g. leadership bio without headshot) */
+  omitImage?: boolean
 }
 
 const iconSize = 16
@@ -31,7 +33,85 @@ export function TeamCard({
   twitter,
   github,
   compact = false,
+  omitImage = false,
 }: TeamCardProps) {
+  if (omitImage) {
+    return (
+      <article
+        className={cn("rounded-xl border p-5 space-y-2 transition-all duration-200", "hover:translate-y-[-2px] hover:shadow-(--it-shadow-md)")}
+        style={{
+          background: "var(--it-surface)",
+          borderColor: "var(--it-border)",
+        }}
+      >
+        <h3
+          className="font-semibold text-base"
+          style={{
+            color: "var(--it-text-primary)",
+            fontFamily: "var(--font-sans), 'Inter', sans-serif",
+          }}
+        >
+          {name}
+        </h3>
+        <p
+          className="font-medium text-sm"
+          style={{
+            color: "var(--it-blue)",
+            fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+          }}
+        >
+          {title}
+        </p>
+        {expertise ? (
+          <p
+            className="text-sm"
+            style={{
+              color: "var(--it-text-secondary)",
+              fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+            }}
+          >
+            {expertise}
+          </p>
+        ) : null}
+        {bio ? (
+          <p
+            className="text-sm leading-relaxed"
+            style={{
+              color: "var(--it-text-secondary)",
+              fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",
+            }}
+          >
+            {bio}
+          </p>
+        ) : null}
+        <div className="flex items-center gap-3 pt-2">
+          {linkedin && (
+            <Link
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors text-it-text-muted hover:text-it-text-primary"
+              aria-label={`${name} on LinkedIn`}
+            >
+              <Linkedin size={iconSize} strokeWidth={1.5} />
+            </Link>
+          )}
+          {github && (
+            <Link
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors text-it-text-muted hover:text-it-text-primary"
+              aria-label={`${name} on GitHub`}
+            >
+              <Github size={iconSize} strokeWidth={1.5} />
+            </Link>
+          )}
+        </div>
+      </article>
+    )
+  }
+
   if (compact) {
     return (
       <article

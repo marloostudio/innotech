@@ -7,7 +7,6 @@ import { CtaBanner } from '@/components/sections/cta-banner'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ImagePlaceholder } from '@/components/ui/image-placeholder'
 import { safeguardProduct, safeguardBrochureCards, safeguardStaticSafetyNarrative } from '@/lib/content/safeguard'
 import * as LucideIcons from 'lucide-react'
 
@@ -30,36 +29,22 @@ export default function SafeGuardPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "SafeGuard" }]} />
-      {/* Hero Section — two-column with 16/9 placeholder on right */}
       <section className="it-hero-safeguard py-20 lg:py-28">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
-            <div className="text-center lg:text-left">
-              <Badge variant="outline" className="mb-4">Product</Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">
-                {safeguardProduct.hero.title}
-              </h1>
-              <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">
-                {safeguardProduct.hero.subtitle}
-              </p>
-              <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">
-                {safeguardProduct.hero.description}
-              </p>
-              <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
-                <Button size="lg" asChild>
-                  <Link href="/demo">Request a Demo</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/contact">Contact Sales</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="w-full">
-              <ImagePlaceholder
-                aspectRatio="16/9"
-                alt="SafeGuard Product Hero"
-                label="SafeGuard Product Hero"
-              />
+          <div className="max-w-4xl mx-auto text-center lg:text-left">
+            <Badge variant="outline" className="mb-4">
+              Product
+            </Badge>
+            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{safeguardProduct.hero.title}</h1>
+            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{safeguardProduct.hero.subtitle}</p>
+            <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">{safeguardProduct.hero.description}</p>
+            <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
+              <Button size="lg" asChild>
+                <Link href="/demo">Request a Demo</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/contact">Contact Sales</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -122,64 +107,30 @@ export default function SafeGuardPage() {
           description="Certification, collaboration, fault response, and a pilot program built for your floor plan"
         />
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {safeguardBrochureCards.map((card, index) => {
+          {safeguardBrochureCards.map((card) => {
             const Icon = getIcon(card.icon)
-            const imageLeft = index % 2 === 1
             return (
-              <Card key={card.id} className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-safeguard)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow overflow-hidden">
-                <div className="grid md:grid-cols-2 gap-0">
-                  {imageLeft && (
-                    <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
-                      <ImagePlaceholder
-                        aspectRatio="4/3"
-                        alt={`SafeGuard — ${card.name}`}
-                        label={`SafeGuard — ${card.name}`}
-                        className="w-full h-full min-h-[180px]"
-                        variant="light"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="p-3 rounded-lg bg-[var(--it-light-safeguard)]/10 mb-4">
-                          <Icon className="w-6 h-6 text-it-light-safeguard" strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      <CardTitle className="text-2xl mb-2 text-it-light-text-primary">
-                        {card.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      {card.bullets ? (
-                        <ul className="text-it-light-text-muted mb-6 space-y-3 text-pretty list-disc pl-5">
-                          {card.bullets.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-it-light-text-muted mb-6 text-pretty">{card.description}</p>
-                      )}
-                      <Button variant="outline" asChild className="border-it-light-border text-it-light-text-secondary group-hover:bg-it-light-safeguard group-hover:text-white transition-colors">
-                        <Link href="/contact">
-                          {card.bullets ? "Join the pilot" : "Contact us"}
-                          <LucideIcons.ArrowRight className="ml-2 w-4 h-4" />
-                        </Link>
-                      </Button>
-                    </CardContent>
+              <Card
+                key={card.id}
+                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-safeguard)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+              >
+                <CardHeader>
+                  <div className="p-3 rounded-lg bg-[var(--it-light-safeguard)]/10 mb-4 w-fit">
+                    <Icon className="w-6 h-6 text-it-light-safeguard" strokeWidth={1.5} />
                   </div>
-                  {!imageLeft && (
-                    <div className="relative min-h-[200px] md:min-h-0 p-4 flex items-stretch">
-                      <ImagePlaceholder
-                        aspectRatio="4/3"
-                        alt={`SafeGuard — ${card.name}`}
-                        label={`SafeGuard — ${card.name}`}
-                        className="w-full h-full min-h-[180px]"
-                        variant="light"
-                      />
-                    </div>
+                  <CardTitle className="text-2xl mb-2 text-it-light-text-primary">{card.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {card.bullets ? (
+                    <ul className="text-it-light-text-muted space-y-3 text-pretty list-disc pl-5">
+                      {card.bullets.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-it-light-text-muted text-pretty">{card.description}</p>
                   )}
-                </div>
+                </CardContent>
               </Card>
             )
           })}

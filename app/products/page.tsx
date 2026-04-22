@@ -24,26 +24,14 @@ const products = [
     tagline: "Software-Defined Safety for Robots",
     description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots. Ensure safe operations and regulatory compliance.",
     icon: LucideIcons.Shield,
-    features: [
-      "Real-time hazard detection",
-      "Automated compliance monitoring",
-      "Instant anomaly alerts",
-      "Predictive maintenance"
-    ]
   },
   {
     id: "autolock",
     name: "AutoDuck",
-    slug: "autolock",
+    slug: "autoduck",
     tagline: "Autonomous Charging and Fleet Orchestration",
     description: "Fully automated robotic charging and fleet management for autonomous vehicles, commercial fleets, and mobile robots. No human intervention required.",
     icon: LucideIcons.Zap,
-    features: [
-      "Robotic autonomous charging",
-      "Intelligent fleet orchestration",
-      "Depot process automation 24/7 365",
-      "Secure access control"
-    ]
   },
   {
     id: "radar-link",
@@ -52,12 +40,6 @@ const products = [
     tagline: "V2X Communication, Cm-level Localization and Drone Tracking",
     description: "Vehicle-to-everything communication, centimeter-level localization, and drone tracking for connected autonomous ecosystems.",
     icon: LucideIcons.Radio,
-    features: [
-      "V2V and V2X communication",
-      "Centimeter-level localization",
-      "Drone tracking & identification",
-      "Real-time analytics"
-    ]
   }
 ]
 
@@ -149,15 +131,6 @@ export default function ProductsPage() {
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
                   <p className="text-it-light-text-muted mb-6 text-pretty">{product.description}</p>
-                  
-                  <div className="space-y-3 mb-6">
-                    {product.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <LucideIcons.Check className="w-5 h-5 text-it-light-blue shrink-0 mt-0.5" strokeWidth={1.5} />
-                        <span className="text-sm text-it-light-text-secondary">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
                   
                   <div className="mt-auto">
                     <Button

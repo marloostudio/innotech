@@ -1,8 +1,7 @@
 import Link from "next/link"
-import { Linkedin, Mail, MapPin, Youtube } from "lucide-react"
+import { Linkedin, Mail, Youtube } from "lucide-react"
 
 import { SiteLogo } from "@/components/site/site-logo"
-import { footerNav } from "@/lib/nav"
 import { siteConfig } from "@/lib/site"
 
 export function Footer() {
@@ -10,90 +9,62 @@ export function Footer() {
 
   return (
     <footer style={{ background: "var(--it-surface)" }}>
-      {/* This inner div constrains all content */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Row 1 — 1/3 InnoTech + 2/3 links (2 rows × 3 cols) */}
         <div className="py-12 border-b border-it-border">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-            {/* 1/3 — logo, tagline, address, email, social */}
-            <div className="lg:w-1/3 min-w-0 text-sm space-y-1" style={{ color: 'var(--it-text-secondary)' }}>
-              <Link href="/" className="inline-block mb-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded">
-                <SiteLogo heightClass="h-12 sm:h-14" />
-              </Link>
-              <p className="text-sm max-w-xs mb-4" style={{ color: 'var(--it-text-muted)' }}>
-                {siteConfig.company.tagline}
-              </p>
-              <p className="whitespace-pre-line pt-1 flex items-start gap-2">
-                <MapPin className="h-4 w-4 shrink-0 mt-0.5" strokeWidth={1.5} aria-hidden />
-                <span>{siteConfig.company.address}</span>
-              </p>
-              <p className="pt-1 flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                <a href={`mailto:${siteConfig.company.email}`} className="transition-colors duration-150 hover:opacity-90" style={{ color: 'inherit' }}>
-                  {siteConfig.company.email}
-                </a>
-              </p>
-
-              <div className="space-y-3 pt-2 lg:pt-8">
-                <h3 className="font-semibold text-base" style={{ color: 'var(--it-text-primary)' }}>Follow</h3>
-                <div className="flex items-center gap-3">
-                  <Link
-                    href={siteConfig.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors duration-150 hover:opacity-90"
-                    style={{ color: 'var(--it-text-muted)' }}
-                  >
-                    <Linkedin className="h-5 w-5" strokeWidth={1.5} />
-                    <span className="sr-only">LinkedIn</span>
-                  </Link>
-                  <Link
-                    href="https://www.youtube.com/channel/UCWS8SE_2VAz1hkRKlhlu_Iw?view_as=subscriber"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors duration-150 hover:opacity-90"
-                    style={{ color: 'var(--it-text-muted)' }}
-                  >
-                    <Youtube className="h-5 w-5" strokeWidth={1.5} />
-                    <span className="sr-only">YouTube</span>
-                  </Link>
-                </div>
+          <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 sm:gap-y-4">
+            <Link href="/" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded shrink-0">
+              <SiteLogo heightClass="h-12 sm:h-14" />
+            </Link>
+            <a
+              href={`mailto:${siteConfig.company.email}`}
+              className="inline-flex items-center gap-2 text-sm transition-colors duration-150 hover:opacity-90"
+              style={{ color: "var(--it-text-secondary)" }}
+            >
+              <Mail className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              {siteConfig.company.email}
+            </a>
+            <div className="flex items-center gap-3 sm:ml-auto">
+              <span className="text-sm font-semibold" style={{ color: "var(--it-text-primary)" }}>
+                Follow
+              </span>
+              <div className="flex items-center gap-3">
+                <Link
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-150 hover:opacity-90"
+                  style={{ color: "var(--it-text-muted)" }}
+                >
+                  <Linkedin className="h-5 w-5" strokeWidth={1.5} />
+                  <span className="sr-only">LinkedIn</span>
+                </Link>
+                <Link
+                  href="https://www.youtube.com/channel/UCWS8SE_2VAz1hkRKlhlu_Iw?view_as=subscriber"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-150 hover:opacity-90"
+                  style={{ color: "var(--it-text-muted)" }}
+                >
+                  <Youtube className="h-5 w-5" strokeWidth={1.5} />
+                  <span className="sr-only">YouTube</span>
+                </Link>
               </div>
             </div>
-            {/* 2/3 — links in 2 rows × 3 columns */}
-            <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-8 sm:gap-x-10">
-              {footerNav.map((section) => (
-                <div key={section.title} className="space-y-3">
-                  <h3 className="font-semibold text-base" style={{ color: 'var(--it-text-primary)' }}>{section.title}</h3>
-                  <ul className="space-y-2">
-                    {section.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className="text-sm transition-colors duration-150 text-it-text-muted hover:text-it-text-primary"
-                        >
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
           </div>
+          <p className="text-sm max-w-md mt-6" style={{ color: "var(--it-text-muted)" }}>
+            {siteConfig.company.tagline}
+          </p>
         </div>
 
-        {/* Divider */}
         <div style={{ borderTop: "1px solid var(--it-border)" }} />
 
-        {/* Bottom bar — copyright + legal links */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: 'var(--it-text-muted)' }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm" style={{ color: "var(--it-text-muted)" }}>
           <div className="space-y-1">
             <p className="text-[11px]">© {currentYear} {siteConfig.name}. All rights reserved.</p>
             <Link
               href="/changelog"
               className="font-mono text-[11px] transition-colors duration-150 hover:text-it-text-primary block"
-              style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: 'inherit' }}
+              style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
               title="View changelog"
             >
               v{siteConfig.version}
@@ -103,25 +74,25 @@ export function Footer() {
             <Link href="/sitemap.xml" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Sitemap
             </Link>
-            <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
+            <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
             <Link href="/changelog" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Changelog
             </Link>
-            <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
+            <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
             <Link href="/legal/privacy-policy" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Privacy Policy
             </Link>
-            <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
+            <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
             <Link href="/legal/terms" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Terms of Service
             </Link>
-            <span aria-hidden="true" style={{ color: 'var(--it-text-muted)' }}>/</span>
+            <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
             <Link href="/legal/cookie-policy" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Cookie Policy
             </Link>
           </div>
         </div>
-        <p className="text-xs pb-6" style={{ color: 'var(--it-text-muted)' }}>
+        <p className="text-xs pb-6" style={{ color: "var(--it-text-muted)" }}>
           Powered by{" "}
           <a
             href="https://marloo.net"

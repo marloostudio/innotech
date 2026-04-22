@@ -134,7 +134,7 @@ export default function DemoPage() {
                   >
                     <option value="">Select a product</option>
                     <option value="safeguard">SafeGuard — Safety Monitoring</option>
-                    <option value="autolock">AutoDuck — Autonomous Charging</option>
+                    <option value="autoduck">AutoDuck — Autonomous Charging</option>
                     <option value="radar-link">RADARLink — V2X Communication</option>
                     <option value="all">All Products</option>
                   </select>

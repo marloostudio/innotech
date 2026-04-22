@@ -14,7 +14,7 @@ export default function AutonomousChargingPage() {
     <ProductFeatureDetail
       feature={feature}
       productName="AutoDuck"
-      productSlug="autolock"
+      productSlug="autoduck"
     />
   )
 }

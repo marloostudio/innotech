@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageShell, Section } from "@/components/page-shell"
-import { SectionHeader } from "@/components/section-header"
 import { CtaBanner } from "@/components/sections/cta-banner"
 import { Badge } from "@/components/ui/badge"
 import * as LucideIcons from "lucide-react"
@@ -10,44 +9,6 @@ export const metadata: Metadata = {
   title: "Our Story — How InnoTech Systems Came to Be",
   description: "The journey of InnoTech Systems from founding vision to autonomous infrastructure leader."
 }
-
-const timeline = [
-  {
-    year: "2018",
-    milestone: "Company Founded",
-    description: "InnoTech Systems established with a vision to build the critical infrastructure needed for autonomous operations at scale."
-  },
-  {
-    year: "2019",
-    milestone: "First Pilot Deployment",
-    description: "Successful pilot of autonomous charging system for electric delivery fleet, validating core technology."
-  },
-  {
-    year: "2020",
-    milestone: "SafeGuard Platform Launch",
-    description: "Launched comprehensive safety monitoring platform for industrial and autonomous robotic operations."
-  },
-  {
-    year: "2021",
-    milestone: "AutoDuck Production Release",
-    description: "Released production version of AutoDuck autonomous charging system for commercial fleets."
-  },
-  {
-    year: "2022",
-    milestone: "V2X Technology Integration",
-    description: "Introduced RADARLink platform, enabling vehicle-to-everything communication and cm-level localization and tracking."
-  },
-  {
-    year: "2023",
-    milestone: "International Expansion",
-    description: "Expanded operations to Europe and Asia-Pacific to support global autonomous vehicle deployments."
-  },
-  {
-    year: "2024",
-    milestone: "100+ Fleet Deployments",
-    description: "Reached milestone of 100+ production fleet deployments across logistics, port, and mining operations."
-  }
-]
 
 export default function OurStoryPage() {
   return (
@@ -96,41 +57,11 @@ export default function OurStoryPage() {
         </div>
       </Section>
 
-      {/* Timeline → light-bg */}
-      <Section variant="light-bg">
-        <SectionHeader
-          theme="light"
-          title="Our Journey"
-          description="Key milestones in building the future of autonomous infrastructure"
-        />
-        <div className="max-w-4xl mx-auto space-y-8">
-          {timeline.map((item, index) => (
-            <div key={item.year}>
-              <div className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-it-light-blue text-white font-bold shrink-0">
-                    {item.year}
-                  </div>
-                  {index < timeline.length - 1 && (
-                    <div className="w-0.5 h-full bg-it-light-border mt-2 min-h-[60px]" />
-                  )}
-                </div>
-                <div className="flex-1 pb-8">
-                  <h3 className="text-xl font-semibold mb-2 text-it-light-text-primary">{item.milestone}</h3>
-                  <p className="text-it-light-text-secondary text-pretty">{item.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* CTA Banner → dark with gradient */}
-      <CtaBanner 
+      <CtaBanner
         title="Join Us on the Journey"
         description="Be part of building the infrastructure for autonomous operations"
-        primaryCta={{ label: "View Careers", href: "/company/careers" }}
-        secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        primaryCta={{ label: "Contact Us", href: "/contact" }}
+        secondaryCta={{ label: "Request a Demo", href: "/demo" }}
       />
     </>
   )

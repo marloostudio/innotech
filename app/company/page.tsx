@@ -43,7 +43,6 @@ const quickLinks = [
   { title: "Our Story", href: "/company/our-story", description: "How InnoTech Systems came to be" },
   { title: "Our Team", href: "/company/team", description: "The people behind the technology" },
   { title: "Mission & Values", href: "/company/values", description: "What drives us forward" },
-  { title: "Careers", href: "/company/careers", description: "Join the InnoTech team" }
 ]
 
 export default function CompanyPage() {
@@ -56,7 +55,7 @@ export default function CompanyPage() {
         h2="Founded in San Francisco. Built by engineers who got frustrated that vehicles were getting smarter while the infrastructure around them stayed manual."
         description="InnoTech Systems was founded to close the gap between autonomous vehicles and the physical infrastructure they depend on. Today our team works across robotics, AI, power electronics, and communications to build systems that are deployed in some of the world's most demanding operational environments."
         primaryCta={{ label: "Meet the Team", href: "/company/team" }}
-        secondaryCta={{ label: "View Open Roles", href: "/company/careers" }}
+        secondaryCta={{ label: "Contact Us", href: "/contact" }}
       />
 
       <Section>
@@ -123,11 +122,11 @@ export default function CompanyPage() {
         </div>
       </Section>
 
-      <CtaBanner 
+      <CtaBanner
         title="Let's Build the Future Together"
         description="Whether you're exploring autonomous systems for the first time or scaling existing operations, we're here to help."
         primaryCta={{ label: "Get in Touch", href: "/contact" }}
-        secondaryCta={{ label: "View Careers", href: "/company/careers" }}
+        secondaryCta={{ label: "Request a Demo", href: "/demo" }}
       />
     </>
   )

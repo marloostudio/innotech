@@ -48,7 +48,7 @@ export const automateEvent = {
         tag: "Autonomous charging & orchestration",
         description:
           "Fleet-aware charging, access control, and mission orchestration that keeps vehicles productive without manual babysitting.",
-        href: "/products/autolock",
+        href: "/products/autoduck",
         accent: "autolock" as const,
       },
       {
@@ -66,7 +66,7 @@ export const automateEvent = {
     title: "AutoDuck connects what you plan to what runs on the floor",
     body:
       "Translate production and logistics priorities into executable fleet behavior: who charges when, which zones need safety elevation, and how missions adapt when conditions change—without rip-and-replace of your existing stack.",
-    cta: { label: "Explore AutoDuck", href: "/products/autolock" },
+    cta: { label: "Explore AutoDuck", href: "/products/autoduck" },
   },
   useCasesIntro: {
     headline: "Where InnoTech drives automation",
