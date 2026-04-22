@@ -22,21 +22,34 @@ interface TechOverviewProps {
 }
 
 /** Overrides shadcn Tabs defaults (muted track + ring shadows) for a calmer InnoTech look. */
+/** `!` and `dark:` overrides beat shadcn Tabs (bg-background, dark:bg-input/30 on active). */
 const listLight =
-  "inline-flex w-full flex-col gap-1 p-1.5 sm:flex-row sm:items-stretch sm:gap-1.5 rounded-xl border border-it-light-border bg-slate-200/35 shadow-none h-auto"
+  "inline-flex w-full flex-col gap-1 p-1.5 sm:flex-row sm:items-stretch sm:gap-1.5 rounded-xl border border-it-light-border bg-slate-200/35 !text-inherit shadow-none h-auto [color-scheme:light]"
 const listDark =
   "inline-flex w-full flex-col gap-1 p-1.5 sm:flex-row sm:items-stretch sm:gap-1.5 rounded-xl border border-it-border bg-it-surface-raised shadow-none h-auto"
 
 const triggerBase =
   "flex-1 min-h-[3rem] justify-center rounded-lg border-0 px-4 py-3 text-sm font-medium transition-[color,background,box-shadow] duration-200 shadow-none outline-none focus-visible:ring-2 focus-visible:ring-offset-0 disabled:opacity-50 data-[state=active]:shadow-none sm:text-base"
 
-const triggerLightInactive =
-  "text-it-light-text-muted bg-transparent hover:bg-white/60 hover:text-it-light-text-secondary data-[state=active]:bg-white data-[state=active]:text-it-light-text-primary data-[state=active]:ring-1 data-[state=active]:ring-slate-300/80 data-[state=active]:shadow-[0_1px_3px_rgba(15,23,42,0.08)]"
-const triggerLightFocus = "focus-visible:ring-it-light-blue/40"
-
 const triggerDarkInactive =
   "text-it-text-muted bg-transparent hover:bg-it-surface/80 hover:text-it-text-secondary data-[state=active]:bg-it-bg data-[state=active]:text-it-text-primary data-[state=active]:ring-1 data-[state=active]:ring-it-border data-[state=active]:shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
 const triggerDarkFocus = "focus-visible:ring-it-blue/35"
+
+const triggerLight = cn(
+  triggerBase,
+  // Base / inactive (override TabsTrigger: text-foreground, dark:text-muted-foreground)
+  "!text-it-light-text-muted dark:!text-it-light-text-muted",
+  "bg-transparent dark:!bg-transparent",
+  "hover:bg-white/60 hover:!text-it-light-text-secondary dark:hover:!bg-white/60 dark:hover:!text-it-light-text-secondary",
+  // Active: must win over data-[state=active]:bg-background and dark:data-[state=active]:bg-input/30
+  "data-[state=active]:!bg-[#0f1f3a] data-[state=active]:!text-white",
+  "dark:data-[state=active]:!bg-[#0f1f3a] dark:data-[state=active]:!text-white",
+  "data-[state=active]:!border-transparent dark:data-[state=active]:!border-transparent",
+  "data-[state=active]:!shadow-none data-[state=active]:font-semibold",
+  "data-[state=active]:ring-0 focus-visible:!ring-2",
+  "focus-visible:ring-it-light-blue/50",
+)
+const triggerDark = cn(triggerBase, triggerDarkInactive, triggerDarkFocus)
 
 export function TechOverview({ title, description, pillars, variant, alt }: TechOverviewProps) {
   const headerTheme = variant === "light-bg" ? "light" : "dark"
@@ -50,12 +63,7 @@ export function TechOverview({ title, description, pillars, variant, alt }: Tech
             <TabsTrigger
               key={pillar.id}
               value={pillar.id}
-              className={cn(
-                triggerBase,
-                isLightSection
-                  ? cn(triggerLightInactive, triggerLightFocus)
-                  : cn(triggerDarkInactive, triggerDarkFocus)
-              )}
+              className={isLightSection ? triggerLight : triggerDark}
             >
               {pillar.title}
             </TabsTrigger>

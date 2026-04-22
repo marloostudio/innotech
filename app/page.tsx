@@ -1,6 +1,5 @@
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
-import { LogoCloud } from "@/components/sections/logo-cloud"
 import { FeatureGrid } from "@/components/sections/feature-grid"
 import { IndustryGrid } from "@/components/sections/industry-grid"
 import { TechOverview } from "@/components/sections/tech-overview"
@@ -8,7 +7,6 @@ import { Faq } from "@/components/sections/faq"
 import { CtaBanner } from "@/components/sections/cta-banner"
 
 import {
-  trustLogos,
   solutionsOverview,
   industriesServed,
   technologyPillars,
@@ -26,8 +24,6 @@ export default function HomePage() {
         secondaryCta={{ label: "Explore Solutions", href: "/products" }}
         background={<HeroCanvas />}
       />
-      {/* Logo Cloud → dark alt (it-section-mid) */}
-      <LogoCloud title="Trusted by innovative companies worldwide" logos={trustLogos} />
       {/* Feature Grid → light-bg */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
