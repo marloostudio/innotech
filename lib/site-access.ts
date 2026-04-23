@@ -46,6 +46,8 @@ export function isPublicCrawlablePath(pathname: string): boolean {
   if (core === "/") return true
   if (core === "/products") return true
   if (core === "/demo" || core === "/contact") return true
+  /** Form confirmation; noindex in page metadata — must not require preview password. */
+  if (core === "/thank-you") return true
   if (core === "/company" || core.startsWith("/company/")) return true
   /** Product hubs only — subpages (e.g. `/products/autoduck/access-control`) are gated. */
   if (core === "/products/autoduck") return true

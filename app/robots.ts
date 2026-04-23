@@ -27,6 +27,8 @@ export default function robots(): MetadataRoute.Robots {
         "/demo/$",
         "/contact$",
         "/contact/$",
+        "/thank-you$",
+        "/thank-you/$",
         "/company$",
         "/company/$",
         "/company/our-story$",

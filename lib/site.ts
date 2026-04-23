@@ -12,7 +12,7 @@ export const siteConfig = {
   /** Header, footer, and other brand placements — file under `public/images/brand/` */
   brand: {
     logoSrc: "/images/brand/innotech-logo.png",
-    logoAlt: "InnoTech Systems — Tomorrow in Mind",
+    logoAlt: "InnoTech — Bring Future to Life",
   },
   company: {
     name: "InnoTech Systems",

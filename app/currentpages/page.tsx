@@ -140,8 +140,8 @@ export default function CurrentPagesIndexPage() {
         description="Only the crawler allowlist below is reachable without the preview cookie. Product detail URLs under AutoDuck, RADARLink, and SafeGuard are gated. Password-gated hubs (blog, case studies) use noindex. Likely bots get 403 off the allowlist."
       />
 
-      <div className="max-w-3xl space-y-10">
-        <p className="text-sm text-it-light-text-muted">
+      <div className="max-w-3xl mx-auto space-y-10 text-center">
+        <p className="text-sm text-it-light-text-muted text-pretty">
           <strong className="text-it-light-text-primary">{diskRoutes.length}</strong> <code className="text-xs">page.tsx</code>{" "}
           routes · <strong className="text-emerald-950 dark:text-emerald-800">{nMarketing}</strong> marketing-public ·{" "}
           <strong className="text-it-light-text-primary">{nSystem}</strong> system ·{" "}
@@ -150,12 +150,12 @@ export default function CurrentPagesIndexPage() {
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border border-emerald-900/40 bg-emerald-950/10 p-4 text-sm">
+          <div className="rounded-lg border border-emerald-900/40 bg-emerald-950/10 p-4 text-sm text-center">
             <p className="font-semibold text-emerald-950 dark:text-emerald-800 mb-2">Crawler &amp; anonymous allowlist</p>
-            <p className="text-it-light-text-muted text-xs mb-3 leading-snug">
+            <p className="text-it-light-text-muted text-xs mb-3 leading-snug text-pretty">
               Same paths as the sitemap. No preview password; bots may fetch these URLs only.
             </p>
-            <ul className="space-y-1.5 font-mono text-xs text-emerald-950 dark:text-emerald-800">
+            <ul className="flex flex-col items-center gap-1.5 font-mono text-xs text-emerald-950 dark:text-emerald-800">
               {CRAWLER_ALLOWLIST_PATHS.map((path) => (
                 <li key={path}>
                   <code className="rounded bg-emerald-950/10 px-1 py-0.5 border border-emerald-900/30 dark:bg-emerald-950/20 dark:border-emerald-800/40">
@@ -165,16 +165,16 @@ export default function CurrentPagesIndexPage() {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg border border-red-900/40 bg-red-950/10 p-4 text-sm">
-            <p className="font-semibold text-red-950 dark:text-red-800 mb-2 flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-red-900/40 bg-red-950/10 p-4 text-sm text-center">
+            <p className="font-semibold text-red-950 dark:text-red-800 mb-2 flex flex-wrap items-center justify-center gap-2">
               Password-gated hubs
               <AccessBadge kind="password" />
             </p>
-            <p className="text-it-light-text-muted text-xs mb-3 leading-snug">
+            <p className="text-it-light-text-muted text-xs mb-3 leading-snug text-pretty">
               From <code className="text-[11px]">PASSWORD_GATED_HUB_PATH_PREFIXES</code> — 403 for crawlers, preview login for humans,{" "}
               <code className="text-[11px]">noindex</code> on the page.
             </p>
-            <ul className="space-y-1.5 font-mono text-xs text-red-950 dark:text-red-800">
+            <ul className="flex flex-col items-center gap-1.5 font-mono text-xs text-red-950 dark:text-red-800">
               {PASSWORD_GATED_HUB_PATH_PREFIXES.map((path) => (
                 <li key={path}>
                   <code className="rounded bg-red-950/10 px-1 py-0.5 border border-red-900/30 dark:bg-red-950/20 dark:border-red-800/40">
@@ -188,7 +188,7 @@ export default function CurrentPagesIndexPage() {
 
         <div>
           <h2 className="text-lg font-semibold text-it-light-text-primary mb-2">Route tree</h2>
-          <div className="flex flex-wrap items-center gap-2 text-emerald-950 dark:text-emerald-800">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-emerald-950 dark:text-emerald-800">
             <Link
               href="/"
               className="font-medium text-emerald-950 hover:text-emerald-900 dark:text-emerald-800 dark:hover:text-emerald-700 transition-colors"
@@ -200,14 +200,18 @@ export default function CurrentPagesIndexPage() {
               /
             </code>
           </div>
-          <RouteTreeList node={tree} />
+          <div className="flex justify-center">
+            <div className="text-left">
+              <RouteTreeList node={tree} />
+            </div>
+          </div>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold text-it-light-text-primary mb-2">
             Blog posts <span className="text-sm font-normal text-it-light-text-muted">(listing)</span>
           </h2>
-          <p className="text-sm text-it-light-text-muted mb-3">
+          <p className="text-sm text-it-light-text-muted mb-3 text-pretty">
             <Link
               href="/resources/blog"
               className="font-medium text-red-950 hover:text-red-900 dark:text-red-800 dark:hover:text-red-700 underline-offset-4 hover:underline"
@@ -216,7 +220,7 @@ export default function CurrentPagesIndexPage() {
             </Link>{" "}
             — <AccessBadge kind="password" /> section; anchors below.
           </p>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {blogPostListings.map((post) => (
               <li key={post.id} className="text-red-950 dark:text-red-800">
                 <Link
@@ -225,7 +229,7 @@ export default function CurrentPagesIndexPage() {
                 >
                   {post.title}
                 </Link>
-                <span className="text-xs text-red-950/80 dark:text-red-800/90 ml-2">
+                <span className="block text-xs text-red-950/80 dark:text-red-800/90 mt-0.5">
                   #{post.id} · {post.date}
                 </span>
               </li>
@@ -237,7 +241,7 @@ export default function CurrentPagesIndexPage() {
           <h2 className="text-lg font-semibold text-it-light-text-primary mb-2">
             Case studies <span className="text-sm font-normal text-it-light-text-muted">(resources)</span>
           </h2>
-          <p className="text-sm text-it-light-text-muted mb-3">
+          <p className="text-sm text-it-light-text-muted mb-3 text-pretty">
             <Link
               href="/resources/case-studies"
               className="font-medium text-red-950 hover:text-red-900 dark:text-red-800 dark:hover:text-red-700 underline-offset-4 hover:underline"
@@ -246,7 +250,7 @@ export default function CurrentPagesIndexPage() {
             </Link>{" "}
             — <AccessBadge kind="password" />
           </p>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {caseStudyListings.map((study) => (
               <li key={study.id} className="text-red-950 dark:text-red-800">
                 <Link
@@ -255,7 +259,7 @@ export default function CurrentPagesIndexPage() {
                 >
                   {study.title}
                 </Link>
-                <span className="text-xs text-red-950/80 dark:text-red-800/90 ml-2">({study.industry})</span>
+                <span className="block text-xs text-red-950/80 dark:text-red-800/90 mt-0.5">({study.industry})</span>
               </li>
             ))}
           </ul>
@@ -265,7 +269,7 @@ export default function CurrentPagesIndexPage() {
           <h2 className="text-lg font-semibold text-it-light-text-primary mb-2">
             Case studies <span className="text-sm font-normal text-it-light-text-muted">(hub)</span>
           </h2>
-          <p className="text-sm text-it-light-text-muted mb-3">
+          <p className="text-sm text-it-light-text-muted mb-3 text-pretty">
             <Link
               href="/case-studies"
               className="font-medium text-red-950 hover:text-red-900 dark:text-red-800 dark:hover:text-red-700 underline-offset-4 hover:underline"
@@ -274,7 +278,7 @@ export default function CurrentPagesIndexPage() {
             </Link>{" "}
             — <AccessBadge kind="password" />
           </p>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {marketingCaseStudyListings.map((study) => (
               <li key={study.id} className="text-red-950 dark:text-red-800">
                 <Link
@@ -283,17 +287,17 @@ export default function CurrentPagesIndexPage() {
                 >
                   {study.title}
                 </Link>
-                <span className="text-xs text-red-950/80 dark:text-red-800/90 ml-2">({study.industry})</span>
+                <span className="block text-xs text-red-950/80 dark:text-red-800/90 mt-0.5">({study.industry})</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-lg border border-it-light-border bg-it-light-surface-2/50 p-4 text-sm text-it-light-text-secondary space-y-3">
+        <div className="rounded-lg border border-it-light-border bg-it-light-surface-2/50 p-4 text-sm text-it-light-text-secondary space-y-3 text-center">
           <p>
             <strong className="text-it-light-text-primary">Legend</strong>
           </p>
-          <ul className="list-disc pl-5 space-y-1">
+          <ul className="list-disc list-inside space-y-1.5 text-left max-w-2xl mx-auto">
             <li>
               <AccessBadge kind="marketing-public" /> — Home, <code className="text-xs">/products</code>, and the{" "}
               <strong className="font-medium text-it-light-text-primary">three product hub URLs only</strong>{" "}
@@ -313,7 +317,7 @@ export default function CurrentPagesIndexPage() {
               <strong>403</strong>. Those hubs use <code className="text-xs">noindex</code> as well.
             </li>
           </ul>
-          <p className="text-xs text-it-light-text-muted">
+          <p className="text-xs text-it-light-text-muted text-pretty max-w-2xl mx-auto">
             Cookie signing uses <code className="text-xs">PREVIEW_SESSION_SECRET</code> in production. Default password is{" "}
             <code className="text-xs">inno2020</code>.
           </p>

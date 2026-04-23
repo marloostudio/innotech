@@ -11,6 +11,7 @@ import { siteUrl } from "@/lib/site"
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = discoverAppPageRoutes().filter((path) => {
     const full = path === "" ? "/" : path
+    if (full === "/thank-you") return false
     return isPublicCrawlablePath(full)
   })
 

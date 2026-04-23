@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Linkedin, Youtube } from "lucide-react"
+import { ChevronRight, Linkedin, Youtube } from "lucide-react"
 
 import { SiteLogo } from "@/components/site/site-logo"
 import { productsMegaColumns } from "@/lib/nav-mega"
@@ -17,7 +17,7 @@ export function Footer() {
             <div className="min-w-0 flex-1 basis-0 w-full">
               <Link
                 href="/"
-                className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded shrink-0"
+                className="inline-block shrink-0 rounded transition-opacity duration-150 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue"
               >
                 <SiteLogo heightClass="h-12 sm:h-14" />
               </Link>
@@ -35,17 +35,23 @@ export function Footer() {
                   fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif",
                 }}
               >
-                Products
+                PRODUCTS
               </h2>
               <ul className="mt-4 flex flex-col gap-2.5" role="list">
                 {productsMegaColumns.map((p) => (
                   <li key={p.id}>
                     <Link
                       href={p.href}
-                      className="text-sm transition-colors duration-150 hover:text-it-text-primary"
-                      style={{ color: "var(--it-text-muted)" }}
+                      className="group flex w-full items-center gap-0 text-sm uppercase tracking-wide text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 rounded-sm"
                     >
-                      {p.name}
+                      <span
+                        className="flex max-w-0 shrink-0 items-center gap-0 overflow-hidden opacity-0 transition-[max-width,opacity,margin] duration-200 ease-out group-hover:mr-2 group-hover:max-w-11 group-hover:opacity-100 group-focus-visible:mr-2 group-focus-visible:max-w-11 group-focus-visible:opacity-100"
+                        aria-hidden
+                      >
+                        <span className="h-px w-3 shrink-0 rounded-full bg-current opacity-90" />
+                        <ChevronRight className="h-4 w-4 shrink-0 -translate-x-px" strokeWidth={2} />
+                      </span>
+                      <span>{p.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -61,30 +67,31 @@ export function Footer() {
                   fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif",
                 }}
               >
-                Get in Touch
+                GET IN TOUCH
               </h2>
               <div className="mt-4 flex flex-col gap-2.5">
                 <a
                   href={`mailto:${siteConfig.company.email}`}
-                  className="text-sm w-fit transition-colors duration-150 hover:text-it-text-primary"
-                  style={{ color: "var(--it-text-muted)" }}
+                  className="text-sm w-fit text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 rounded-sm"
                 >
                   {siteConfig.company.email}
                 </a>
               </div>
               <p
-                className="text-sm font-semibold mt-6"
-                style={{ color: "var(--it-text-primary)" }}
+                className="text-sm font-semibold uppercase tracking-widest mt-6"
+                style={{
+                  color: "var(--it-text-secondary)",
+                  fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif",
+                }}
               >
-                Follow
+                FOLLOW
               </p>
               <div className="mt-2 flex items-center gap-3">
                 <Link
                   href={siteConfig.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors duration-150 hover:opacity-90"
-                  style={{ color: "var(--it-text-muted)" }}
+                  className="text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
                 >
                   <Linkedin className="h-5 w-5" strokeWidth={1.5} />
                   <span className="sr-only">LinkedIn</span>
@@ -93,8 +100,7 @@ export function Footer() {
                   href="https://www.youtube.com/channel/UCWS8SE_2VAz1hkRKlhlu_Iw?view_as=subscriber"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors duration-150 hover:opacity-90"
-                  style={{ color: "var(--it-text-muted)" }}
+                  className="text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
                 >
                   <Youtube className="h-5 w-5" strokeWidth={1.5} />
                   <span className="sr-only">YouTube</span>
@@ -108,31 +114,32 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 pb-6 text-sm" style={{ color: "var(--it-text-muted)" }}>
           <div className="space-y-1">
-            <p className="text-[11px]">© {currentYear} {siteConfig.name}. All rights reserved.</p>
             <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
-              Powered by{" "}
-              <a
-                href="https://marloo.net"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors duration-150 hover:text-it-text-primary"
-                style={{ color: "inherit" }}
-              >
-                Marloo Creative Studio
-              </a>
-              .{" "}
-              <span aria-hidden="true">—</span>{" "}
+              © {currentYear} {siteConfig.name}. All rights reserved.{" "}
               <Link
                 href="/changelog"
-                className="font-mono text-[11px] transition-colors duration-150 hover:text-it-text-primary align-baseline"
+                className="font-mono text-[11px] align-baseline transition-colors duration-150 hover:text-white focus-visible:text-white"
                 style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
                 title="View changelog"
               >
                 v{siteConfig.version}
               </Link>
             </p>
+            <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
+              Powered by{" "}
+              <a
+                href="https://marloo.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors duration-150 hover:text-white focus-visible:text-white"
+                style={{ color: "inherit" }}
+              >
+                Marloo Creative Studio
+              </a>
+              .
+            </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-2 gap-y-1">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-1.5 gap-y-1 text-[11px] leading-snug uppercase tracking-wide">
             <Link href="/sitemap.xml" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
               Sitemap
             </Link>

@@ -82,7 +82,10 @@ export function TeamCard({
         ) : null}
         {bio ? (
           <p
-            className="text-sm leading-relaxed"
+            className={cn(
+              "text-sm leading-relaxed whitespace-pre-line",
+              centered ? "text-center text-pretty" : "text-left",
+            )}
             style={{
               color: "var(--it-text-secondary)",
               fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif",

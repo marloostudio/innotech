@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 const fredBio =
-  "InnoTech Systems was founded in early 2018 by Fred Daneshgaran with the purpose of helping people and improving the quality of their lives using Artificial Intelligence technology. Dr. Daneshgaran brings a wealth of experience from his involvement in several startup companies and his extensive R&D background in telecommunications, RF systems, VLSI, and quantum electronics."
+  "InnoTech Systems was founded in early 2018 by Fred Daneshgaran with the purpose of helping people and improving the quality of their lives using Artificial Intelligence technology.\nDr. Daneshgaran brings a wealth of experience from his involvement in several startup companies and his extensive R&D background in telecommunications, RF systems, VLSI, and quantum electronics."
 
 const executiveLeadership = [
   {
@@ -60,7 +60,7 @@ export default function CompanyPage() {
       </Section>
 
       <Section variant="white" id="executive-leadership" className="scroll-mt-24">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
             className="text-xl font-semibold mb-1"
             style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
