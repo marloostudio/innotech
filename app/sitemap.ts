@@ -4,7 +4,10 @@ import { discoverAppPageRoutes } from "@/lib/discover-app-routes"
 import { isPublicCrawlablePath } from "@/lib/site-access"
 import { siteUrl } from "@/lib/site"
 
-/** Only marketing-public routes (same allowlist as crawlers / anonymous users). */
+/**
+ * Only marketing-public routes (`isPublicCrawlablePath` in `lib/site-access.ts`).
+ * Password-gated pages (e.g. `/company/values`, resource hubs) are excluded automatically.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = discoverAppPageRoutes().filter((path) => {
     const full = path === "" ? "/" : path

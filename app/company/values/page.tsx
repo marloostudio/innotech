@@ -9,6 +9,7 @@ import { Shield, Lightbulb, Leaf, Users, Globe, Star, Award, ChevronRight } from
 export const metadata: Metadata = {
   title: "Our Values — InnoTech Systems",
   description: "What drives us — our mission and core values.",
+  robots: { index: false, follow: false },
 }
 
 const heroProps = {

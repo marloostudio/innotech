@@ -22,11 +22,13 @@ function stripQuery(pathname: string): string {
  * - `/resources/blog` — listing; posts are `#blog-post-*` anchors on the same URL until per-post routes exist.
  * - `/resources/case-studies` — resources case cards (`#case-study-*`).
  * - `/case-studies` — marketing hub (`#marketing-case-*`).
+ * - `/company/values` — values page (internal review; not indexed).
  */
 export const PASSWORD_GATED_HUB_PATH_PREFIXES = [
   "/resources/blog",
   "/resources/case-studies",
   "/case-studies",
+  "/company/values",
 ] as const
 
 export function isPasswordGatedHubPath(pathname: string): boolean {
