@@ -26,7 +26,7 @@ async function verifyPreviewCookieEdge(cookieVal: string | undefined): Promise<b
   return hex === cookieVal
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   if (isAlwaysPublicPath(pathname)) {

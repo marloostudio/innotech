@@ -5,7 +5,7 @@ import { siteUrl } from "@/lib/site"
 /**
  * Disallow everything by default, then allow only marketing-public paths
  * (same idea as `isPublicCrawlablePath` in lib/site-access).
- * Company: explicit paths only — `/company/values` is preview-only (see site-gate + middleware).
+ * Company: explicit paths only — `/company/values` is preview-only (see site-gate + proxy).
  */
 export default function robots(): MetadataRoute.Robots {
   return {

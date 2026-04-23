@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -8,7 +8,7 @@ import { Navbar } from '@/components/site/navbar'
 import { Footer } from '@/components/site/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
-import { siteConfig } from '@/lib/site'
+import { siteConfig, siteUrl } from '@/lib/site'
 
 const dmSans = DM_Sans({
   weight: ['300', '400', '500', '600'],
@@ -26,20 +26,24 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+export const viewport: Viewport = {
+  themeColor: '#4e93ca',
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
-  themeColor: '#4e93ca',
   keywords: ['robotics', 'automation', 'AMRs and industrial robots', 'AI', 'manufacturing'],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://innotech-systems.com',
+    url: siteUrl,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,

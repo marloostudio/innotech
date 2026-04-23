@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ChevronRight, Linkedin, Youtube } from "lucide-react"
+import { Linkedin, Youtube } from "lucide-react"
 
 import { SiteLogo } from "@/components/site/site-logo"
 import { productsMegaColumns } from "@/lib/nav-mega"
@@ -21,7 +21,7 @@ export function Footer() {
               >
                 <SiteLogo heightClass="h-12 sm:h-14" />
               </Link>
-              <p className="text-sm mt-6" style={{ color: "var(--it-text-muted)" }}>
+              <p className="text-sm mt-3" style={{ color: "var(--it-text-muted)" }}>
                 {siteConfig.company.tagline}
               </p>
             </div>
@@ -42,16 +42,15 @@ export function Footer() {
                   <li key={p.id}>
                     <Link
                       href={p.href}
-                      className="group flex w-full items-center gap-0 text-sm uppercase tracking-wide text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 rounded-sm"
+                      className="group flex w-full items-center justify-start gap-0 text-sm uppercase tracking-wide text-it-text-muted transition-[color,gap] duration-150 hover:text-white focus-visible:text-white group-hover:gap-x-1 focus-visible:gap-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 rounded-sm"
                     >
+                      <span className="min-w-0 shrink truncate">{p.name}</span>
                       <span
-                        className="flex max-w-0 shrink-0 items-center gap-0 overflow-hidden opacity-0 transition-[max-width,opacity,margin] duration-200 ease-out group-hover:mr-2 group-hover:max-w-11 group-hover:opacity-100 group-focus-visible:mr-2 group-focus-visible:max-w-11 group-focus-visible:opacity-100"
+                        className="inline-block max-w-0 shrink-0 overflow-hidden opacity-0 transition-[max-width,opacity] duration-200 ease-out group-hover:max-w-[1.25em] group-hover:opacity-100 group-focus-visible:max-w-[1.25em] group-focus-visible:opacity-100 text-base font-normal leading-none"
                         aria-hidden
                       >
-                        <span className="h-px w-3 shrink-0 rounded-full bg-current opacity-90" />
-                        <ChevronRight className="h-4 w-4 shrink-0 -translate-x-px" strokeWidth={2} />
+                        →
                       </span>
-                      <span>{p.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -118,7 +117,7 @@ export function Footer() {
               © {currentYear} {siteConfig.name}. All rights reserved.{" "}
               <Link
                 href="/changelog"
-                className="font-mono text-[11px] align-baseline transition-colors duration-150 hover:text-white focus-visible:text-white"
+                className="font-mono text-[11px] align-baseline text-inherit transition-colors duration-150 hover:text-white focus-visible:text-white"
                 style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
                 title="View changelog"
               >
@@ -131,7 +130,7 @@ export function Footer() {
                 href="https://marloo.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors duration-150 hover:text-white focus-visible:text-white"
+                className="text-inherit transition-colors duration-150 hover:text-white focus-visible:text-white"
                 style={{ color: "inherit" }}
               >
                 Marloo Creative Studio
@@ -140,23 +139,38 @@ export function Footer() {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-1.5 gap-y-1 text-[11px] leading-snug uppercase tracking-wide">
-            <Link href="/sitemap.xml" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+            <Link
+              href="/sitemap.xml"
+              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
+            >
               Sitemap
             </Link>
             <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
-            <Link href="/changelog" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+            <Link
+              href="/changelog"
+              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
+            >
               Changelog
             </Link>
             <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
-            <Link href="/legal/privacy-policy" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+            <Link
+              href="/legal/privacy-policy"
+              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
+            >
               Privacy Policy
             </Link>
             <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
-            <Link href="/legal/terms" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+            <Link
+              href="/legal/terms"
+              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
+            >
               Terms of Service
             </Link>
             <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
-            <Link href="/legal/cookie-policy" className="transition-colors duration-150 hover:text-it-text-primary text-it-text-secondary">
+            <Link
+              href="/legal/cookie-policy"
+              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
+            >
               Cookie Policy
             </Link>
           </div>

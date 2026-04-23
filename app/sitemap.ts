@@ -4,6 +4,9 @@ import { discoverAppPageRoutes } from "@/lib/discover-app-routes"
 import { isPublicCrawlablePath } from "@/lib/site-access"
 import { siteUrl } from "@/lib/site"
 
+/** Regenerate sitemap on a fixed interval (helps CDN caching for crawlers). */
+export const revalidate = 86400
+
 /**
  * Only marketing-public routes (`isPublicCrawlablePath` in `lib/site-access.ts`).
  * Password-gated pages (e.g. `/company/values`, resource hubs) are excluded automatically.
