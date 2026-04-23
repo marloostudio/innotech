@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
-import { PageShell } from '@/components/page-shell'
+import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
@@ -50,8 +50,9 @@ export default function RadarLinkPage() {
         </div>
       </section>
 
-      <PageShell>
+      <Section variant="light-bg">
         <SectionHeader
+          theme="light"
           label="Features"
           title="Complete Connectivity & Localization Platform"
           description="Four integrated modules enabling connected, coordinated autonomous operations"
@@ -65,25 +66,29 @@ export default function RadarLinkPage() {
                 key={feature.id}
                 className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-blue)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
               >
-                <CardHeader>
-                  <div className="p-3 rounded-lg bg-[var(--it-light-blue-subtle)] mb-4 w-fit">
-                    <Icon className="w-6 h-6 text-it-light-blue" strokeWidth={1.5} />
+                <CardHeader className="grid-cols-1">
+                  <div className="flex flex-row items-start gap-4">
+                    <div className="p-3.5 rounded-lg bg-[var(--it-light-blue-subtle)] shrink-0">
+                      <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
+                    </div>
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <CardTitle className="text-2xl text-it-light-text-primary leading-snug">
+                        <Link href={`/products/radar-link/${feature.slug}`} className="hover:text-it-light-blue transition-colors">
+                          {feature.name}
+                        </Link>
+                      </CardTitle>
+                      <CardDescription className="text-base text-it-light-text-secondary">{feature.tagline}</CardDescription>
+                    </div>
                   </div>
-                  <CardTitle className="text-2xl mb-2 text-it-light-text-primary">
-                    <Link href={`/products/radar-link/${feature.slug}`} className="hover:text-it-light-blue transition-colors">
-                      {feature.name}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription className="text-base text-it-light-text-secondary">{feature.tagline}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-it-light-text-muted text-pretty">{feature.description}</p>
+                  <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">{feature.description}</p>
                 </CardContent>
               </Card>
             )
           })}
         </div>
-      </PageShell>
+      </Section>
 
       <section className="it-section-mid py-20 lg:py-28">
         <PageShell>
@@ -100,9 +105,12 @@ export default function RadarLinkPage() {
               { name: "Mining", icon: LucideIcons.Mountain },
               { name: "Smart Cities", icon: LucideIcons.Building2 },
             ].map((industry) => (
-              <div key={industry.name} className="flex flex-col items-center text-center p-6 bg-background rounded-lg border">
+              <div
+                key={industry.name}
+                className="flex flex-col items-center text-center p-6 bg-white rounded-lg border border-it-light-border shadow-sm transition-[box-shadow,transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
+              >
                 <industry.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="font-semibold">{industry.name}</h3>
+                <h3 className="font-semibold text-it-light-text-primary">{industry.name}</h3>
               </div>
             ))}
           </div>

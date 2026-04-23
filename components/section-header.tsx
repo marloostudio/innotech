@@ -56,7 +56,8 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-lg md:text-xl max-w-3xl mx-auto text-pretty",
+            "text-lg md:text-xl max-w-3xl text-pretty",
+            centered && "mx-auto",
             isDark ? "text-it-text-muted" : "text-it-light-text-muted"
           )}
         >

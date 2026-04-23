@@ -35,7 +35,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
   {
     id: "autolock",
     name: "AutoDuck",
-    tagline: "Autonomous Charging and Fleet Mgmt",
+    tagline: "Autonomous Charging & Fleet Mgmt",
     description: "Autonomous charging and fleet orchestration",
     href: "/products/autoduck",
     ctaLabel: "View AutoDuck",
@@ -44,7 +44,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
   {
     id: "radar-link",
     name: "RADARLink",
-    tagline: "V2X, Cm-level Localization and Drone Tracking",
+    tagline: "V2X, cm-level localization & drone tracking",
     description: "V2X Communication, Cm-level Localization and Drone Tracking",
     href: "/products/radar-link",
     ctaLabel: "View RADARLink",

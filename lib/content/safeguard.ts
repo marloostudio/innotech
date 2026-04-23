@@ -23,19 +23,11 @@ export const safeguardProduct = {
 
 /** “Static Safety is Dead” — problem/solution narrative (main product page). */
 export const safeguardStaticSafetyNarrative = {
+  /** Small ribbon above the section headline (matches Features-style badge on light sections). */
+  ribbonLabel: "Challenge",
   headline: "Static Safety is Dead",
   intro:
     "Legacy safety systems treat every human presence as a hard stop, forcing a compromise between safety and throughput. A software-defined safety layer that upgrades your existing fleet with Dynamic Intelligence.",
-  pillars: [
-    {
-      title: "Speed Dependent Zoning",
-      description:
-        "The safety field changes based on the robot's velocity and trajectory.",
-    },
-    {
-      title: "Safety at the Speed of Sight",
-    },
-  ],
   legacyProblems: [
     {
       title: "Static LiDAR Zones Kill Efficiency",
@@ -59,6 +51,8 @@ export const safeguardStaticSafetyNarrative = {
 export interface SafeguardBrochureCard {
   id: string
   name: string
+  /** One-line subtitle under the card title (matches other product feature cards). */
+  tagline: string
   description?: string
   bullets?: string[]
   icon: string
@@ -68,27 +62,31 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "certified-safety",
     name: "Certified Safety",
+    tagline: "Functional and AI safety aligned to leading industrial standards",
     description:
-      "Functional and AI Safety certified, including ISO 13849-1 (Cat 3/Performance Level d), ISO 61508 (SIL 3), and ISO 22440",
+      "Functional and AI Safety certified, including ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d), ISO\u00A061508 (SIL\u00A03), and ISO\u00A022440",
     icon: "badge-check",
   },
   {
     id: "collaboration-ready",
     name: "Collaboration Ready",
+    tagline: "Human–robot collaboration without rigid physical barriers",
     description:
-      "Aligned with ISO 10218 guidelines for safe human-robot interaction to share workspaces without static physical guards",
+      "Aligned with ISO\u00A010218 guidelines for safe human-robot interaction to share workspaces without static physical guards",
     icon: "handshake",
   },
   {
     id: "high-speed-fault-detection",
     name: "High-Speed Fault Detection",
+    tagline: "Validated fault-detection interval under 50\u00A0ms",
     description:
-      "Rapid hazard mitigation with a validated Fault Detection Time Interval of under 50 milliseconds",
+      "Rapid hazard mitigation with a validated fault-detection interval under 50\u00A0ms",
     icon: "zap",
   },
   {
     id: "pilot-program",
     name: "Join our Pilot Program today!",
+    tagline: "Prove value on your floor before you commit",
     bullets: [
       "Offer: Installation & operation for 4 weeks at $0 cost",
       "Goal: Validate efficiency gains on your specific floor plan",

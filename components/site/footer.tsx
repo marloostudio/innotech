@@ -109,14 +109,6 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 pb-6 text-sm" style={{ color: "var(--it-text-muted)" }}>
           <div className="space-y-1">
             <p className="text-[11px]">© {currentYear} {siteConfig.name}. All rights reserved.</p>
-            <Link
-              href="/changelog"
-              className="font-mono text-[11px] transition-colors duration-150 hover:text-it-text-primary block"
-              style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
-              title="View changelog"
-            >
-              v{siteConfig.version}
-            </Link>
             <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
               Powered by{" "}
               <a
@@ -128,7 +120,16 @@ export function Footer() {
               >
                 Marloo Creative Studio
               </a>
-              .
+              .{" "}
+              <span aria-hidden="true">—</span>{" "}
+              <Link
+                href="/changelog"
+                className="font-mono text-[11px] transition-colors duration-150 hover:text-it-text-primary align-baseline"
+                style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
+                title="View changelog"
+              >
+                v{siteConfig.version}
+              </Link>
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-2 gap-y-1">

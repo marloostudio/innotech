@@ -43,27 +43,27 @@ export function CtaBanner({
           </p>
           <div className="pt-4 flex flex-row flex-wrap items-center justify-center gap-3">
             {secondaryCta && (
-              <Link href={secondaryCta.href} className="inline-block order-first">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-it-border text-it-text-primary hover:bg-it-surface hover:border-(--it-blue-border) transition-all duration-150 ease-out hover:-translate-y-0.5 focus-visible:ring-it-blue"
-                >
-                  {secondaryCta.label}
-                </Button>
-              </Link>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="order-first cursor-pointer border-it-border text-it-text-primary hover:bg-it-surface hover:border-(--it-blue-border) transition-all duration-150 ease-out hover:-translate-y-0.5 focus-visible:ring-it-blue"
+              >
+                <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+              </Button>
             )}
             {primaryLabel && (
-              <Link href={primaryHref} className="inline-block">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="bg-it-blue text-it-bg transition-all duration-150 ease-out hover:-translate-y-0.5 hover:bg-white hover:text-it-bg hover:shadow-[0_6px_20px_rgba(255,255,255,0.2)]"
-                >
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="cursor-pointer bg-it-blue text-it-bg transition-all duration-150 ease-out hover:-translate-y-0.5 hover:bg-white hover:text-it-bg hover:shadow-[0_6px_20px_rgba(255,255,255,0.2)]"
+              >
+                <Link href={primaryHref}>
                   {primaryLabel}
-                  <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                </Button>
-              </Link>
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                </Link>
+              </Button>
             )}
           </div>
         </div>

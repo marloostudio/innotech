@@ -172,7 +172,7 @@ export function Navbar() {
                       onClick={() => toggleMenu(item.key)}
                       onMouseEnter={() => setOpenMenu(item.key)}
                       className={cn(
-                        "relative flex flex-col items-center px-3 rounded transition-colors duration-150",
+                        "group relative flex flex-col items-center px-3 rounded transition-colors duration-150",
                         scrolled ? "py-1.5" : "py-2",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
@@ -186,16 +186,16 @@ export function Navbar() {
                     >
                       <div
                         className={cn(
-                          "flex flex-col items-center justify-center",
-                          scrolled ? "h-10" : "h-11",
+                          "flex flex-col items-center justify-center text-center",
+                          scrolled ? "min-h-10" : "min-h-11",
                         )}
                       >
-                        <span className="flex items-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
+                        <span className="flex items-center justify-center gap-0.5" style={{ fontSize: "0.9375rem" }}>
                           {item.label}
                           <motion.span
                             animate={{ rotate: isOpen ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
-                            className="ml-0.5"
+                            className="ml-0.5 shrink-0"
                           >
                             <ChevronDown size={14} strokeWidth={1.5} />
                           </motion.span>
@@ -203,8 +203,10 @@ export function Navbar() {
                         {item.subtitle ? (
                           <span
                             className={cn(
-                              "block text-[10px] uppercase tracking-wider mt-0.5 transition-all duration-150",
-                              active || isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+                              "block text-[10px] uppercase tracking-wider text-center transition-all duration-150 ease-out leading-none",
+                              isOpen
+                                ? "mt-0.5 max-h-5 opacity-100 translate-y-0"
+                                : "mt-0 max-h-0 opacity-0 overflow-hidden -translate-y-1 group-hover:mt-0.5 group-hover:max-h-5 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:mt-0.5 group-focus-visible:max-h-5 group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
                             )}
                             style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
                           >
@@ -226,7 +228,7 @@ export function Navbar() {
                       href={item.href}
                       onClick={closeMenus}
                       className={cn(
-                        "relative flex flex-col items-center px-2 xl:px-3 rounded transition-colors duration-150",
+                        "group relative flex flex-col items-center px-2 xl:px-3 rounded transition-colors duration-150",
                         scrolled ? "py-1.5" : "py-2",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]"
                       )}
@@ -237,13 +239,9 @@ export function Navbar() {
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = NAV_LINK_HOVER
-                        const desc = e.currentTarget.querySelector("[data-nav-descriptor]") as HTMLElement | null
-                        if (desc) desc.style.color = "var(--it-text-dim)"
                       }}
                       onMouseLeave={(e) => {
                         if (!active) e.currentTarget.style.color = NAV_LINK_COLOR
-                        const desc = e.currentTarget.querySelector("[data-nav-descriptor]") as HTMLElement | null
-                        if (desc) desc.style.color = "var(--it-text-dim)"
                       }}
                     >
                       <div
@@ -252,11 +250,18 @@ export function Navbar() {
                           scrolled ? "min-h-10" : "min-h-11",
                         )}
                       >
-                        <span style={{ fontSize: "0.9375rem" }}>{item.label}</span>
+                        <span className="inline-flex items-center justify-center" style={{ fontSize: "0.9375rem" }}>
+                          {item.label}
+                        </span>
                         {item.descriptor ? (
                           <span
                             data-nav-descriptor
-                            className="block text-[9px] xl:text-[10px] leading-tight mt-0.5 max-w-[10rem] xl:max-w-[11rem] line-clamp-2"
+                            className={cn(
+                              "block text-[9px] xl:text-[10px] leading-none whitespace-nowrap max-w-[14rem] xl:max-w-[17rem] truncate text-center transition-all duration-150 ease-out",
+                              "max-h-0 opacity-0 overflow-hidden -translate-y-1",
+                              "group-hover:max-h-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:mt-0.5",
+                              "group-focus-visible:max-h-4 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:mt-0.5",
+                            )}
                             style={{ color: "var(--it-text-dim)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
                           >
                             {item.descriptor}
