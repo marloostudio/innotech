@@ -31,6 +31,10 @@ export function ContactForm() {
     const fd = new FormData(form)
     fd.set("industry", industry)
     fd.set("interest", interest)
+    if (typeof window !== "undefined") {
+      fd.set("context_page_url", window.location.href)
+      fd.set("context_client_referrer", document.referrer || "")
+    }
 
     startTransition(async () => {
       const result = await submitContact(fd)

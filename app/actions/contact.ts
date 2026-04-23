@@ -1,5 +1,6 @@
 "use server"
 
+import { getServerDemoLeadContext, mergeClientDemoLeadContext } from "@/lib/email/demo-lead-context"
 import { sendContactNotifications } from "@/lib/email/contact-notifications"
 import { contactPayloadSchema } from "@/lib/validation/contact"
 
@@ -32,13 +33,21 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
     message: str(formData, "message"),
   }
 
+  const pageUrl = str(formData, "context_page_url").slice(0, 4000) || null
+  const documentReferrer = str(formData, "context_client_referrer").slice(0, 4000) || null
+
   const parsed = contactPayloadSchema.safeParse(raw)
   if (!parsed.success) {
     return { ok: false, error: "validation" }
   }
 
   try {
-    await sendContactNotifications(parsed.data)
+    const serverCtx = await getServerDemoLeadContext(parsed.data.email, { formPath: "/contact" })
+    const leadContext = mergeClientDemoLeadContext(serverCtx, {
+      pageUrl,
+      documentReferrer,
+    })
+    await sendContactNotifications(parsed.data, leadContext)
   } catch (e) {
     console.error("[contact] email:", e)
     return { ok: false, error: "server" }
