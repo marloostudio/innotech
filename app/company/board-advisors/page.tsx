@@ -66,7 +66,7 @@ const heroProps = {
   h2: "Our supervisory board and advisory councils bring decades of experience in mobility, autonomy, and enterprise technology.",
   description: "InnoTech benefits from strategic and technical guidance from leaders who have built and scaled companies in automotive, robotics, and infrastructure.",
   primaryCta: { label: "Contact Us", href: "/contact" },
-  secondaryCta: { label: "Our Team", href: "/company/team" },
+  secondaryCta: { label: "Our Team", href: "/company#our-story" },
 }
 
 export default function BoardAdvisorsPage() {
@@ -124,7 +124,7 @@ export default function BoardAdvisorsPage() {
         title="Get in Touch"
         description="For questions about our board or advisory councils, contact our team."
         primaryCta={{ label: "Contact Us", href: "/contact" }}
-        secondaryCta={{ label: "Our Team", href: "/company/team" }}
+        secondaryCta={{ label: "Our Team", href: "/company#our-story" }}
       />
     </>
   )

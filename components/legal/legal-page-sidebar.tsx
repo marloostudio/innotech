@@ -58,11 +58,11 @@ export function LegalPageSidebar({ currentPage }: LegalPageSidebarProps) {
           About Us
         </Link>
         <Link
-          href="/company/our-story"
+          href="/company"
           className="block text-sm py-1 leading-snug transition-colors duration-150 hover:opacity-90"
           style={{ color: "var(--it-light-text-muted)" }}
         >
-          Our Story
+          Our Story &amp; Team
         </Link>
         <Link
           href="/company/careers"

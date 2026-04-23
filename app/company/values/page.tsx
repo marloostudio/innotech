@@ -16,7 +16,7 @@ const heroProps = {
   h2: "Our mission and core values guide how we build products and work with customers.",
   description: "Seven principles that shape our culture, decisions, and the solutions we deliver.",
   primaryCta: { label: "Contact Our Team", href: "/contact" },
-  secondaryCta: { label: "Our Story", href: "/company/our-story" },
+  secondaryCta: { label: "Our Story & Team", href: "/company#our-story" },
 }
 
 const values = [
@@ -80,7 +80,7 @@ export default function ValuesPage() {
         title="Contact Our Team"
         description="Learn more about how we work and what we value."
         primaryCta={{ label: "Contact Our Team", href: "/contact" }}
-        secondaryCta={{ label: "Our Team", href: "/company/team" }}
+        secondaryCta={{ label: "Our Team", href: "/company#our-story" }}
       />
     </>
   )

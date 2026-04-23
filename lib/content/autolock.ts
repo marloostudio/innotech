@@ -80,7 +80,7 @@ export const autolockFeatures: ProductFeature[] = [
     id: "process-automation",
     name: "Process Automation",
     slug: "process-automation",
-    tagline: "Depot and Charging Process Automation for Commercial Fleets",
+    tagline: "Depot and charging automation for commercial fleets",
     description: "End-to-end automation of depot operations including vehicle check-in, charging assignment, maintenance routing, and dispatch.",
     benefits: [
       "Reduce depot operational costs by up to 60%",

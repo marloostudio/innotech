@@ -1,78 +1,17 @@
 import type { MetadataRoute } from "next"
 
+import { discoverAppPageRoutes } from "@/lib/discover-app-routes"
+import { isPublicCrawlablePath } from "@/lib/site-access"
 import { siteUrl } from "@/lib/site"
 
-/** All public indexable routes (exclude noindex pages e.g. /thank-you). */
-const routes: string[] = [
-  "",
-  "/about",
-  "/accessibility",
-  "/case-studies",
-  "/changelog",
-  "/company",
-  "/company/board-advisors",
-  "/company/careers",
-  "/company/careers/open-roles",
-  "/company/investors",
-  "/company/our-story",
-  "/company/partners",
-  "/company/team",
-  "/company/values",
-  "/contact",
-  "/demo",
-  "/events/automate-2026",
-  "/industries",
-  "/industries/airport-shopping-mall",
-  "/industries/automated-depot",
-  "/industries/autonomous-fleets",
-  "/industries/autonomous-fleets/charge-depot",
-  "/industries/logistics",
-  "/industries/military",
-  "/industries/mining",
-  "/industries/port",
-  "/legal/cookie-policy",
-  "/legal/privacy-policy",
-  "/legal/terms",
-  "/products",
-  "/products/autoduck",
-  "/products/autoduck/access-control",
-  "/products/autoduck/autonomous-charging",
-  "/products/autoduck/fleet-orchestration",
-  "/products/autoduck/process-automation",
-  "/products/radar-link",
-  "/products/radar-link/drone-tracking",
-  "/products/radar-link/micro-localization",
-  "/products/radar-link/real-time-analytics",
-  "/products/radar-link/v2x-communication",
-  "/products/safeguard",
-  "/products/safeguard/compliance-monitoring",
-  "/products/safeguard/predictive-maintenance",
-  "/products/safeguard/real-time-alerting",
-  "/products/safeguard/threat-detection",
-  "/resources",
-  "/resources/blog",
-  "/resources/case-studies",
-  "/resources/docs",
-  "/resources/faq",
-  "/resources/playbooks",
-  "/resources/videos",
-  "/resources/whitepapers",
-  "/solutions",
-  "/solutions/charging-autonomous-vehicles",
-  "/solutions/charging-heavy-duty",
-  "/solutions/charging-mar",
-  "/solutions/connectivity-v2i",
-  "/solutions/connectivity-v2v",
-  "/solutions/drone-tracking",
-  "/solutions/micro-localization",
-  "/solutions/safety-human-robot",
-  "/solutions/safety-industrial-robots",
-  "/solutions/safety-mar",
-  "/technology",
-]
-
+/** Only marketing-public routes (same allowlist as crawlers / anonymous users). */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((path) => ({
+  const paths = discoverAppPageRoutes().filter((path) => {
+    const full = path === "" ? "/" : path
+    return isPublicCrawlablePath(full)
+  })
+
+  return paths.map((path) => ({
     url: `${siteUrl}${path || "/"}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

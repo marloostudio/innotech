@@ -71,8 +71,8 @@ export default function AutoDuckPage() {
                       <Icon className="w-8 h-8 text-it-light-autolock" strokeWidth={1.5} />
                     </div>
                     <div className="min-w-0 flex-1 space-y-2">
-                      <CardTitle className="text-2xl text-it-light-text-primary leading-snug">
-                        <Link href={`/products/autoduck/${feature.slug}`} className="hover:text-it-light-autolock transition-colors">
+                      <CardTitle className="min-w-0 text-2xl text-it-light-text-primary leading-snug whitespace-nowrap overflow-hidden text-ellipsis">
+                        <Link href={`/products/autoduck/${feature.slug}`} className="hover:text-it-light-autolock transition-colors" title={feature.name}>
                           {feature.name}
                         </Link>
                       </CardTitle>
@@ -125,6 +125,7 @@ export default function AutoDuckPage() {
         description="See how AutoDuck can transform your operations with fully autonomous charging and orchestration"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
+        titleSingleLine
       />
     </>
   )

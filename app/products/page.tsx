@@ -122,12 +122,16 @@ export default function ProductsPage() {
                 key={product.id}
                 className="flex flex-col bg-it-light-surface border border-it-light-border shadow-(--it-light-shadow-sm) transition-shadow duration-200 hover:shadow-(--it-light-shadow-md)"
               >
-                <CardHeader>
-                  <div className="p-4 rounded-lg bg-(--it-light-blue-subtle) w-fit mb-4">
-                    <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
+                <CardHeader className="grid-cols-1">
+                  <div className="flex flex-row items-start gap-4">
+                    <div className="p-3.5 rounded-lg bg-(--it-light-blue-subtle) shrink-0">
+                      <Icon className="w-8 h-8 text-it-light-blue" strokeWidth={1.5} />
+                    </div>
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <CardTitle className="text-2xl text-it-light-text-primary leading-snug">{product.name}</CardTitle>
+                      <CardDescription className="text-base text-it-light-text-secondary">{product.tagline}</CardDescription>
+                    </div>
                   </div>
-                  <CardTitle className="text-2xl mb-2 text-it-light-text-primary">{product.name}</CardTitle>
-                  <CardDescription className="text-base text-it-light-text-secondary">{product.tagline}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
                   <p className="text-it-light-text-muted mb-6 text-pretty">{product.description}</p>

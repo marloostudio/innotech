@@ -3,7 +3,7 @@ import { ProductFeatureDetail } from '@/components/product-feature-detail'
 import { radarLinkFeatures } from '@/lib/content/radar-link'
 
 export const metadata: Metadata = {
-  title: 'Predictive Insights and System Monitoring via Radar Intelligence',
+  title: 'Real-Time Asset Tracking & Analytics — RADARLink',
   description: 'Transform radar data into actionable insights with real-time analytics and predictive algorithms.'
 }
 

@@ -18,9 +18,9 @@ export interface PillarHeroProps {
   /** Main page title — single H1 per page for SEO */
   h1: string
   /** Supporting headline — H2 for hierarchy and SEO */
-  h2: string
+  h2?: string
   /** Short description paragraph, visible above the fold */
-  description: string
+  description?: string
   /** Optional primary CTA; omit for minimal hero (e.g. changelog) */
   primaryCta?: PillarHeroCta
   /** Optional secondary CTA; omit for minimal hero */
@@ -83,12 +83,22 @@ export function PillarHero({
           <h1 className={compact ? "text-3xl md:text-4xl font-bold tracking-tight text-balance" : "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"}>
             {h1}
           </h1>
-          <h2 className={compact ? "text-lg md:text-xl font-semibold text-balance" : "text-xl md:text-2xl lg:text-3xl font-semibold text-balance"} style={{ color: "var(--it-text-muted)" }}>
-            {h2}
-          </h2>
-          <p className={compact ? `text-base text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}` : `text-lg text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}`} style={{ color: "var(--it-text-muted)" }}>
-            {description}
-          </p>
+          {h2 ? (
+            <h2
+              className={compact ? "text-lg md:text-xl font-semibold text-balance" : "text-xl md:text-2xl lg:text-3xl font-semibold text-balance"}
+              style={{ color: "var(--it-text-muted)" }}
+            >
+              {h2}
+            </h2>
+          ) : null}
+          {description?.trim() ? (
+            <p
+              className={compact ? `text-base text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}` : `text-lg text-pretty max-w-3xl ${isLeft ? "" : "mx-auto"}`}
+              style={{ color: "var(--it-text-muted)" }}
+            >
+              {description}
+            </p>
+          ) : null}
           {showCtas && (primaryCta || secondaryCta) && (
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               {primaryCta && (

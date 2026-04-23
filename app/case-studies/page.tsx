@@ -7,62 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import * as LucideIcons from "lucide-react"
+import { marketingCaseStudyListings } from "@/lib/content/case-studies-hub"
 
 export const metadata: Metadata = {
   title: "Case Studies — Real Results Across Industries",
-  description: "See how InnoTech solutions are transforming operations across logistics, manufacturing, port, and mining industries."
+  description: "See how InnoTech solutions are transforming operations across logistics, manufacturing, port, and mining industries.",
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
 }
-
-const caseStudies = [
-  {
-    title: "Autonomous Logistics Fleet - 150 Vehicle Deployment",
-    industry: "Logistics",
-    challenge: "Major delivery company needed automated charging for growing autonomous delivery fleet",
-    solution: "AutoDuck robotic charging with fleet orchestration",
-    results: [
-      "99.7% successful autonomous charging connections",
-      "60% reduction in depot operational costs",
-      "Zero charging-related downtime in 12 months"
-    ],
-    status: "Coming Soon"
-  },
-  {
-    title: "Port Terminal Automation - Container Operations",
-    industry: "Port Operations",
-    challenge: "Container terminal required V2X coordination for autonomous reach stackers and AGVs",
-    solution: "RADARLink V2X communication with Cm-level Localization and Tracking",
-    results: [
-      "25% increase in container handling throughput",
-      "Zero equipment collisions since deployment",
-      "Sub-5cm positioning accuracy for container stacking"
-    ],
-    status: "Coming Soon"
-  },
-  {
-    title: "Mining Operation - Underground Haul Truck Fleet",
-    industry: "Mining",
-    challenge: "Underground mine needed GPS-denied localization and automated charging for autonomous haul trucks",
-    solution: "RADARLink Cm-level Localization and Tracking + AutoDuck heavy-duty charging",
-    results: [
-      "30% increase in equipment utilization",
-      "Continuous 24/7 autonomous operations",
-      "Zero operator exposure to underground hazards"
-    ],
-    status: "Coming Soon"
-  },
-  {
-    title: "Manufacturing Safety - Human-Robot Collaboration",
-    industry: "Manufacturing",
-    challenge: "Automotive manufacturer needed dynamic safety monitoring for collaborative robot work cells",
-    solution: "SafeGuard real-time threat detection and compliance monitoring",
-    results: [
-      "Zero safety incidents since deployment",
-      "40% increase in work cell productivity",
-      "Automated ISO 10218 compliance reporting"
-    ],
-    status: "Coming Soon"
-  }
-]
 
 export default function CaseStudiesPage() {
   return (
@@ -80,8 +31,12 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid */}
       <Section id="case-studies-grid" variant="light">
         <div className="grid lg:grid-cols-2 gap-8">
-          {caseStudies.map((study, index) => (
-            <Card key={index} className="flex flex-col bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]">
+          {marketingCaseStudyListings.map((study) => (
+            <Card
+              key={study.id}
+              id={`marketing-case-${study.id}`}
+              className="flex flex-col scroll-mt-24 bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]"
+            >
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant="secondary" className="text-it-light-text-secondary">{study.industry}</Badge>

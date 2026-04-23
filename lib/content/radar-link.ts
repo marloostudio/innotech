@@ -26,7 +26,7 @@ export const radarLinkFeatures: ProductFeature[] = [
     id: "v2x-communication",
     name: "V2X Communication",
     slug: "v2x-communication",
-    tagline: "Vehicle-to-Everything Communication for Connected Autonomy",
+    tagline: "V2X connectivity for coordinated autonomy",
     description: "Enable seamless communication between vehicles, infrastructure, and control systems for coordinated autonomous operations.",
     benefits: [
       "Reduce collision risk through vehicle awareness",
@@ -53,7 +53,7 @@ export const radarLinkFeatures: ProductFeature[] = [
     id: "micro-localization",
     name: "Cm-level Localization and Tracking",
     slug: "micro-localization",
-    tagline: "Centimetre-Level Indoor and Outdoor Localization",
+    tagline: "Centimetre-level positioning indoors and out",
     description: "Ultra-precise positioning system providing centimeter-level accuracy in GPS-denied environments and complex operational areas.",
     benefits: [
       "Achieve <5cm positioning accuracy",
@@ -80,7 +80,7 @@ export const radarLinkFeatures: ProductFeature[] = [
     id: "drone-tracking",
     name: "Drone Tracking & Identification",
     slug: "drone-tracking",
-    tagline: "Autonomous Drone Localization, Tracking and Friend-or-Foe Identification",
+    tagline: "Drone detection, tracking, and identification",
     description: "Advanced radar-based system for detecting, tracking, and identifying drones in your operational airspace with friend-or-foe classification.",
     benefits: [
       "Detect drones up to 3km away",
@@ -107,7 +107,7 @@ export const radarLinkFeatures: ProductFeature[] = [
     id: "real-time-analytics",
     name: "Real-Time Asset Tracking",
     slug: "real-time-analytics",
-    tagline: "Predictive Insights and System Monitoring via Radar Intelligence",
+    tagline: "Live analytics and predictive monitoring",
     description: "Transform radar data into actionable insights with real-time analytics, predictive algorithms, and comprehensive system monitoring.",
     benefits: [
       "Gain visibility into all connected assets",

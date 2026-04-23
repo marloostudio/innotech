@@ -125,17 +125,14 @@ export default function SafeGuardPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  {card.bullets ? (
-                    <ul className="text-[15px] text-it-light-text-secondary space-y-0.5 text-pretty leading-snug list-disc pl-5 [&_li]:py-0">
-                      {card.bullets.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">
-                      {card.description}
-                    </p>
-                  )}
+                  <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">
+                    {card.bullets
+                      ? (() => {
+                          const text = card.bullets!.join(". ")
+                          return text.endsWith(".") ? text : `${text}.`
+                        })()
+                      : card.description}
+                  </p>
                 </CardContent>
               </Card>
             )
@@ -177,6 +174,7 @@ export default function SafeGuardPage() {
         description="See how SafeGuard brings software-defined safety to your robotic operations"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
+        titleSingleLine
       />
     </>
   )

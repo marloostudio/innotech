@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 interface CtaBannerProps {
   // Primary shape (new)
@@ -14,6 +15,8 @@ interface CtaBannerProps {
   ctaHref?: string
   // Shared
   description?: string
+  /** Keeps the headline on one line; scales font down on narrow viewports. */
+  titleSingleLine?: boolean
 }
 
 export function CtaBanner({
@@ -24,6 +27,7 @@ export function CtaBanner({
   ctaText,
   ctaHref,
   description,
+  titleSingleLine,
 }: CtaBannerProps) {
   const resolvedHeadline = title ?? headline ?? ""
   const primaryLabel = primaryCta?.label ?? ctaText ?? ""
@@ -35,7 +39,14 @@ export function CtaBanner({
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center space-y-6 max-w-4xl mx-auto text-it-text-primary">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
+          <h2
+            className={cn(
+              "font-bold tracking-tight",
+              titleSingleLine
+                ? "whitespace-nowrap text-[clamp(0.8125rem,calc(0.35rem+2.75vw),2.125rem)] leading-tight"
+                : "text-3xl md:text-4xl lg:text-5xl text-balance",
+            )}
+          >
             {resolvedHeadline}
           </h2>
           <p className="text-lg md:text-xl text-pretty text-it-text-secondary">

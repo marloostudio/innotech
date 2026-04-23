@@ -77,7 +77,12 @@ export default function RadarLinkPage() {
                           {feature.name}
                         </Link>
                       </CardTitle>
-                      <CardDescription className="text-base text-it-light-text-secondary">{feature.tagline}</CardDescription>
+                      <CardDescription
+                        className="min-w-0 text-base text-it-light-text-secondary whitespace-nowrap overflow-hidden text-ellipsis"
+                        title={feature.tagline}
+                      >
+                        {feature.tagline}
+                      </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
@@ -122,6 +127,7 @@ export default function RadarLinkPage() {
         description="See how RADARLink can enable coordinated autonomous operations with V2X connectivity"
         primaryCta={{ label: "Schedule a Demo", href: "/demo" }}
         secondaryCta={{ label: "Talk to Sales", href: "/contact" }}
+        titleSingleLine
       />
     </>
   )

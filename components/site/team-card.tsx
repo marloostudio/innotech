@@ -19,6 +19,8 @@ export interface TeamCardProps {
   compact?: boolean
   /** No photo area — text-focused card (e.g. leadership bio without headshot) */
   omitImage?: boolean
+  /** Center text and social row (omitImage only) */
+  centered?: boolean
 }
 
 const iconSize = 16
@@ -34,11 +36,16 @@ export function TeamCard({
   github,
   compact = false,
   omitImage = false,
+  centered = false,
 }: TeamCardProps) {
   if (omitImage) {
     return (
       <article
-        className={cn("rounded-xl border p-5 space-y-2 transition-all duration-200", "hover:translate-y-[-2px] hover:shadow-(--it-shadow-md)")}
+        className={cn(
+          "rounded-xl border p-5 space-y-2 transition-all duration-200",
+          "hover:translate-y-[-2px] hover:shadow-(--it-shadow-md)",
+          centered && "text-center",
+        )}
         style={{
           background: "var(--it-surface)",
           borderColor: "var(--it-border)",
@@ -84,7 +91,7 @@ export function TeamCard({
             {bio}
           </p>
         ) : null}
-        <div className="flex items-center gap-3 pt-2">
+        <div className={cn("flex items-center gap-3 pt-2", centered && "justify-center")}>
           {linkedin && (
             <Link
               href={linkedin}

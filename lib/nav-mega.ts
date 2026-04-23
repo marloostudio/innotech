@@ -1,5 +1,5 @@
 /**
- * Navigation content for InnoTech navbar (products data + Company dropdown).
+ * Navigation content for InnoTech navbar (products mega columns).
  * Used by components/site/navbar.tsx.
  */
 
@@ -11,15 +11,6 @@ export interface ProductMegaColumn {
   href: string
   ctaLabel: string
   accentColor: string // CSS variable, e.g. var(--it-safeguard)
-}
-
-export interface SimpleDropdownItem {
-  title: string
-  href: string
-  descriptor?: string
-  external?: boolean
-  dividerAbove?: boolean
-  badge?: string
 }
 
 export const productsMegaColumns: ProductMegaColumn[] = [
@@ -51,10 +42,3 @@ export const productsMegaColumns: ProductMegaColumn[] = [
     accentColor: "var(--it-blue)",
   },
 ]
-
-export const companyDropdownItems: SimpleDropdownItem[] = [
-  { title: "Our Story", href: "/company/our-story", descriptor: "How InnoTech started and where we're going" },
-  { title: "Our Team", href: "/company/team", descriptor: "Leadership and engineering team" },
-]
-
-export type NavMegaKey = "company" | null
