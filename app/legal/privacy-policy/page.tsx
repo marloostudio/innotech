@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
           </h1>
           <p className={`${bodyClass} mb-2`}>
             <strong style={textPrimaryStyle}>Effective Date:</strong> February 1, 2025<br />
-            <strong style={textPrimaryStyle}>Last Updated:</strong> February 2025
+            <strong style={textPrimaryStyle}>Last Updated:</strong> April 2026
           </p>
           <p className={bodyClass}>
             InnoTech Systems (&quot;InnoTech,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy and handling your personal data responsibly. This Privacy Policy explains what personal data we collect, how we use it, who we share it with, and what rights you have over it.
@@ -123,11 +123,17 @@ export default function PrivacyPolicyPage() {
             </h3>
             <p className={bodyClass}>
               <strong style={textPrimaryStyle}>Contact Form Submissions</strong><br />
-              When you submit an enquiry through our contact form, we collect: first and last name; business email address; company name; phone number (if provided); industry and area of interest (if selected); and the content of your message. This data is used solely to respond to your enquiry. It is not used for marketing unless you have separately opted in.
+              When you submit an enquiry through our contact form, we collect: first and last name; business email address; company name; phone number (if provided); industry and area of interest (as selected in the form); and the content of your message. This data is used solely to respond to your enquiry. It is not used for marketing unless you have separately opted in.
             </p>
             <p className={bodyClass}>
               <strong style={textPrimaryStyle}>Demo and Consultation Requests</strong><br />
-              When you request a product demonstration or site assessment, we collect the same fields as above, plus vehicle types or operational context you describe, and facility or deployment information you share voluntarily. This data is used to scope and prepare your demonstration. It may be shared with members of our sales and engineering teams who are involved in your consultation.
+              When you request a product demonstration, we collect: your name; business email address; company name; your role; which product you are interested in; and any message you choose to provide. This data is used to schedule and conduct your demonstration. It may be shared with members of our sales and engineering teams who are involved in your request.
+            </p>
+            <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
+              2.1a Technical and Session Data Sent With Form Submissions
+            </h3>
+            <p className={bodyClass}>
+              When you submit the contact or demo form, our hosting infrastructure and web application process additional technical information beyond the fields you type. This may include: the page URL you were on when you submitted (which may include marketing parameters such as UTM tags in the address bar); the referring page or site your browser reported; your approximate public IP address and, where available, a reverse DNS name for that address; your browser or client user agent string; language preferences; the hostname you used to reach the Site; and, when the Site is served on Vercel, approximate location signals such as country, region, or city derived at the network edge. We use this information to deliver form notifications reliably, to reduce abuse and fraud, to route enquiries internally, and to understand which campaigns or pages drive enquiries. We do not use this data to make automated decisions with legal or similarly significant effects.
             </p>
             <p className={bodyClass}>
               <strong style={textPrimaryStyle}>Email Correspondence</strong><br />
@@ -135,10 +141,10 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
-              2.2 Data Collected Automatically
+              2.2 Data Collected Automatically (Browsing the Site)
             </h3>
             <p className={bodyClass}>
-              When you visit the Site, we and our third-party service providers automatically collect certain technical and behavioural data, including:
+              When you browse the Site, we and our third-party service providers also automatically collect certain technical and behavioural data, including:
             </p>
             <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
               <li><strong>IP address</strong> — used for security monitoring and approximate geographic location</li>
@@ -188,6 +194,10 @@ export default function PrivacyPolicyPage() {
                     <td className={tdClass}><strong>Legitimate interests</strong> — we have a legitimate interest in responding to business enquiries</td>
                   </tr>
                   <tr>
+                    <td className={tdClass}>Processing technical and session data when you submit a form (e.g. IP, referrer, user agent, campaign URL)</td>
+                    <td className={tdClass}><strong>Legitimate interests</strong> — operating the Site, securing submissions, and measuring campaign effectiveness; where location is inferred, see Section 2</td>
+                  </tr>
+                  <tr>
                     <td className={tdClass}>Sending follow-up sales communications where you have enquired</td>
                     <td className={tdClass}><strong>Legitimate interests</strong> — follow-up is reasonably expected when a business enquiry is submitted</td>
                   </tr>
@@ -228,8 +238,8 @@ export default function PrivacyPolicyPage() {
               We use the personal data we collect for the following purposes:
             </p>
             <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
-              <li><strong>Responding to enquiries</strong> — to reply to messages submitted via contact forms or email</li>
-              <li><strong>Scoping and delivering demos</strong> — to prepare and conduct product demonstrations and site assessments</li>
+              <li><strong>Responding to enquiries</strong> — to reply to messages submitted via contact or demo request forms, including sending email confirmations and internal lead notifications</li>
+              <li><strong>Scoping and delivering demos</strong> — to prepare and conduct product demonstrations and follow-up</li>
               <li><strong>Sales follow-up</strong> — to follow up on business enquiries where you have expressed interest in our products or services</li>
               <li><strong>Improving the Site</strong> — to understand how visitors use our Site and to improve content, structure, and performance</li>
               <li><strong>Advertising measurement</strong> — to measure the reach and effectiveness of campaigns on Google, LinkedIn, and Meta</li>
@@ -293,6 +303,11 @@ export default function PrivacyPolicyPage() {
                   <tr>
                     <td className={tdClass}>Vercel</td>
                     <td className={tdClass}>Website hosting and deployment</td>
+                    <td className={tdClass}>United States</td>
+                  </tr>
+                  <tr>
+                    <td className={tdClass}>Resend</td>
+                    <td className={tdClass}>Delivery of automatic email messages (e.g. copies of your enquiry to our team and confirmation to you)</td>
                     <td className={tdClass}>United States</td>
                   </tr>
                   <tr>
@@ -480,7 +495,7 @@ export default function PrivacyPolicyPage() {
               10. Data Security
             </h2>
             <p className={bodyClass}>
-              We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, accidental loss, destruction, or disclosure. These measures include: encryption of data in transit using TLS; access controls limiting data access to authorised personnel only; regular review of our security practices and third-party providers; and secure hosting infrastructure through Vercel.
+              We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, accidental loss, destruction, or disclosure. These measures include: encryption of data in transit using TLS (including between the Site, our service providers, and your email provider when we send form-related messages); access controls limiting data access to authorised personnel only; regular review of our security practices and third-party providers; and secure hosting infrastructure through Vercel.
             </p>
             <p className={bodyClass}>
               While we take reasonable precautions, no method of transmission over the internet or electronic storage is completely secure. We cannot guarantee absolute security, but we will notify you and relevant authorities promptly in the event of a data breach that poses a risk to your rights and freedoms, as required by law.
@@ -549,7 +564,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <p className="text-sm mt-12 pt-8 border-t border-it-light-border" style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}>
-            © 2025 InnoTech Systems. All rights reserved.
+            © 2026 InnoTech Systems. All rights reserved.
           </p>
         </main>
         <LegalPageSidebar currentPage="privacy" />

@@ -61,7 +61,7 @@ export default function TermsPage() {
           </h1>
           <p className={`${bodyClass} mb-2`}>
             <strong style={textPrimaryStyle}>Effective Date:</strong> February 1, 2025<br />
-            <strong style={textPrimaryStyle}>Last Updated:</strong> February 2025
+            <strong style={textPrimaryStyle}>Last Updated:</strong> April 2026
           </p>
           <p className={bodyClass}>
             These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the InnoTech Systems website located at{" "}
@@ -176,12 +176,15 @@ export default function TermsPage() {
                 4.1 Data We Collect
               </h3>
               <p className={bodyClass}>
-                When you interact with the Site, we may collect:
+                When you interact with the Site, we may collect the categories of data described in our{" "}
+                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Privacy Policy</Link>, including in summary:
               </p>
               <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
-                <li><strong style={textPrimaryStyle}>Contact form submissions</strong> — name, email address, company name, phone number, and message content, used solely to respond to your enquiry</li>
-                <li><strong style={textPrimaryStyle}>Device and usage data</strong> — IP address, browser type, operating system, pages visited, and time on site, collected automatically for analytics and security purposes</li>
-                <li><strong style={textPrimaryStyle}>Communications</strong> — any information you provide when contacting our team via email or the Site</li>
+                <li><strong style={textPrimaryStyle}>Contact form</strong> — name, email, company, phone (optional), industry, area of interest, and your message, to respond to your enquiry</li>
+                <li><strong style={textPrimaryStyle}>Demo request form</strong> — name, email, company, role, product interest, and your message, to follow up on a demonstration</li>
+                <li><strong style={textPrimaryStyle}>Technical and session data when you submit a form</strong> — such as your public IP address, browser user agent, referring page, the page URL (which may include campaign parameters), and similar metadata processed by our hosting provider to operate and secure the forms</li>
+                <li><strong style={textPrimaryStyle}>Device and usage data when you browse the Site</strong> — e.g. IP address, browser type, pages visited, and time on site, including through cookies and analytics as described in our Cookie Policy</li>
+                <li><strong style={textPrimaryStyle}>Communications</strong> — information you provide when you email us or correspond with our team</li>
               </ul>
             </div>
             <div className={subsectionBlockClass}>
@@ -189,7 +192,7 @@ export default function TermsPage() {
                 4.2 How We Use Your Data
               </h3>
               <p className={bodyClass}>
-                We use collected data to: respond to enquiries and service requests; improve the performance and content of the Site; detect and prevent fraud, spam, or security threats; and comply with legal obligations. We do not sell your personal data to third parties. We do not use contact form submissions for marketing purposes unless you have explicitly opted in.
+                We use collected data to: respond to enquiries and service requests (including sending you an email confirmation and an internal copy to our team through our email delivery provider, as described in the Privacy Policy); improve the performance and content of the Site; detect and prevent fraud, spam, or security threats; and comply with legal obligations. We do not sell your personal data to third parties. We do not use form submissions for marketing purposes unless you have explicitly opted in.
               </p>
             </div>
             <div className={subsectionBlockClass}>
@@ -206,7 +209,9 @@ export default function TermsPage() {
                 4.4 Data Retention
               </h3>
               <p className={bodyClass}>
-                Contact form and enquiry data is retained for as long as necessary to respond to your request and for a reasonable period thereafter for record-keeping purposes. We will honour any request to delete your data where we are not legally required to retain it.
+                Contact, demo, and related enquiry data is retained as set out in the{" "}
+                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Privacy Policy</Link>{" "}
+                (including typical retention for business correspondence). We will honour any request to delete your data where we are not legally required to retain it.
               </p>
             </div>
             <div className={subsectionBlockClass}>
@@ -405,7 +410,7 @@ export default function TermsPage() {
           <hr className="my-8 border-t" style={{ borderColor: "var(--it-light-border)" }} />
 
           <p className="text-sm" style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}>
-            © 2025 InnoTech Systems. All rights reserved.
+            © 2026 InnoTech Systems. All rights reserved.
           </p>
         </main>
         <LegalPageSidebar currentPage="terms" />
