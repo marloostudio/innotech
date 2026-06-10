@@ -84,12 +84,6 @@ export default function Automate2026Page() {
                 , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
               </p>
               <AutomateExhibitionCard variant="dark" className="mt-6 pl-0 md:pl-0" />
-              <div
-                id="interest-intake"
-                className="mt-8 scroll-mt-28 contact-form-light lg:hidden"
-              >
-                <AutomateIntakeForm />
-              </div>
             </div>
             <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:hidden">
               <ImagePlaceholder
@@ -97,6 +91,12 @@ export default function Automate2026Page() {
                 aspectRatio="4/3"
                 alt={automateEvent.orchestrationImage.alt}
               />
+            </div>
+            <div
+              id="interest-intake"
+              className="mt-8 scroll-mt-28 contact-form-light lg:hidden"
+            >
+              <AutomateIntakeForm />
             </div>
             <div className="hidden lg:block lg:col-start-2 lg:row-start-1 w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised">
               <ImagePlaceholder

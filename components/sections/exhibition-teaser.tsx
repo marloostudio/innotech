@@ -2,7 +2,6 @@ import Link from "next/link"
 import { ArrowRight, CalendarDays } from "lucide-react"
 
 import { PageShell } from "@/components/page-shell"
-import { Button } from "@/components/ui/button"
 import { automateEvent } from "@/lib/content/exhibition-automate"
 
 const landingHref = "/events/automate-2026" as const
@@ -18,37 +17,45 @@ export function EventAnnouncementRow() {
     >
       <div className="event-announcement-shimmer" aria-hidden />
       <PageShell className="relative">
-        <div className="flex flex-col gap-4 border-l-[3px] border-it-blue pl-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:pl-5">
-          <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-sm md:text-base text-it-text-secondary">
-            <span
-              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-it-blue-border bg-it-blue-subtle shadow-(--it-shadow-glow-blue)"
-              aria-hidden
+        <Link
+          href={landingHref}
+          className="group/link flex w-full flex-col items-center justify-center gap-2 text-center outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 focus-visible:ring-offset-it-section-2 md:gap-2.5"
+        >
+          <div className="relative inline-flex items-center justify-center">
+            <p
+              className="text-2xl md:text-3xl font-bold tracking-tight text-it-text-primary"
+              style={{ fontFamily: "var(--font-chakra)" }}
             >
-              <CalendarDays className="h-4 w-4 text-it-blue" strokeWidth={1.5} />
-            </span>
-            <span>
-              Join us at{" "}
-              <span className="font-medium text-it-blue">
-                {name} {year}
+              See Us Live
+            </p>
+            <ArrowRight
+              className="pointer-events-none absolute left-full ml-2 h-6 w-6 shrink-0 text-it-light-cta-foreground opacity-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.35)] transition-opacity duration-150 group-hover/link:opacity-100 group-focus-visible/link:opacity-100 md:h-7 md:w-7"
+              strokeWidth={1.5}
+              aria-hidden
+            />
+          </div>
+          <p className="flex justify-center text-center text-[16px] md:text-[18px] text-it-text-secondary transition-colors duration-150 group-hover/link:text-it-text-primary">
+            <span className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-2.5 gap-y-1">
+              <span
+                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-it-blue-border bg-it-blue-subtle shadow-(--it-shadow-glow-blue) transition-colors duration-150 group-hover/link:border-it-blue group-hover/link:bg-it-blue/15"
+                aria-hidden
+              >
+                <CalendarDays className="h-4 w-4 text-it-blue" strokeWidth={1.5} />
               </span>
-              {" · "}
-              {dateRange}
-              {" · "}
-              {city}
-              {" · "}
-              Booth <span className="font-mono text-it-text-primary">{booth}</span>
+              <span>
+                <span className="font-medium text-it-blue">
+                  {name} {year}
+                </span>
+                {" · "}
+                {dateRange}
+                {" · "}
+                {city}
+                {" · "}
+                Booth <span className="font-mono text-it-text-primary">{booth}</span>
+              </span>
             </span>
           </p>
-          <Button
-            asChild
-            className="shrink-0 bg-it-blue text-it-bg shadow-(--it-shadow-glow-blue) transition-all duration-150 hover:-translate-y-px hover:bg-it-blue-hover hover:shadow-(--it-shadow-glow-blue)"
-          >
-            <Link href={landingHref}>
-              See event details
-              <ArrowRight strokeWidth={1.5} aria-hidden />
-            </Link>
-          </Button>
-        </div>
+        </Link>
       </PageShell>
     </section>
   )
