@@ -2,16 +2,17 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { CalendarDays, CalendarPlus, MapPin, MapPinned } from "lucide-react"
 
-import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
+import { AutomateIntakeForm } from "@/components/events/automate-intake-form"
+import { AutomateShowLogo } from "@/components/events/automate-show-logo"
+import { automateEvent } from "@/lib/content/exhibition-automate"
+import { buildBreadcrumbListJsonLd } from "@/lib/seo/breadcrumb-json-ld"
+import { buildAutomateEventJsonLd } from "@/lib/seo/event-json-ld"
+import { JsonLdScript } from "@/lib/seo/json-ld-script"
+import { buildPageMetadata } from "@/lib/seo/page-metadata"
 import { PageShell, Section } from "@/components/page-shell"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
-import { AutomateIntakeForm } from "@/components/events/automate-intake-form"
-import { automateEvent } from "@/lib/content/exhibition-automate"
-import { buildAutomateEventJsonLd } from "@/lib/seo/event-json-ld"
-import { JsonLdScript } from "@/lib/seo/json-ld-script"
-import { buildPageMetadata } from "@/lib/seo/page-metadata"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Automate 2026",
@@ -35,7 +36,21 @@ export default function Automate2026Page() {
   return (
     <>
       <JsonLdScript data={buildAutomateEventJsonLd()} />
-      <BreadcrumbStrip items={[{ label: `${automateEvent.name} ${automateEvent.year}` }]} />
+      <JsonLdScript
+        data={buildBreadcrumbListJsonLd([{ label: `${automateEvent.name} ${automateEvent.year}` }])}
+      />
+      <div className="border-b border-it-border" style={{ background: "var(--it-bg)" }}>
+        <div className="max-w-screen-2xl mx-auto px-8 py-4">
+          <a
+            href={automateEvent.showWebsiteCta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 focus-visible:ring-offset-it-bg"
+          >
+            <AutomateShowLogo variant="onDark" size="sm" priority />
+          </a>
+        </div>
+      </div>
 
       <section
         className="relative w-full pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden"

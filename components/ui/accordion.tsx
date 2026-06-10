@@ -54,7 +54,7 @@ function FaqAccordionTrigger({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header asChild>
       <h3 className="m-0 flex flex-1 text-base font-medium">
         <AccordionPrimitive.Trigger
           data-slot="faq-accordion-trigger"

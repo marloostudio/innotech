@@ -35,10 +35,6 @@ export async function submitAutomateIntake(formData: FormData): Promise<SubmitAu
     return { ok: true }
   }
 
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !getSupabaseAnonCredential()) {
-    return { ok: false, error: "config" }
-  }
-
   if (!process.env.RESEND_API_KEY) {
     return { ok: false, error: "config" }
   }
@@ -52,21 +48,26 @@ export async function submitAutomateIntake(formData: FormData): Promise<SubmitAu
   const pageUrl = str(formData, "context_page_url").slice(0, 4000) || null
   const documentReferrer = str(formData, "context_client_referrer").slice(0, 4000) || null
 
-  const supabase = createSupabaseAnonServerClient()
-  const { error } = await supabase.from("automate_intake_leads").insert({
-    form_slug: FORM_SLUG,
-    full_name: parsed.data.name,
-    email: parsed.data.email,
-    company: parsed.data.company,
-    job_title: parsed.data.jobTitle,
-    organization_type: parsed.data.organization,
-    role_slug: parsed.data.role,
-    interest: parsed.data.interest,
-  })
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && getSupabaseAnonCredential()) {
+    try {
+      const supabase = createSupabaseAnonServerClient()
+      const { error } = await supabase.from("automate_intake_leads").insert({
+        form_slug: FORM_SLUG,
+        full_name: parsed.data.name,
+        email: parsed.data.email,
+        company: parsed.data.company,
+        job_title: parsed.data.jobTitle,
+        organization_type: parsed.data.organization,
+        role_slug: parsed.data.role,
+        interest: parsed.data.interest,
+      })
 
-  if (error) {
-    console.error("[automate-intake]", error.message)
-    return { ok: false, error: "server" }
+      if (error) {
+        console.error("[automate-intake] supabase:", error.message)
+      }
+    } catch (e) {
+      console.error("[automate-intake] supabase:", e)
+    }
   }
 
   try {
