@@ -1,6 +1,5 @@
 /**
  * Copy for the Automate trade-show landing page.
- * Update session speaker, time, and room in `session` when the show publishes the final program.
  */
 
 /** Official show wordmark (light artwork on transparent — use on dark surfaces or inside a dark band on light sections). */
@@ -10,156 +9,30 @@ export const automateShowLogoUrl =
 export const automateEvent = {
   name: "Automate",
   year: 2026,
-  venue: "Huntington Place",
-  city: "Detroit, MI",
+  venue: "McCormick Place",
+  city: "Chicago, IL",
   /** All-day multi-day window for calendar links (YYYYMMDD / end exclusive) */
-  calendarDatesAllDay: "20260512/20260516",
+  calendarDatesAllDay: "20260622/20260626",
   /** Human-readable */
-  dateRange: "May 12–15, 2026",
+  dateRange: "June 22–25, 2026",
   booth: "#12053",
+  hallOrZone: "North Building",
   hero: {
     eyebrow: "InnoTech at Automate 2026",
     titleLines: ["See intelligent infrastructure", "for autonomous fleets live"],
-    subtitle:
-      "Meet our team, explore SafeGuard™, AutoDuck, and RADARLink™, and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.",
   },
-  session: {
-    title: "Software-Defined Safety and Fleet Orchestration at Scale",
-    speaker: "Session speaker TBD",
-    when: "Wednesday, May 13 · Time TBD",
-    room: "Room TBD",
-    blurb:
-      "Learn how leading operations unify safety monitoring, autonomous charging, and V2X-grade localization to run denser, more adaptive AMR programs—with measurable uptime and clearer compliance.",
+  orchestrationImage: {
+    src: "/images/events/automate-2026/autoduck-orchestration-preview.jpg",
+    alt: "Isometric illustration of a smart factory with robotic arms, conveyor belts, and human workers coordinated through AutoDuck fleet orchestration",
   },
-  pillars: {
-    headline: "Intelligent infrastructure for real-world autonomy",
-    intro:
-      "Autonomous Mobile Robots (AMRs) unlock throughput only when software ties the fleet to the floor: hazards, missions, and connectivity in one loop. InnoTech bridges planning systems and robots with products built for production environments.",
-    products: [
-      {
-        name: "SafeGuard",
-        tag: "Safety monitoring",
-        description:
-          "Real-time hazard awareness, compliance signals, and predictive maintenance so humans and robots share space with confidence.",
-        href: "/products/safeguard",
-        accent: "safeguard" as const,
-      },
-      {
-        name: "AutoDuck",
-        tag: "Autonomous charging & orchestration",
-        description:
-          "Fleet-aware charging, access control, and mission orchestration that keeps vehicles productive without manual babysitting.",
-        href: "/products/autoduck",
-        accent: "autolock" as const,
-      },
-      {
-        name: "RADARLink",
-        tag: "V2X & micro-localization",
-        description:
-          "Centimeter-level localization, V2X messaging, and analytics for yards, ports, and complex indoor–outdoor handoffs.",
-        href: "/products/radar-link",
-        accent: "blue" as const,
-      },
-    ],
+  /** Map Your Show — opens selected booth in a new browser tab */
+  boothMapCta: {
+    label: "Booth map",
+    href: "https://automate26.mapyourshow.com/8_0/floorplan/?hallID=B&selectedBooth=12053",
   },
-  execution: {
-    headline: "From business priorities to robot missions",
-    title: "AutoDuck connects what you plan to what runs on the floor",
-    body:
-      "Translate production and logistics priorities into executable fleet behavior: who charges when, which zones need safety elevation, and how missions adapt when conditions change—without rip-and-replace of your existing stack.",
-    cta: { label: "Explore AutoDuck", href: "/products/autoduck" },
-    orchestrationImage: {
-      src: "/images/events/automate-2026/autoduck-orchestration-preview.jpg",
-      alt: "Isometric illustration of a smart factory with robotic arms, conveyor belts, and human workers coordinated through AutoDuck fleet orchestration",
-    },
-  },
-  useCasesIntro: {
-    headline: "Where InnoTech drives automation",
-    sub:
-      "One platform narrative across operations that need safety, power, and precision positioning working together.",
-  },
-  /** Booth location and wayfinding — update hall, zone, and bullets when the show publishes the floor plan. */
-  findUs: {
-    title: "Booth & directions",
-    intro:
-      "Automate runs at Huntington Place, Detroit. Use the details below to reach our stand during exhibit hours—bring this booth number to your calendar invite or when you message the team.",
-    hallOrZone: "Hall B — use the interactive map below to open our booth location.",
-    directions: [
-      "Pick up your badge at Automate registration, then follow signage to the main exhibit halls.",
-      "Open the Map Your Show floor plan (link below) to view Hall B with booth #12053 selected.",
-      "Our stand includes live demos—look for InnoTech branding and the SafeGuard, AutoDuck, and RADARLink story on the fascia.",
-    ],
-    /** Map Your Show — opens selected booth in a new browser tab */
-    boothMapCta: {
-      label: "Open booth map",
-      href: "https://automate26.mapyourshow.com/8_0/floorplan/?hallID=B&selectedBooth=12053",
-    },
-    floorPlanCta: {
-      label: "Automate show website",
-      href: "https://www.automateshow.com/",
-    },
-  },
-  useCases: [
-    {
-      title: "Human–robot collaboration zones",
-      description:
-        "Monitor dynamic mixed traffic and escalate interventions before incidents interrupt production.",
-    },
-    {
-      title: "Autonomous charging at scale",
-      description:
-        "Orchestrate Charge Depot utilization and fleet power so vehicles are ready when missions spike.",
-    },
-    {
-      title: "Warehouse AMR coordination",
-      description:
-        "Align throughput, staging, and handoffs with localization-grade awareness in dense aisles.",
-    },
-    {
-      title: "Yard and port logistics",
-      description:
-        "Support outdoor transitions with V2X and micro-localization tuned for harsh, variable environments.",
-    },
-    {
-      title: "Congregate Detection",
-      description:
-        "Spot crowd-ups and flow anomalies early to keep people safe and lines moving.",
-    },
-    {
-      title: "Micro-localization for docking",
-      description:
-        "Hit tight pick-up and drop-off tolerances where GNSS alone is not enough.",
-    },
-    {
-      title: "Compliance-ready monitoring",
-      description:
-        "Document safety posture and maintenance signals for audits without slowing operators down.",
-    },
-    {
-      title: "Fleet analytics & alerting",
-      description:
-        "Turn robot and infrastructure telemetry into actionable signals for operations and engineering.",
-    },
-  ],
-  liveCta: {
-    headline: "Experience it on the floor",
-    sub:
-      "See live scenarios for safety escalation, charging orchestration, and multi-robot coordination—then map them to your environment with our team.",
-    primary: { label: "Fill interest form", href: "#interest-intake" },
-    secondary: { label: "Request a demo", href: "/demo" },
-  },
-  planYourVisit: {
-    title: "Plan your visit",
-    tips: [
-      "Register through the Automate site and pick up your badge at registration before heading to the exhibit halls.",
-      "Open the booth map to navigate to our stand—look for InnoTech branding and live product demos.",
-      "Submit the interest form so our team can tailor the conversation to your facility and fleet.",
-      "Session time, room, and speaker will be posted here when the show confirms the final program.",
-    ],
-    officialLink: {
-      label: "Automate",
-      href: "https://www.automateshow.com/",
-    },
+  showWebsiteCta: {
+    label: "Automate show website",
+    href: "https://www.automateshow.com/",
   },
 } as const
 
@@ -216,12 +89,3 @@ export const automateIntakeForm = {
   },
   submitLabel: "Submit",
 } as const
-
-export type AutomateAccent = "safeguard" | "autolock" | "blue" | "solutions"
-
-export const accentBorderClass: Record<AutomateAccent, string> = {
-  safeguard: "border-l-[color:var(--it-safeguard)]",
-  autolock: "border-l-[color:var(--it-autolock)]",
-  blue: "border-l-[color:var(--it-blue)]",
-  solutions: "border-l-[color:var(--it-solutions)]",
-}

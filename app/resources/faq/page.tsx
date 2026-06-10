@@ -1,34 +1,28 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight } from "lucide-react"
 
+import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { Faq } from "@/components/sections/faq"
 import { faqItems } from "@/lib/content/faq"
+import { buildPageMetadata } from "@/lib/seo/page-metadata"
 import { siteUrl } from "@/lib/site"
 
 const faqCanonicalUrl = `${siteUrl}/resources/faq`
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "FAQ",
   description: "Frequently asked questions about InnoTech Systems products, support, and engagement.",
-  alternates: {
-    canonical: faqCanonicalUrl,
-  },
-}
+  path: "/resources/faq",
+})
 
 export default function FAQPage() {
   return (
     <>
-      {/* Breadcrumbs */}
-      <div className="border-b border-it-border" style={{ background: "var(--it-bg)" }}>
-        <div className="max-w-screen-2xl mx-auto px-8 py-4">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-it-text-muted" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            <Link href="/resources" className="hover:text-it-text-primary transition-colors">Resources</Link>
-            <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
-            <span className="text-it-text-primary">FAQ</span>
-          </nav>
-        </div>
-      </div>
+      <BreadcrumbStrip
+        items={[
+          { label: "Resources" },
+          { label: "FAQ" },
+        ]}
+      />
 
       <Faq
         title="Frequently Asked Questions"

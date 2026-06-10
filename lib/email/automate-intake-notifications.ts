@@ -7,10 +7,12 @@ import { escapeHtml } from "@/lib/email/escape-html"
 import type { AutomateIntakePayload } from "@/lib/validation/automate-intake"
 
 function orgLabel(value: string) {
+  if (!value) return "—"
   return automateIntakeForm.fields.organization.options.find((o) => o.value === value)?.label ?? value
 }
 
 function roleLabel(value: string) {
+  if (!value) return "—"
   return automateIntakeForm.fields.role.options.find((o) => o.value === value)?.label ?? value
 }
 
@@ -36,7 +38,7 @@ export async function sendAutomateIntakeNotifications(payload: AutomateIntakePay
       <tr><td style="padding:4px 12px 4px 0;color:#555;">Name</td><td>${escapeHtml(payload.name)}</td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#555;">Email</td><td><a href="mailto:${escapeHtml(payload.email)}">${escapeHtml(payload.email)}</a></td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#555;">Company</td><td>${escapeHtml(payload.company)}</td></tr>
-      <tr><td style="padding:4px 12px 4px 0;color:#555;">Job title</td><td>${escapeHtml(payload.jobTitle)}</td></tr>
+      <tr><td style="padding:4px 12px 4px 0;color:#555;">Job title</td><td>${escapeHtml(payload.jobTitle || "—")}</td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#555;">Organization type</td><td>${escapeHtml(org)}</td></tr>
       <tr><td style="padding:4px 12px 4px 0;color:#555;">Role</td><td>${escapeHtml(role)}</td></tr>
     </table>
@@ -51,7 +53,7 @@ export async function sendAutomateIntakeNotifications(payload: AutomateIntakePay
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
     `Company: ${payload.company}`,
-    `Job title: ${payload.jobTitle}`,
+    `Job title: ${payload.jobTitle || "—"}`,
     `Organization type: ${org}`,
     `Role: ${role}`,
     "",

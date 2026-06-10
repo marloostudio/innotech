@@ -44,49 +44,42 @@ export default function CompanyPage() {
         />
       </div>
 
-      <Section variant="light-bg" className="py-10 md:py-14">
-        <div className="max-w-3xl mx-auto space-y-3 text-base text-it-light-text-secondary leading-normal">
-          <p>
-            InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly,{" "}
-            <Em>the supporting infrastructure lagged behind</Em>. Companies were building incredible autonomous technology, but lacked the practical solutions needed to <Em>deploy them at scale</Em>.
-          </p>
-          <p>
-            Our founders—veterans of the automotive, robotics, and software industries—recognized that <Em>three critical problems</Em> needed solving: <Em>autonomous charging without human intervention</Em>,{" "}
-            <Em>comprehensive safety monitoring for human-robot environments</Em>, and <Em>reliable vehicle-to-everything communication</Em>.
-          </p>
-          <p>
-            Rather than tackle these as separate problems, we built an <Em>integrated platform</Em>. <Em>SafeGuard</Em> monitors safety and compliance. <Em>AutoDuck</Em> handles autonomous charging and fleet orchestration.{" "}
-            <Em>RADARLink</Em> provides V2X connectivity and precise localization. Together, they create <Em>the foundation for autonomous operations</Em>.
-          </p>
-        </div>
-      </Section>
+      <Section variant="light-bg" id="executive-leadership" className="scroll-mt-24 py-10 md:py-14">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-start">
+          <div className="max-w-[680px] space-y-3 text-base text-it-light-text-secondary leading-normal">
+            <p>
+              InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly,{" "}
+              <Em>the supporting infrastructure lagged behind</Em>. Companies were building incredible autonomous technology, but lacked the practical solutions needed to <Em>deploy them at scale</Em>.
+            </p>
+            <p>
+              Our founders—veterans of the automotive, robotics, and software industries—recognized that <Em>three critical problems</Em> needed solving: <Em>autonomous charging without human intervention</Em>,{" "}
+              <Em>comprehensive safety monitoring for human-robot environments</Em>, and <Em>reliable vehicle-to-everything communication</Em>.
+            </p>
+            <p>
+              Rather than tackle these as separate problems, we built an <Em>integrated platform</Em>. <Em>SafeGuard</Em> monitors safety and compliance. <Em>AutoDuck</Em> handles autonomous charging and fleet orchestration.{" "}
+              <Em>RADARLink</Em> provides V2X connectivity and precise localization. Together, they create <Em>the foundation for autonomous operations</Em>.
+            </p>
+          </div>
 
-      <Section variant="white" id="executive-leadership" className="scroll-mt-24 py-10 md:py-14">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2
-            className="text-xl font-semibold mb-1"
-            style={{ color: "var(--it-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }}
-          >
-            Executive Leadership
-          </h2>
-          <p
-            className="text-sm mb-4"
-            style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
-          >
-            Strategy and technology vision
-          </p>
-          <div>
-            {executiveLeadership.map((person) => (
-              <TeamCard
-                key={person.name}
-                name={person.name}
-                title={person.title}
-                bio={person.bio}
-                linkedin={person.linkedin}
-                omitImage={person.omitImage}
-                centered
-              />
-            ))}
+          <div className="min-w-0 lg:max-w-lg lg:justify-self-end w-full">
+            <h2 className="font-chakra text-xl font-semibold mb-1 text-it-light-text-primary">
+              Executive Leadership
+            </h2>
+            <p className="text-sm mb-4 text-it-light-text-muted">
+              Strategy and technology vision
+            </p>
+            <div>
+              {executiveLeadership.map((person) => (
+                <TeamCard
+                  key={person.name}
+                  name={person.name}
+                  title={person.title}
+                  bio={person.bio}
+                  linkedin={person.linkedin}
+                  omitImage={person.omitImage}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </Section>

@@ -38,6 +38,44 @@ export function isPasswordGatedHubPath(pathname: string): boolean {
   )
 }
 
+/** Legacy routes that 301 elsewhere — omit from sitemap. */
+export const SITEMAP_EXCLUDED_REDIRECT_PATHS = new Set([
+  "/about",
+  "/company/our-story",
+  "/company/team",
+])
+
+/** Marketing paths explicitly allowed in robots.txt (keep aligned with isPublicCrawlablePath). */
+export const ROBOTS_ALLOWED_MARKETING_PATHS = [
+  "/",
+  "/products",
+  "/products/autoduck",
+  "/products/radar-link",
+  "/products/safeguard",
+  "/demo",
+  "/contact",
+  "/thank-you",
+  "/events/automate-2026",
+  "/resources/faq",
+  "/company",
+  "/company/our-story",
+  "/company/team",
+  "/company/board-advisors",
+  "/company/careers",
+  "/company/careers/open-roles",
+  "/company/partners",
+  "/company/investors",
+] as const
+
+export function marketingPathToRobotsAllowPatterns(path: string): string[] {
+  if (path === "/") return ["/", "/$"]
+  return [`${path}$`, `${path}/$`]
+}
+
+export function getRobotsAllowPatterns(): string[] {
+  return ROBOTS_ALLOWED_MARKETING_PATHS.flatMap(marketingPathToRobotsAllowPatterns)
+}
+
 /** Paths bots may fetch (403 otherwise). Same as password-free anonymous browsing. */
 export function isPublicCrawlablePath(pathname: string): boolean {
   const p = stripQuery(pathname)
@@ -50,6 +88,8 @@ export function isPublicCrawlablePath(pathname: string): boolean {
   if (core === "/thank-you") return true
   /** Automate 2026 trade-show landing (linked from home teaser). */
   if (core === "/events/automate-2026") return true
+  /** Dedicated FAQ — canonical FAQPage schema; indexed for SERP. */
+  if (core === "/resources/faq") return true
   if (core === "/company" || core.startsWith("/company/")) return true
   /** Product hubs only — subpages (e.g. `/products/autoduck/access-control`) are gated. */
   if (core === "/products/autoduck") return true

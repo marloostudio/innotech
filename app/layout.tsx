@@ -8,6 +8,9 @@ import { Navbar } from '@/components/site/navbar'
 import { Footer } from '@/components/site/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { buildSiteGraphDocument } from '@/lib/seo/organization-json-ld'
+import { JsonLdScript } from '@/lib/seo/json-ld-script'
+import { defaultOgImage } from '@/lib/seo/page-metadata'
 import { siteConfig, siteUrl } from '@/lib/site'
 
 const dmSans = DM_Sans({
@@ -47,11 +50,13 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [defaultOgImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [defaultOgImage.url],
   },
   manifest: '/site.webmanifest',
   icons: {
@@ -77,6 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${ibmPlexMono.variable} ${inter.variable}`}>
       <body className="antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
+        <JsonLdScript data={buildSiteGraphDocument()} />
         {/* GTM: noscript first, then loader (env NEXT_PUBLIC_GTM_ID) */}
         <GoogleTagManagerBody />
         <GoogleTagManagerHead />

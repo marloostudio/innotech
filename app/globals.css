@@ -8,12 +8,21 @@ html {
   scrollbar-gutter: stable;
 }
 
-/* Radix Select (and other overlays) use react-remove-scroll, which adds margin/padding to `body` to
-   offset scrollbar width. `scrollbar-gutter: stable` on `html` already reserves that space, so both
-   together shift the page horizontally when a dropdown opens. */
+/* Radix Select (and other overlays) use react-remove-scroll, which adds margin-right to `body` to
+   offset scrollbar width. `scrollbar-gutter: stable` on `html` already reserves that space while
+   the page scrolls, but overflow:hidden on lock collapses the gutter — restore width with padding
+   from react-remove-scroll-bar’s CSS variable instead of margin (margin + gutter = double shift). */
 body[data-scroll-locked] {
   margin-right: 0 !important;
-  padding-right: 0 !important;
+  padding-right: var(--removed-body-scroll-bar-size, 0px) !important;
+}
+
+body[data-scroll-locked] .right-scroll-bar-position {
+  right: 0 !important;
+}
+
+body[data-scroll-locked] .width-before-scroll-bar {
+  margin-right: 0 !important;
 }
 
 :root {
@@ -130,9 +139,10 @@ body[data-scroll-locked] {
   --it-light-blue-subtle:    rgba(37, 99, 235, 0.08);
   --it-light-blue-border:    rgba(37, 99, 235, 0.2);
   
-  /* Light-surface CTA buttons (e.g. Products grid "Explore ...") */
+  /* Light-surface CTA buttons (forms, product cards on white) */
   --it-light-cta:            var(--it-light-blue);
   --it-light-cta-hover:      var(--it-light-blue-hover);
+  --it-light-cta-foreground: #ffffff;
   --it-light-safeguard:      #059669;
   --it-light-autolock:       #ea580c;
   --it-light-solutions:      #7c3aed;
@@ -363,6 +373,7 @@ body[data-scroll-locked] {
   --color-it-light-blue-hover:      var(--it-light-blue-hover);
   --color-it-light-cta:             var(--it-light-cta);
   --color-it-light-cta-hover:       var(--it-light-cta-hover);
+  --color-it-light-cta-foreground:  var(--it-light-cta-foreground);
   --color-it-light-safeguard:       var(--it-light-safeguard);
   --color-it-light-autolock:        var(--it-light-autolock);
 
@@ -389,6 +400,89 @@ body[data-scroll-locked] {
 @media (prefers-reduced-motion: reduce) {
   .logo-cloud-scroll {
     animation: none !important;
+  }
+}
+
+/* ── Home: Automate event announcement row ───────────── */
+@keyframes event-announcement-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes event-announcement-shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+.event-announcement {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 180% at 0% 50%, var(--it-blue-subtle), transparent 55%),
+    radial-gradient(ellipse 40% 180% at 100% 50%, var(--it-blue-subtle), transparent 50%),
+    var(--it-section-2);
+  box-shadow:
+    inset 0 1px 0 var(--it-blue-border),
+    0 4px 24px rgba(77, 159, 255, 0.06);
+  animation: event-announcement-in 350ms ease-out;
+}
+
+.event-announcement::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--it-blue-border) 25%,
+    var(--it-blue) 50%,
+    var(--it-blue-border) 75%,
+    transparent 100%
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.event-announcement-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    var(--it-blue-glow) 48%,
+    rgba(77, 159, 255, 0.14) 50%,
+    var(--it-blue-glow) 52%,
+    transparent 65%
+  );
+  animation: event-announcement-shimmer 1.4s ease-out 0.35s 1 forwards;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-announcement {
+    animation: none;
+  }
+
+  .event-announcement-shimmer {
+    display: none;
   }
 }
 
@@ -452,6 +546,15 @@ body[data-scroll-locked] {
 .contact-form-light select:focus-visible {
   border-color: var(--it-light-blue);
   box-shadow: 0 0 0 3px var(--it-light-blue-border);
+}
+/* Primary CTAs on light forms — saturated blue + white label (not dark-theme primary) */
+.contact-form-light [data-slot="button"].bg-primary {
+  background-color: var(--it-light-cta);
+  color: var(--it-light-cta-foreground);
+}
+.contact-form-light [data-slot="button"].bg-primary:hover {
+  background-color: var(--it-light-cta-hover);
+  color: var(--it-light-cta-foreground);
 }
 
 /* ─────────────────────────────────────────────────────────

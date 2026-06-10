@@ -1,54 +1,31 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  CalendarDays,
-  CalendarPlus,
-  Check,
-  MapPin,
-  MapPinned,
-  Mic,
-  Radio,
-  Shield,
-  Zap,
-} from "lucide-react"
+import { CalendarDays, CalendarPlus, MapPin, MapPinned } from "lucide-react"
 
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
 import { PageShell, Section } from "@/components/page-shell"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
 import { AutomateIntakeForm } from "@/components/events/automate-intake-form"
-import { AutomateShowLogo } from "@/components/events/automate-show-logo"
-import {
-  accentBorderClass,
-  automateEvent,
-  type AutomateAccent,
-} from "@/lib/content/exhibition-automate"
+import { automateEvent } from "@/lib/content/exhibition-automate"
+import { buildAutomateEventJsonLd } from "@/lib/seo/event-json-ld"
+import { JsonLdScript } from "@/lib/seo/json-ld-script"
+import { buildPageMetadata } from "@/lib/seo/page-metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Automate 2026",
   description:
-    "Meet InnoTech Systems at Automate 2026 in Detroit—SafeGuard, AutoDuck, RADARLink, and live fleet demos.",
-}
-
-const useCaseAccent: AutomateAccent[] = [
-  "blue",
-  "safeguard",
-  "autolock",
-  "solutions",
-  "blue",
-  "safeguard",
-  "autolock",
-  "solutions",
-]
+    "Meet InnoTech Systems at Automate 2026 in Chicago — SafeGuard, AutoDuck, RADARLink, and live fleet demos at McCormick Place, booth #12053.",
+  path: "/events/automate-2026",
+})
 
 function googleCalendarUrl(): string {
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: `InnoTech Systems — ${automateEvent.name} ${automateEvent.year}`,
     dates: automateEvent.calendarDatesAllDay,
-    details: `Trade show — ${automateEvent.venue}, ${automateEvent.city}. ${automateEvent.booth}.`,
+    details: `Trade show — ${automateEvent.venue}, ${automateEvent.city}. ${automateEvent.booth}, ${automateEvent.hallOrZone}.`,
     location: `${automateEvent.venue}, ${automateEvent.city}`,
   })
   return `https://calendar.google.com/calendar/render?${params.toString()}`
@@ -57,9 +34,9 @@ function googleCalendarUrl(): string {
 export default function Automate2026Page() {
   return (
     <>
+      <JsonLdScript data={buildAutomateEventJsonLd()} />
       <BreadcrumbStrip items={[{ label: `${automateEvent.name} ${automateEvent.year}` }]} />
 
-      {/* Hero + interest intake */}
       <section
         className="relative w-full pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden"
         style={{
@@ -67,9 +44,9 @@ export default function Automate2026Page() {
           color: "var(--it-text-primary)",
         }}
       >
-        <PageShell>
+        <PageShell className="relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
-            <div className="max-w-xl pt-1">
+            <div className="min-w-0 pt-1">
               <Badge
                 variant="outline"
                 className="mb-4 border-it-border text-it-text-secondary font-normal"
@@ -87,443 +64,129 @@ export default function Automate2026Page() {
                 className="text-lg md:text-xl text-pretty mb-5"
                 style={{ color: "var(--it-text-muted)" }}
               >
-                {automateEvent.hero.subtitle}
+                Meet our team, explore{" "}
+                <Link
+                  href="/products/safeguard"
+                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+                >
+                  SafeGuard™
+                </Link>
+                ,{" "}
+                <Link
+                  href="/products/radar-link"
+                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+                >
+                  RADARLink™
+                </Link>
+                , and{" "}
+                <Link
+                  href="/products/autoduck"
+                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+                >
+                  AutoDuck
+                </Link>
+                , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
               </p>
-              <a
-                href="https://www.automateshow.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mb-8 inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue focus-visible:ring-offset-2 focus-visible:ring-offset-it-bg"
-              >
-                <AutomateShowLogo variant="onDark" size="sm" />
-              </a>
-
-              <div
-                className="mb-8 rounded-xl border px-5 py-4 md:px-6 md:py-5 max-w-lg"
-                style={{
-                  borderColor: "var(--it-blue-border)",
-                  background: "var(--it-blue-subtle)",
-                  boxShadow: "var(--it-shadow-glow-blue)",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <CalendarDays
-                    className="w-5 h-5 shrink-0 text-it-blue md:w-6 md:h-6"
-                    strokeWidth={1.5}
-                    aria-hidden
-                  />
-                  <span
-                    className="text-xs md:text-sm font-mono uppercase tracking-widest text-it-text-secondary"
-                  >
-                    Exhibition dates
-                  </span>
-                </div>
-                <p
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-it-blue leading-none"
-                  style={{ fontFamily: "var(--font-chakra)" }}
-                >
-                  {automateEvent.dateRange}
-                </p>
-                <div
-                  className="mt-4 pt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm md:text-base border-t"
-                  style={{ borderColor: "var(--it-blue-border)" }}
-                >
-                  <span className="inline-flex items-center gap-2 text-it-text-secondary">
-                    <MapPin className="w-4 h-4 shrink-0 text-it-text-muted" strokeWidth={1.5} aria-hidden />
-                    {automateEvent.venue}, {automateEvent.city}
-                  </span>
-                  <span className="text-it-text-dim" aria-hidden>
-                    ·
-                  </span>
-                  <span className="font-mono text-it-blue">{automateEvent.booth}</span>
-                </div>
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                  <Button
-                    variant="outline"
-                    size="default"
-                    className="w-full border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle sm:w-auto"
-                    asChild
-                  >
-                    <a
-                      href={googleCalendarUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <CalendarPlus className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-                      Add to your calendar
-                    </a>
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="w-full border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle sm:w-auto"
-                    asChild
-                  >
-                    <Link href="#session">
-                      <Mic className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-                      Session details
-                    </Link>
-                  </Button>
-                </div>
-              </div>
             </div>
-            <div
-              id="interest-intake"
-              className="w-full min-w-0 max-w-xl lg:max-w-none lg:justify-self-end contact-form-light scroll-mt-28"
-            >
-              <AutomateIntakeForm />
+            <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:justify-self-end">
+              <ImagePlaceholder
+                src={automateEvent.orchestrationImage.src}
+                aspectRatio="4/3"
+                alt={automateEvent.orchestrationImage.alt}
+              />
             </div>
           </div>
         </PageShell>
       </section>
 
-      {/* Pillars */}
-      <Section variant="dark">
-        <div className="max-w-[680px] mb-12 lg:mb-16">
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance mb-6"
-            style={{ fontFamily: "var(--font-chakra)" }}
-          >
-            {automateEvent.pillars.headline}
-          </h2>
-          <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
-            {automateEvent.pillars.intro}
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {automateEvent.pillars.products.map((p) => (
-            <Card
-              key={p.name}
-              className={`bg-background border-l-[3px] shadow-sm ${accentBorderClass[p.accent]}`}
-            >
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  {p.accent === "safeguard" && (
-                    <Shield className="w-6 h-6 text-it-safeguard" strokeWidth={1.5} aria-hidden />
-                  )}
-                  {p.accent === "autolock" && (
-                    <Zap className="w-6 h-6 text-it-autolock" strokeWidth={1.5} aria-hidden />
-                  )}
-                  {p.accent === "blue" && (
-                    <Radio className="w-6 h-6 text-it-blue" strokeWidth={1.5} aria-hidden />
-                  )}
-                  <Badge variant="secondary" className="font-normal">
-                    {p.tag}
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl font-semibold tracking-tight">{p.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground text-pretty leading-relaxed">
-                  {p.description}
-                </p>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href={p.href}>Explore {p.name}</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Execution / AutoDuck */}
-      <Section variant="light" alt>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="max-w-[680px]">
-            <p
-              className="text-sm font-mono uppercase tracking-widest mb-3"
-              style={{ color: "var(--it-text-dim)" }}
-            >
-              {automateEvent.execution.headline}
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight text-balance mb-6"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              {automateEvent.execution.title}
-            </h2>
-            <p className="text-lg text-muted-foreground text-pretty leading-relaxed mb-8">
-              {automateEvent.execution.body}
-            </p>
-            <Button size="lg" asChild>
-              <Link href={automateEvent.execution.cta.href}>{automateEvent.execution.cta.label}</Link>
-            </Button>
-          </div>
-          <div className="w-full rounded-lg border border-it-border overflow-hidden bg-it-surface-raised">
-            <ImagePlaceholder
-              src={automateEvent.execution.orchestrationImage.src}
-              aspectRatio="4/3"
-              alt={automateEvent.execution.orchestrationImage.alt}
-            />
-          </div>
-        </div>
-      </Section>
-
-      {/* Use cases grid */}
-      <Section variant="dark">
-        <div className="max-w-[680px] mb-12 lg:mb-16">
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance mb-4"
-            style={{ fontFamily: "var(--font-chakra)" }}
-          >
-            {automateEvent.useCasesIntro.headline}
-          </h2>
-          <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
-            {automateEvent.useCasesIntro.sub}
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {automateEvent.useCases.map((uc, i) => (
-            <Card
-              key={uc.title}
-              className={`bg-background border-l-[3px] shadow-sm ${accentBorderClass[useCaseAccent[i]!]}`}
-            >
-              <CardHeader>
-                <CardTitle className="text-base leading-snug">{uc.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground text-pretty leading-relaxed">
-                  {uc.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Booth & wayfinding */}
-      <Section id="find-us" variant="light-bg" className="scroll-mt-28">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="max-w-xl">
-            <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-3">
-              <a
-                href="https://www.automateshow.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex max-w-full min-w-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-light-blue"
-              >
-                <AutomateShowLogo variant="onLight" size="sm" />
-              </a>
-              <div className="flex items-center gap-2 text-it-light-blue">
-                <MapPinned className="w-5 h-5 shrink-0" strokeWidth={1.5} aria-hidden />
-                <span className="text-sm font-mono uppercase tracking-wider text-it-light-text-muted">
-                  Exhibition
+      <Section variant="light-bg" className="py-12 md:py-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
+          <div className="w-full min-w-0 lg:sticky lg:top-28">
+            <div className="rounded-xl border border-it-light-border bg-it-light-surface px-5 py-4 md:px-6 md:py-5 shadow-(--it-light-shadow-md)">
+              <div className="flex items-center gap-2 mb-2">
+                <CalendarDays
+                  className="w-5 h-5 shrink-0 text-it-light-blue md:w-6 md:h-6"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-it-light-text-muted">
+                  Exhibition dates
                 </span>
               </div>
-            </div>
-            <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance mb-6 text-it-light-text-primary"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              {automateEvent.findUs.title}
-            </h2>
-            <p className="text-lg text-it-light-text-secondary text-pretty leading-relaxed mb-8">
-              {automateEvent.findUs.intro}
-            </p>
-            <div
-              className="rounded-xl border border-it-light-border bg-it-light-surface px-6 py-6 md:px-8 md:py-8 border-l-[3px] border-l-it-light-blue shadow-(--it-light-shadow-sm)"
-            >
-              <p className="text-xs font-mono uppercase tracking-widest text-it-light-text-muted mb-2">
-                Booth number
-              </p>
               <p
-                className="text-4xl md:text-5xl font-bold tracking-tight text-it-light-blue leading-none mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-it-light-blue leading-none"
                 style={{ fontFamily: "var(--font-chakra)" }}
               >
-                {automateEvent.booth}
+                {automateEvent.dateRange}
               </p>
-              <p className="text-sm text-it-light-text-secondary text-pretty leading-relaxed mb-3">
-                {automateEvent.findUs.hallOrZone}
-              </p>
-              <p className="text-sm font-medium text-it-light-text-primary inline-flex items-center gap-2">
-                <MapPin className="w-4 h-4 shrink-0 text-it-light-text-muted" strokeWidth={1.5} aria-hidden />
-                {automateEvent.venue}, {automateEvent.city}
-              </p>
-            </div>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button size="lg" className="w-full sm:w-auto" asChild>
-                <a
-                  href={automateEvent.findUs.boothMapCta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {automateEvent.findUs.boothMapCta.label}
-                </a>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full border-it-light-border text-it-light-text-primary sm:w-auto"
-                asChild
-              >
-                <a
-                  href={automateEvent.findUs.floorPlanCta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {automateEvent.findUs.floorPlanCta.label}
-                </a>
-              </Button>
-            </div>
-          </div>
-          <div>
-            <h3
-              className="text-lg font-semibold text-it-light-text-primary mb-4"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              How to find us
-            </h3>
-            <ul className="space-y-4">
-              {automateEvent.findUs.directions.map((line) => (
-                <li
-                  key={line}
-                  className="flex gap-3 text-it-light-text-secondary text-pretty leading-relaxed"
-                >
-                  <span
-                    className="mt-0.5 shrink-0 rounded-full p-1"
-                    style={{ backgroundColor: "var(--it-light-blue-subtle)" }}
-                  >
-                    <Check className="w-4 h-4 text-it-light-blue" strokeWidth={1.5} aria-hidden />
+              <div className="mt-4 pt-4 space-y-2 text-sm md:text-base border-t border-it-light-border">
+                <p className="inline-flex items-center gap-2 text-it-light-text-secondary">
+                  <MapPin className="w-4 h-4 shrink-0 text-it-light-text-muted" strokeWidth={1.5} aria-hidden />
+                  {automateEvent.venue}, {automateEvent.city}
+                </p>
+                <p className="text-it-light-text-secondary">
+                  Booth <span className="font-mono text-it-light-blue">{automateEvent.booth}</span>
+                  <span className="text-it-light-text-muted" aria-hidden>
+                    {" "}
+                    ·{" "}
                   </span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* Live CTA band */}
-      <section
-        className="py-20 md:py-28 it-cta-banner"
-        style={{ background: "var(--it-cta-gradient)" }}
-      >
-        <PageShell>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance mb-6 text-it-text-primary"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              {automateEvent.liveCta.headline}
-            </h2>
-            <p className="text-lg md:text-xl text-pretty text-it-text-secondary mb-4">
-              {automateEvent.liveCta.sub}
-            </p>
-            <p className="text-sm font-mono text-it-text-muted mb-10">
-              {automateEvent.dateRange} · {automateEvent.booth} · {automateEvent.venue}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button size="lg" asChild>
-                <Link href={automateEvent.liveCta.primary.href}>{automateEvent.liveCta.primary.label}</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href={automateEvent.liveCta.secondary.href}>{automateEvent.liveCta.secondary.label}</Link>
-              </Button>
-            </div>
-            <div className="mt-10">
-              <Button variant="ghost" size="sm" asChild>
-                <a
-                  href={googleCalendarUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-it-text-secondary"
+                  {automateEvent.hallOrZone}
+                </p>
+              </div>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
+                  asChild
                 >
-                  <CalendarPlus className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-                  Add to Google Calendar
-                </a>
-              </Button>
-            </div>
-          </div>
-        </PageShell>
-      </section>
-
-      {/* Session */}
-      <Section id="session" variant="light">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="max-w-[680px]">
-            <div className="flex items-center gap-2 text-it-blue mb-4">
-              <Mic className="w-5 h-5" strokeWidth={1.5} aria-hidden />
-              <span className="text-sm font-mono uppercase tracking-wider">Conference session</span>
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight text-balance mb-4"
-              style={{ fontFamily: "var(--font-chakra)" }}
-            >
-              {automateEvent.session.title}
-            </h2>
-            <p className="text-muted-foreground mb-2">{automateEvent.session.speaker}</p>
-            <p className="text-sm text-muted-foreground mb-6">
-              {automateEvent.session.when} · {automateEvent.session.room}
-            </p>
-            <p className="text-lg text-muted-foreground text-pretty leading-relaxed mb-8">
-              {automateEvent.session.blurb}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button size="lg" asChild>
-                <Link href="/contact">Meet us at the show</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href={googleCalendarUrl()} target="_blank" rel="noopener noreferrer">
-                  Add show dates to calendar
-                </a>
-              </Button>
-            </div>
-          </div>
-          <Card className="border-it-light-border bg-it-light-surface border-l-[3px] border-l-it-light-blue shadow-(--it-light-shadow-sm)">
-            <CardHeader>
-              <CardTitle className="text-it-light-text-primary text-lg">
-                {automateEvent.planYourVisit.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6 text-it-light-text-secondary text-sm leading-relaxed">
-              <dl className="space-y-4">
-                <div>
-                  <dt className="font-mono text-xs uppercase tracking-wider text-it-light-text-muted">
-                    Exhibition
-                  </dt>
-                  <dd className="mt-1 text-it-light-text-primary">{automateEvent.dateRange}</dd>
-                  <dd>
-                    {automateEvent.booth} · {automateEvent.venue}, {automateEvent.city}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-xs uppercase tracking-wider text-it-light-text-muted">
-                    Conference session
-                  </dt>
-                  <dd className="mt-1 text-it-light-text-primary">{automateEvent.session.title}</dd>
-                  <dd>
-                    {automateEvent.session.when} · {automateEvent.session.room}
-                  </dd>
-                  <dd className="text-it-light-text-muted">{automateEvent.session.speaker}</dd>
-                </div>
-              </dl>
-              <ul className="space-y-3">
-                {automateEvent.planYourVisit.tips.map((tip) => (
-                  <li key={tip} className="flex gap-3 text-pretty">
-                    <span
-                      className="mt-0.5 shrink-0 rounded-full p-1"
-                      style={{ backgroundColor: "var(--it-light-blue-subtle)" }}
-                    >
-                      <Check className="w-4 h-4 text-it-light-blue" strokeWidth={1.5} aria-hidden />
-                    </span>
-                    <span>{tip}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-it-light-text-muted">
-                Official show information: see the{" "}
-                <a
-                  href={automateEvent.planYourVisit.officialLink.href}
-                  className="text-it-light-blue underline-offset-4 hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <a
+                    href={googleCalendarUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <CalendarPlus className="w-4 h-4" strokeWidth={1.5} aria-hidden />
+                    Add to your calendar
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
+                  asChild
                 >
-                  {automateEvent.planYourVisit.officialLink.label}
-                </a>{" "}
-                site for registration and schedules.
-              </p>
-            </CardContent>
-          </Card>
+                  <a
+                    href={automateEvent.boothMapCta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPinned className="w-4 h-4" strokeWidth={1.5} aria-hidden />
+                    {automateEvent.boothMapCta.label}
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
+                  asChild
+                >
+                  <a
+                    href={automateEvent.showWebsiteCta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {automateEvent.showWebsiteCta.label}
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div
+            id="interest-intake"
+            className="w-full min-w-0 scroll-mt-28 contact-form-light"
+          >
+            <AutomateIntakeForm />
+          </div>
         </div>
       </Section>
     </>

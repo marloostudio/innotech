@@ -47,6 +47,31 @@ function AccordionTrigger({
   )
 }
 
+/** FAQ question trigger — visible `<h3>` for crawlers, button inside for interaction. */
+function FaqAccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <h3 className="m-0 flex flex-1 text-base font-medium">
+        <AccordionPrimitive.Trigger
+          data-slot="faq-accordion-trigger"
+          className={cn(
+            'focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180',
+            className,
+          )}
+          {...props}
+        >
+          {children}
+          <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        </AccordionPrimitive.Trigger>
+      </h3>
+    </AccordionPrimitive.Header>
+  )
+}
+
 function AccordionContent({
   className,
   children,
@@ -63,4 +88,4 @@ function AccordionContent({
   )
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export { Accordion, AccordionItem, AccordionTrigger, FaqAccordionTrigger, AccordionContent }

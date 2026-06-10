@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { pageContainerClass } from "@/components/page-shell"
 import { cn } from "@/lib/utils"
 
 interface CtaBannerProps {
@@ -37,7 +38,7 @@ export function CtaBanner({
     <section
       className="w-full py-20 md:py-28 it-cta-banner"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
+      <div className={pageContainerClass}>
         <div className="text-center space-y-6 max-w-4xl mx-auto text-it-text-primary">
           <h2
             className={cn(

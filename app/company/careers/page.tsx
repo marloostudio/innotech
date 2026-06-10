@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
-import { PageShell, Section } from "@/components/page-shell"
+import { PageShell, Section, pageContainerClass } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -29,7 +29,7 @@ export default function CareersPage() {
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-20 lg:py-28">
-        <div className="container mx-auto px-4">
+        <div className={pageContainerClass}>
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">Careers</Badge>
             <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">

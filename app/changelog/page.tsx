@@ -18,7 +18,7 @@ export default function ChangelogPage() {
 
   return (
     <>
-      <Section variant="light" alt id="releases" containerClassName="max-w-screen-2xl mx-auto px-8">
+      <Section variant="light" alt id="releases">
         <ChangelogLayout entries={entries} />
       </Section>
 

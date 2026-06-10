@@ -4,11 +4,12 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
+  FaqAccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { Section, type SectionVariant } from "@/components/page-shell"
 import { buildFaqPageJsonLd } from "@/lib/seo/faq-json-ld"
+import { JsonLdScript } from "@/lib/seo/json-ld-script"
 import { cn } from "@/lib/utils"
 
 interface FaqItem {
@@ -56,17 +57,12 @@ export function Faq({
 
   return (
     <Section variant={variant} alt={alt} id={sectionId}>
-      {faqJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-      ) : null}
+      {faqJsonLd ? <JsonLdScript data={faqJsonLd} /> : null}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 items-start">
         <div className="lg:col-span-1 space-y-4">
           <h2
             className={cn(
-              "font-inter text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-balance",
+              "font-chakra text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-balance",
               titleCls
             )}
           >
@@ -100,9 +96,9 @@ export function Faq({
                 value={`item-${index}`}
                 className={cn("border-b last:border-b-0", borderCls)}
               >
-                <AccordionTrigger className={cn("text-left py-4", triggerCls)}>
+                <FaqAccordionTrigger className={cn("text-left py-4", triggerCls)}>
                   {item.question}
-                </AccordionTrigger>
+                </FaqAccordionTrigger>
                 <AccordionContent className={contentCls}>
                   {item.answer}
                 </AccordionContent>

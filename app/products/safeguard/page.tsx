@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
-import { PageShell, Section } from '@/components/page-shell'
+import { PageShell, Section, pageContainerClass } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
@@ -30,7 +30,7 @@ export default function SafeGuardPage() {
     <>
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "SafeGuard" }]} />
       <section className="it-hero-safeguard py-20 lg:py-28">
-        <div className="container mx-auto px-4">
+        <div className={pageContainerClass}>
           <div className="max-w-4xl mx-auto text-center lg:text-left">
             <Badge variant="outline" className="mb-4">
               Product

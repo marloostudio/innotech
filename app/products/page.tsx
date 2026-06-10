@@ -140,7 +140,7 @@ export default function ProductsPage() {
                     <Button
                       asChild
                       size="lg"
-                      className="group w-full h-12 bg-it-light-cta text-it-text-primary hover:bg-it-light-cta-hover hover:brightness-90"
+                      className="group w-full h-12 bg-it-light-cta text-it-light-cta-foreground hover:bg-it-light-cta-hover"
                     >
                       <Link href={`/products/${product.slug}`}>
                         Explore {product.name}

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PageShell } from '@/components/page-shell'
+import { PageShell, pageContainerClass } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
@@ -60,8 +60,8 @@ export function IndustryDetail({ industry, heroImagePlaceholder, midPageImagePla
 
       {/* Hero Section — optional two-column with placeholder on right */}
       <section className="it-hero py-20 lg:py-28">
-        <div className="container mx-auto px-4">
-          <div className={heroImagePlaceholder ? 'grid lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto' : 'max-w-4xl mx-auto'}>
+        <div className={pageContainerClass}>
+          <div className={heroImagePlaceholder ? 'grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center' : 'max-w-4xl'}>
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-4 rounded-lg" style={{ background: 'rgba(245, 158, 11, 0.12)' }}>

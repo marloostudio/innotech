@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils"
 
+/** Site-wide content width — matches navbar and breadcrumb strip (`max-w-screen-2xl px-8`). */
+export const pageContainerClass = "w-full max-w-screen-2xl mx-auto px-8"
+
 interface PageShellProps {
   children: React.ReactNode
   className?: string
@@ -14,7 +17,7 @@ export function PageShell({
   id,
 }: PageShellProps) {
   return (
-    <Component id={id} className={cn("w-full max-w-7xl mx-auto px-6 lg:px-8", className)}>
+    <Component id={id} className={cn(pageContainerClass, className)}>
       {children}
     </Component>
   )

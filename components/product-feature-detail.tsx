@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PageShell } from '@/components/page-shell'
+import { PageShell, pageContainerClass } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
@@ -67,8 +67,8 @@ export function ProductFeatureDetail({
 
       {/* Hero Section */}
       <section className="it-hero py-20 lg:py-28">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className={pageContainerClass}>
+          <div className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="p-4 rounded-lg" style={{ background: 'var(--it-blue-subtle)' }}>
                 <Icon className="w-10 h-10" style={{ color: 'var(--it-blue)' }} />

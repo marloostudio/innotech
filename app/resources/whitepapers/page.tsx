@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ChevronRight, FileText, Download } from "lucide-react"
 
+import { pageContainerClass } from "@/components/page-shell"
+
 export const metadata: Metadata = {
   title: "Whitepapers — InnoTech Systems",
   description: "Technical whitepapers and architecture briefs.",
@@ -53,8 +55,8 @@ export default function WhitepapersPage() {
         </div>
       </div>
 
-      <section className="px-6 lg:px-8 py-16 md:py-24" style={{ background: "var(--it-bg)" }}>
-        <div className="max-w-7xl mx-auto w-full">
+      <section className="py-16 md:py-24" style={{ background: "var(--it-bg)" }}>
+        <div className={pageContainerClass}>
           <p className="text-xs font-mono tracking-widest uppercase mb-4" style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-ibm-mono)" }}>
             Resources
           </p>

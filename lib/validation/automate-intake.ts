@@ -19,9 +19,9 @@ export const automateIntakePayloadSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(200),
   email: z.string().trim().email().max(320),
   company: z.string().trim().min(1, "Company is required").max(200),
-  jobTitle: z.string().trim().min(1, "Job title is required").max(200),
-  organization: organizationEnum,
-  role: roleEnum,
+  jobTitle: z.string().trim().max(200).default(""),
+  organization: z.union([organizationEnum, z.literal("")]).default(""),
+  role: z.union([roleEnum, z.literal("")]).default(""),
   interest: z.string().trim().min(1, "Please add a short message").max(8000),
 })
 

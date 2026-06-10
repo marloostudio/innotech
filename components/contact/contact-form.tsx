@@ -146,7 +146,7 @@ export function ContactForm() {
         />
       </div>
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" variant="lightCta" className="w-full" disabled={isPending}>
         {isPending ? "Sending…" : "Submit Request"}
       </Button>
 

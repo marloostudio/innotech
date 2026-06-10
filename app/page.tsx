@@ -1,3 +1,6 @@
+import type { Metadata } from "next"
+
+import { EventAnnouncementRow } from "@/components/sections/exhibition-teaser"
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
 import { FeatureGrid } from "@/components/sections/feature-grid"
@@ -13,7 +16,15 @@ import {
   faqItems,
   finalCta
 } from "@/lib/content/home"
-import { siteUrl } from "@/lib/site"
+import { buildPageMetadata } from "@/lib/seo/page-metadata"
+import { siteConfig } from "@/lib/site"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: siteConfig.company.tagline,
+  description:
+    "Autonomous charging, robotic safety monitoring, and V2X systems for intelligent fleets — SafeGuard, AutoDuck, and RADARLink from InnoTech Systems.",
+  path: "/",
+})
 
 export default function HomePage() {
   return (
@@ -24,6 +35,7 @@ export default function HomePage() {
         secondaryCta={{ label: "Explore Solutions", href: "/products" }}
         background={<HeroCanvas />}
       />
+      <EventAnnouncementRow />
       {/* Feature Grid → light-bg */}
       <FeatureGrid 
         title="Comprehensive Automation Solutions"
@@ -49,7 +61,7 @@ export default function HomePage() {
         alt
       />
       {/* FAQ → dark */}
-      <Faq items={faqItems} variant="dark" pageUrl={`${siteUrl}/`} />
+      <Faq items={faqItems} variant="dark" jsonLd={false} />
       {/* CTA Banner → dark with gradient (it-cta-banner) */}
       <CtaBanner {...finalCta} />
     </>

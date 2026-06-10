@@ -103,14 +103,13 @@ export function AutomateIntakeForm() {
             </div>
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-job-title" className="text-it-light-text-primary">
-                {f.jobTitle.label} *
+                {f.jobTitle.label}
               </Label>
               <Input
                 id="intake-job-title"
                 name="jobTitle"
                 type="text"
                 placeholder={f.jobTitle.placeholder}
-                required
                 autoComplete="organization-title"
               />
             </div>
@@ -119,16 +118,15 @@ export function AutomateIntakeForm() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-organization" className="text-it-light-text-primary">
-                {f.organization.label} *
+                {f.organization.label}
               </Label>
               <select
                 id="intake-organization"
                 name="organization"
-                required
                 defaultValue=""
                 className={nativeSelectClass}
               >
-                <option value="" disabled>
+                <option value="">
                   {f.organization.placeholder}
                 </option>
                 {f.organization.options.map((opt) => (
@@ -140,16 +138,15 @@ export function AutomateIntakeForm() {
             </div>
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-role" className="text-it-light-text-primary">
-                {f.role.label} *
+                {f.role.label}
               </Label>
               <select
                 id="intake-role"
                 name="role"
-                required
                 defaultValue=""
                 className={nativeSelectClass}
               >
-                <option value="" disabled>
+                <option value="">
                   {f.role.placeholder}
                 </option>
                 {f.role.options.map((opt) => (
@@ -178,7 +175,7 @@ export function AutomateIntakeForm() {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+          <Button type="submit" size="lg" variant="lightCta" className="w-full" disabled={isPending}>
             {isPending ? "Sending…" : automateIntakeForm.submitLabel}
           </Button>
 

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { discoverAppPageRoutes } from "@/lib/discover-app-routes"
-import { isPublicCrawlablePath } from "@/lib/site-access"
+import { isPublicCrawlablePath, SITEMAP_EXCLUDED_REDIRECT_PATHS } from "@/lib/site-access"
 import { siteUrl } from "@/lib/site"
 
 /** Regenerate sitemap on a fixed interval (helps CDN caching for crawlers). */
@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = discoverAppPageRoutes().filter((path) => {
     const full = path === "" ? "/" : path
     if (full === "/thank-you") return false
+    if (SITEMAP_EXCLUDED_REDIRECT_PATHS.has(full)) return false
     return isPublicCrawlablePath(full)
   })
 

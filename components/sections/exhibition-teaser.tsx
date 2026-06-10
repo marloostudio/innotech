@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, CalendarDays, MapPin } from "lucide-react"
+import { ArrowRight, CalendarDays } from "lucide-react"
 
 import { PageShell } from "@/components/page-shell"
 import { Button } from "@/components/ui/button"
@@ -7,59 +7,47 @@ import { automateEvent } from "@/lib/content/exhibition-automate"
 
 const landingHref = "/events/automate-2026" as const
 
-export function ExhibitionTeaser() {
-  const { name, year, dateRange, city, booth, venue, hero } = automateEvent
+/** Compact Automate promo row — sits directly under the home hero. */
+export function EventAnnouncementRow() {
+  const { name, year, dateRange, city, booth } = automateEvent
 
   return (
     <section
-      className="w-full border-t border-it-border it-section-alt py-12 md:py-16"
-      aria-labelledby="exhibition-teaser-heading"
+      className="event-announcement w-full border-y border-it-blue-border py-5 md:py-6"
+      aria-label={`${name} ${year} event announcement`}
     >
-      <PageShell>
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-          <div
-            className="max-w-2xl space-y-4 border-l-[3px] pl-6"
-            style={{ borderLeftColor: "var(--it-blue)" }}
-          >
-            <p className="text-sm font-medium uppercase tracking-wider text-it-text-muted">
-              {hero.eyebrow}
-            </p>
-            <h2
-              id="exhibition-teaser-heading"
-              className="text-2xl font-bold tracking-tight text-balance text-it-text-primary md:text-3xl"
-              style={{ fontFamily: "var(--font-chakra)" }}
+      <div className="event-announcement-shimmer" aria-hidden />
+      <PageShell className="relative">
+        <div className="flex flex-col gap-4 border-l-[3px] border-it-blue pl-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:pl-5">
+          <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-sm md:text-base text-it-text-secondary">
+            <span
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-it-blue-border bg-it-blue-subtle shadow-(--it-shadow-glow-blue)"
+              aria-hidden
             >
-              {name} {year} — {venue}, {city}
-            </h2>
-            <p className="max-w-xl text-pretty text-base leading-relaxed text-it-text-secondary">
-              Meet our team for live demos of SafeGuard™, AutoDuck, and RADARLink™ on the show floor.
-            </p>
-            <ul className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2">
-              <li className="flex items-center gap-2 text-sm text-it-text-secondary">
-                <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                {dateRange}
-              </li>
-              <li className="flex items-center gap-2 text-sm text-it-text-secondary">
-                <MapPin className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                {city}
-              </li>
-              <li className="text-sm text-it-text-secondary">
-                Booth <span className="text-it-text-primary font-medium">{booth}</span>
-              </li>
-            </ul>
-          </div>
-          <div className="shrink-0 lg:pt-1">
-            <Link href={landingHref} className="inline-block">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-it-blue text-it-bg transition-all duration-150 ease-out hover:-translate-y-0.5 hover:bg-white hover:text-it-bg hover:shadow-[0_6px_20px_rgba(255,255,255,0.2)]"
-              >
-                Automate {year} details
-                <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} aria-hidden />
-              </Button>
+              <CalendarDays className="h-4 w-4 text-it-blue" strokeWidth={1.5} />
+            </span>
+            <span>
+              Join us at{" "}
+              <span className="font-medium text-it-blue">
+                {name} {year}
+              </span>
+              {" · "}
+              {dateRange}
+              {" · "}
+              {city}
+              {" · "}
+              Booth <span className="font-mono text-it-text-primary">{booth}</span>
+            </span>
+          </p>
+          <Button
+            asChild
+            className="shrink-0 bg-it-blue text-it-bg shadow-(--it-shadow-glow-blue) transition-all duration-150 hover:-translate-y-px hover:bg-it-blue-hover hover:shadow-(--it-shadow-glow-blue)"
+          >
+            <Link href={landingHref}>
+              See event details
+              <ArrowRight strokeWidth={1.5} aria-hidden />
             </Link>
-          </div>
+          </Button>
         </div>
       </PageShell>
     </section>
