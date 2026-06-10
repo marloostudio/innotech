@@ -10,6 +10,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **Automate 2026 orchestration preview** (`public/images/events/automate-2026/autoduck-orchestration-preview.jpg`, `lib/content/exhibition-automate.ts`) – Replaced the orchestration placeholder with the isometric smart-factory illustration and descriptive alt text.
+- **Legal page layout constants** (`components/legal/legal-layout.ts`) – Shared wrapper and main-column classes for Terms, Privacy Policy, and Cookie Policy; main content capped at 680px to match body-copy width guidance.
+- **Footer top border token** (`app/globals.css`) – New `--it-border-bright` token for a subtle separator above the site footer (`app/layout.tsx`).
+
+### Changed
+
+- **Automate 2026 event page** (`lib/site-access.ts`) – `/events/automate-2026` is no longer behind the site preview password; the route is anonymously accessible and included in the public sitemap allowlist.
+- **Automate 2026 plan-your-visit card** (`app/events/automate-2026/page.tsx`, `lib/content/exhibition-automate.ts`) – Replaced internal publish-placeholder copy with visitor-facing exhibition, session, and planning tips.
+- **Contact page** (`app/contact/page.tsx`) – Replaced stacked PillarHero + light form + dark CTA with a single two-column hero: headline and “Prefer to talk?” email card on the left, compact contact form card on the right (Automate-style layout on `--it-hero-gradient`).
+- **Demo page** (`app/demo/page.tsx`) – Merged hero and form into one two-column section; left-aligned intro column; headline uses Chakra Petch (replacing Inter); “Prefer to talk?” email callout matches Contact styling.
+- **Company page** (`app/company/page.tsx`) – Our Story hero uses compact left-aligned `PillarHero`; story and leadership sections use tighter vertical padding and body typography.
+- **PillarHero** (`components/sections/pillar-hero.tsx`) – Left-aligned compact heroes center on mobile and left-align from `lg`; CTA row follows the same responsive alignment.
+- **Contact and demo forms** (`components/contact/contact-form.tsx`, `components/demo/demo-request-form.tsx`) – Tighter field spacing, shorter message textarea, and two-column name/email and company/role rows on the demo form.
+- **Legal pages** (`app/legal/terms/page.tsx`, `app/legal/privacy-policy/page.tsx`, `app/legal/cookie-policy/page.tsx`) – Breadcrumb, content row, and main column widths now use shared `legal-layout` constants.
+- **Footer** (`components/site/footer.tsx`) – Increased vertical padding, muted Marloo credit link styling, and brighter hover state for “Powered by Marloo Creative Studio.”
+
+### Fixed
+
+- **Legal page content width** – Terms, Privacy Policy, and Cookie Policy now share the same 680px main column; Terms and Cookie Policy had previously been wider than Privacy Policy.
+- **Footer Marloo link hover** (`components/site/footer.tsx`) – Removed inline `color: inherit` that blocked the white hover state on the Marloo credit link.
+
+### Removed
+
+- **Demo page** (`app/demo/page.tsx`) – Removed the `1-800-INNOTECH` placeholder from the “Prefer to talk?” callout.
+- **Contact page** (`app/contact/page.tsx`) – Removed the separate contact-info sidebar and “24/7 Global Support” from the page layout.
+
 ## [1.5] – 2026-03-19 03:02 UTC
 
 ### Summary
@@ -390,7 +420,8 @@ Improved layout consistency across key pages, refined section styling for a smoo
 
 ---
 
-[Unreleased]: https://github.com/your-org/Innotech/compare/v1.4.6...HEAD
+[Unreleased]: https://github.com/your-org/Innotech/compare/v1.5...HEAD
+[1.5]: https://github.com/your-org/Innotech/compare/v1.4.8...v1.5
 [1.4.6]: https://github.com/your-org/Innotech/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/your-org/Innotech/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/your-org/Innotech/compare/v1.4.3...v1.4.4

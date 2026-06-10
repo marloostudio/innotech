@@ -86,6 +86,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <div className="h-px w-full shrink-0" style={{ backgroundColor: 'var(--it-border-bright)' }} aria-hidden />
           <Footer />
           <Toaster />
         </ThemeProvider>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
+import { legalBreadcrumbWrapClass, legalContentRowClass, legalMainClass } from "@/components/legal/legal-layout"
 import { OnThisPageNav } from "@/components/legal/on-this-page-nav"
 import { LegalPageSidebar } from "@/components/legal/legal-page-sidebar"
 
@@ -33,7 +34,7 @@ export default function CookiePolicyPage() {
     <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="border-b" style={{ borderColor: "var(--it-light-border)" }}>
-        <div className="max-w-screen-2xl mx-auto px-8 py-4">
+        <div className={legalBreadcrumbWrapClass}>
           <div className="flex items-center gap-2 text-sm" style={{ color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>
             <Link href="/legal/terms" className="transition-colors duration-150 hover:opacity-90" style={{ color: "inherit" }}>
               Legal
@@ -43,9 +44,9 @@ export default function CookiePolicyPage() {
           </div>
         </div>
       </nav>
-      <div className="max-w-screen-2xl mx-auto px-8 pt-16 pb-32 flex gap-12 lg:gap-16">
+      <div className={legalContentRowClass}>
         <OnThisPageNav sections={sections} />
-        <main className="min-w-0 flex-1">
+        <main className={legalMainClass}>
           <p className="mb-4">
             <span className="legal-ribbon">Legal</span>
           </p>

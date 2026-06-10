@@ -58,14 +58,14 @@ export function ContactForm() {
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="sr-only" aria-hidden>
         <label htmlFor="contact-website">Website</label>
         <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-1.5">
           <Label htmlFor="fullName">Full name *</Label>
           <Input
             id="fullName"
@@ -75,12 +75,12 @@ export function ContactForm() {
             autoComplete="name"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="phone">Phone</Label>
           <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" autoComplete="tel" />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="email">Email *</Label>
           <Input
             id="email"
@@ -91,12 +91,12 @@ export function ContactForm() {
             autoComplete="email"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="company">Company *</Label>
           <Input id="company" name="company" placeholder="Your Company Name" required autoComplete="organization" />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="industry">Industry</Label>
           <Select
             value={industry === "" ? undefined : industry}
@@ -114,7 +114,7 @@ export function ContactForm() {
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="interest">Area of Interest</Label>
           <Select
             value={interest === "" ? undefined : interest}
@@ -134,22 +134,23 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label htmlFor="message">Message *</Label>
         <Textarea
           id="message"
           name="message"
           placeholder="Tell us about your automation needs, challenges, or questions..."
-          rows={5}
+          rows={3}
+          className="min-h-[96px] resize-y"
           required
         />
       </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? "Sending…" : "Submit Request"}
       </Button>
 
-      <p className="text-sm text-it-light-text-muted text-center text-pretty">
+      <p className="text-xs text-it-light-text-muted text-center text-pretty">
         By submitting this form, you agree to our{" "}
         <Link href="/legal/privacy-policy" className="text-it-light-blue underline-offset-4 hover:underline">
           Privacy Policy

@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer style={{ background: "var(--it-surface)" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="py-12 border-b border-it-border">
+        <div className="py-14 border-b border-it-border">
           <div className="flex flex-col gap-10 md:flex-row md:gap-8 lg:gap-12">
             {/* Column 1 — brand */}
             <div className="min-w-0 flex-1 basis-0 w-full">
@@ -111,7 +111,7 @@ export function Footer() {
 
         <div style={{ borderTop: "1px solid var(--it-border)" }} />
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 pb-6 text-sm" style={{ color: "var(--it-text-muted)" }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 pb-8 text-sm" style={{ color: "var(--it-text-muted)" }}>
           <div className="space-y-1">
             <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
               © {currentYear} {siteConfig.name}. All rights reserved.{" "}
@@ -130,8 +130,7 @@ export function Footer() {
                 href="https://marloo.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-inherit transition-colors duration-150 hover:text-white focus-visible:text-white"
-                style={{ color: "inherit" }}
+                className="text-it-text-muted transition-colors duration-150 hover:text-white focus-visible:text-white"
               >
                 Marloo Creative Studio
               </a>

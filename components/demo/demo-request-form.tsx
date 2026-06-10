@@ -43,20 +43,19 @@ export function DemoRequestForm() {
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="sr-only" aria-hidden>
         <label htmlFor="demo-website">Website</label>
         <input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2 text-it-text-primary">
-          Name *
-        </label>
-        <input type="text" id="name" name="name" className={inputBase} required autoComplete="name" />
-      </div>
-
       <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium mb-2 text-it-text-primary">
+            Name *
+          </label>
+          <input type="text" id="name" name="name" className={inputBase} required autoComplete="name" />
+        </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-2 text-it-text-primary">
             Work Email *
@@ -70,6 +69,9 @@ export function DemoRequestForm() {
             autoComplete="email"
           />
         </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="company" className="block text-sm font-medium mb-2 text-it-text-primary">
             Company Name *
@@ -83,21 +85,20 @@ export function DemoRequestForm() {
             autoComplete="organization"
           />
         </div>
-      </div>
-
-      <div>
-        <label htmlFor="role" className="block text-sm font-medium mb-2 text-it-text-primary">
-          Your Role *
-        </label>
-        <input
-          type="text"
-          id="role"
-          name="role"
-          placeholder="e.g., Fleet Manager, CTO, Operations Director"
-          className={inputBase}
-          required
-          autoComplete="organization-title"
-        />
+        <div>
+          <label htmlFor="role" className="block text-sm font-medium mb-2 text-it-text-primary">
+            Your Role *
+          </label>
+          <input
+            type="text"
+            id="role"
+            name="role"
+            placeholder="e.g., Fleet Manager, CTO"
+            className={inputBase}
+            required
+            autoComplete="organization-title"
+          />
+        </div>
       </div>
 
       <div>
@@ -122,9 +123,9 @@ export function DemoRequestForm() {
         <textarea
           id="message"
           name="message"
-          rows={4}
+          rows={3}
           placeholder="Describe your operation, fleet size, challenges, etc."
-          className={`${inputBase} resize-y min-h-[120px]`}
+          className={`${inputBase} resize-y min-h-[96px]`}
         />
       </div>
 

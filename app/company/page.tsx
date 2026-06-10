@@ -36,14 +36,16 @@ export default function CompanyPage() {
 
       <div id="our-story" className="scroll-mt-24">
         <PillarHero
+          compact
           badge="Our Story"
           h1="How InnoTech Systems Came to Be"
           description="From a founding vision to building the infrastructure powering autonomous operations worldwide"
+          align="left"
         />
       </div>
 
-      <Section variant="light-bg">
-        <div className="max-w-3xl mx-auto space-y-4 text-lg text-it-light-text-secondary leading-relaxed">
+      <Section variant="light-bg" className="py-10 md:py-14">
+        <div className="max-w-3xl mx-auto space-y-3 text-base text-it-light-text-secondary leading-normal">
           <p>
             InnoTech Systems was born from a simple observation: as autonomous vehicles and robotic systems advanced rapidly,{" "}
             <Em>the supporting infrastructure lagged behind</Em>. Companies were building incredible autonomous technology, but lacked the practical solutions needed to <Em>deploy them at scale</Em>.
@@ -59,7 +61,7 @@ export default function CompanyPage() {
         </div>
       </Section>
 
-      <Section variant="white" id="executive-leadership" className="scroll-mt-24">
+      <Section variant="white" id="executive-leadership" className="scroll-mt-24 py-10 md:py-14">
         <div className="mx-auto max-w-3xl text-center">
           <h2
             className="text-xl font-semibold mb-1"
@@ -68,7 +70,7 @@ export default function CompanyPage() {
             Executive Leadership
           </h2>
           <p
-            className="text-sm mb-6"
+            className="text-sm mb-4"
             style={{ color: "var(--it-text-muted)", fontFamily: "var(--font-dm-sans), 'DM Sans', sans-serif" }}
           >
             Strategy and technology vision

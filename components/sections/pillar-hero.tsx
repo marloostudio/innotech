@@ -56,6 +56,10 @@ export function PillarHero({
 }: PillarHeroProps) {
   const showCtas = (primaryCta ?? secondaryCta) && !compact
   const isLeft = align === "left"
+  const contentSpacing = compact ? "space-y-3" : "space-y-6"
+  const contentAlign = isLeft
+    ? `max-w-4xl ${contentSpacing} text-center lg:text-left mr-auto`
+    : `max-w-4xl ${contentSpacing} mx-auto text-center`
   return (
     <section
       style={!heroClass && !background ? { background: "var(--it-bg)", color: "var(--it-text-primary)" } : { color: "var(--it-text-primary)" }}
@@ -68,13 +72,7 @@ export function PillarHero({
     >
       {background && <div className="absolute inset-0 z-0 overflow-hidden">{background}</div>}
       <PageShell className="relative z-10">
-        <div
-          className={
-            compact
-              ? `max-w-4xl space-y-3 ${isLeft ? "text-left mr-auto" : "mx-auto text-center"}`
-              : `max-w-4xl space-y-6 ${isLeft ? "text-left mr-auto" : "mx-auto text-center"}`
-          }
-        >
+        <div className={contentAlign}>
           {badge && (
             <Badge variant="outline" className="mb-2 border-[var(--it-border)] text-[var(--it-text-secondary)]">
               {badge}
@@ -100,7 +98,7 @@ export function PillarHero({
             </p>
           ) : null}
           {showCtas && (primaryCta || secondaryCta) && (
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className={`flex flex-col sm:flex-row items-center gap-4 pt-4 ${isLeft ? "justify-center lg:justify-start" : "justify-center"}`}>
               {primaryCta && (
                 <Link href={primaryCta.href}>
                   <Button size="lg" className="w-full sm:w-auto" style={{ background: "var(--it-blue)", color: "var(--it-bg)" }}>

@@ -64,6 +64,7 @@ body[data-scroll-locked] {
   /* Borders */
   --it-border: #1e3050;
   --it-border-subtle: #131e30;
+  --it-border-bright: rgba(133, 153, 184, 0.35);
 
   /* Text */
   --it-text-primary: #eaf2ff;

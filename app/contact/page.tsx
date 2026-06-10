@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import { Mail, Clock } from "lucide-react"
+import Link from "next/link"
+import { Mail } from "lucide-react"
 
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
-import { PillarHero } from "@/components/sections/pillar-hero"
-import { Section } from "@/components/page-shell"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { PageShell } from "@/components/page-shell"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { ContactForm } from "@/components/contact/contact-form"
 
 import { siteConfig } from "@/lib/site"
@@ -15,111 +15,73 @@ export const metadata: Metadata = {
   description: "Get in touch with InnoTech Systems to discuss your automation needs. Request a demo, schedule a consultation, or reach our support team."
 }
 
-const contactMethods = [
-  {
-    icon: Mail,
-    title: "Email",
-    description: siteConfig.company.email,
-    action: "Send email"
-  },
-  {
-    icon: Clock,
-    title: "Support Hours",
-    description: "24/7 Global Support",
-    action: "Learn more"
-  }
-]
-
 export default function ContactPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Contact" }]} />
-      {/* Hero → dark */}
-      <PillarHero
-        badge="Contact"
-        h1="See It Running in Your Environment."
-        h2="Book a live demo, request a site assessment, or start a conversation with our engineering team."
-        description="We don't run generic product walkthroughs. Every demo is scoped to your operation — your vehicle types, your facility layout, your scheduling constraints. Tell us what you're working with and we'll show you exactly where InnoTech fits."
-        primaryCta={{ label: "Book a Demo", href: "/demo" }}
-        secondaryCta={{ label: "Request a Proposal", href: "#request-proposal" }}
-        tertiaryCta={{ label: "Contact Sales Directly", href: `mailto:${siteConfig.company.email}` }}
-      />
-
-      {/* Form area → light (already correct) */}
-      <Section
+      <section
         id="request-proposal"
-        className="bg-it-light-bg text-it-light-text-primary"
+        className="relative w-full pt-14 md:pt-16 pb-12 md:pb-16 scroll-mt-28"
+        style={{
+          background: "var(--it-hero-gradient)",
+          color: "var(--it-text-primary)",
+        }}
       >
-        <div className="grid lg:grid-cols-3 gap-8 contact-form-light">
-          {/* Contact Form */}
-          <Card
-            className="lg:col-span-2 border border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)"
-          >
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-it-light-text-primary">
-                Request a Demo or Consultation
-              </CardTitle>
-              <CardDescription className="text-base text-it-light-text-secondary">
-                Fill out the form below and our team will get back to you within 24 hours
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ContactForm />
-            </CardContent>
-          </Card>
+        <PageShell>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-start">
+            <div className="max-w-xl pt-1">
+              <Badge
+                variant="outline"
+                className="mb-3 border-it-border text-it-text-secondary font-normal"
+              >
+                Contact
+              </Badge>
+              <h1
+                className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance"
+                style={{ fontFamily: "var(--font-chakra)" }}
+              >
+                See It Running in Your Environment.
+              </h1>
+              <p
+                className="text-lg md:text-xl text-pretty mb-6 max-w-[680px]"
+                style={{ color: "var(--it-text-muted)" }}
+              >
+                Book a demo, request a site assessment, or reach our engineering team — every conversation is scoped to your operation.
+              </p>
 
-          {/* Contact Info Sidebar */}
-          <div className="space-y-6">
-            <Card className="border border-it-light-border bg-it-light-surface">
-              <CardHeader>
-                <CardTitle className="text-it-light-text-primary">Get In Touch</CardTitle>
-                <CardDescription className="text-it-light-text-secondary">
-                  Multiple ways to reach our team
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {contactMethods.map((method) => {
-                  const Icon = method.icon
-                  return (
-                    <div key={method.title} className="flex items-start gap-3 pb-4 last:pb-0 border-b last:border-0 border-it-light-border">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 shrink-0">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-sm text-it-light-text-primary">{method.title}</p>
-                        <p className="text-sm text-it-light-text-muted mt-1 whitespace-pre-line">
-                          {method.description}
-                        </p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </Section>
+              <div
+                className="rounded-xl border px-5 py-4 max-w-lg"
+                style={{
+                  borderColor: "var(--it-blue-border)",
+                  background: "var(--it-blue-subtle)",
+                  boxShadow: "var(--it-shadow-glow-blue)",
+                }}
+              >
+                <p className="text-sm font-medium text-it-text-secondary mb-3">
+                  Prefer to talk?
+                </p>
+                <p className="inline-flex items-center gap-2.5 text-sm md:text-base">
+                  <Mail className="w-4 h-4 shrink-0 text-it-blue" strokeWidth={1.5} aria-hidden />
+                  <Link
+                    href={`mailto:${siteConfig.company.email}`}
+                    className="underline hover:text-it-text-secondary text-it-text-primary"
+                  >
+                    {siteConfig.company.email}
+                  </Link>
+                </p>
+              </div>
+            </div>
 
-      {/* CTA / Schedule section → dark */}
-      <Section variant="dark">
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-it-text-primary">Prefer to Talk?</h2>
-          <p className="text-lg text-it-text-muted">
-            Schedule a call with one of our automation experts to discuss your needs in detail.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-it-border text-it-text-primary hover:bg-it-surface hover:border-(--it-blue-border) focus-visible:ring-it-blue"
-              asChild
-            >
-              <a href={`mailto:${siteConfig.company.email}`}>Schedule a Call</a>
-            </Button>
+            <div className="w-full min-w-0 max-w-xl lg:max-w-none lg:justify-self-end contact-form-light">
+              <Card className="overflow-hidden border border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)">
+                <CardContent className="pt-5 pb-5 px-5 sm:px-6">
+                  <ContactForm />
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </div>
-      </Section>
+        </PageShell>
+      </section>
     </>
   )
 }
-
