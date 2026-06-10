@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { CalendarDays, CalendarPlus, MapPin, MapPinned } from "lucide-react"
 
+import { AutomateExhibitionCard } from "@/components/events/automate-exhibition-card"
 import { AutomateIntakeForm } from "@/components/events/automate-intake-form"
 import { AutomateShowLogo } from "@/components/events/automate-show-logo"
 import { automateEvent } from "@/lib/content/exhibition-automate"
@@ -9,8 +9,7 @@ import { buildBreadcrumbListJsonLd } from "@/lib/seo/breadcrumb-json-ld"
 import { buildAutomateEventJsonLd } from "@/lib/seo/event-json-ld"
 import { JsonLdScript } from "@/lib/seo/json-ld-script"
 import { buildPageMetadata } from "@/lib/seo/page-metadata"
-import { PageShell, Section } from "@/components/page-shell"
-import { Button } from "@/components/ui/button"
+import { PageShell } from "@/components/page-shell"
 import { Badge } from "@/components/ui/badge"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
 
@@ -20,17 +19,6 @@ export const metadata: Metadata = buildPageMetadata({
     "Meet InnoTech Systems at Automate 2026 in Chicago — SafeGuard, AutoDuck, RADARLink, and live fleet demos at McCormick Place, booth #12053.",
   path: "/events/automate-2026",
 })
-
-function googleCalendarUrl(): string {
-  const params = new URLSearchParams({
-    action: "TEMPLATE",
-    text: `InnoTech Systems — ${automateEvent.name} ${automateEvent.year}`,
-    dates: automateEvent.calendarDatesAllDay,
-    details: `Trade show — ${automateEvent.venue}, ${automateEvent.city}. ${automateEvent.booth}, ${automateEvent.hallOrZone}.`,
-    location: `${automateEvent.venue}, ${automateEvent.city}`,
-  })
-  return `https://calendar.google.com/calendar/render?${params.toString()}`
-}
 
 export default function Automate2026Page() {
   return (
@@ -102,6 +90,7 @@ export default function Automate2026Page() {
                 </Link>
                 , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
               </p>
+              <AutomateExhibitionCard variant="dark" className="mt-6 lg:hidden" />
             </div>
             <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:justify-self-end">
               <ImagePlaceholder
@@ -114,96 +103,27 @@ export default function Automate2026Page() {
         </PageShell>
       </section>
 
-      <Section variant="light-bg" className="py-12 md:py-16">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
-          <div className="w-full min-w-0 lg:sticky lg:top-28">
-            <div className="rounded-xl border border-it-light-border bg-it-light-surface px-5 py-4 md:px-6 md:py-5 shadow-(--it-light-shadow-md)">
-              <div className="flex items-center gap-2 mb-2">
-                <CalendarDays
-                  className="w-5 h-5 shrink-0 text-it-light-blue md:w-6 md:h-6"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
-                <span className="text-xs md:text-sm font-mono uppercase tracking-widest text-it-light-text-muted">
-                  Exhibition dates
-                </span>
-              </div>
-              <p
-                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-it-light-blue leading-none"
-                style={{ fontFamily: "var(--font-chakra)" }}
-              >
-                {automateEvent.dateRange}
-              </p>
-              <div className="mt-4 pt-4 space-y-2 text-sm md:text-base border-t border-it-light-border">
-                <p className="inline-flex items-center gap-2 text-it-light-text-secondary">
-                  <MapPin className="w-4 h-4 shrink-0 text-it-light-text-muted" strokeWidth={1.5} aria-hidden />
-                  {automateEvent.venue}, {automateEvent.city}
-                </p>
-                <p className="text-it-light-text-secondary">
-                  Booth <span className="font-mono text-it-light-blue">{automateEvent.booth}</span>
-                  <span className="text-it-light-text-muted" aria-hidden>
-                    {" "}
-                    ·{" "}
-                  </span>
-                  {automateEvent.hallOrZone}
-                </p>
-              </div>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <Button
-                  variant="outline"
-                  size="default"
-                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
-                  asChild
-                >
-                  <a
-                    href={googleCalendarUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <CalendarPlus className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-                    Add to your calendar
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="default"
-                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
-                  asChild
-                >
-                  <a
-                    href={automateEvent.boothMapCta.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MapPinned className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-                    {automateEvent.boothMapCta.label}
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="default"
-                  className="w-full border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle sm:w-auto"
-                  asChild
-                >
-                  <a
-                    href={automateEvent.showWebsiteCta.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {automateEvent.showWebsiteCta.label}
-                  </a>
-                </Button>
-              </div>
+      <section
+        className="py-12 md:py-16"
+        style={{
+          background: "var(--it-hero-gradient)",
+          color: "var(--it-text-primary)",
+        }}
+      >
+        <PageShell>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
+            <div className="hidden w-full min-w-0 lg:block lg:sticky lg:top-28">
+              <AutomateExhibitionCard variant="dark" />
+            </div>
+            <div
+              id="interest-intake"
+              className="w-full min-w-0 scroll-mt-28 contact-form-light lg:col-start-2"
+            >
+              <AutomateIntakeForm />
             </div>
           </div>
-          <div
-            id="interest-intake"
-            className="w-full min-w-0 scroll-mt-28 contact-form-light"
-          >
-            <AutomateIntakeForm />
-          </div>
-        </div>
-      </Section>
+        </PageShell>
+      </section>
     </>
   )
 }

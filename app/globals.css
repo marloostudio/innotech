@@ -125,6 +125,7 @@ body[data-scroll-locked] .width-before-scroll-bar {
   --it-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
   --it-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
   --it-shadow-glow-blue: 0 0 20px rgba(77, 159, 255, 0.25);
+  --it-shadow-glow-blue-soft: 0 0 10px rgba(77, 159, 255, 0.1);
 
   /* ── InnoTech Light Surface Tokens ─────────────────── */
   --it-light-bg:          #f8fafc;

@@ -49,7 +49,7 @@ export function AutomateIntakeForm() {
   }
 
   return (
-    <Card className="border border-it-light-border bg-it-light-surface border-l-[3px] border-l-it-light-blue shadow-(--it-light-shadow-md)">
+    <Card className="border border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)">
       <CardHeader>
         <CardTitle className="text-2xl font-semibold text-it-light-text-primary">
           {automateIntakeForm.title}
@@ -183,7 +183,7 @@ export function AutomateIntakeForm() {
             {isPending ? "Sending…" : automateIntakeForm.submitLabel}
           </Button>
 
-          <p className="text-sm text-it-light-text-muted text-center text-pretty">
+          <p className="text-xs text-it-light-text-muted text-center text-pretty">
             By submitting this form, you agree to our{" "}
             <Link href="/legal/privacy-policy" className="text-it-light-blue underline-offset-4 hover:underline">
               Privacy Policy
