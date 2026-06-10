@@ -81,7 +81,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${ibmPlexMono.variable} ${inter.variable}`}>
-      <body className="antialiased min-h-screen flex flex-col" style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}>
+      <body
+        className="antialiased min-h-screen flex flex-col"
+        style={{ background: 'var(--it-bg)', color: 'var(--it-text-primary)' }}
+        suppressHydrationWarning
+      >
         <JsonLdScript data={buildSiteGraphDocument()} />
         {/* GTM: noscript first, then loader (env NEXT_PUBLIC_GTM_ID) */}
         <GoogleTagManagerBody />

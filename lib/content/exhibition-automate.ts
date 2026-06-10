@@ -82,7 +82,7 @@ export const automateIntakeForm = {
     },
     interest: {
       label:
-        "Please tell us more about your interest in InnoTech's products: SafeGuard, AutoDuck, and RADARLink",
+        "Please tell us more about your interest in InnoTech",
       placeholder:
         "e.g. pilot scope, facility type, fleet size, timeline, or which product you want to dive into first…",
     },

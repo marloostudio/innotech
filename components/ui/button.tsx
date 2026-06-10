@@ -12,6 +12,8 @@ const buttonVariants = cva(
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         lightCta:
           'bg-it-light-cta text-it-light-cta-foreground hover:bg-it-light-cta-hover',
+        invertedOutline:
+          'border border-it-text-primary/30 bg-transparent text-it-text-primary shadow-xs duration-150 hover:border-it-text-primary/40 hover:bg-it-blue-subtle hover:text-it-text-primary',
         destructive:
           'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
@@ -26,6 +28,7 @@ const buttonVariants = cva(
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
+        cta: 'h-11 px-4 py-0 text-[15px] has-[>svg]:px-3',
         icon: 'size-9',
         'icon-sm': 'size-8',
         'icon-lg': 'size-10',

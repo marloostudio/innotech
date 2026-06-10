@@ -62,7 +62,8 @@ export function AutomateIntakeForm() {
             <label htmlFor="intake-website">Company website</label>
             <input id="intake-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-name" className="text-it-light-text-primary">
                 {f.name.label} *
@@ -76,6 +77,7 @@ export function AutomateIntakeForm() {
                 autoComplete="name"
               />
             </div>
+
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-email" className="text-it-light-text-primary">
                 {f.email.label} *
@@ -89,9 +91,7 @@ export function AutomateIntakeForm() {
                 autoComplete="email"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-company" className="text-it-light-text-primary">
                 {f.company.label} *
@@ -105,6 +105,7 @@ export function AutomateIntakeForm() {
                 autoComplete="organization"
               />
             </div>
+
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-job-title" className="text-it-light-text-primary">
                 {f.jobTitle.label}
@@ -117,9 +118,7 @@ export function AutomateIntakeForm() {
                 autoComplete="organization-title"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-organization" className="text-it-light-text-primary">
                 {f.organization.label}
@@ -140,6 +139,7 @@ export function AutomateIntakeForm() {
                 ))}
               </select>
             </div>
+
             <div className="min-w-0 space-y-2">
               <Label htmlFor="intake-role" className="text-it-light-text-primary">
                 {f.role.label}
@@ -160,23 +160,22 @@ export function AutomateIntakeForm() {
                 ))}
               </select>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label
-              htmlFor="intake-interest"
-              className="text-it-light-text-primary items-start leading-relaxed"
-            >
-              {f.interest.label} *
-            </Label>
-            <Textarea
-              id="intake-interest"
-              name="interest"
-              placeholder={f.interest.placeholder}
-              rows={4}
-              required
-              className="min-h-[100px] resize-y"
-            />
+            <div className="min-w-0 space-y-2 sm:col-span-2">
+              <Label
+                htmlFor="intake-interest"
+                className="text-it-light-text-primary items-start leading-relaxed"
+              >
+                {f.interest.label}
+              </Label>
+              <Textarea
+                id="intake-interest"
+                name="interest"
+                placeholder={f.interest.placeholder}
+                rows={4}
+                className="min-h-[100px] resize-y"
+              />
+            </div>
           </div>
 
           <Button type="submit" size="lg" variant="lightCta" className="w-full" disabled={isPending}>

@@ -22,7 +22,7 @@ export const automateIntakePayloadSchema = z.object({
   jobTitle: z.string().trim().max(200).default(""),
   organization: z.union([organizationEnum, z.literal("")]).default(""),
   role: z.union([roleEnum, z.literal("")]).default(""),
-  interest: z.string().trim().min(1, "Please add a short message").max(8000),
+  interest: z.string().trim().max(8000).default(""),
 })
 
 export type AutomateIntakePayload = z.infer<typeof automateIntakePayloadSchema>

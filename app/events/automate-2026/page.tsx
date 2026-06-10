@@ -10,7 +10,6 @@ import { buildAutomateEventJsonLd } from "@/lib/seo/event-json-ld"
 import { JsonLdScript } from "@/lib/seo/json-ld-script"
 import { buildPageMetadata } from "@/lib/seo/page-metadata"
 import { PageShell } from "@/components/page-shell"
-import { Badge } from "@/components/ui/badge"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
 
 export const metadata: Metadata = buildPageMetadata({
@@ -41,21 +40,15 @@ export default function Automate2026Page() {
       </div>
 
       <section
-        className="relative w-full pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden"
+        className="relative w-full pt-8 md:pt-12 pb-16 md:pb-24 overflow-hidden"
         style={{
           background: "var(--it-hero-gradient)",
           color: "var(--it-text-primary)",
         }}
       >
         <PageShell className="relative z-10">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
-            <div className="min-w-0 pt-1">
-              <Badge
-                variant="outline"
-                className="mb-4 border-it-border text-it-text-secondary font-normal"
-              >
-                {automateEvent.hero.eyebrow}
-              </Badge>
+          <div className="grid lg:grid-cols-2 lg:grid-rows-[auto_auto_auto] gap-10 lg:gap-x-12 lg:gap-y-8 xl:gap-x-16 items-start">
+            <div className="min-w-0 pt-1 lg:col-start-1 lg:row-start-1">
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6"
                 style={{ fontFamily: "var(--font-chakra)" }}
@@ -90,34 +83,35 @@ export default function Automate2026Page() {
                 </Link>
                 , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
               </p>
-              <AutomateExhibitionCard variant="dark" className="mt-6 lg:hidden" />
+              <AutomateExhibitionCard variant="dark" className="mt-6 pl-0 md:pl-0" />
+              <div
+                id="interest-intake"
+                className="mt-8 scroll-mt-28 contact-form-light lg:hidden"
+              >
+                <AutomateIntakeForm />
+              </div>
             </div>
-            <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:justify-self-end">
+            <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:hidden">
               <ImagePlaceholder
                 src={automateEvent.orchestrationImage.src}
                 aspectRatio="4/3"
                 alt={automateEvent.orchestrationImage.alt}
               />
             </div>
-          </div>
-        </PageShell>
-      </section>
-
-      <section
-        className="py-12 md:py-16"
-        style={{
-          background: "var(--it-hero-gradient)",
-          color: "var(--it-text-primary)",
-        }}
-      >
-        <PageShell>
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-start">
-            <div className="hidden w-full min-w-0 lg:block lg:sticky lg:top-28">
-              <AutomateExhibitionCard variant="dark" />
+            <div className="hidden lg:block lg:col-start-2 lg:row-start-1 w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised">
+              <ImagePlaceholder
+                src={automateEvent.orchestrationImage.src}
+                aspectRatio="4/3"
+                alt={automateEvent.orchestrationImage.alt}
+              />
             </div>
             <div
+              className="hidden lg:block lg:col-span-2 lg:row-start-2 border-t border-(--it-border-subtle)"
+              aria-hidden
+            />
+            <div
               id="interest-intake"
-              className="w-full min-w-0 scroll-mt-28 contact-form-light lg:col-start-2"
+              className="hidden lg:block lg:col-span-2 lg:row-start-3 w-3/5 min-w-0 mx-auto scroll-mt-28 contact-form-light"
             >
               <AutomateIntakeForm />
             </div>

@@ -26,34 +26,32 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
   return (
     <div
       className={cn(
-        "rounded-xl border px-5 py-4 md:px-6 md:py-5",
-        isDark
-          ? "border-[var(--it-border-bright)] bg-it-blue-subtle shadow-(--it-shadow-glow-blue-soft)"
-          : "border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)",
+        "rounded-xl px-5 py-4 md:px-6 md:py-5",
+        isDark ? "bg-it-blue-subtle" : "bg-it-light-surface shadow-(--it-light-shadow-md)",
         className,
       )}
     >
       <div className="flex items-center gap-2 mb-2">
         <CalendarDays
           className={cn(
-            "w-5 h-5 shrink-0 md:w-6 md:h-6",
-            isDark ? "text-it-blue" : "text-it-light-blue",
+            "size-3.5 shrink-0",
+            isDark ? "text-it-text-primary" : "text-it-light-blue",
           )}
           strokeWidth={1.5}
           aria-hidden
         />
-        <span
+        <p
           className={cn(
-            "whitespace-nowrap text-sm md:text-base font-mono uppercase tracking-widest",
-            isDark ? "text-it-text-secondary" : "text-it-light-text-muted",
+            "mb-0 font-mono text-sm uppercase tracking-widest leading-none",
+            isDark ? "text-it-text-primary" : "text-it-light-blue",
           )}
         >
           Exhibition dates
-        </span>
+        </p>
       </div>
       <p
         className={cn(
-          "text-left text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none",
+          "text-left text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none",
           isDark ? "text-it-blue" : "text-it-light-blue",
         )}
         style={{ fontFamily: "var(--font-chakra)" }}
@@ -62,13 +60,13 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
       </p>
       <div
         className={cn(
-          "mt-4 pt-4 space-y-2 text-sm md:text-base border-t",
-          isDark ? "border-it-blue-border" : "border-it-light-border",
+          "mt-4 pt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 text-sm md:text-base border-t",
+          isDark ? "border-it-text-primary/20" : "border-it-light-border",
         )}
       >
         <p
           className={cn(
-            "inline-flex items-center gap-2",
+            "flex min-w-0 flex-1 items-center gap-2",
             isDark ? "text-it-text-secondary" : "text-it-light-text-secondary",
           )}
         >
@@ -84,7 +82,7 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
         </p>
         <p
           className={cn(
-            "inline-flex items-center gap-2",
+            "flex min-w-0 flex-1 items-center gap-2",
             isDark ? "text-it-text-secondary" : "text-it-light-text-secondary",
           )}
         >
@@ -107,16 +105,11 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
           {automateEvent.hallOrZone}
         </p>
       </div>
-      <div className="mt-5 flex flex-row gap-3">
+      <div className="mt-5 flex flex-row items-center gap-3">
         <Button
-          variant="outline"
-          size="default"
-          className={cn(
-            "h-11 min-w-0 flex-1",
-            isDark
-              ? "border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle"
-              : "border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle",
-          )}
+          variant={isDark ? "invertedOutline" : "lightCta"}
+          size="cta"
+          className="h-12 min-h-12 min-w-0 flex-1 sm:h-11 sm:min-h-11"
           asChild
         >
           <a href={googleCalendarUrl()} target="_blank" rel="noopener noreferrer">
@@ -125,13 +118,11 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
           </a>
         </Button>
         <Button
-          variant="outline"
-          size="default"
+          variant={isDark ? "invertedOutline" : "outline"}
+          size="cta"
           className={cn(
-            "h-11 min-w-0 flex-1",
-            isDark
-              ? "border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle"
-              : "border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle",
+            "h-12 min-h-12 min-w-0 flex-1 sm:h-11 sm:min-h-11",
+            !isDark && "border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle",
           )}
           asChild
         >
