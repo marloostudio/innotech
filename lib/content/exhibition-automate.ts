@@ -1,5 +1,6 @@
 /**
- * Copy for the Automate trade-show landing page (dates/booth/session are placeholders — update before publish).
+ * Copy for the Automate trade-show landing page.
+ * Update session speaker, time, and room in `session` when the show publishes the final program.
  */
 
 /** Official show wordmark (light artwork on transparent — use on dark surfaces or inside a dark band on light sections). */
@@ -67,6 +68,10 @@ export const automateEvent = {
     body:
       "Translate production and logistics priorities into executable fleet behavior: who charges when, which zones need safety elevation, and how missions adapt when conditions change—without rip-and-replace of your existing stack.",
     cta: { label: "Explore AutoDuck", href: "/products/autoduck" },
+    orchestrationImage: {
+      src: "/images/events/automate-2026/autoduck-orchestration-preview.jpg",
+      alt: "Isometric illustration of a smart factory with robotic arms, conveyor belts, and human workers coordinated through AutoDuck fleet orchestration",
+    },
   },
   useCasesIntro: {
     headline: "Where InnoTech drives automation",
@@ -142,6 +147,19 @@ export const automateEvent = {
       "See live scenarios for safety escalation, charging orchestration, and multi-robot coordination—then map them to your environment with our team.",
     primary: { label: "Fill interest form", href: "#interest-intake" },
     secondary: { label: "Request a demo", href: "/demo" },
+  },
+  planYourVisit: {
+    title: "Plan your visit",
+    tips: [
+      "Register through the Automate site and pick up your badge at registration before heading to the exhibit halls.",
+      "Open the booth map to navigate to our stand—look for InnoTech branding and live product demos.",
+      "Submit the interest form so our team can tailor the conversation to your facility and fleet.",
+      "Session time, room, and speaker will be posted here when the show confirms the final program.",
+    ],
+    officialLink: {
+      label: "Automate",
+      href: "https://www.automateshow.com/",
+    },
   },
 } as const
 

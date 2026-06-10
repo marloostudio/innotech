@@ -251,9 +251,9 @@ export default function Automate2026Page() {
           </div>
           <div className="w-full rounded-lg border border-it-border overflow-hidden bg-it-surface-raised">
             <ImagePlaceholder
+              src={automateEvent.execution.orchestrationImage.src}
               aspectRatio="4/3"
-              alt="AutoDuck orchestration"
-              label="Orchestration preview"
+              alt={automateEvent.execution.orchestrationImage.alt}
             />
           </div>
         </div>
@@ -471,27 +471,54 @@ export default function Automate2026Page() {
           </div>
           <Card className="border-it-light-border bg-it-light-surface border-l-[3px] border-l-it-light-blue shadow-(--it-light-shadow-sm)">
             <CardHeader>
-              <CardTitle className="text-it-light-text-primary text-lg">Plan your visit</CardTitle>
+              <CardTitle className="text-it-light-text-primary text-lg">
+                {automateEvent.planYourVisit.title}
+              </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-it-light-text-secondary text-sm leading-relaxed">
-              <p>
-                Swap <span className="font-mono text-it-light-text-primary">Booth</span>,{" "}
-                <span className="font-mono text-it-light-text-primary">session time</span>, and{" "}
-                <span className="font-mono text-it-light-text-primary">speaker</span> in{" "}
-                <code className="font-mono text-xs bg-it-light-surface-2 px-1.5 py-0.5 rounded">
-                  lib/content/exhibition-automate.ts
-                </code>{" "}
-                before you publish.
-              </p>
+            <CardContent className="space-y-6 text-it-light-text-secondary text-sm leading-relaxed">
+              <dl className="space-y-4">
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-wider text-it-light-text-muted">
+                    Exhibition
+                  </dt>
+                  <dd className="mt-1 text-it-light-text-primary">{automateEvent.dateRange}</dd>
+                  <dd>
+                    {automateEvent.booth} · {automateEvent.venue}, {automateEvent.city}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-wider text-it-light-text-muted">
+                    Conference session
+                  </dt>
+                  <dd className="mt-1 text-it-light-text-primary">{automateEvent.session.title}</dd>
+                  <dd>
+                    {automateEvent.session.when} · {automateEvent.session.room}
+                  </dd>
+                  <dd className="text-it-light-text-muted">{automateEvent.session.speaker}</dd>
+                </div>
+              </dl>
+              <ul className="space-y-3">
+                {automateEvent.planYourVisit.tips.map((tip) => (
+                  <li key={tip} className="flex gap-3 text-pretty">
+                    <span
+                      className="mt-0.5 shrink-0 rounded-full p-1"
+                      style={{ backgroundColor: "var(--it-light-blue-subtle)" }}
+                    >
+                      <Check className="w-4 h-4 text-it-light-blue" strokeWidth={1.5} aria-hidden />
+                    </span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
               <p className="text-it-light-text-muted">
                 Official show information: see the{" "}
                 <a
-                  href="https://www.automateshow.com/"
+                  href={automateEvent.planYourVisit.officialLink.href}
                   className="text-it-light-blue underline-offset-4 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Automate
+                  {automateEvent.planYourVisit.officialLink.label}
                 </a>{" "}
                 site for registration and schedules.
               </p>
