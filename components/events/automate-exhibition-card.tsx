@@ -1,4 +1,4 @@
-import { CalendarDays, CalendarPlus, MapPin, MapPinned } from "lucide-react"
+import { CalendarDays, CalendarPlus, MapPin, MapPinned, Store } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { automateEvent } from "@/lib/content/exhibition-automate"
@@ -44,7 +44,7 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
         />
         <span
           className={cn(
-            "text-sm md:text-base font-mono uppercase tracking-widest",
+            "whitespace-nowrap text-sm md:text-base font-mono uppercase tracking-widest",
             isDark ? "text-it-text-secondary" : "text-it-light-text-muted",
           )}
         >
@@ -53,7 +53,7 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
       </div>
       <p
         className={cn(
-          "text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none",
+          "text-left text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none",
           isDark ? "text-it-blue" : "text-it-light-blue",
         )}
         style={{ fontFamily: "var(--font-chakra)" }}
@@ -82,7 +82,20 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
           />
           {automateEvent.venue}, {automateEvent.city}
         </p>
-        <p className={isDark ? "text-it-text-secondary" : "text-it-light-text-secondary"}>
+        <p
+          className={cn(
+            "inline-flex items-center gap-2",
+            isDark ? "text-it-text-secondary" : "text-it-light-text-secondary",
+          )}
+        >
+          <Store
+            className={cn(
+              "w-4 h-4 shrink-0",
+              isDark ? "text-it-text-muted" : "text-it-light-text-muted",
+            )}
+            strokeWidth={1.5}
+            aria-hidden
+          />
           Booth{" "}
           <span className={cn("font-mono", isDark ? "text-it-blue" : "text-it-light-blue")}>
             {automateEvent.booth}
@@ -94,12 +107,12 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
           {automateEvent.hallOrZone}
         </p>
       </div>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+      <div className="mt-5 flex flex-row gap-3">
         <Button
           variant="outline"
           size="default"
           className={cn(
-            "w-full sm:w-auto",
+            "h-11 min-w-0 flex-1",
             isDark
               ? "border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle"
               : "border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle",
@@ -108,14 +121,14 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
         >
           <a href={googleCalendarUrl()} target="_blank" rel="noopener noreferrer">
             <CalendarPlus className="w-4 h-4" strokeWidth={1.5} aria-hidden />
-            Add to your calendar
+            Add to calendar
           </a>
         </Button>
         <Button
           variant="outline"
           size="default"
           className={cn(
-            "w-full sm:w-auto",
+            "h-11 min-w-0 flex-1",
             isDark
               ? "border-it-blue-border text-it-text-primary hover:bg-it-blue-subtle"
               : "border-it-light-border text-it-light-text-primary hover:bg-it-light-blue-subtle",
