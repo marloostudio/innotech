@@ -14,31 +14,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- **Automate 2026 orchestration preview** (`public/images/events/automate-2026/autoduck-orchestration-preview.jpg`, `lib/content/exhibition-automate.ts`) – Replaced the orchestration placeholder with the isometric smart-factory illustration and descriptive alt text.
-- **Legal page layout constants** (`components/legal/legal-layout.ts`) – Shared wrapper and main-column classes for Terms, Privacy Policy, and Cookie Policy; main content capped at 680px to match body-copy width guidance.
-- **Footer top border token** (`app/globals.css`) – New `--it-border-bright` token for a subtle separator above the site footer (`app/layout.tsx`).
+- **Home Automate 2026 announcement row** (`components/sections/exhibition-teaser.tsx`, `app/page.tsx`, `app/globals.css`) – Promo strip under the hero with event dates, booth, shimmer/glow styling, and a “See event details” button linking to `/events/automate-2026`.
+- **SEO structured data utilities** (`lib/seo/`) – `JsonLdScript`, `buildBreadcrumbListJsonLd`, `buildSiteGraphDocument` (Organization + WebSite), `buildAutomateEventJsonLd`, and `buildPageMetadata` (canonical, Open Graph, Twitter).
+- **Light-surface CTA button variant** (`components/ui/button.tsx`, `app/globals.css`) – `lightCta` variant and `.contact-form-light` overrides for readable primary buttons on white form cards.
+- **Automate 2026 orchestration preview** (`public/images/events/automate-2026/autoduck-orchestration-preview.jpg`, `lib/content/exhibition-automate.ts`) – Isometric smart-factory illustration with descriptive alt text on the event hero.
+- **Legal page layout constants** (`components/legal/legal-layout.ts`) – Shared wrapper and main-column classes for Terms, Privacy Policy, and Cookie Policy; main content capped at 680px.
+- **Footer top border token** (`app/globals.css`) – `--it-border-bright` separator above the site footer (`app/layout.tsx`).
 
 ### Changed
 
-- **Automate 2026 event page** (`lib/site-access.ts`) – `/events/automate-2026` is no longer behind the site preview password; the route is anonymously accessible and included in the public sitemap allowlist.
-- **Automate 2026 plan-your-visit card** (`app/events/automate-2026/page.tsx`, `lib/content/exhibition-automate.ts`) – Replaced internal publish-placeholder copy with visitor-facing exhibition, session, and planning tips.
-- **Contact page** (`app/contact/page.tsx`) – Replaced stacked PillarHero + light form + dark CTA with a single two-column hero: headline and “Prefer to talk?” email card on the left, compact contact form card on the right (Automate-style layout on `--it-hero-gradient`).
-- **Demo page** (`app/demo/page.tsx`) – Merged hero and form into one two-column section; left-aligned intro column; headline uses Chakra Petch (replacing Inter); “Prefer to talk?” email callout matches Contact styling.
-- **Company page** (`app/company/page.tsx`) – Our Story hero uses compact left-aligned `PillarHero`; story and leadership sections use tighter vertical padding and body typography.
-- **PillarHero** (`components/sections/pillar-hero.tsx`) – Left-aligned compact heroes center on mobile and left-align from `lg`; CTA row follows the same responsive alignment.
-- **Contact and demo forms** (`components/contact/contact-form.tsx`, `components/demo/demo-request-form.tsx`) – Tighter field spacing, shorter message textarea, and two-column name/email and company/role rows on the demo form.
-- **Legal pages** (`app/legal/terms/page.tsx`, `app/legal/privacy-policy/page.tsx`, `app/legal/cookie-policy/page.tsx`) – Breadcrumb, content row, and main column widths now use shared `legal-layout` constants.
-- **Footer** (`components/site/footer.tsx`) – Increased vertical padding, muted Marloo credit link styling, and brighter hover state for “Powered by Marloo Creative Studio.”
+- **Automate 2026 event page** (`app/events/automate-2026/page.tsx`, `lib/content/exhibition-automate.ts`) – Simplified to hero plus light intake section; updated to McCormick Place, Chicago, June 22–25 2026, booth #12053; product links in hero subtitle (SafeGuard → RADARLink → AutoDuck); “Session details” renamed to “Booth map”; exhibition info card beside the form; `BreadcrumbStrip` and Event JSON-LD for crawlers.
+- **Automate intake form** (`components/events/automate-intake-form.tsx`, `app/actions/automate-intake.ts`, `lib/email/automate-intake-notifications.ts`) – Job title, organization type, and role are optional; team notification emails use the same transactional layout as Contact/Demo, include full marketing/technical visitor context (IP, geo, referrer, user-agent), require `RESEND_API_KEY`, and fail in production if the inquiry inbox cannot be reached.
+- **Contact form selects** (`components/contact/contact-form.tsx`, `app/globals.css`) – Industry and Area of Interest use native `<select>` elements with `.contact-form-light` styling instead of Radix Select, avoiding page shift when opening a dropdown.
+- **Company page** (`app/company/page.tsx`) – Our Story copy and Executive Leadership merged into one light section with a side-by-side layout on desktop (story left, Fred Daneshgaran card right).
+- **Breadcrumb strip** (`components/breadcrumb-strip.tsx`) – Semantic `<ol>` / `<li>`, auto Home prefix, `aria-current="page"`, and BreadcrumbList JSON-LD on all pages using the component.
+- **FAQ component and page** (`components/sections/faq.tsx`, `components/ui/accordion.tsx`, `app/resources/faq/page.tsx`) – Questions render in `<h3>` for crawlers; FAQPage schema on `/resources/faq` only (home FAQ omits JSON-LD); FAQ route is crawler-accessible and uses shared breadcrumbs/metadata.
+- **Site-wide content width** (`components/page-shell.tsx`) – Default `pageContainerClass` is `max-w-screen-2xl px-8`; heroes, CTA banner, product/industry/solution detail, careers, whitepapers, and changelog aligned to navbar width.
+- **Root layout and key page metadata** (`app/layout.tsx`, `app/page.tsx`, `app/events/automate-2026/page.tsx`) – Organization/WebSite JSON-LD site-wide; default OG/Twitter image; dedicated home and Automate metadata with canonical URLs.
+- **Robots and sitemap** (`app/robots.ts`, `app/sitemap.ts`, `lib/site-access.ts`) – Allow list synced with public marketing paths (Automate, FAQ); 301 redirect routes excluded from sitemap.
+- **Contact page** (`app/contact/page.tsx`) – Two-column hero: copy and “Prefer to talk?” email card left, compact form right on `--it-hero-gradient`.
+- **Demo page** (`app/demo/page.tsx`) – Merged hero and form into one two-column section; left-aligned intro; “Prefer to talk?” callout matches Contact.
+- **Company page hero** (`app/company/page.tsx`) – Compact left-aligned `PillarHero`; tighter section padding and body typography.
+- **PillarHero** (`components/sections/pillar-hero.tsx`) – Left-aligned compact heroes center on mobile and left-align from `lg`.
+- **Contact and demo forms** (`components/contact/contact-form.tsx`, `components/demo/demo-request-form.tsx`) – Tighter field spacing, shorter message textarea, two-column rows on the demo form.
+- **Legal pages** (`app/legal/terms/page.tsx`, `app/legal/privacy-policy/page.tsx`, `app/legal/cookie-policy/page.tsx`) – Shared `legal-layout` constants for breadcrumb and content width.
+- **Footer** (`components/site/footer.tsx`) – Increased vertical padding; Marloo credit link hover turns white on hover.
+- **Products page** (`app/products/page.tsx`) – “Explore” buttons use `lightCta` foreground token for readability on light blue cards.
 
 ### Fixed
 
-- **Legal page content width** – Terms, Privacy Policy, and Cookie Policy now share the same 680px main column; Terms and Cookie Policy had previously been wider than Privacy Policy.
-- **Footer Marloo link hover** (`components/site/footer.tsx`) – Removed inline `color: inherit` that blocked the white hover state on the Marloo credit link.
+- **Contact form dropdown layout shift** (`components/contact/contact-form.tsx`, `app/globals.css`) – Opening Industry or Area of Interest no longer nudges the page horizontally; native selects avoid Radix scroll-lock, with global scroll-lock overrides for other overlays.
+- **Form inquiry emails (Automate 2026)** (`app/actions/automate-intake.ts`, `lib/email/automate-intake-notifications.ts`) – Submissions now capture page URL and referrer, attach server-side visitor metadata to the team copy, and route alerts to `LEADS_NOTIFY_EMAIL` with the same reliability as Contact and Demo.
+- **Legal page content width** – Terms, Privacy Policy, and Cookie Policy share the same 680px main column.
+- **Footer Marloo link hover** (`components/site/footer.tsx`) – Removed inline `color: inherit` that blocked the white hover state.
 
 ### Removed
 
-- **Demo page** (`app/demo/page.tsx`) – Removed the `1-800-INNOTECH` placeholder from the “Prefer to talk?” callout.
-- **Contact page** (`app/contact/page.tsx`) – Removed the separate contact-info sidebar and “24/7 Global Support” from the page layout.
+- **Automate 2026 page** (`app/events/automate-2026/page.tsx`) – Pillars, AutoDuck narrative, use cases, booth/wayfinding, live CTA band, and session blocks below the hero (streamlined to hero + intake).
+- **Demo page** (`app/demo/page.tsx`) – `1-800-INNOTECH` placeholder from the “Prefer to talk?” callout.
+- **Contact page** (`app/contact/page.tsx`) – Separate contact-info sidebar and “24/7 Global Support” block.
 
 ## [1.5] – 2026-03-19 03:02 UTC
 

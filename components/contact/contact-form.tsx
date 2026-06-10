@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { FormEvent, useState, useTransition } from "react"
+import { FormEvent, useTransition } from "react"
 import { toast } from "sonner"
 
 import { submitContact } from "@/app/actions/contact"
@@ -11,26 +11,18 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
+const nativeSelectClass =
+  "h-9 w-full rounded-md border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50"
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
-  const [industry, setIndustry] = useState("")
-  const [interest, setInterest] = useState("")
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const fd = new FormData(form)
-    fd.set("industry", industry)
-    fd.set("interest", interest)
     if (typeof window !== "undefined") {
       fd.set("context_page_url", window.location.href)
       fd.set("context_client_referrer", document.referrer || "")
@@ -40,8 +32,6 @@ export function ContactForm() {
       const result = await submitContact(fd)
       if (result.ok) {
         form.reset()
-        setIndustry("")
-        setInterest("")
         router.push("/thank-you?source=contact")
         return
       }
@@ -98,39 +88,37 @@ export function ContactForm() {
 
         <div className="space-y-1.5">
           <Label htmlFor="industry">Industry</Label>
-          <Select
-            value={industry === "" ? undefined : industry}
-            onValueChange={(v) => setIndustry(v)}
+          <select
+            id="industry"
+            name="industry"
+            defaultValue=""
+            className={nativeSelectClass}
+            aria-label="Industry — choose one"
           >
-            <SelectTrigger id="industry" className="w-full" aria-label="Industry — choose one">
-              <SelectValue placeholder="Choose an industry…" />
-            </SelectTrigger>
-            <SelectContent>
-              {contactIndustryOptions.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
-                  {opt.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <option value="">Choose an industry…</option>
+            {contactIndustryOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="interest">Area of Interest</Label>
-          <Select
-            value={interest === "" ? undefined : interest}
-            onValueChange={(v) => setInterest(v)}
+          <select
+            id="interest"
+            name="interest"
+            defaultValue=""
+            className={nativeSelectClass}
+            aria-label="Area of interest — choose one"
           >
-            <SelectTrigger id="interest" className="w-full" aria-label="Area of interest — choose one">
-              <SelectValue placeholder="Choose a topic…" />
-            </SelectTrigger>
-            <SelectContent>
-              {contactInterestOptions.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
-                  {opt.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <option value="">Choose a topic…</option>
+            {contactInterestOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

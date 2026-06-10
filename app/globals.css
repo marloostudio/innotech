@@ -8,13 +8,19 @@ html {
   scrollbar-gutter: stable;
 }
 
-/* Radix Select (and other overlays) use react-remove-scroll, which adds margin-right to `body` to
-   offset scrollbar width. `scrollbar-gutter: stable` on `html` already reserves that space while
-   the page scrolls, but overflow:hidden on lock collapses the gutter — restore width with padding
-   from react-remove-scroll-bar’s CSS variable instead of margin (margin + gutter = double shift). */
+/* Radix Select (and other overlays) use react-remove-scroll, which locks scroll via
+   overflow:hidden on body and adds margin-right for the scrollbar width. With
+   scrollbar-gutter: stable on html, body margin compensation double-shifts layout.
+   Lock scroll on html instead so the gutter stays reserved and nothing jumps. */
 body[data-scroll-locked] {
   margin-right: 0 !important;
-  padding-right: var(--removed-body-scroll-bar-size, 0px) !important;
+  padding-right: 0 !important;
+  overflow: visible !important;
+}
+
+html:has(body[data-scroll-locked]) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 body[data-scroll-locked] .right-scroll-bar-position {
@@ -539,9 +545,14 @@ body[data-scroll-locked] .width-before-scroll-bar {
   color: var(--it-light-text-primary);
 }
 .contact-form-light select {
-  background-color: var(--it-light-surface);
+  cursor: pointer;
+  background-color: var(--it-light-blue-subtle);
+  color: var(--it-light-text-dim);
+  border-color: color-mix(in srgb, var(--it-light-blue) 28%, var(--it-light-border));
+}
+.contact-form-light select:valid,
+.contact-form-light select:has(option:checked:not([value=""])) {
   color: var(--it-light-text-primary);
-  border-color: var(--it-light-border);
 }
 .contact-form-light select:focus-visible {
   border-color: var(--it-light-blue);

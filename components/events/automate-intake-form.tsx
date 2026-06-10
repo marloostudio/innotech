@@ -25,6 +25,10 @@ export function AutomateIntakeForm() {
     e.preventDefault()
     const form = e.currentTarget
     const fd = new FormData(form)
+    if (typeof window !== "undefined") {
+      fd.set("context_page_url", window.location.href)
+      fd.set("context_client_referrer", document.referrer || "")
+    }
     startTransition(async () => {
       const result = await submitAutomateIntake(fd)
       if (result.ok) {
