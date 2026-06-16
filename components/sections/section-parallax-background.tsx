@@ -41,7 +41,7 @@ const contentSafeOverlay: Record<BackgroundAnchor, string> = {
 }
 
 const abstractContentOverlay =
-  "linear-gradient(to right, var(--it-light-bg) 0%, var(--it-light-bg) 50%, color-mix(in oklab, var(--it-light-bg) 78%, transparent) 72%, color-mix(in oklab, var(--it-light-bg) 42%, transparent) 100%)"
+  "linear-gradient(to right, var(--it-light-bg) 0%, var(--it-light-bg) 42%, color-mix(in oklab, var(--it-light-bg) 72%, transparent) 62%, color-mix(in oklab, var(--it-light-bg) 28%, transparent) 100%)"
 
 export function SectionParallaxBackground({
   src,
@@ -58,7 +58,7 @@ export function SectionParallaxBackground({
     ? {
         opacity: imageOpacity,
         mixBlendMode: "multiply",
-        filter: "invert(1) grayscale(1) contrast(0.92)",
+        filter: "invert(1) grayscale(1) contrast(0.88)",
       }
     : { opacity: imageOpacity }
 
@@ -78,7 +78,7 @@ export function SectionParallaxBackground({
           className={cn(
             "h-full w-full",
             isAbstract
-              ? "object-cover object-[72%_58%]"
+              ? "object-cover object-[85%_55%]"
               : anchorImageClass[anchor],
           )}
           style={imageStyle}

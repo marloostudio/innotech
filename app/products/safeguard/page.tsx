@@ -122,7 +122,7 @@ export default function SafeGuardPage() {
             alt=""
             anchor="right"
             blend="abstract"
-            imageOpacity={0.14}
+            imageOpacity={0.28}
             overlayVariant="content-safe"
           />
         }

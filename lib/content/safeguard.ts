@@ -10,10 +10,10 @@ export interface ProductFeature {
   useCases: string[]
 }
 
-/** Static image paths under `public/images/products/safeguard/`. */
+/** Static image paths under `public/images/`. */
 export const safeguardImages = {
   hardwareHero: "/images/products/safeguard/safeguard-hardware-hero.png",
-  featuresBackground: "/images/products/safeguard/safeguard-features-bg.png",
+  featuresBackground: "/images/safeguard/SafeGuard-diagram.png",
 } as const
 
 export const safeguardProduct = {

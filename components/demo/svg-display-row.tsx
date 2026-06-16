@@ -7,9 +7,6 @@ const SAFEGUARD_SVG = {
   leftColumnWidth: 399,
 } as const
 
-/** Vertical scale for the preview frame (1 = native SVG crop height). */
-const DISPLAY_HEIGHT_SCALE = 0.8
-
 interface SvgDisplayRowProps {
   rightColumn?: ReactNode
 }
@@ -19,33 +16,22 @@ interface SvgDisplayRowProps {
  */
 export function SvgDisplayRow({ rightColumn }: SvgDisplayRowProps) {
   const { width, height, leftColumnWidth } = SAFEGUARD_SVG
-  const displayHeight = height * DISPLAY_HEIGHT_SCALE
 
   return (
     <div
-      className={`grid w-full grid-cols-1 lg:grid-cols-2 lg:items-start${rightColumn ? " bg-it-light-bg" : ""}`}
+      className={`grid w-full grid-cols-1 lg:grid-cols-[9fr_11fr] lg:items-start${rightColumn ? " bg-it-light-bg" : ""}`}
       aria-label="SVG preview area"
     >
       <div
         className={`w-full overflow-hidden${rightColumn ? " bg-it-light-bg" : ""}`}
-        style={{ aspectRatio: `${leftColumnWidth} / ${displayHeight}` }}
+        style={{ aspectRatio: `${leftColumnWidth} / ${height}` }}
       >
-        <div
-          className="origin-top-left"
-          style={{
-            aspectRatio: `${leftColumnWidth} / ${height}`,
-            transform: `scale(${DISPLAY_HEIGHT_SCALE})`,
-            transformOrigin: "top left",
-            width: `${100 / DISPLAY_HEIGHT_SCALE}%`,
-          }}
-        >
-          <img
-            src="/images/demo/safeguard.svg"
-            alt="SafeGuard product diagram — left column"
-            className="block h-full max-w-none"
-            style={{ width: `${(width / leftColumnWidth) * 100}%` }}
-          />
-        </div>
+        <img
+          src="/images/demo/safeguard.svg"
+          alt="SafeGuard product diagram — left column"
+          className="block h-full max-w-none"
+          style={{ width: `${(width / leftColumnWidth) * 100}%` }}
+        />
       </div>
       {rightColumn ? (
         <div className="bg-it-light-bg px-10 py-12 lg:px-12 lg:py-20">{rightColumn}</div>
