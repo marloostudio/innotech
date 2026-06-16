@@ -3,7 +3,7 @@ import { solutionsOverview } from "@/lib/content/home"
 
 export function HomeSolutionsCards() {
   return (
-    <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+    <div className="grid w-full grid-cols-1 gap-3">
       {solutionsOverview.map((feature) => (
         <Card
           key={feature.id}
