@@ -14,7 +14,7 @@ export const revalidate = 86400
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = discoverAppPageRoutes().filter((path) => {
     const full = path === "" ? "/" : path
-    if (full === "/thank-you") return false
+    if (full === "/thank-you" || full === "/demo") return false
     if (SITEMAP_EXCLUDED_REDIRECT_PATHS.has(full)) return false
     return isPublicCrawlablePath(full)
   })

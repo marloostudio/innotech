@@ -23,7 +23,6 @@ const CRAWLER_ALLOWLIST_PATHS = [
   "/products/autoduck",
   "/products/radar-link",
   "/products/safeguard",
-  "/demo",
   "/contact",
 ] as const
 
@@ -49,6 +48,13 @@ function AccessBadge({ kind }: { kind: RouteAccessKind }) {
       </span>
     )
   }
+  if (kind === "no-crawl") {
+    return (
+      <span className="inline-flex items-center rounded-full border border-amber-900/55 bg-amber-950/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-950 dark:border-amber-800/70 dark:bg-amber-950/35 dark:text-amber-800">
+        No crawl · no password
+      </span>
+    )
+  }
   return (
     <span className="inline-flex items-center gap-1 rounded-full border border-red-900/55 bg-red-950/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-950 dark:border-red-800/70 dark:bg-red-950/35 dark:text-red-800">
       <Lock className="size-3 shrink-0" strokeWidth={2.5} aria-hidden />
@@ -66,13 +72,15 @@ function RouteTreeList({ node }: { node: RouteTreeNode }) {
         const kind = getRouteAccessKind(child.path)
         const blocked = kind === "password"
         const available = kind === "marketing-public"
+        const noCrawl = kind === "no-crawl"
         return (
           <li
             key={child.path}
             className={cn(
               blocked && "text-red-950 dark:text-red-800",
               available && "text-emerald-950 dark:text-emerald-800",
-              !blocked && !available && "text-it-light-text-secondary",
+              noCrawl && "text-amber-950 dark:text-amber-800",
+              !blocked && !available && !noCrawl && "text-it-light-text-secondary",
             )}
           >
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -84,8 +92,11 @@ function RouteTreeList({ node }: { node: RouteTreeNode }) {
                     "text-red-950 hover:text-red-900 dark:text-red-800 dark:hover:text-red-700",
                   available &&
                     "text-emerald-950 hover:text-emerald-900 dark:text-emerald-800 dark:hover:text-emerald-700",
+                  noCrawl &&
+                    "text-amber-950 hover:text-amber-900 dark:text-amber-800 dark:hover:text-amber-700",
                   !blocked &&
                     !available &&
+                    !noCrawl &&
                     "text-it-light-text-primary hover:text-it-light-blue",
                 )}
               >
@@ -302,8 +313,13 @@ export default function CurrentPagesIndexPage() {
               <AccessBadge kind="marketing-public" /> — Home, <code className="text-xs">/products</code>, and the{" "}
               <strong className="font-medium text-it-light-text-primary">three product hub URLs only</strong>{" "}
               (<code className="text-xs">/products/autoduck</code>, <code className="text-xs">/products/radar-link</code>,{" "}
-              <code className="text-xs">/products/safeguard</code> — no deeper product paths), <code className="text-xs">/demo</code>,{" "}
+              <code className="text-xs">/products/safeguard</code> — no deeper product paths),{" "}
               <code className="text-xs">/contact</code>. In sitemap; robots allow; no password.
+            </li>
+            <li>
+              <AccessBadge kind="no-crawl" /> — <code className="text-xs">/demo</code>. Human-accessible without
+              password; excluded from sitemap and robots allowlist; crawlers get <strong>403</strong>;{" "}
+              <code className="text-xs">noindex</code> in page metadata.
             </li>
             <li>
               <AccessBadge kind="system" /> — Gate page, APIs, <code className="text-xs">/robots.txt</code>,{" "}

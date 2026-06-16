@@ -1,32 +1,9 @@
 import { Section } from "@/components/page-shell"
 import { SectionHeader } from "@/components/section-header"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { HomeSolutionsCards } from "@/components/sections/home-solutions-cards"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
-import { solutionsOverview } from "@/lib/content/home"
 
 const SOLUTIONS_IMAGE = "/images/home/solutions-variant-b-secondary.png"
-
-function SolutionsCards() {
-  return (
-    <div className="flex w-full flex-col gap-3">
-      {solutionsOverview.map((feature) => (
-        <Card
-          key={feature.id}
-          className="gap-1 border border-it-light-border bg-it-light-surface py-0 shadow-[var(--it-light-shadow-sm)] hover:border-it-light-blue/50 hover:shadow-[var(--it-light-shadow-md)] transition-all duration-200"
-        >
-          <CardHeader className="px-4 py-3">
-            <CardTitle className="text-xl leading-snug text-it-light-text-primary">{feature.title}</CardTitle>
-          </CardHeader>
-          <CardContent className="px-4 pb-3 pt-0">
-            <CardDescription className="text-base leading-relaxed text-it-light-text-secondary">
-              {feature.description}
-            </CardDescription>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  )
-}
 
 /** Variant B — image left, stacked cards right (A/B test layout). */
 export function HomeSolutionsVariantB() {
@@ -49,7 +26,7 @@ export function HomeSolutionsVariantB() {
             className="w-full border-0"
           />
         </div>
-        <SolutionsCards />
+        <HomeSolutionsCards />
       </div>
     </Section>
   )

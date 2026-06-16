@@ -3,13 +3,14 @@ import type { Metadata } from "next"
 import { EventAnnouncementRow } from "@/components/sections/exhibition-teaser"
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
-import { HomeSolutionsAb } from "@/components/sections/home-solutions-ab"
 import { IndustryGrid } from "@/components/sections/industry-grid"
 import { TechOverview } from "@/components/sections/tech-overview"
 import { Faq } from "@/components/sections/faq"
 import { CtaBanner } from "@/components/sections/cta-banner"
+import { SvgDisplayRow } from "@/components/demo/svg-display-row"
+import { HomeSolutionsCards } from "@/components/sections/home-solutions-cards"
+import { SectionHeader } from "@/components/section-header"
 
-import { resolveHomeSolutionsVariant } from "@/lib/ab-testing/resolve-variant"
 import {
   industriesServed,
   technologyPillars,
@@ -26,14 +27,7 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 })
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}) {
-  const params = await searchParams
-  const solutionsVariant = await resolveHomeSolutionsVariant(params)
-
+export default function HomePage() {
   return (
     <>
       {/* Hero Style v2 — home only */}
@@ -43,8 +37,21 @@ export default async function HomePage({
         background={<HeroCanvas />}
       />
       <EventAnnouncementRow />
-      {/* Comprehensive Automation Solutions — A/B test (variant files isolated) */}
-      <HomeSolutionsAb variant={solutionsVariant} />
+      <section className="flex w-full flex-1 flex-col bg-it-light-bg">
+        <SvgDisplayRow
+          rightColumn={
+            <>
+              <SectionHeader
+                theme="light"
+                centered={false}
+                title="Comprehensive Automation Solutions"
+                description="End-to-end robotics and autonomous systems designed for enterprise operations"
+              />
+              <HomeSolutionsCards />
+            </>
+          }
+        />
+      </section>
       {/* Industry Grid → dark (it-section-mid) — Serving Critical Industries */}
       <IndustryGrid
         title="Serving Critical Industries"

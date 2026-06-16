@@ -11,8 +11,9 @@ import {
   PREVIEW_HMAC_MESSAGE,
   PREVIEW_SESSION_SECRET,
   isAlwaysPublicPath,
-  isPasswordGatedHubPath,
   isLikelyCrawler,
+  isNoCrawlHumanPublicPath,
+  isPasswordGatedHubPath,
   isPublicCrawlablePath,
 } from "@/lib/site-access"
 
@@ -62,11 +63,14 @@ async function verifyPreviewCookieEdge(cookieVal: string | undefined): Promise<b
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  const ua = request.headers.get("user-agent")
+
   if (isAlwaysPublicPath(pathname)) {
+    if (isLikelyCrawler(ua) && isNoCrawlHumanPublicPath(pathname)) {
+      return new NextResponse("Forbidden", { status: 403 })
+    }
     return applyHomeSolutionsAbCookie(request, NextResponse.next())
   }
-
-  const ua = request.headers.get("user-agent")
   if (
     isLikelyCrawler(ua) &&
     (isPasswordGatedHubPath(pathname) || !isPublicCrawlablePath(pathname))

@@ -45,6 +45,17 @@ export const SITEMAP_EXCLUDED_REDIRECT_PATHS = new Set([
   "/company/team",
 ])
 
+/**
+ * Password-free for humans; excluded from sitemap and robots allowlist (noindex in page metadata).
+ * Crawlers receive 403 via proxy.
+ */
+export const NO_CRAWL_HUMAN_PUBLIC_PATHS = ["/demo"] as const
+
+export function isNoCrawlHumanPublicPath(pathname: string): boolean {
+  const core = stripQuery(pathname).replace(/\/$/, "") || "/"
+  return (NO_CRAWL_HUMAN_PUBLIC_PATHS as readonly string[]).includes(core)
+}
+
 /** Marketing paths explicitly allowed in robots.txt (keep aligned with isPublicCrawlablePath). */
 export const ROBOTS_ALLOWED_MARKETING_PATHS = [
   "/",
@@ -52,7 +63,6 @@ export const ROBOTS_ALLOWED_MARKETING_PATHS = [
   "/products/autoduck",
   "/products/radar-link",
   "/products/safeguard",
-  "/demo",
   "/contact",
   "/thank-you",
   "/events/automate-2026",
@@ -83,7 +93,7 @@ export function isPublicCrawlablePath(pathname: string): boolean {
   const core = p.replace(/\/$/, "") || "/"
   if (core === "/") return true
   if (core === "/products") return true
-  if (core === "/demo" || core === "/contact") return true
+  if (core === "/contact") return true
   /** Form confirmation; noindex in page metadata — must not require preview password. */
   if (core === "/thank-you") return true
   /** Automate 2026 trade-show landing (linked from home teaser). */
@@ -111,7 +121,11 @@ export function isInfrastructurePublicPath(pathname: string): boolean {
 }
 
 export function isAlwaysPublicPath(pathname: string): boolean {
-  return isInfrastructurePublicPath(pathname) || isPublicCrawlablePath(pathname)
+  return (
+    isInfrastructurePublicPath(pathname) ||
+    isPublicCrawlablePath(pathname) ||
+    isNoCrawlHumanPublicPath(pathname)
+  )
 }
 
 const CRAWLER_UA =
@@ -122,12 +136,13 @@ export function isLikelyCrawler(userAgent: string | null): boolean {
   return CRAWLER_UA.test(userAgent)
 }
 
-export type RouteAccessKind = "marketing-public" | "system" | "password"
+export type RouteAccessKind = "marketing-public" | "no-crawl" | "system" | "password"
 
 /** Classify a route path (e.g. "" or "/company") for /currentpages legend. */
 export function getRouteAccessKind(path: string): RouteAccessKind {
   const p = path === "" ? "/" : path.startsWith("/") ? path : `/${path}`
   if (isInfrastructurePublicPath(p)) return "system"
   if (isPublicCrawlablePath(p)) return "marketing-public"
+  if (isNoCrawlHumanPublicPath(p)) return "no-crawl"
   return "password"
 }
