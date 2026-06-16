@@ -14,31 +14,26 @@ const dummyWhitepapers = [
     title: "SafeGuard Architecture Overview",
     description: "Technical architecture for the Robotic Monitoring System: sensor fusion, edge processing, and integration with existing safety infrastructure.",
     topic: "SafeGuard",
-    accent: "var(--it-card-accent-safeguard)",
   },
   {
     title: "AutoDuck Fleet Integration Guide",
     description: "Integrating autonomous charging and Charge Depot workflows with fleet management systems. APIs, webhooks, and deployment patterns.",
     topic: "AutoDuck",
-    accent: "var(--it-card-accent-autolock)",
   },
   {
     title: "RADARLink: V2X and Localization",
     description: "V2X communication, precise localization, and drone tracking. Use cases for mining, logistics, and smart infrastructure.",
     topic: "RADARLink",
-    accent: "var(--it-card-accent-solutions)",
   },
   {
     title: "Congregate Detection Best Practices",
     description: "Configuring and tuning Congregate Detection for high-traffic and industrial environments. False-positive reduction and alerting strategies.",
     topic: "SafeGuard",
-    accent: "var(--it-card-accent-blue)",
   },
   {
     title: "Mining and Industrial Deployments",
     description: "Deployment patterns for harsh environments: connectivity, power, and maintenance. Case studies from mining and heavy industry.",
     topic: "Industry",
-    accent: "var(--it-card-accent-orange)",
   },
 ]
 
@@ -72,7 +67,6 @@ export default function WhitepapersPage() {
               <article
                 key={wp.title}
                 className="it-card rounded-xl border p-6 flex flex-col h-full transition-all duration-150 hover:border-(--it-card-hover-border)"
-                style={{ borderLeftWidth: 3, borderLeftColor: wp.accent }}
               >
                 <div className="flex items-start gap-3 mb-3">
                   <div className="shrink-0 rounded-lg p-2" style={{ background: "var(--it-surface-raised)" }}>

@@ -47,6 +47,7 @@ function SolutionsContent() {
         primaryCta={{ label: "Find Your Solution", href: "#manufacturing" }}
         secondaryCta={{ label: "Book a Consultation", href: "/contact" }}
         heroClass="it-hero-solutions"
+        heroImage={{ label: "Solutions — In Operation", aspectRatio: "16/9" }}
       />
 
       <Section>
@@ -56,7 +57,7 @@ function SolutionsContent() {
             
             return (
               <div key={solution.id}>
-                <Card className="overflow-hidden bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-solutions)]" id={solution.id}>
+                <Card className="overflow-hidden bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]" id={solution.id}>
                   <CardHeader className="bg-it-light-surface-2">
                     <div className="flex items-start gap-4">
                       <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-[var(--it-light-blue-subtle)] flex-shrink-0">

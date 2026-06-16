@@ -39,6 +39,10 @@ export interface ImagePlaceholderProps {
   label?: string
   className?: string
   variant?: "default" | "dark" | "light"
+  objectFit?: "cover" | "contain"
+  /** When true, wrapper has no background fill and PNG alpha is preserved. */
+  transparentBackground?: boolean
+  imageClassName?: string
 }
 
 export function ImagePlaceholder({
@@ -48,6 +52,9 @@ export function ImagePlaceholder({
   label,
   className,
   variant = "default",
+  objectFit = "cover",
+  transparentBackground = false,
+  imageClassName,
 }: ImagePlaceholderProps) {
   const aspectClass = aspectRatioMap[aspectRatio]
   const bg = variantBgMap[variant]
@@ -55,13 +62,33 @@ export function ImagePlaceholder({
   const mutedColor = variantMutedColorMap[variant]
 
   if (src) {
+    const imageBg =
+      transparentBackground
+        ? undefined
+        : variant === "light"
+          ? "bg-it-light-surface"
+          : variant === "dark"
+            ? "bg-it-surface"
+            : "bg-it-surface-raised"
+
     return (
-      <div className={cn("relative w-full overflow-hidden rounded-[var(--radius-lg)]", aspectClass, className)}>
+      <div
+        className={cn(
+          "relative w-full overflow-hidden rounded-[var(--radius-lg)]",
+          imageBg,
+          aspectClass,
+          className,
+        )}
+      >
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-cover"
+          unoptimized={transparentBackground}
+          className={cn(
+            objectFit === "contain" ? "object-contain" : "object-cover",
+            imageClassName,
+          )}
         />
       </div>
     )

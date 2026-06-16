@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 import { GoogleTagManagerBody, GoogleTagManagerHead } from '@/components/analytics/google-tag-manager'
+import { HubSpotTracking } from '@/components/analytics/hubspot-tracking'
 import { Navbar } from '@/components/site/navbar'
 import { Footer } from '@/components/site/footer'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -93,13 +94,14 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Navbar />
           <div className="h-px w-full shrink-0" style={{ backgroundColor: 'var(--it-border)' }} aria-hidden />
-          <main className="flex-1">
+          <main className="flex flex-1 flex-col">
             {children}
           </main>
           <div className="h-px w-full shrink-0" style={{ backgroundColor: 'var(--it-border-bright)' }} aria-hidden />
           <Footer />
           <Toaster />
         </ThemeProvider>
+        <HubSpotTracking />
         <Analytics />
       </body>
     </html>

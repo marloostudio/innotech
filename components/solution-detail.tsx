@@ -164,7 +164,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
           {solution.benefits.map((benefit, index) => (
             <div
               key={index}
-              className="rounded-xl p-6 flex items-start gap-3 border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-it-light-safeguard hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+              className="rounded-xl p-6 flex items-start gap-3 border border-it-light-border bg-it-light-surface shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
             >
               <LucideIcons.CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-it-light-safeguard" strokeWidth={1.5} />
               <span className="font-semibold text-pretty text-it-light-text-primary">{benefit}</span>

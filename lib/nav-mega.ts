@@ -26,7 +26,7 @@ export const productsMegaColumns: ProductMegaColumn[] = [
   {
     id: "autolock",
     name: "AutoDuck",
-    tagline: "Autonomous Charging & Fleet Mgmt",
+    tagline: "Autonomous Charging & Fleet Management",
     description: "Autonomous charging and fleet orchestration",
     href: "/products/autoduck",
     ctaLabel: "View AutoDuck",

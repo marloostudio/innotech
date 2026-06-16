@@ -4,10 +4,17 @@ import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
 import { PageShell, Section, pageContainerClass } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { safeguardProduct, safeguardBrochureCards, safeguardStaticSafetyNarrative } from '@/lib/content/safeguard'
+import { ImagePlaceholder } from '@/components/ui/image-placeholder'
+import {
+  safeguardProduct,
+  safeguardBrochureCards,
+  safeguardStaticSafetyNarrative,
+  safeguardImages,
+} from '@/lib/content/safeguard'
+import { SectionParallaxBackground } from '@/components/sections/section-parallax-background'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -29,22 +36,35 @@ export default function SafeGuardPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "SafeGuard" }]} />
-      <section className="it-hero-safeguard py-20 lg:py-28">
+      <section className="it-hero-safeguard pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div className={pageContainerClass}>
-          <div className="max-w-4xl mx-auto text-center lg:text-left">
-            <Badge variant="outline" className="mb-4">
-              Product
-            </Badge>
-            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{safeguardProduct.hero.title}</h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{safeguardProduct.hero.subtitle}</p>
-            <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">{safeguardProduct.hero.description}</p>
-            <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
-              <Button size="lg" asChild>
-                <Link href="/demo">Request a Demo</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Contact Sales</Link>
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
+            <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
+              <Badge variant="outline" className="mb-4">
+                Product
+              </Badge>
+              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{safeguardProduct.hero.title}</h1>
+              <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{safeguardProduct.hero.subtitle}</p>
+              <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">{safeguardProduct.hero.description}</p>
+              <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
+                <Button size="lg" asChild>
+                  <Link href="/demo">Request a Demo</Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/contact">Contact Sales</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="w-full min-w-0">
+              <ImagePlaceholder
+                src={safeguardProduct.hero.image}
+                alt={safeguardProduct.hero.imageAlt}
+                aspectRatio="3/2"
+                objectFit="contain"
+                transparentBackground
+                imageClassName="[filter:drop-shadow(0_8px_40px_rgba(0,0,0,0.6))]"
+                className="border-0"
+              />
             </div>
           </div>
         </div>
@@ -74,7 +94,7 @@ export default function SafeGuardPage() {
               {safeguardStaticSafetyNarrative.legacyProblems.map((item) => (
                 <Card
                   key={item.title}
-                  className="bg-white border-l-[3px] border-l-primary shadow-sm gap-0"
+                  className="it-problem-card bg-it-light-bg border border-it-light-border shadow-[var(--it-light-shadow-sm)] gap-0"
                 >
                   <CardHeader>
                     <CardTitle className="text-xl font-bold leading-snug text-it-light-text-primary">
@@ -94,7 +114,19 @@ export default function SafeGuardPage() {
       </section>
 
       {/* Features Grid → light-bg */}
-      <Section variant="light-bg">
+      <Section
+        variant="light-bg"
+        background={
+          <SectionParallaxBackground
+            src={safeguardImages.featuresBackground}
+            alt=""
+            anchor="right"
+            blend="abstract"
+            imageOpacity={0.14}
+            overlayVariant="content-safe"
+          />
+        }
+      >
         <SectionHeader
           theme="light"
           label="Features"
@@ -107,7 +139,7 @@ export default function SafeGuardPage() {
             return (
               <Card
                 key={card.id}
-                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-safeguard)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
               >
                 <CardHeader className="grid-cols-1">
                   <div className="flex flex-row items-start gap-4">
@@ -118,22 +150,17 @@ export default function SafeGuardPage() {
                       <CardTitle className="text-2xl text-it-light-text-primary leading-snug">
                         {card.name}
                       </CardTitle>
-                      <CardDescription className="text-base text-it-light-text-secondary">
-                        {card.tagline}
-                      </CardDescription>
+                      <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">
+                        {card.bullets
+                          ? (() => {
+                              const text = card.bullets!.join(". ")
+                              return text.endsWith(".") ? text : `${text}.`
+                            })()
+                          : card.description}
+                      </p>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">
-                    {card.bullets
-                      ? (() => {
-                          const text = card.bullets!.join(". ")
-                          return text.endsWith(".") ? text : `${text}.`
-                        })()
-                      : card.description}
-                  </p>
-                </CardContent>
               </Card>
             )
           })}

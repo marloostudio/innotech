@@ -2,6 +2,7 @@
 
 import { getServerDemoLeadContext, mergeClientDemoLeadContext } from "@/lib/email/demo-lead-context"
 import { sendContactNotifications } from "@/lib/email/contact-notifications"
+import { pushLeadToHubSpot } from "@/lib/hubspot/lead-feed"
 import { contactPayloadSchema } from "@/lib/validation/contact"
 
 export type SubmitContactResult =
@@ -47,7 +48,15 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
       pageUrl,
       documentReferrer,
     })
-    await sendContactNotifications(parsed.data, leadContext)
+    const [, hubspotResult] = await Promise.allSettled([
+      sendContactNotifications(parsed.data, leadContext),
+      pushLeadToHubSpot({ source: "contact", payload: parsed.data, context: leadContext }),
+    ])
+    if (hubspotResult.status === "rejected") {
+      console.error("[contact] hubspot:", hubspotResult.reason)
+    } else if (!hubspotResult.value.ok && !hubspotResult.value.skipped) {
+      console.error("[contact] hubspot:", hubspotResult.value.error)
+    }
   } catch (e) {
     console.error("[contact] email:", e)
     return { ok: false, error: "server" }

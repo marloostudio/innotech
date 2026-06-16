@@ -40,6 +40,8 @@ interface SectionProps {
   variant?: SectionVariant
   /** When true, uses it-section-alt for alternating stripe; otherwise it-section (primary) */
   alt?: boolean
+  /** Optional decorative background rendered behind section content */
+  background?: React.ReactNode
   children: React.ReactNode
   className?: string
   containerClassName?: string
@@ -47,7 +49,7 @@ interface SectionProps {
   style?: React.CSSProperties
 }
 
-export function Section({ variant = "white", alt = false, children, className, containerClassName, id, style: styleProp }: SectionProps) {
+export function Section({ variant = "white", alt = false, background, children, className, containerClassName, id, style: styleProp }: SectionProps) {
   const isLightSection = variant === "light-bg" || variant === "light-bg-2"
   const bg = variant && !isLightSection ? bgMap[variant] : undefined
   const baseStyle = bg ? { background: bg } : {}
@@ -60,11 +62,17 @@ export function Section({ variant = "white", alt = false, children, className, c
           ? (variant === "light-bg" ? "it-section-light" : "it-section-light-alt")
           : alt ? "it-section-alt" : "it-section",
         "py-20 md:py-28",
+        background && "relative overflow-hidden",
         className
       )}
       style={Object.keys(style).length ? style : undefined}
     >
-      <PageShell className={containerClassName}>
+      {background && (
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden>
+          {background}
+        </div>
+      )}
+      <PageShell className={cn(background && "relative z-10", containerClassName)}>
         {children}
       </PageShell>
     </section>

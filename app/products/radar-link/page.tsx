@@ -31,13 +31,13 @@ export default function RadarLinkPage() {
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "RADARLink" }]} />
       <section className="it-hero-solutions py-20 lg:py-28">
         <div className={pageContainerClass}>
-          <div className="max-w-4xl mx-auto text-center lg:text-left">
+          <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
             <Badge variant="outline" className="mb-4">
               Product
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{radarLinkProduct.hero.title}</h1>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{radarLinkProduct.hero.subtitle}</p>
-            <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">{radarLinkProduct.hero.description}</p>
+            <p className="text-lg text-muted-foreground mb-10 max-w-3xl text-pretty">{radarLinkProduct.hero.description}</p>
             <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
               <Button size="lg" asChild>
                 <Link href="/demo">Request a Demo</Link>
@@ -64,7 +64,7 @@ export default function RadarLinkPage() {
             return (
               <Card
                 key={feature.id}
-                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-blue)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
               >
                 <CardHeader className="grid-cols-1">
                   <div className="flex flex-row items-start gap-4">

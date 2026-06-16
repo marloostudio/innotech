@@ -131,6 +131,7 @@ body[data-scroll-locked] .width-before-scroll-bar {
   --it-light-bg:          #f8fafc;
   --it-light-surface:     #ffffff;
   --it-light-surface-2:   #f1f5f9;
+  --it-light-surface-3:   #e6ebf2;
   --it-light-border:      #e2e8f0;
   --it-light-border-subtle: #f1f5f9;
 
@@ -231,12 +232,6 @@ body[data-scroll-locked] .width-before-scroll-bar {
   --it-card-hover-bg:       #1a2540;
   --it-card-hover-border:   rgba(77, 159, 255, 0.55);
   --it-card-hover-shadow:   0 8px 32px rgba(77, 159, 255, 0.18);
-
-  /* Accent-border card variants (left-accent style in screenshots) */
-  --it-card-accent-safeguard:  rgba(0, 212, 170, 0.4);
-  --it-card-accent-autolock:   rgba(255, 107, 53, 0.4);
-  --it-card-accent-solutions:  rgba(180, 125, 255, 0.4);
-  --it-card-accent-blue:       rgba(77, 159, 255, 0.4);
 
   /* ── CTA Banner gradient (dark-to-navy with blue tint) ── */
   --it-cta-gradient:
@@ -372,6 +367,7 @@ body[data-scroll-locked] .width-before-scroll-bar {
   --color-it-light-bg:              var(--it-light-bg);
   --color-it-light-surface:         var(--it-light-surface);
   --color-it-light-surface-2:       var(--it-light-surface-2);
+  --color-it-light-surface-3:       var(--it-light-surface-3);
   --color-it-light-border:          var(--it-light-border);
   --color-it-light-text-primary:    var(--it-light-text-primary);
   --color-it-light-text-secondary:  var(--it-light-text-secondary);
@@ -505,6 +501,24 @@ body[data-scroll-locked] .width-before-scroll-bar {
   }
 }
 
+/* Slim site-wide bar above navbar — links to Automate landing */
+.event-top-bar {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 180% at 0% 50%, var(--it-blue-subtle), transparent 55%),
+    var(--it-section-2);
+  box-shadow: inset 0 1px 0 var(--it-blue-border);
+  transition: background 150ms ease;
+}
+
+.event-top-bar:has(a:hover),
+.event-top-bar:has(a:focus-visible) {
+  background:
+    radial-gradient(ellipse 80% 200% at 0% 50%, rgba(77, 159, 255, 0.2), transparent 55%),
+    color-mix(in srgb, var(--it-blue) 12%, var(--it-section-2));
+}
+
 /* ── Hero badge: larger balloon above hero title ─────── */
 .max-w-4xl.text-center > [data-slot="badge"]:first-child {
   font-size: 0.875rem;
@@ -581,6 +595,40 @@ body[data-scroll-locked] .width-before-scroll-bar {
   color: var(--it-light-cta-foreground);
 }
 
+/* Automate / dark-surface forms — white labels, raised inputs on deep background */
+.contact-form-dark [data-slot="label"] {
+  color: var(--it-text-primary);
+}
+.contact-form-dark [data-slot="input"],
+.contact-form-dark textarea {
+  background-color: var(--it-surface-raised);
+  color: var(--it-text-primary);
+  border-color: var(--it-border);
+}
+.contact-form-dark [data-slot="input"]:focus-visible,
+.contact-form-dark textarea:focus-visible {
+  border-color: var(--it-blue);
+  box-shadow: 0 0 0 3px var(--it-blue-border);
+}
+.contact-form-dark [data-slot="input"]::placeholder,
+.contact-form-dark textarea::placeholder {
+  color: var(--it-text-dim);
+}
+.contact-form-dark select {
+  cursor: pointer;
+  background-color: var(--it-bg);
+  color: var(--it-text-dim);
+  border-color: var(--it-border);
+}
+.contact-form-dark select:valid,
+.contact-form-dark select:has(option:checked:not([value=""])) {
+  color: var(--it-text-primary);
+}
+.contact-form-dark select:focus-visible {
+  border-color: var(--it-blue);
+  box-shadow: 0 0 0 3px var(--it-blue-border);
+}
+
 /* ─────────────────────────────────────────────────────────
    UTILITY CLASSES — apply these directly in components
    to replace the ad-hoc gray backgrounds showing in
@@ -643,12 +691,6 @@ body[data-scroll-locked] .width-before-scroll-bar {
   border-color: var(--it-card-hover-border);
 }
 
-/* Left-accent card (used in SafeGuard feature grid) */
-.it-card-accent-blue   { border-left: 3px solid var(--it-card-accent-blue); }
-.it-card-accent-teal   { border-left: 3px solid var(--it-card-accent-safeguard); }
-.it-card-accent-orange { border-left: 3px solid var(--it-card-accent-autolock); }
-.it-card-accent-violet { border-left: 3px solid var(--it-card-accent-solutions); }
-
 /* CTA banner with subtle gradient instead of flat bg */
 .it-cta-banner {
   background: var(--it-cta-gradient);
@@ -670,6 +712,26 @@ body[data-scroll-locked] .width-before-scroll-bar {
   border-top: var(--it-light-edge-top);
   border-bottom: var(--it-light-edge-bottom);
   color: var(--it-light-text-primary);
+}
+
+/* Off-white cards with faint crossing abstract lines */
+.it-problem-card {
+  background-color: var(--it-light-bg);
+  background-image:
+    repeating-linear-gradient(
+      118deg,
+      transparent 0,
+      transparent 78px,
+      color-mix(in srgb, var(--it-light-border) 42%, transparent) 78px,
+      color-mix(in srgb, var(--it-light-border) 42%, transparent) 79px
+    ),
+    repeating-linear-gradient(
+      32deg,
+      transparent 0,
+      transparent 104px,
+      color-mix(in srgb, var(--it-light-border) 28%, transparent) 104px,
+      color-mix(in srgb, var(--it-light-border) 28%, transparent) 105px
+    );
 }
 
 /* Dark section divider — subtle horizontal rule between dark sections */

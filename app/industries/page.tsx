@@ -55,7 +55,7 @@ function IndustriesContent() {
             
             return (
               <div key={industry.id}>
-                <Card className="overflow-hidden bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] border-l-[3px] border-l-[var(--it-light-industries)]" id={industry.id}>
+                <Card className="overflow-hidden bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)]" id={industry.id}>
                   <CardHeader className="bg-it-light-surface-2">
                     <div className="flex items-start gap-4">
                       <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-[var(--it-light-blue-subtle)] flex-shrink-0">

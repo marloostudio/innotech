@@ -2,6 +2,7 @@
 
 import { getServerDemoLeadContext, mergeClientDemoLeadContext } from "@/lib/email/demo-lead-context"
 import { sendAutomateIntakeNotifications } from "@/lib/email/automate-intake-notifications"
+import { pushLeadToHubSpot } from "@/lib/hubspot/lead-feed"
 import { createSupabaseAnonServerClient, getSupabaseAnonCredential } from "@/lib/supabase/anon-server"
 import { automateIntakePayloadSchema } from "@/lib/validation/automate-intake"
 
@@ -76,7 +77,15 @@ export async function submitAutomateIntake(formData: FormData): Promise<SubmitAu
       pageUrl,
       documentReferrer,
     })
-    await sendAutomateIntakeNotifications(parsed.data, leadContext)
+    const [, hubspotResult] = await Promise.allSettled([
+      sendAutomateIntakeNotifications(parsed.data, leadContext),
+      pushLeadToHubSpot({ source: "automate-intake", payload: parsed.data, context: leadContext }),
+    ])
+    if (hubspotResult.status === "rejected") {
+      console.error("[automate-intake] hubspot:", hubspotResult.reason)
+    } else if (!hubspotResult.value.ok && !hubspotResult.value.skipped) {
+      console.error("[automate-intake] hubspot:", hubspotResult.value.error)
+    }
   } catch (e) {
     console.error("[automate-intake] email:", e)
     return { ok: false, error: "server" }

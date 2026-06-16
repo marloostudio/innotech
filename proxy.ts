@@ -2,6 +2,11 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 import {
+  HOME_SOLUTIONS_EXPERIMENT,
+  isHomeSolutionsVariant,
+  pickHomeSolutionsVariant,
+} from "@/lib/ab-testing/home-solutions-experiment"
+import {
   PREVIEW_COOKIE_NAME,
   PREVIEW_HMAC_MESSAGE,
   PREVIEW_SESSION_SECRET,
@@ -10,6 +15,34 @@ import {
   isLikelyCrawler,
   isPublicCrawlablePath,
 } from "@/lib/site-access"
+
+const AB_COOKIE_MAX_AGE = 60 * 60 * 24 * 30
+
+function applyHomeSolutionsAbCookie(request: NextRequest, response: NextResponse): NextResponse {
+  if (request.nextUrl.pathname !== "/") return response
+
+  const { cookieName, paramName } = HOME_SOLUTIONS_EXPERIMENT
+  const forced = request.nextUrl.searchParams.get(paramName)
+
+  if (isHomeSolutionsVariant(forced)) {
+    response.cookies.set(cookieName, forced, {
+      maxAge: AB_COOKIE_MAX_AGE,
+      path: "/",
+      sameSite: "lax",
+    })
+    return response
+  }
+
+  if (!request.cookies.get(cookieName)) {
+    response.cookies.set(cookieName, pickHomeSolutionsVariant(), {
+      maxAge: AB_COOKIE_MAX_AGE,
+      path: "/",
+      sameSite: "lax",
+    })
+  }
+
+  return response
+}
 
 async function verifyPreviewCookieEdge(cookieVal: string | undefined): Promise<boolean> {
   if (!cookieVal) return false
@@ -30,7 +63,7 @@ export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   if (isAlwaysPublicPath(pathname)) {
-    return NextResponse.next()
+    return applyHomeSolutionsAbCookie(request, NextResponse.next())
   }
 
   const ua = request.headers.get("user-agent")
@@ -43,7 +76,7 @@ export async function proxy(request: NextRequest) {
 
   const cookie = request.cookies.get(PREVIEW_COOKIE_NAME)?.value
   if (await verifyPreviewCookieEdge(cookie)) {
-    return NextResponse.next()
+    return applyHomeSolutionsAbCookie(request, NextResponse.next())
   }
 
   const url = request.nextUrl.clone()

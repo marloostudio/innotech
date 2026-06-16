@@ -2,6 +2,7 @@
 
 import { getServerDemoLeadContext, mergeClientDemoLeadContext } from "@/lib/email/demo-lead-context"
 import { sendDemoRequestNotifications } from "@/lib/email/demo-request-notifications"
+import { pushLeadToHubSpot } from "@/lib/hubspot/lead-feed"
 import { demoRequestPayloadSchema } from "@/lib/validation/demo-request"
 
 export type SubmitDemoRequestResult =
@@ -24,11 +25,12 @@ export async function submitDemoRequest(formData: FormData): Promise<SubmitDemoR
   }
 
   const raw = {
-    name: str(formData, "name"),
+    fullName: str(formData, "fullName"),
     email: str(formData, "email"),
     company: str(formData, "company"),
-    role: str(formData, "role"),
-    product: str(formData, "product"),
+    phone: str(formData, "phone"),
+    industry: str(formData, "industry"),
+    interest: str(formData, "interest"),
     message: str(formData, "message"),
   }
 
@@ -46,7 +48,15 @@ export async function submitDemoRequest(formData: FormData): Promise<SubmitDemoR
       pageUrl,
       documentReferrer,
     })
-    await sendDemoRequestNotifications(parsed.data, leadContext)
+    const [, hubspotResult] = await Promise.allSettled([
+      sendDemoRequestNotifications(parsed.data, leadContext),
+      pushLeadToHubSpot({ source: "demo-request", payload: parsed.data, context: leadContext }),
+    ])
+    if (hubspotResult.status === "rejected") {
+      console.error("[demo-request] hubspot:", hubspotResult.reason)
+    } else if (!hubspotResult.value.ok && !hubspotResult.value.skipped) {
+      console.error("[demo-request] hubspot:", hubspotResult.value.error)
+    }
   } catch (e) {
     console.error("[demo-request] email:", e)
     return { ok: false, error: "server" }

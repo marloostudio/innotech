@@ -1,6 +1,6 @@
 import { Resend } from "resend"
 
-import { demoProductLabel } from "@/lib/content/demo-request-form"
+import { industryLabel, interestLabel } from "@/lib/content/contact-form"
 import type { DemoLeadContext } from "@/lib/email/demo-lead-context"
 import { getDemoRequestNotifyEmail } from "@/lib/email/demo-notify"
 import { escapeHtml } from "@/lib/email/escape-html"
@@ -38,22 +38,25 @@ export async function sendDemoRequestNotifications(
 
   const resend = new Resend(apiKey)
 
-  const name = payload.name.trim()
-  const productDisplay = demoProductLabel(payload.product)
+  const fullName = payload.fullName.trim()
+  const ind = industryLabel(payload.industry)
+  const intr = interestLabel(payload.interest)
+  const phoneDisplay = payload.phone?.trim() ? payload.phone.trim() : "—"
   const messageDisplay = payload.message.trim() ? payload.message.trim() : "—"
   const displayHost = siteUrl.replace(/^https?:\/\//, "")
 
   const footerLine = `${escapeHtml(siteConfig.company.name)} · <a href="${escapeHtml(siteUrl)}" style="color:${C_ACCENT};text-decoration:none;">${escapeHtml(displayHost)}</a>`
 
   const detailRows = [
-    dataRowHtml("Name", escapeHtml(name)),
+    dataRowHtml("Name", escapeHtml(fullName)),
     dataRowHtml(
       "Email",
       `<a href="mailto:${escapeHtml(payload.email)}" style="color:${C_ACCENT};text-decoration:none;font-weight:500;">${escapeHtml(payload.email)}</a>`
     ),
     dataRowHtml("Company", escapeHtml(payload.company)),
-    dataRowHtml("Role", escapeHtml(payload.role)),
-    dataRowHtml("Product", escapeHtml(productDisplay)),
+    dataRowHtml("Phone", escapeHtml(phoneDisplay)),
+    dataRowHtml("Industry", escapeHtml(ind)),
+    dataRowHtml("Area of interest", escapeHtml(intr)),
   ].join("")
 
   const contextHtml = buildLeadMarketingContextHtml(leadContext)
@@ -82,11 +85,12 @@ export async function sendDemoRequestNotifications(
   const ownerText = [
     "New Demo request",
     "",
-    `Name: ${name}`,
+    `Name: ${fullName}`,
     `Email: ${payload.email}`,
     `Company: ${payload.company}`,
-    `Role: ${payload.role}`,
-    `Product interest: ${productDisplay}`,
+    `Phone: ${phoneDisplay}`,
+    `Industry: ${ind}`,
+    `Area of interest: ${intr}`,
     "",
     "Message:",
     messageDisplay,
@@ -97,7 +101,7 @@ export async function sendDemoRequestNotifications(
     `Form page: ${siteUrl}/demo`,
   ].join("\n")
 
-  const first = name.split(/\s+/)[0] ?? "there"
+  const first = fullName.split(/\s+/)[0] ?? "there"
 
   const submitterSandboxNote = sandboxInbox
     ? `<div style="background-color:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 14px;margin:0 0 22px;font-family:${FONT};font-size:13px;line-height:1.5;color:#1e40af;">

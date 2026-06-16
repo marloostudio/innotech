@@ -3,14 +3,14 @@ import type { Metadata } from "next"
 import { EventAnnouncementRow } from "@/components/sections/exhibition-teaser"
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
-import { FeatureGrid } from "@/components/sections/feature-grid"
+import { HomeSolutionsAb } from "@/components/sections/home-solutions-ab"
 import { IndustryGrid } from "@/components/sections/industry-grid"
 import { TechOverview } from "@/components/sections/tech-overview"
 import { Faq } from "@/components/sections/faq"
 import { CtaBanner } from "@/components/sections/cta-banner"
 
+import { resolveHomeSolutionsVariant } from "@/lib/ab-testing/resolve-variant"
 import {
-  solutionsOverview,
   industriesServed,
   technologyPillars,
   faqItems,
@@ -26,7 +26,14 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 })
 
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}) {
+  const params = await searchParams
+  const solutionsVariant = await resolveHomeSolutionsVariant(params)
+
   return (
     <>
       {/* Hero Style v2 — home only */}
@@ -36,16 +43,8 @@ export default function HomePage() {
         background={<HeroCanvas />}
       />
       <EventAnnouncementRow />
-      {/* Feature Grid → light-bg */}
-      <FeatureGrid 
-        title="Comprehensive Automation Solutions"
-        description="End-to-end robotics and autonomous systems designed for enterprise operations"
-        features={solutionsOverview}
-        columns={2}
-        variant="light-bg"
-        showImagePlaceholder={false}
-        hideIcon
-      />
+      {/* Comprehensive Automation Solutions — A/B test (variant files isolated) */}
+      <HomeSolutionsAb variant={solutionsVariant} />
       {/* Industry Grid → dark (it-section-mid) — Serving Critical Industries */}
       <IndustryGrid
         title="Serving Critical Industries"

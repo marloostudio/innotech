@@ -16,8 +16,14 @@ import { Textarea } from "@/components/ui/textarea"
 const nativeSelectClass =
   "h-10 w-full rounded-md border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50"
 
-export function AutomateIntakeForm() {
+type AutomateIntakeFormProps = {
+  /** Unique prefix for field ids when multiple forms appear on one page */
+  idPrefix?: string
+}
+
+export function AutomateIntakeForm({ idPrefix = "intake" }: AutomateIntakeFormProps) {
   const f = automateIntakeForm.fields
+  const fieldId = (name: string) => `${idPrefix}-${name}`
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -49,27 +55,27 @@ export function AutomateIntakeForm() {
   }
 
   return (
-    <Card className="border border-it-light-border bg-it-light-surface shadow-(--it-light-shadow-md)">
+    <Card className="border border-it-border bg-it-surface shadow-(--it-shadow-md) text-it-text-primary">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-it-light-text-primary">
+        <CardTitle className="text-2xl font-semibold it-heading-bright">
           {automateIntakeForm.title}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form className="contact-form-light space-y-4" onSubmit={handleSubmit}>
+        <form className="contact-form-dark space-y-4" onSubmit={handleSubmit}>
           {/* Honeypot — leave empty; submission is ignored if filled */}
           <div className="sr-only" aria-hidden>
-            <label htmlFor="intake-website">Company website</label>
-            <input id="intake-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            <label htmlFor={fieldId("website")}>Company website</label>
+            <input id={fieldId("website")} name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-name" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("name")} className="text-it-text-primary">
                 {f.name.label} *
               </Label>
               <Input
-                id="intake-name"
+                id={fieldId("name")}
                 name="name"
                 type="text"
                 placeholder={f.name.placeholder}
@@ -79,11 +85,11 @@ export function AutomateIntakeForm() {
             </div>
 
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-email" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("email")} className="text-it-text-primary">
                 {f.email.label} *
               </Label>
               <Input
-                id="intake-email"
+                id={fieldId("email")}
                 name="email"
                 type="email"
                 placeholder={f.email.placeholder}
@@ -93,11 +99,11 @@ export function AutomateIntakeForm() {
             </div>
 
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-company" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("company")} className="text-it-text-primary">
                 {f.company.label} *
               </Label>
               <Input
-                id="intake-company"
+                id={fieldId("company")}
                 name="company"
                 type="text"
                 placeholder={f.company.placeholder}
@@ -107,11 +113,11 @@ export function AutomateIntakeForm() {
             </div>
 
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-job-title" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("job-title")} className="text-it-text-primary">
                 {f.jobTitle.label}
               </Label>
               <Input
-                id="intake-job-title"
+                id={fieldId("job-title")}
                 name="jobTitle"
                 type="text"
                 placeholder={f.jobTitle.placeholder}
@@ -120,11 +126,11 @@ export function AutomateIntakeForm() {
             </div>
 
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-organization" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("organization")} className="text-it-text-primary">
                 {f.organization.label}
               </Label>
               <select
-                id="intake-organization"
+                id={fieldId("organization")}
                 name="organization"
                 defaultValue=""
                 className={nativeSelectClass}
@@ -141,11 +147,11 @@ export function AutomateIntakeForm() {
             </div>
 
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="intake-role" className="text-it-light-text-primary">
+              <Label htmlFor={fieldId("role")} className="text-it-text-primary">
                 {f.role.label}
               </Label>
               <select
-                id="intake-role"
+                id={fieldId("role")}
                 name="role"
                 defaultValue=""
                 className={nativeSelectClass}
@@ -163,13 +169,13 @@ export function AutomateIntakeForm() {
 
             <div className="min-w-0 space-y-2 sm:col-span-2">
               <Label
-                htmlFor="intake-interest"
-                className="text-it-light-text-primary items-start leading-relaxed"
+                htmlFor={fieldId("interest")}
+                className="text-it-text-primary items-start leading-relaxed"
               >
                 {f.interest.label}
               </Label>
               <Textarea
-                id="intake-interest"
+                id={fieldId("interest")}
                 name="interest"
                 placeholder={f.interest.placeholder}
                 rows={4}
@@ -178,17 +184,17 @@ export function AutomateIntakeForm() {
             </div>
           </div>
 
-          <Button type="submit" size="lg" variant="lightCta" className="w-full" disabled={isPending}>
+          <Button type="submit" size="lg" className="w-full" disabled={isPending}>
             {isPending ? "Sending…" : automateIntakeForm.submitLabel}
           </Button>
 
-          <p className="text-xs text-it-light-text-muted text-center text-pretty">
+          <p className="text-xs text-it-text-muted text-center text-pretty">
             By submitting this form, you agree to our{" "}
-            <Link href="/legal/privacy-policy" className="text-it-light-blue underline-offset-4 hover:underline">
+            <Link href="/legal/privacy-policy" className="text-it-blue underline-offset-4 hover:underline">
               Privacy Policy
             </Link>{" "}
             and{" "}
-            <Link href="/legal/terms" className="text-it-light-blue underline-offset-4 hover:underline">
+            <Link href="/legal/terms" className="text-it-blue underline-offset-4 hover:underline">
               Terms of Service
             </Link>
             .

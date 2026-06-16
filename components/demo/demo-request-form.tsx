@@ -6,9 +6,12 @@ import { FormEvent, useTransition } from "react"
 import { toast } from "sonner"
 
 import { submitDemoRequest } from "@/app/actions/demo-request"
+import { contactIndustryOptions, contactInterestOptions } from "@/lib/content/contact-form"
 
 const inputBase =
   "w-full px-4 py-3 rounded-lg border bg-it-surface border-it-border text-it-text-primary placeholder:text-it-text-muted focus:outline-none focus:ring-2 focus:ring-it-blue focus:border-transparent transition-[box-shadow,border-color] duration-150"
+
+const labelClass = "block text-sm font-medium mb-2 text-it-text-primary"
 
 export function DemoRequestForm() {
   const [isPending, startTransition] = useTransition()
@@ -49,83 +52,115 @@ export function DemoRequestForm() {
         <input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2 text-it-text-primary">
-            Name *
+          <label htmlFor="fullName" className={labelClass}>
+            Full name *
           </label>
-          <input type="text" id="name" name="name" className={inputBase} required autoComplete="name" />
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="Jane Doe"
+            className={inputBase}
+            required
+            autoComplete="name"
+          />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-it-text-primary">
-            Work Email *
+          <label htmlFor="phone" className={labelClass}>
+            Phone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+1 (555) 123-4567"
+            className={inputBase}
+            autoComplete="tel"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className={labelClass}>
+            Email *
           </label>
           <input
             type="email"
             id="email"
             name="email"
+            placeholder="john.doe@company.com"
             className={inputBase}
             required
             autoComplete="email"
           />
         </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="company" className="block text-sm font-medium mb-2 text-it-text-primary">
-            Company Name *
+          <label htmlFor="company" className={labelClass}>
+            Company *
           </label>
           <input
             type="text"
             id="company"
             name="company"
+            placeholder="Your Company Name"
             className={inputBase}
             required
             autoComplete="organization"
           />
         </div>
+
         <div>
-          <label htmlFor="role" className="block text-sm font-medium mb-2 text-it-text-primary">
-            Your Role *
+          <label htmlFor="industry" className={labelClass}>
+            Industry
           </label>
-          <input
-            type="text"
-            id="role"
-            name="role"
-            placeholder="e.g., Fleet Manager, CTO"
+          <select
+            id="industry"
+            name="industry"
+            defaultValue=""
             className={inputBase}
-            required
-            autoComplete="organization-title"
-          />
+            aria-label="Industry — choose one"
+          >
+            <option value="">Choose an industry…</option>
+            {contactIndustryOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="interest" className={labelClass}>
+            Area of Interest
+          </label>
+          <select
+            id="interest"
+            name="interest"
+            defaultValue=""
+            className={inputBase}
+            aria-label="Area of interest — choose one"
+          >
+            <option value="">Choose a topic…</option>
+            {contactInterestOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
       <div>
-        <label htmlFor="product" className="block text-sm font-medium mb-2 text-it-text-primary">
-          Product Interest *
-        </label>
-        <select id="product" name="product" className={inputBase} required defaultValue="">
-          <option value="" disabled>
-            Select a product
-          </option>
-          <option value="safeguard">SafeGuard — Safety Monitoring</option>
-          <option value="autoduck">AutoDuck — Autonomous Charging</option>
-          <option value="radar-link">RADARLink — V2X Communication</option>
-          <option value="all">All Products</option>
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2 text-it-text-primary">
-          Tell us about your needs
+        <label htmlFor="message" className={labelClass}>
+          Message *
         </label>
         <textarea
           id="message"
           name="message"
           rows={3}
-          placeholder="Describe your operation, fleet size, challenges, etc."
+          placeholder="Tell us about your automation needs, challenges, or questions..."
           className={`${inputBase} resize-y min-h-[96px]`}
+          required
         />
       </div>
 

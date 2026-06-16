@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { ImagePlaceholder } from '@/components/ui/image-placeholder'
 import * as LucideIcons from 'lucide-react'
 
 interface ProductFeature {
@@ -65,47 +66,56 @@ export function ProductFeatureDetail({
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section — two-column with placeholder on right */}
       <section className="it-hero py-20 lg:py-28">
         <div className={pageContainerClass}>
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-lg" style={{ background: 'var(--it-blue-subtle)' }}>
-                <Icon className="w-10 h-10" style={{ color: 'var(--it-blue)' }} />
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
+            <div className="max-w-4xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 rounded-lg" style={{ background: 'var(--it-blue-subtle)' }}>
+                  <Icon className="w-10 h-10" style={{ color: 'var(--it-blue)' }} />
+                </div>
+                <Badge
+                  variant="outline"
+                  className="border-it-border text-it-text-secondary"
+                >
+                  {productName}
+                </Badge>
               </div>
-              <Badge
-                variant="outline"
-                className="border-it-border text-it-text-secondary"
-              >
-                {productName}
-              </Badge>
+              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
+                {feature.name}
+              </h1>
+              <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
+                {feature.tagline}
+              </p>
+              <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
+                {feature.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  asChild
+                  style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
+                >
+                  <Link href="/demo">Request a Demo</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="border-it-border hover:bg-white/5"
+                  style={{ color: 'var(--it-text-primary)' }}
+                >
+                  <Link href={`/products/${productSlug}`}>View All Features</Link>
+                </Button>
+              </div>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance" style={{ color: 'var(--it-text-primary)' }}>
-              {feature.name}
-            </h1>
-            <p className="text-xl lg:text-2xl mb-8 text-balance" style={{ color: 'var(--it-text-secondary)' }}>
-              {feature.tagline}
-            </p>
-            <p className="text-lg mb-10 text-pretty" style={{ color: 'var(--it-text-muted)' }}>
-              {feature.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                asChild
-                style={{ background: 'var(--it-blue)', color: 'var(--it-bg)' }}
-              >
-                <Link href="/demo">Request a Demo</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="border-it-border hover:bg-white/5"
-                style={{ color: 'var(--it-text-primary)' }}
-              >
-                <Link href={`/products/${productSlug}`}>View All Features</Link>
-              </Button>
+            <div className="w-full min-w-0">
+              <ImagePlaceholder
+                aspectRatio="16/9"
+                alt={`${feature.name} — In Use`}
+                label={`${feature.name} — In Use`}
+              />
             </div>
           </div>
         </div>

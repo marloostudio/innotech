@@ -2,6 +2,22 @@ import { siteConfig, siteUrl } from "@/lib/site"
 
 const DEFAULT_LOCAL_PART = "noreply"
 
+/** Ensures outbound mail shows "InnoTech Systems", not the mailbox local part (e.g. "info"). */
+function withDisplayName(address: string): string {
+  const trimmed = address.trim()
+  const bracketed = /^([^<]*?)<([^>]+)>$/.exec(trimmed)
+  if (bracketed) {
+    const name = bracketed[1]!.trim()
+    const email = bracketed[2]!.trim()
+    if (name) return `${name} <${email}>`
+    return `${siteConfig.name} <${email}>`
+  }
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+    return `${siteConfig.name} <${trimmed}>`
+  }
+  return trimmed
+}
+
 function parseMailDomainFromSiteUrl(): string | null {
   try {
     const host = new URL(siteUrl).hostname
@@ -31,7 +47,7 @@ function parseMailDomainFromSiteUrl(): string | null {
  */
 export function getResendFrom(): string {
   const full = process.env.RESEND_FROM?.trim()
-  if (full) return full
+  if (full) return withDisplayName(full)
 
   const explicitDomain = process.env.RESEND_FROM_DOMAIN?.trim()
   const domain = explicitDomain || parseMailDomainFromSiteUrl()

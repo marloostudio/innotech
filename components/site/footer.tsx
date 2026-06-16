@@ -112,8 +112,8 @@ export function Footer() {
         <div style={{ borderTop: "1px solid var(--it-border)" }} />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 pb-8 text-sm" style={{ color: "var(--it-text-muted)" }}>
-          <div className="space-y-1">
-            <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
+          <div className="space-y-0">
+            <p className="text-[11px] leading-tight" style={{ color: "var(--it-text-muted)" }}>
               © {currentYear} {siteConfig.name}. All rights reserved.{" "}
               <Link
                 href="/changelog"
@@ -124,7 +124,7 @@ export function Footer() {
                 v{siteConfig.version}
               </Link>
             </p>
-            <p className="text-[11px]" style={{ color: "var(--it-text-muted)" }}>
+            <p className="text-[11px] leading-tight" style={{ color: "var(--it-text-muted)" }}>
               Powered by{" "}
               <a
                 href="https://marloo.net"

@@ -10,6 +10,12 @@ export interface ProductFeature {
   useCases: string[]
 }
 
+/** Static image paths under `public/images/products/safeguard/`. */
+export const safeguardImages = {
+  hardwareHero: "/images/products/safeguard/safeguard-hardware-hero.png",
+  featuresBackground: "/images/products/safeguard/safeguard-features-bg.png",
+} as const
+
 export const safeguardProduct = {
   name: "SafeGuard",
   tagline: "Software-Defined Safety for Robots",
@@ -17,8 +23,10 @@ export const safeguardProduct = {
   hero: {
     title: "SafeGuard™",
     subtitle: "Software-Defined Safety for Robots",
-    description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots"
-  }
+    description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots",
+    image: safeguardImages.hardwareHero,
+    imageAlt: "SafeGuard hardware unit with sensors and antennas",
+  },
 }
 
 /** “Static Safety is Dead” — problem/solution narrative (main product page). */
@@ -51,8 +59,6 @@ export const safeguardStaticSafetyNarrative = {
 export interface SafeguardBrochureCard {
   id: string
   name: string
-  /** One-line subtitle under the card title (matches other product feature cards). */
-  tagline: string
   description?: string
   bullets?: string[]
   icon: string
@@ -62,7 +68,6 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "certified-safety",
     name: "Certified Safety",
-    tagline: "Functional and AI safety aligned to leading industrial standards",
     description:
       "Functional and AI Safety certified, including ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d), ISO\u00A061508 (SIL\u00A03), and ISO\u00A022440",
     icon: "badge-check",
@@ -70,7 +75,6 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "collaboration-ready",
     name: "Collaboration Ready",
-    tagline: "Human–robot collaboration without rigid physical barriers",
     description:
       "Aligned with ISO\u00A010218 guidelines for safe human-robot interaction to share workspaces without static physical guards",
     icon: "handshake",
@@ -78,7 +82,6 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "high-speed-fault-detection",
     name: "High-Speed Fault Detection",
-    tagline: "Validated fault-detection interval under 50\u00A0ms",
     description:
       "Rapid hazard mitigation with a validated fault-detection interval under 50\u00A0ms",
     icon: "zap",
@@ -86,7 +89,6 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "pilot-program",
     name: "Join our Pilot Program today!",
-    tagline: "Prove value on your floor before you commit",
     bullets: [
       "Offer: Installation & operation for 4 weeks at $0 cost",
       "Goal: Validate efficiency gains on your specific floor plan",

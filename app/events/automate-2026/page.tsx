@@ -107,10 +107,16 @@ function Automate2026HeroSection() {
   )
 }
 
-function Automate2026IntakeSection({ intakeAnchorId }: { intakeAnchorId?: string }) {
+function Automate2026IntakeSection({
+  intakeAnchorId,
+  formIdPrefix = "intake",
+}: {
+  intakeAnchorId?: string
+  formIdPrefix?: string
+}) {
   return (
     <section
-      className="relative w-full pt-10 lg:pt-0 pb-16 md:pb-24 overflow-hidden"
+      className="relative w-full py-16 md:py-24 overflow-hidden"
       style={{
         background: "var(--it-hero-gradient)",
         color: "var(--it-text-primary)",
@@ -119,9 +125,9 @@ function Automate2026IntakeSection({ intakeAnchorId }: { intakeAnchorId?: string
       <PageShell className="relative z-10">
         <div
           {...(intakeAnchorId ? { id: intakeAnchorId } : {})}
-          className="w-full lg:w-3/5 min-w-0 mx-auto mt-8 lg:mt-0 scroll-mt-28 contact-form-light lg:border-t lg:border-(--it-border-subtle) lg:pt-8"
+          className="w-full lg:w-3/5 min-w-0 mx-auto scroll-mt-28"
         >
-          <AutomateIntakeForm />
+          <AutomateIntakeForm idPrefix={formIdPrefix} />
         </div>
       </PageShell>
     </section>

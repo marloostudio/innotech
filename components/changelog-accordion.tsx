@@ -143,8 +143,7 @@ function ReleaseCard({ entry }: { entry: ChangelogEntry }) {
     <AccordionItem
       value={`${entry.version}-${entry.date}`}
       className={cn(
-        "border-it-border border-b last:border-b-0",
-        "border-l-[3px] border-l-it-blue pl-4"
+        "border-it-border border-b last:border-b-0"
       )}
     >
       <AccordionTrigger
