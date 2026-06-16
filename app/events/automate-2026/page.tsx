@@ -39,85 +39,91 @@ export default function Automate2026Page() {
         </div>
       </div>
 
-      <section
-        className="relative w-full pt-8 md:pt-12 pb-16 md:pb-24 overflow-hidden"
-        style={{
-          background: "var(--it-hero-gradient)",
-          color: "var(--it-text-primary)",
-        }}
-      >
-        <PageShell className="relative z-10">
-          <div className="grid lg:grid-cols-2 lg:grid-rows-[auto_auto_auto] gap-10 lg:gap-x-12 lg:gap-y-8 xl:gap-x-16 items-start">
-            <div className="min-w-0 pt-1 lg:col-start-1 lg:row-start-1">
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6"
-                style={{ fontFamily: "var(--font-chakra)" }}
-              >
-                {automateEvent.hero.titleLines[0]}
-                <span className="text-it-blue"> {automateEvent.hero.titleLines[1]}</span>
-              </h1>
-              <p
-                className="text-lg md:text-xl text-pretty mb-5"
-                style={{ color: "var(--it-text-muted)" }}
-              >
-                Meet our team, explore{" "}
-                <Link
-                  href="/products/safeguard"
-                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
-                >
-                  SafeGuard™
-                </Link>
-                ,{" "}
-                <Link
-                  href="/products/radar-link"
-                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
-                >
-                  RADARLink™
-                </Link>
-                , and{" "}
-                <Link
-                  href="/products/autoduck"
-                  className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
-                >
-                  AutoDuck
-                </Link>
-                , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
-              </p>
-              <AutomateExhibitionCard variant="dark" className="mt-6 pl-0 md:pl-0" />
-            </div>
-            <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:hidden">
-              <ImagePlaceholder
-                src={automateEvent.orchestrationImage.src}
-                aspectRatio="4/3"
-                alt={automateEvent.orchestrationImage.alt}
-              />
-            </div>
-            <div
-              id="interest-intake"
-              className="mt-8 scroll-mt-28 contact-form-light lg:hidden"
-            >
-              <AutomateIntakeForm />
-            </div>
-            <div className="hidden lg:block lg:col-start-2 lg:row-start-1 w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised">
-              <ImagePlaceholder
-                src={automateEvent.orchestrationImage.src}
-                aspectRatio="4/3"
-                alt={automateEvent.orchestrationImage.alt}
-              />
-            </div>
-            <div
-              className="hidden lg:block lg:col-span-2 lg:row-start-2 border-t border-(--it-border-subtle)"
-              aria-hidden
-            />
-            <div
-              id="interest-intake"
-              className="hidden lg:block lg:col-span-2 lg:row-start-3 w-3/5 min-w-0 mx-auto scroll-mt-28 contact-form-light"
-            >
-              <AutomateIntakeForm />
-            </div>
-          </div>
-        </PageShell>
-      </section>
+      <Automate2026HeroSection />
+      <Automate2026IntakeSection intakeAnchorId="interest-intake" />
     </>
+  )
+}
+
+function Automate2026HeroSection() {
+  return (
+    <section
+      className="relative w-full pt-8 md:pt-12 pb-0 lg:pb-8 overflow-hidden"
+      style={{
+        background: "var(--it-hero-gradient)",
+        color: "var(--it-text-primary)",
+      }}
+    >
+      <PageShell className="relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-x-12 xl:gap-x-16 items-start">
+          <div className="min-w-0 pt-1">
+            <h1
+              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6"
+              style={{ fontFamily: "var(--font-chakra)" }}
+            >
+              {automateEvent.hero.titleLines[0]}
+              <br />
+              <span className="text-it-blue">{automateEvent.hero.titleLines[1]}</span>
+            </h1>
+            <p
+              className="text-lg md:text-xl text-pretty mb-5"
+              style={{ color: "var(--it-text-muted)" }}
+            >
+              Meet our team, explore{" "}
+              <Link
+                href="/products/safeguard"
+                className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+              >
+                SafeGuard™
+              </Link>
+              ,{" "}
+              <Link
+                href="/products/radar-link"
+                className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+              >
+                RADARLink™
+              </Link>
+              , and{" "}
+              <Link
+                href="/products/autoduck"
+                className="text-it-blue underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-it-blue rounded-sm"
+              >
+                AutoDuck
+              </Link>
+              , and watch how software-defined safety, autonomous charging, and precision connectivity come together on the show floor.
+            </p>
+            <AutomateExhibitionCard variant="dark" className="mt-6 pl-0 md:pl-0" />
+          </div>
+          <div className="w-full min-w-0 rounded-lg border border-it-border overflow-hidden bg-it-surface-raised lg:col-start-2">
+            <ImagePlaceholder
+              src={automateEvent.orchestrationImage.src}
+              aspectRatio="4/3"
+              alt={automateEvent.orchestrationImage.alt}
+            />
+          </div>
+        </div>
+      </PageShell>
+    </section>
+  )
+}
+
+function Automate2026IntakeSection({ intakeAnchorId }: { intakeAnchorId?: string }) {
+  return (
+    <section
+      className="relative w-full pt-10 lg:pt-0 pb-16 md:pb-24 overflow-hidden"
+      style={{
+        background: "var(--it-hero-gradient)",
+        color: "var(--it-text-primary)",
+      }}
+    >
+      <PageShell className="relative z-10">
+        <div
+          {...(intakeAnchorId ? { id: intakeAnchorId } : {})}
+          className="w-full lg:w-3/5 min-w-0 mx-auto mt-8 lg:mt-0 scroll-mt-28 contact-form-light lg:border-t lg:border-(--it-border-subtle) lg:pt-8"
+        >
+          <AutomateIntakeForm />
+        </div>
+      </PageShell>
+    </section>
   )
 }

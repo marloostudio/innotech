@@ -51,7 +51,7 @@ export function AutomateExhibitionCard({ className, variant = "light" }: Automat
       </div>
       <p
         className={cn(
-          "text-left text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none",
+          "text-left text-lg md:text-xl font-bold tracking-tight",
           isDark ? "text-it-blue" : "text-it-light-blue",
         )}
         style={{ fontFamily: "var(--font-chakra)" }}
