@@ -11,6 +11,7 @@ import { JsonLdScript } from "@/lib/seo/json-ld-script"
 import { buildPageMetadata } from "@/lib/seo/page-metadata"
 import { PageShell } from "@/components/page-shell"
 import { ImagePlaceholder } from "@/components/ui/image-placeholder"
+import { HeroScrollIndicator } from "@/components/sections/hero-scroll-indicator"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Automate 2026",
@@ -103,6 +104,7 @@ function Automate2026HeroSection() {
           </div>
         </div>
       </PageShell>
+      <HeroScrollIndicator targetId="interest-intake" />
     </section>
   )
 }

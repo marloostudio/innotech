@@ -75,6 +75,9 @@ export const ROBOTS_ALLOWED_MARKETING_PATHS = [
   "/company/careers/open-roles",
   "/company/partners",
   "/company/investors",
+  "/legal/privacy-policy",
+  "/legal/terms",
+  "/legal/cookie-policy",
 ] as const
 
 export function marketingPathToRobotsAllowPatterns(path: string): string[] {
@@ -105,6 +108,8 @@ export function isPublicCrawlablePath(pathname: string): boolean {
   if (core === "/products/autoduck") return true
   if (core === "/products/radar-link") return true
   if (core === "/products/safeguard") return true
+  /** Legal policies — footer links; no preview password. */
+  if (core.startsWith("/legal/")) return true
   return false
 }
 

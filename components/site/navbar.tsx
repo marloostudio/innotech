@@ -84,7 +84,7 @@ export function Navbar() {
 
           {/* ── Desktop nav (centered in middle grid column when bar is short) ── */}
           <nav
-            className="hidden lg:flex lg:w-full lg:max-w-6xl xl:max-w-7xl lg:justify-self-center lg:mx-auto items-center justify-center gap-0.5 xl:gap-1 min-h-0 min-w-0"
+            className="hidden lg:flex lg:w-full lg:max-w-6xl xl:max-w-7xl lg:justify-self-center lg:mx-auto items-center justify-center gap-0 min-h-0 min-w-0"
             role="navigation"
             aria-label="Main"
           >
@@ -96,7 +96,7 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "group relative flex flex-col items-center px-2 xl:px-3 rounded transition-colors duration-150",
+                      "group relative flex flex-col items-center px-1.5 xl:px-2 rounded transition-colors duration-150",
                       scrolled ? "py-1.5" : "py-2",
                       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--it-blue)]",
                     )}

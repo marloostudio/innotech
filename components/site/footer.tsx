@@ -115,14 +115,12 @@ export function Footer() {
           <div className="space-y-0">
             <p className="text-[11px] leading-tight" style={{ color: "var(--it-text-muted)" }}>
               © {currentYear} {siteConfig.name}. All rights reserved.{" "}
-              <Link
-                href="/changelog"
-                className="font-mono text-[11px] align-baseline text-inherit transition-colors duration-150 hover:text-white focus-visible:text-white"
-                style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace", color: "inherit" }}
-                title="View changelog"
+              <span
+                className="font-mono text-[11px] align-baseline"
+                style={{ fontFamily: "var(--font-ibm-mono), 'IBM Plex Mono', monospace" }}
               >
                 v{siteConfig.version}
-              </Link>
+              </span>
             </p>
             <p className="text-[11px] leading-tight" style={{ color: "var(--it-text-muted)" }}>
               Powered by{" "}
@@ -143,13 +141,6 @@ export function Footer() {
               className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
             >
               Sitemap
-            </Link>
-            <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
-            <Link
-              href="/changelog"
-              className="font-normal text-it-text-secondary transition-[color,font-weight] duration-150 hover:font-bold hover:text-it-text-primary focus-visible:font-bold"
-            >
-              Changelog
             </Link>
             <span aria-hidden="true" style={{ color: "var(--it-text-muted)" }}>/</span>
             <Link

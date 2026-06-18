@@ -1,13 +1,12 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
-import { PageShell, Section, pageContainerClass } from '@/components/page-shell'
+import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
 import { CtaBanner } from '@/components/sections/cta-banner'
+import { RadarLinkHero } from '@/components/products/radar-link-hero'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { radarLinkProduct, radarLinkFeatures } from '@/lib/content/radar-link'
+import { radarLinkFeatures } from '@/lib/content/radar-link'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -29,28 +28,9 @@ export default function RadarLinkPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "RADARLink" }]} />
-      <section className="it-hero-solutions py-20 lg:py-28">
-        <div className={pageContainerClass}>
-          <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
-            <Badge variant="outline" className="mb-4">
-              Product
-            </Badge>
-            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{radarLinkProduct.hero.title}</h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{radarLinkProduct.hero.subtitle}</p>
-            <p className="text-lg text-muted-foreground mb-10 max-w-3xl text-pretty">{radarLinkProduct.hero.description}</p>
-            <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
-              <Button size="lg" asChild>
-                <Link href="/demo">Request a Demo</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Contact Sales</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RadarLinkHero />
 
-      <Section variant="light-bg">
+      <Section id="radar-link-overview" variant="light-bg" className="scroll-mt-24">
         <SectionHeader
           theme="light"
           label="Features"

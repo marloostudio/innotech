@@ -1,4 +1,4 @@
-/** App version (semver: major.minor.patch). Bump in CHANGELOG and here together. */
+/** App version (semver: major.minor.patch). */
 export const APP_VERSION = "1.5.0"
 
 /** Canonical origin (no trailing slash). Set `NEXT_PUBLIC_SITE_URL` in production. */

@@ -10,6 +10,11 @@ export interface ProductFeature {
   useCases: string[]
 }
 
+/** Static image paths under `public/images/`. */
+export const autolockImages = {
+  hero: "/images/events/automate-2026/autoduck-orchestration-preview.jpg",
+} as const
+
 export const autolockProduct = {
   name: "AutoDuck",
   tagline: "Autonomous Charging and Fleet Orchestration",
@@ -17,8 +22,10 @@ export const autolockProduct = {
   hero: {
     title: "AutoDuck",
     subtitle: "Autonomous Charging and Fleet Orchestration",
-    description: "Robotic charging, intelligent fleet scheduling, and depot automation for the future of mobility"
-  }
+    description: "Robotic charging, intelligent fleet scheduling, and depot automation for the future of mobility",
+    image: autolockImages.hero,
+    imageAlt: "AutoDuck autonomous charging and fleet orchestration system",
+  },
 }
 
 export const autolockFeatures: ProductFeature[] = [

@@ -16,6 +16,11 @@ export const trustLogos = [
   "Company F"
 ]
 
+/** Static image paths under `public/images/`. */
+export const homeImages = {
+  isometricIllustration: "/images/demo/innotech-isometric-illustration.png",
+} as const
+
 export const solutionsOverview = [
   {
     id: "manufacturing",

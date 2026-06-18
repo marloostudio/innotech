@@ -15,7 +15,8 @@ import {
   industriesServed,
   technologyPillars,
   faqItems,
-  finalCta
+  finalCta,
+  homeImages,
 } from "@/lib/content/home"
 import { buildPageMetadata } from "@/lib/seo/page-metadata"
 import { siteConfig } from "@/lib/site"
@@ -38,19 +39,20 @@ export default function HomePage() {
       />
       <EventAnnouncementRow />
       <section className="flex w-full flex-1 flex-col bg-it-light-bg">
-        <SvgDisplayRow
-          rightColumn={
-            <>
-              <SectionHeader
-                theme="light"
-                centered={false}
-                title="Comprehensive Automation Solutions"
-                description="End-to-end robotics and autonomous systems designed for enterprise operations"
-              />
-              <HomeSolutionsCards />
-            </>
-          }
-        />
+        <div className="w-full max-w-screen-2xl mx-auto px-8 py-12 lg:py-20">
+          <SectionHeader
+            theme="light"
+            centered={false}
+            className="mb-8"
+            title="Comprehensive Automation Solutions"
+            description="End-to-end robotics and autonomous systems designed for enterprise operations"
+          />
+          <SvgDisplayRow
+            imageSrc={homeImages.isometricIllustration}
+            imageAlt="InnoTech isometric illustration of autonomous robotics and fleet systems"
+            leftColumn={<HomeSolutionsCards />}
+          />
+        </div>
       </section>
       {/* Industry Grid → dark (it-section-mid) — Serving Critical Industries */}
       <IndustryGrid

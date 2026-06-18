@@ -8,6 +8,7 @@ import {
   ImagePlaceholder,
   type ImagePlaceholderAspectRatio,
 } from "@/components/ui/image-placeholder"
+import { HeroScrollIndicator, type HeroScrollAccent } from "@/components/sections/hero-scroll-indicator"
 
 export interface PillarHeroCta {
   label: string
@@ -30,7 +31,7 @@ export interface PillarHeroProps {
   h2?: string
   /** Short description paragraph, visible above the fold */
   description?: string
-  /** Optional primary CTA; omit for minimal hero (e.g. changelog) */
+  /** Optional primary CTA; omit for minimal hero */
   primaryCta?: PillarHeroCta
   /** Optional secondary CTA; omit for minimal hero */
   secondaryCta?: PillarHeroCta
@@ -46,6 +47,12 @@ export interface PillarHeroProps {
   align?: "center" | "left"
   /** Optional hero image placeholder on the right (large screens) */
   heroImage?: PillarHeroImage
+}
+
+function heroClassToAccent(heroClass?: HeroSectionClass): HeroScrollAccent {
+  if (heroClass === "it-hero-safeguard") return "safeguard"
+  if (heroClass === "it-hero-solutions") return "solutions"
+  return "default"
 }
 
 /**
@@ -159,6 +166,7 @@ export function PillarHero({
           <div className={contentAlign}>{heroContent}</div>
         )}
       </PageShell>
+      {!compact && <HeroScrollIndicator accent={heroClassToAccent(heroClass)} />}
     </section>
   )
 }

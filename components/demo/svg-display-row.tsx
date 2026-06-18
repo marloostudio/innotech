@@ -1,43 +1,31 @@
 import type { ReactNode } from "react"
 
-/** Full SVG canvas and left-column crop (from embedded layer bounds). */
-const SAFEGUARD_SVG = {
-  width: 792,
-  height: 612,
-  leftColumnWidth: 399,
-} as const
-
 interface SvgDisplayRowProps {
-  rightColumn?: ReactNode
+  leftColumn?: ReactNode
+  imageSrc: string
+  imageAlt: string
 }
 
 /**
- * SVG display sandbox — edit markup and styles here while previewing at /demo.
+ * Two-column solutions row — stacked cards left, illustration right (below section header).
  */
-export function SvgDisplayRow({ rightColumn }: SvgDisplayRowProps) {
-  const { width, height, leftColumnWidth } = SAFEGUARD_SVG
-
+export function SvgDisplayRow({ leftColumn, imageSrc, imageAlt }: SvgDisplayRowProps) {
   return (
     <div
-      className={`grid w-full grid-cols-1 lg:grid-cols-[9fr_11fr] lg:items-start${rightColumn ? " bg-it-light-bg" : ""}`}
-      aria-label="SVG preview area"
+      className="grid w-full grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 lg:items-center bg-it-light-bg"
+      aria-label="Solutions preview area"
     >
-      <div
-        className={`w-full overflow-hidden${rightColumn ? " bg-it-light-bg" : ""}`}
-        style={{ aspectRatio: `${leftColumnWidth} / ${height}` }}
-      >
-        <img
-          src="/images/demo/safeguard.svg"
-          alt="SafeGuard product diagram — left column"
-          className="block h-full max-w-none"
-          style={{ width: `${(width / leftColumnWidth) * 100}%` }}
-        />
+      <div className="w-full min-w-0">{leftColumn}</div>
+      <div className="flex w-full min-w-0 justify-center">
+        <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="block h-auto w-full object-contain"
+          />
+        </div>
       </div>
-      {rightColumn ? (
-        <div className="bg-it-light-bg px-10 py-12 lg:px-12 lg:py-20">{rightColumn}</div>
-      ) : (
-        <div aria-hidden="true" className="hidden min-h-px lg:block" />
-      )}
     </div>
   )
 }

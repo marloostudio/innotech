@@ -1,20 +1,17 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
+import Image from 'next/image'
 import { BreadcrumbStrip } from '@/components/breadcrumb-strip'
-import { PageShell, Section, pageContainerClass } from '@/components/page-shell'
+import { PageShell, Section } from '@/components/page-shell'
 import { SectionHeader } from '@/components/section-header'
-import { CtaBanner } from '@/components/sections/cta-banner'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { ImagePlaceholder } from '@/components/ui/image-placeholder'
+import { CtaBanner } from '@/components/sections/cta-banner'
+import { SafeGuardHero } from '@/components/products/safeguard-hero'
 import {
-  safeguardProduct,
   safeguardBrochureCards,
   safeguardStaticSafetyNarrative,
   safeguardImages,
 } from '@/lib/content/safeguard'
-import { SectionParallaxBackground } from '@/components/sections/section-parallax-background'
 import * as LucideIcons from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -36,42 +33,10 @@ export default function SafeGuardPage() {
   return (
     <>
       <BreadcrumbStrip items={[{ label: "Products", href: "/products" }, { label: "SafeGuard" }]} />
-      <section className="it-hero-safeguard pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div className={pageContainerClass}>
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
-            <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
-              <Badge variant="outline" className="mb-4">
-                Product
-              </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">{safeguardProduct.hero.title}</h1>
-              <p className="text-xl lg:text-2xl text-muted-foreground mb-8 text-balance">{safeguardProduct.hero.subtitle}</p>
-              <p className="text-lg text-muted-foreground mb-10 max-w-3xl mx-auto lg:mx-0 text-pretty">{safeguardProduct.hero.description}</p>
-              <div className="flex flex-row flex-wrap gap-4 justify-center lg:justify-start">
-                <Button size="lg" asChild>
-                  <Link href="/demo">Request a Demo</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/contact">Contact Sales</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="w-full min-w-0">
-              <ImagePlaceholder
-                src={safeguardProduct.hero.image}
-                alt={safeguardProduct.hero.imageAlt}
-                aspectRatio="3/2"
-                objectFit="contain"
-                transparentBackground
-                imageClassName="[filter:drop-shadow(0_8px_40px_rgba(0,0,0,0.6))]"
-                className="border-0"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SafeGuardHero />
 
       {/* Static vs dynamic safety narrative */}
-      <section className="py-20 lg:py-28 border-t border-border/50">
+      <section id="safeguard-overview" className="py-20 lg:py-28 border-t border-border/50 scroll-mt-24">
         <PageShell>
           <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-12 lg:items-start">
             {/* Left 1/3 — narrative */}
@@ -84,7 +49,7 @@ export default function SafeGuardPage() {
               <h2 className="text-3xl lg:text-5xl font-bold tracking-tight font-chakra text-balance">
                 {safeguardStaticSafetyNarrative.headline}
               </h2>
-              <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
+              <p className="text-lg text-it-text-secondary text-pretty leading-relaxed">
                 {safeguardStaticSafetyNarrative.intro}
               </p>
             </div>
@@ -94,7 +59,7 @@ export default function SafeGuardPage() {
               {safeguardStaticSafetyNarrative.legacyProblems.map((item) => (
                 <Card
                   key={item.title}
-                  className="it-problem-card bg-it-light-bg border border-it-light-border shadow-[var(--it-light-shadow-sm)] gap-0"
+                  className="it-problem-card bg-it-light-offwhite border border-it-light-border shadow-[var(--it-light-shadow-sm)] gap-0"
                 >
                   <CardHeader>
                     <CardTitle className="text-xl font-bold leading-snug text-it-light-text-primary">
@@ -114,88 +79,169 @@ export default function SafeGuardPage() {
       </section>
 
       {/* Features Grid → light-bg */}
-      <Section
-        variant="light-bg"
-        background={
-          <SectionParallaxBackground
-            src={safeguardImages.featuresBackground}
-            alt=""
-            anchor="right"
-            blend="abstract"
-            imageOpacity={0.28}
-            overlayVariant="content-safe"
-          />
-        }
-      >
+      <Section variant="light-bg">
         <SectionHeader
           theme="light"
           label="Features"
           title="Comprehensive Safety Monitoring"
           description="Certification, collaboration, fault response, and a pilot program built for your floor plan"
         />
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {safeguardBrochureCards.map((card) => {
-            const Icon = getIcon(card.icon)
-            return (
-              <Card
-                key={card.id}
-                className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
-              >
-                <CardHeader className="grid-cols-1">
-                  <div className="flex flex-row items-start gap-4">
-                    <div className="p-3.5 rounded-lg bg-[var(--it-light-safeguard)]/10 shrink-0">
-                      <Icon className="w-8 h-8 text-it-light-safeguard" strokeWidth={1.5} />
+        <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-10 lg:gap-12 xl:gap-16 items-start">
+          <div className="w-full min-w-0">
+            <ImagePlaceholder
+              src={safeguardImages.zoning}
+              alt="SafeGuard dynamic zoning zones on a facility floor plan"
+              aspectRatio="4/3"
+              objectFit="contain"
+              transparentBackground
+              variant="light"
+              className="border-0"
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+            {safeguardBrochureCards.map((card) => {
+              const Icon = getIcon(card.icon)
+              return (
+                <Card
+                  key={card.id}
+                  className="group bg-it-light-surface border border-it-light-border shadow-[var(--it-light-shadow-sm)] hover:shadow-[var(--it-light-shadow-md)] transition-shadow"
+                >
+                  <CardHeader className="grid-cols-1">
+                    <div className="space-y-3">
+                      <div className="flex flex-row items-start gap-4">
+                        <div className="p-3.5 rounded-lg bg-[var(--it-light-safeguard)]/10 shrink-0">
+                          <Icon className="w-8 h-8 text-it-light-safeguard" strokeWidth={1.5} />
+                        </div>
+                        <CardTitle className="text-2xl text-it-light-text-primary leading-snug min-w-0 flex-1">
+                          {card.name.split("\n").map((line, index) => (
+                            <span key={line} className={index > 0 ? "block" : undefined}>
+                              {line}
+                            </span>
+                          ))}
+                        </CardTitle>
+                      </div>
+                      {card.description ? (
+                        <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed w-full">
+                          {card.description}
+                        </p>
+                      ) : null}
+                      {card.bullets ? (() => {
+                        const useList = card.bulletsAsList !== false
+                        const Wrapper = useList ? "ul" : "div"
+                        const Item = useList ? "li" : "p"
+                        const wrapperClassName = useList
+                          ? "space-y-1.5 w-full list-disc ps-5 marker:text-it-light-safeguard"
+                          : "space-y-1.5 w-full"
+                        const itemClassName = useList
+                          ? "text-[15px] text-it-light-text-secondary text-pretty leading-relaxed ps-1"
+                          : "text-[15px] text-it-light-text-secondary text-pretty leading-relaxed w-full"
+
+                        return (
+                          <Wrapper className={wrapperClassName}>
+                            {card.bullets.map((bullet) => {
+                              const bulletText = typeof bullet === "string" ? bullet : bullet.text
+                              const bulletHref = typeof bullet === "string" ? undefined : bullet.href
+                              const colonIndex = bulletText.indexOf(": ")
+                              const label =
+                                colonIndex !== -1 ? bulletText.slice(0, colonIndex + 1) : null
+                              const body =
+                                colonIndex !== -1 ? bulletText.slice(colonIndex + 2) : bulletText
+
+                              return (
+                                <Item key={bulletText} className={itemClassName}>
+                                  {label ? (
+                                    <>
+                                      <span className="font-semibold text-it-light-text-primary">
+                                        {label}
+                                      </span>{" "}
+                                      {body}
+                                    </>
+                                  ) : (
+                                    <span className="font-semibold text-it-light-text-primary">
+                                      {bulletText}
+                                    </span>
+                                  )}
+                                  {bulletHref ? (
+                                    <>
+                                      {" "}
+                                      <a
+                                        href={bulletHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex align-middle text-it-light-blue hover:text-it-light-blue-hover transition-colors duration-150"
+                                        aria-label={`Open ${bulletText} in a new window`}
+                                      >
+                                        <LucideIcons.ExternalLink
+                                          className="w-3.5 h-3.5"
+                                          strokeWidth={1.5}
+                                          aria-hidden
+                                        />
+                                      </a>
+                                    </>
+                                  ) : null}
+                                </Item>
+                              )
+                            })}
+                          </Wrapper>
+                        )
+                      })() : null}
                     </div>
-                    <div className="min-w-0 flex-1 space-y-2">
-                      <CardTitle className="text-2xl text-it-light-text-primary leading-snug">
-                        {card.name}
-                      </CardTitle>
-                      <p className="text-[15px] text-it-light-text-secondary text-pretty leading-relaxed">
-                        {card.bullets
-                          ? (() => {
-                              const text = card.bullets!.join(". ")
-                              return text.endsWith(".") ? text : `${text}.`
-                            })()
-                          : card.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            )
-          })}
+                  </CardHeader>
+                </Card>
+              )
+            })}
+          </div>
         </div>
       </Section>
 
-      {/* Industries Using SafeGuard → dark (it-section-mid) */}
-      <section className="it-section-mid py-20 lg:py-28">
-        <PageShell>
-          <SectionHeader
-            label="Applications"
-            title="Industries Using SafeGuard"
-            description="From manufacturing floors to autonomous vehicle depots, SafeGuard ensures safe operations"
+      {/* Industries Using SafeGuard → dark gradient + right background image */}
+      <section className="it-section-safeguard-industries py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute inset-y-0 right-0 hidden w-[62%] lg:block lg:w-[54%]">
+            <Image
+              src={safeguardImages.featuresBackground}
+              alt=""
+              fill
+              unoptimized
+              className="object-contain object-right"
+            />
+          </div>
+          <div
+            className="absolute inset-0 hidden lg:block"
+            style={{ background: 'var(--it-safeguard-industries-image-fade)' }}
           />
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: "Manufacturing", icon: LucideIcons.Factory },
-              { name: "Logistics", icon: LucideIcons.Truck },
-              { name: "Autonomous Fleets", icon: LucideIcons.Car },
-              { name: "Warehousing", icon: LucideIcons.Warehouse }
-            ].map((industry) => (
-              <div
-                key={industry.name}
-                className="flex flex-col items-center text-center p-6 bg-white rounded-lg border border-it-light-border shadow-sm transition-[box-shadow,transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
-              >
-                <industry.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="font-semibold text-it-light-text-primary">{industry.name}</h3>
-              </div>
-            ))}
+        </div>
+
+        <PageShell className="relative z-10">
+          <div className="max-w-xl lg:max-w-2xl ml-4 lg:ml-6">
+            <SectionHeader
+              label="Applications"
+              title="Industries Using SafeGuard"
+              description="From manufacturing floors to autonomous vehicle depots, SafeGuard ensures safe operations"
+              centered={false}
+              className="mb-8"
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { name: "Manufacturing", icon: LucideIcons.Factory },
+                { name: "Logistics", icon: LucideIcons.Truck },
+                { name: "Autonomous Fleets", icon: LucideIcons.Car },
+                { name: "Warehousing", icon: LucideIcons.Warehouse },
+              ].map((industry) => (
+                <div
+                  key={industry.name}
+                  className="flex items-center gap-4 p-5 rounded-lg border border-it-border bg-[var(--it-surface-raised)] border-l-[3px] border-l-[var(--it-safeguard)] shadow-[var(--it-shadow-sm)] transition-[box-shadow,transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--it-safeguard-border)] hover:shadow-[var(--it-shadow-md)]"
+                >
+                  <industry.icon className="w-8 h-8 shrink-0 text-[var(--it-safeguard)]" strokeWidth={1.5} />
+                  <h3 className="font-semibold text-it-text-primary">{industry.name}</h3>
+                </div>
+              ))}
+            </div>
           </div>
         </PageShell>
       </section>
 
-      {/* CTA Section */}
       <CtaBanner
         title="Ready to Enhance Your Safety Systems?"
         description="See how SafeGuard brings software-defined safety to your robotic operations"

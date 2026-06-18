@@ -5,6 +5,7 @@ import { CtaBanner } from '@/components/sections/cta-banner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ImagePlaceholder } from '@/components/ui/image-placeholder'
+import { HeroScrollIndicator } from '@/components/sections/hero-scroll-indicator'
 import * as LucideIcons from 'lucide-react'
 
 interface Solution {
@@ -57,7 +58,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
       </div>
 
       {/* Hero Section — two-column with 3/2 placeholder on right */}
-      <section className="it-hero-solutions py-20 lg:py-28">
+      <section className="it-hero-solutions it-hero-detail relative py-20 lg:py-28">
         <div className={pageContainerClass}>
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
             <div>
@@ -109,6 +110,7 @@ export function SolutionDetail({ solution }: SolutionDetailProps) {
             </div>
           </div>
         </div>
+        <HeroScrollIndicator accent="solutions" />
       </section>
 
       {/* How It Works → dark alt */}

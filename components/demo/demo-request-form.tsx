@@ -13,7 +13,17 @@ const inputBase =
 
 const labelClass = "block text-sm font-medium mb-2 text-it-text-primary"
 
-export function DemoRequestForm() {
+export interface DemoRequestFormInitialValues {
+  industry?: string
+  interest?: string
+  message?: string
+}
+
+interface DemoRequestFormProps {
+  initialValues?: DemoRequestFormInitialValues
+}
+
+export function DemoRequestForm({ initialValues }: DemoRequestFormProps) {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -117,7 +127,7 @@ export function DemoRequestForm() {
           <select
             id="industry"
             name="industry"
-            defaultValue=""
+            defaultValue={initialValues?.industry ?? ""}
             className={inputBase}
             aria-label="Industry — choose one"
           >
@@ -136,7 +146,7 @@ export function DemoRequestForm() {
           <select
             id="interest"
             name="interest"
-            defaultValue=""
+            defaultValue={initialValues?.interest ?? ""}
             className={inputBase}
             aria-label="Area of interest — choose one"
           >
@@ -160,6 +170,7 @@ export function DemoRequestForm() {
           rows={3}
           placeholder="Tell us about your automation needs, challenges, or questions..."
           className={`${inputBase} resize-y min-h-[96px]`}
+          defaultValue={initialValues?.message ?? ""}
           required
         />
       </div>

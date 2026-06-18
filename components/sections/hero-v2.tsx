@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { pageContainerClass } from "@/components/page-shell"
+import { HeroScrollIndicator } from "@/components/sections/hero-scroll-indicator"
 
 /**
  * Hero Style Version 2 — Headline style guide implementation.
@@ -137,6 +138,7 @@ export function HeroV2({ primaryCta, secondaryCta, background }: HeroV2Props) {
           </div>
         </div>
       </div>
+      <HeroScrollIndicator />
     </section>
   )
 }

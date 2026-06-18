@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Check, Phone, Radio, Shield, Zap } from "lucide-react"
+import { ArrowRight, Check, Mail, Radio, Shield, Zap } from "lucide-react"
 
 import { ThankYouDataLayer } from "@/components/analytics/thank-you-datalayer"
 import { BreadcrumbStrip } from "@/components/breadcrumb-strip"
@@ -46,7 +46,7 @@ function blurb(source: Source | undefined) {
     case "demo":
       return "Your demo request is recorded. Our team will reach out to schedule time with you."
     default:
-      return "Your information was submitted successfully. Our team will be in touch soon."
+      return "Your information was submitted successfully.\nOur team will be in touch soon."
   }
 }
 
@@ -101,7 +101,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
                     Thank you
                   </h1>
                 </div>
-                <p className="text-lg md:text-xl text-pretty leading-relaxed max-w-[680px]" style={{ color: "var(--it-text-muted)" }}>
+                <p className="text-lg md:text-xl text-pretty leading-relaxed max-w-[680px] whitespace-pre-line" style={{ color: "var(--it-text-muted)" }}>
                   {blurb(source)}
                 </p>
               </div>
@@ -114,12 +114,15 @@ export default async function ThankYouPage({ searchParams }: Props) {
                     Need to reach us sooner?
                   </p>
                   <p className="mb-4 inline-flex items-center gap-2 text-sm text-it-text-primary">
-                    <Phone className="h-4 w-4 shrink-0 text-it-blue" strokeWidth={1.5} aria-hidden />
+                    <Mail className="h-4 w-4 shrink-0 text-it-blue" strokeWidth={1.5} aria-hidden />
                     <span>
-                      <span className="font-medium">Call us</span>
+                      <span className="font-medium">Email us</span>
                       {" "}directly at{" "}
-                      <a href="tel:+17148726407" className="underline hover:text-it-text-secondary">
-                        (714) 872-6407
+                      <a
+                        href={`mailto:${siteConfig.company.email}?subject=${encodeURIComponent("RE: Urgent Inquiry from Website")}`}
+                        className="underline hover:text-it-text-secondary"
+                      >
+                        {siteConfig.company.email}
                       </a>
                     </span>
                   </p>
@@ -128,7 +131,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
             </div>
           </div>
 
-          <div className="mx-auto mt-12 max-w-5xl">
+          <div id="while-you-wait" className="mx-auto mt-12 max-w-5xl scroll-mt-28">
             <div className="it-section-divider mb-6" aria-hidden />
             <h2
               className="mb-6 text-2xl md:text-3xl font-bold tracking-tight text-balance text-it-text-primary"

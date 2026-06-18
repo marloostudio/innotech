@@ -12,8 +12,9 @@ export interface ProductFeature {
 
 /** Static image paths under `public/images/`. */
 export const safeguardImages = {
-  hardwareHero: "/images/products/safeguard/safeguard-hardware-hero.png",
-  featuresBackground: "/images/safeguard/SafeGuard-diagram.png",
+  hardwareHero: "/images/products/safeguard/SafeGuard_Hero.png",
+  featuresBackground: "/images/products/safeguard/SafeGuard_08.png",
+  zoning: "/images/products/safeguard/zoning.png",
 } as const
 
 export const safeguardProduct = {
@@ -25,7 +26,7 @@ export const safeguardProduct = {
     subtitle: "Software-Defined Safety for Robots",
     description: "Real-time hazard detection, compliance monitoring, and predictive maintenance for AMRs and industrial robots",
     image: safeguardImages.hardwareHero,
-    imageAlt: "SafeGuard hardware unit with sensors and antennas",
+    imageAlt: "SafeGuard safety monitoring system",
   },
 }
 
@@ -56,11 +57,20 @@ export const safeguardStaticSafetyNarrative = {
 }
 
 /** Main SafeGuard product page — “Comprehensive Safety Monitoring” grid (brochure). */
+export type SafeguardBrochureBullet =
+  | string
+  | {
+      text: string
+      href: string
+    }
+
 export interface SafeguardBrochureCard {
   id: string
   name: string
   description?: string
-  bullets?: string[]
+  bullets?: SafeguardBrochureBullet[]
+  /** When false, bullet lines render without list markers (default: true). */
+  bulletsAsList?: boolean
   icon: string
 }
 
@@ -68,8 +78,12 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
     id: "certified-safety",
     name: "Certified Safety",
-    description:
-      "Functional and AI Safety certified, including ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d), ISO\u00A061508 (SIL\u00A03), and ISO\u00A022440",
+    description: "Functional and AI Safety certified, including",
+    bullets: [
+      "ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d)",
+      "ISO\u00A061508 (SIL\u00A03)",
+      "ISO\u00A022440",
+    ],
     icon: "badge-check",
   },
   {
@@ -92,11 +106,136 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
     bullets: [
       "Offer: Installation & operation for 4 weeks at $0 cost",
       "Goal: Validate efficiency gains on your specific floor plan",
-      "Requirement: Letter of Intent tied to certification roadmap",
     ],
+    bulletsAsList: false,
     icon: "rocket",
   },
 ]
+
+/** Interactive “Where It Works” section — industry selectors + lead-gen CTAs. */
+export interface SafeguardIndustryApplication {
+  id: string
+  name: string
+  icon: "factory" | "truck" | "car" | "warehouse"
+  /** Conversational hook shown on the selector card. */
+  hook: string
+  /** Expanded pain narrative in the detail panel. */
+  pain: string
+  /** SafeGuard outcome — the “so what”. */
+  outcome: string
+  highlights: string[]
+  stat: { value: string; label: string }
+  /** Maps to `contactIndustryOptions` on the demo form. */
+  demoIndustry: string
+  /** Pre-filled demo message for this use case. */
+  demoMessage: string
+  /** Optional link to a related industry page. */
+  industryHref?: string
+}
+
+export const safeguardApplicationsSection = {
+  label: "Applications",
+  title: "Industries Using SafeGuard",
+  description:
+    "From manufacturing floors to autonomous vehicle depots, SafeGuard ensures safe operations",
+  ctaFallback: {
+    headline: "Not sure where you fit?",
+    body: "Tell us about your operation — we'll map SafeGuard to your floor plan in a 30-minute walkthrough.",
+    primaryLabel: "Schedule a Demo",
+    primaryHref: "/demo?interest=software&message=I%27m%20interested%20in%20SafeGuard%20and%20would%20like%20to%20see%20how%20it%20applies%20to%20my%20operation.",
+    secondaryLabel: "Talk to Sales",
+    secondaryHref: "/contact",
+  },
+  industries: [
+    {
+      id: "manufacturing",
+      name: "Manufacturing",
+      icon: "factory",
+      hook: "Robots frozen every time someone walks by?",
+      pain:
+        "Static LiDAR zones treat every human as a hard stop — cutting throughput by 20% or more on busy production lines.",
+      outcome:
+        "SafeGuard replaces rigid fences with dynamic safety zones that shrink, expand, and yield in real time — so cobots keep moving when it's safe.",
+      highlights: [
+        "ISO 13849-1 Cat 3 / PL d certified safety layer",
+        "Human-robot collaboration without physical cages",
+        "Pilot program: 4 weeks on your floor, $0 install",
+      ],
+      stat: { value: "20%+", label: "throughput recovered" },
+      demoIndustry: "manufacturing",
+      demoMessage:
+        "I'm interested in SafeGuard for our manufacturing floor and would like to discuss a pilot on our production line.",
+    },
+    {
+      id: "logistics",
+      name: "Logistics",
+      icon: "truck",
+      hook: "Safety that can't keep pace with depot speed?",
+      pain:
+        "High-velocity logistics depots need robots that move fast — but legacy safety forces constant stops at every crossing and hand-off point.",
+      outcome:
+        "SafeGuard monitors mixed human-robot traffic and adjusts zones dynamically, keeping AMRs flowing without compromising safety.",
+      highlights: [
+        "Real-time hazard detection under 50 ms",
+        "Works alongside existing fleet management",
+        "Audit-ready compliance logging built in",
+      ],
+      stat: { value: "<50 ms", label: "fault detection interval" },
+      demoIndustry: "warehousing",
+      demoMessage:
+        "I'm interested in SafeGuard for our logistics depot and want to understand how dynamic safety zones improve AMR throughput.",
+      industryHref: "/industries/logistics",
+    },
+    {
+      id: "autonomous-fleets",
+      name: "Autonomous Fleets",
+      icon: "car",
+      hook: "Mixed traffic. Zero margin for error.",
+      pain:
+        "Autonomous vehicles share space with pedestrians, equipment, and legacy systems — static safety can't adapt to that complexity.",
+      outcome:
+        "Software-defined safety zones scale from pilot depots to full production fleets, with real-time awareness of every moving object in the zone.",
+      highlights: [
+        "Dynamic zones for mixed AV and human traffic",
+        "Integrates with V2X and fleet orchestration",
+        "Scale from pilot to production without rewiring",
+      ],
+      stat: { value: "L4", label: "operational autonomy support" },
+      demoIndustry: "automotive",
+      demoMessage:
+        "I'm interested in SafeGuard for our autonomous fleet operations and would like to see how dynamic safety zones work in mixed-traffic environments.",
+      industryHref: "/industries/autonomous-fleets",
+    },
+    {
+      id: "warehousing",
+      name: "Warehousing",
+      icon: "warehouse",
+      hook: "AMRs stopping at every aisle crossing?",
+      pain:
+        "Warehouse AMRs spend more time waiting on static safety triggers than moving inventory — and every unnecessary stop costs you picks per hour.",
+      outcome:
+        "SafeGuard lets AMRs navigate shared aisles intelligently, slowing or rerouting only when a real hazard is detected — not on every proximity ping.",
+      highlights: [
+        "Congregate Detection for busy intersections",
+        "Reduce false stops from legacy mat and fence systems",
+        "Validate gains on your floor in 4 weeks, $0 install",
+      ],
+      stat: { value: "4 wks", label: "$0 pilot on your floor" },
+      demoIndustry: "warehousing",
+      demoMessage:
+        "I'm interested in SafeGuard for our warehouse AMR fleet and want to explore the free 4-week pilot program.",
+    },
+  ] satisfies SafeguardIndustryApplication[],
+}
+
+export function buildSafeguardDemoHref(industry: SafeguardIndustryApplication) {
+  const params = new URLSearchParams({
+    industry: industry.demoIndustry,
+    interest: "software",
+    message: industry.demoMessage,
+  })
+  return `/demo?${params.toString()}`
+}
 
 export const safeguardFeatures: ProductFeature[] = [
   {

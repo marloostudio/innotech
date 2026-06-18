@@ -17,6 +17,12 @@ interface SectionParallaxBackgroundProps {
   overlayVariant?: "flat" | "content-safe"
   /** Soft-light blend for wireframe assets on light sections */
   blend?: BackgroundBlend
+  /** Full-bleed cover fill for the entire section */
+  fill?: boolean
+  /** Apply grayscale via CSS (does not modify the source file) */
+  grayscale?: boolean
+  /** Colour wash layered over a fill image — light (white) or navy (dark sections) */
+  overlayTone?: "light" | "navy"
 }
 
 const anchorImageClass: Record<BackgroundAnchor, string> = {
@@ -47,28 +53,39 @@ export function SectionParallaxBackground({
   src,
   alt = "",
   imageOpacity = 0.16,
-  overlayOpacity = 0.4,
+  overlayOpacity,
   anchor = "right",
   overlayVariant = "content-safe",
   blend = "none",
+  fill = false,
+  grayscale = false,
+  overlayTone = "light",
 }: SectionParallaxBackgroundProps) {
   const isAbstract = blend === "abstract"
+  const resolvedOverlayOpacity = overlayOpacity ?? (fill ? 0.85 : 0.4)
+  const fillOverlayClass = overlayTone === "navy" ? "bg-it-bg" : "bg-it-light-bg"
 
-  const imageStyle: React.CSSProperties = isAbstract
+  const imageStyle: React.CSSProperties = fill
     ? {
-        opacity: imageOpacity,
-        mixBlendMode: "multiply",
-        filter: "invert(1) grayscale(1) contrast(0.88)",
+        filter: grayscale ? "grayscale(1)" : undefined,
       }
-    : { opacity: imageOpacity }
+    : isAbstract
+      ? {
+          opacity: imageOpacity,
+          mixBlendMode: "multiply",
+          filter: "invert(1) grayscale(1) contrast(0.88)",
+        }
+      : { opacity: imageOpacity }
 
   return (
     <div className="absolute inset-0 h-full w-full">
       <div
         className={cn(
-          isAbstract
-            ? "absolute -inset-[8%] opacity-100"
-            : cn("absolute bottom-0 top-[6%]", anchorPanelClass[anchor]),
+          fill
+            ? "absolute inset-0"
+            : isAbstract
+              ? "absolute -inset-[8%] opacity-100"
+              : cn("absolute bottom-0 top-[6%]", anchorPanelClass[anchor]),
         )}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -77,15 +94,22 @@ export function SectionParallaxBackground({
           alt={alt}
           className={cn(
             "h-full w-full",
-            isAbstract
-              ? "object-cover object-[85%_55%]"
-              : anchorImageClass[anchor],
+            fill
+              ? "object-cover"
+              : isAbstract
+                ? "object-cover object-[85%_55%]"
+                : anchorImageClass[anchor],
           )}
           style={imageStyle}
         />
       </div>
 
-      {overlayVariant === "content-safe" ? (
+      {fill ? (
+        <div
+          className={cn("absolute inset-0", fillOverlayClass)}
+          style={{ opacity: resolvedOverlayOpacity }}
+        />
+      ) : overlayVariant === "content-safe" ? (
         <>
           <div
             className="absolute inset-0"
@@ -126,7 +150,7 @@ export function SectionParallaxBackground({
       ) : (
         <div
           className="absolute inset-0 bg-it-light-bg"
-          style={{ opacity: overlayOpacity }}
+          style={{ opacity: resolvedOverlayOpacity }}
         />
       )}
     </div>

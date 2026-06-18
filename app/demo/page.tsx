@@ -14,7 +14,12 @@ export const metadata: Metadata = {
   description: "Schedule a personalized demo of InnoTech's autonomous infrastructure solutions.",
 }
 
-export default function DemoPage() {
+export default async function DemoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ industry?: string; interest?: string; message?: string }>
+}) {
+  const sp = await searchParams
   const demoNotifyEmail = getDemoRequestNotifyEmail()
 
   return (
@@ -77,7 +82,13 @@ export default function DemoPage() {
             <div className="w-full min-w-0 max-w-xl lg:max-w-none lg:justify-self-end">
               <Card className="overflow-hidden it-card it-card-accent-blue border-it-border shadow-(--it-shadow-md)">
                 <CardContent className="pt-6 pb-6 px-5 sm:px-7">
-                  <DemoRequestForm />
+                  <DemoRequestForm
+                    initialValues={{
+                      industry: sp.industry,
+                      interest: sp.interest,
+                      message: sp.message,
+                    }}
+                  />
                 </CardContent>
               </Card>
             </div>
