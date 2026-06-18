@@ -15,8 +15,9 @@ const subsectionTitleClass = "text-lg font-semibold mt-6 mb-2"
 const subsectionBlockClass = "pl-4"
 const bodyClass = "text-[var(--it-light-text-muted)] font-[var(--font-dm-sans)] leading-relaxed mb-4"
 const anchorClass = "underline hover:opacity-90"
-const textPrimaryStyle = { color: "var(--it-light-text-primary)", fontFamily: "var(--font-inter), 'Inter', sans-serif" }
+const textPrimaryStyle = { color: "var(--it-light-text-primary)", fontFamily: "var(--font-chakra), 'Chakra Petch', sans-serif" }
 const textPrimaryDmStyle = { color: "var(--it-light-text-primary)", fontFamily: "var(--font-dm-sans)" }
+const blockquoteClass = "my-6 border-l-[3px] pl-4 py-1 text-sm italic"
 
 const sections = [
   { id: "about-innotech-systems", label: "1. About InnoTech Systems" },
@@ -24,16 +25,17 @@ const sections = [
   { id: "intellectual-property", label: "3. Intellectual Property" },
   { id: "personal-data-and-privacy", label: "4. Personal Data and Privacy" },
   { id: "enquiries-demos-and-commercial-engagements", label: "5. Enquiries, Demos, and Commercial Engagements" },
-  { id: "third-party-links-and-embedded-content", label: "6. Third-Party Links and Embedded Content" },
-  { id: "analytics-and-third-party-services", label: "7. Analytics and Third-Party Services" },
-  { id: "disclaimers", label: "8. Disclaimers" },
-  { id: "limitation-of-liability", label: "9. Limitation of Liability" },
-  { id: "indemnification", label: "10. Indemnification" },
-  { id: "governing-law-and-jurisdiction", label: "11. Governing Law and Jurisdiction" },
-  { id: "changes-to-these-terms", label: "12. Changes to These Terms" },
-  { id: "severability", label: "13. Severability" },
-  { id: "entire-agreement", label: "14. Entire Agreement" },
-  { id: "contact-us", label: "15. Contact Us" },
+  { id: "export-compliance", label: "6. Export Compliance" },
+  { id: "third-party-links", label: "7. Third-Party Links" },
+  { id: "analytics-and-third-party-services", label: "8. Analytics and Third-Party Services" },
+  { id: "disclaimers", label: "9. Disclaimers" },
+  { id: "limitation-of-liability", label: "10. Limitation of Liability" },
+  { id: "indemnification", label: "11. Indemnification" },
+  { id: "governing-law-and-jurisdiction", label: "12. Governing Law and Jurisdiction" },
+  { id: "changes-to-these-terms", label: "13. Changes to These Terms" },
+  { id: "severability", label: "14. Severability" },
+  { id: "entire-agreement", label: "15. Entire Agreement" },
+  { id: "contact-us", label: "16. Contact Us" },
 ]
 
 export default function TermsPage() {
@@ -62,7 +64,7 @@ export default function TermsPage() {
           </h1>
           <p className={`${bodyClass} mb-2`}>
             <strong style={textPrimaryStyle}>Effective Date:</strong> February 1, 2025<br />
-            <strong style={textPrimaryStyle}>Last Updated:</strong> April 2026
+            <strong style={textPrimaryStyle}>Last Updated:</strong> June 17, 2026
           </p>
           <p className={bodyClass}>
             These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the InnoTech Systems website located at{" "}
@@ -79,7 +81,7 @@ export default function TermsPage() {
               1. About InnoTech Systems
             </h2>
             <p className={bodyClass}>
-              InnoTech Systems is an autonomous infrastructure company headquartered in the United States.
+              InnoTech Systems is an autonomous infrastructure company headquartered in the United States that develops charging, safety monitoring, and vehicle communication systems for industrial and commercial applications.
             </p>
             <p className={bodyClass}>
               <strong style={textPrimaryStyle}>Registered Address:</strong><br />
@@ -90,8 +92,10 @@ export default function TermsPage() {
             </p>
             <p className={bodyClass}>
               <strong style={textPrimaryStyle}>Contact:</strong><br />
+              Email:{" "}
               <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a><br />
-              <Link href="/contact" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>https://innotech-sys.com/contact</Link>
+              Web:{" "}
+              <a href="https://innotech-sys.com/contact" className={anchorClass} style={{ color: "var(--it-light-blue)" }} target="_blank" rel="noopener noreferrer">https://innotech-sys.com/contact</a>
             </p>
           </section>
 
@@ -106,7 +110,7 @@ export default function TermsPage() {
                 2.1 Permitted Use
               </h3>
               <p className={bodyClass}>
-                You may access and use the Site for lawful purposes related to evaluating, researching, or inquiring about InnoTech Systems&apos; products and services. You agree not to:
+                You may access and use the Site for lawful purposes related to evaluating, researching, or inquiring about InnoTech Systems&apos; products and services. You agree <strong>not</strong> to:
               </p>
               <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
                 <li>Use the Site in any way that violates applicable local, national, or international laws or regulations</li>
@@ -122,7 +126,7 @@ export default function TermsPage() {
                 2.2 Account Access
               </h3>
               <p className={bodyClass}>
-                Certain areas of the Site (such as the documentation portal) may require registration or login credentials. You are responsible for maintaining the confidentiality of your credentials and for all activity that occurs under your account. Notify us immediately at{" "}
+                Certain areas of the Site <strong>[CONFIRM: such as a documentation portal — retain only if this exists or is planned]</strong> may require registration or login credentials. You are responsible for maintaining the confidentiality of your credentials and for all activity that occurs under your account. Notify us immediately at{" "}
                 <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a>{" "}
                 if you suspect unauthorised access.
               </p>
@@ -156,7 +160,7 @@ export default function TermsPage() {
                 3.3 Limited Licence
               </h3>
               <p className={bodyClass}>
-                We grant you a limited, non-exclusive, non-transferable, revocable licence to access and use the Site solely for the purpose of evaluating or engaging with InnoTech Systems&apos; products and services. This licence does not include the right to:
+                We grant you a limited, non-exclusive, non-transferable, revocable licence to access and use the Site solely for the purpose of evaluating or engaging with InnoTech Systems&apos; products and services. This licence does <strong>not</strong> include the right to:
               </p>
               <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
                 <li>Modify, adapt, or create derivative works from Site content</li>
@@ -172,28 +176,54 @@ export default function TermsPage() {
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
               4. Personal Data and Privacy
             </h2>
+            <p className={bodyClass}>
+              Our{" "}
+              <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                Privacy Policy
+              </Link>{" "}
+              governs how we handle personal data and is incorporated into these Terms by reference. The summary below is provided for convenience; if there is any conflict, the Privacy Policy controls.
+            </p>
             <div className={subsectionBlockClass}>
               <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
                 4.1 Data We Collect
               </h3>
               <p className={bodyClass}>
-                When you interact with the Site, we may collect the categories of data described in our{" "}
-                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Privacy Policy</Link>, including in summary:
+                When you interact with the Site, we may collect the categories of data described in our Privacy Policy, including in summary:
               </p>
               <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
-                <li><strong style={textPrimaryStyle}>Contact form</strong> — name, email, company, phone (optional), industry, area of interest, and your message, to respond to your enquiry</li>
-                <li><strong style={textPrimaryStyle}>Demo request form</strong> — name, email, company, role, product interest, and your message, to follow up on a demonstration</li>
-                <li><strong style={textPrimaryStyle}>Technical and session data when you submit a form</strong> — such as your public IP address, browser user agent, referring page, the page URL (which may include campaign parameters), and similar metadata processed by our hosting provider to operate and secure the forms</li>
-                <li><strong style={textPrimaryStyle}>Device and usage data when you browse the Site</strong> — e.g. IP address, browser type, pages visited, and time on site, including through cookies and analytics as described in our Cookie Policy</li>
+                <li><strong style={textPrimaryStyle}>Contact form</strong> — name, email, company, phone (optional), industry, area of interest, and your message, to respond to your enquiry and for related follow-up</li>
+                <li><strong style={textPrimaryStyle}>Demo and consultation request form</strong> — name, email, company, phone (optional), industry, area of interest, and your message, to schedule and follow up on a product demonstration or consultation</li>
+                <li><strong style={textPrimaryStyle}>Event intake / Automate 2026 form</strong> — name, email, company, job title (optional), organization type, role, and message/interest, to manage event participation, coordinate follow-up, and store records of your interest in our solutions</li>
+                <li><strong style={textPrimaryStyle}>Technical and session data when you submit any form</strong> (Contact, Demo, or Event Intake) — such as your public IP address (and reverse DNS where available), browser user agent, referring page, the full page URL (including any UTM or campaign parameters), language preferences, and similar metadata processed by our hosting infrastructure to operate the forms securely, prevent abuse, route enquiries internally, and support campaign attribution</li>
+                <li><strong style={textPrimaryStyle}>Device and usage data when you browse the Site</strong> — e.g. IP address, browser type, pages visited, and time on site, including through cookies and analytics as described in our{" "}
+                  <Link href="/legal/cookie-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                    Cookie Policy
+                  </Link>
+                </li>
                 <li><strong style={textPrimaryStyle}>Communications</strong> — information you provide when you email us or correspond with our team</li>
               </ul>
+              <p className={bodyClass}>
+                When you submit a form, your information (including the technical context described above) is also processed and stored in our customer relationship management (CRM) system to enable sales follow-up and pipeline management. Event-related submissions are additionally stored in our secure database for coordination and record-keeping. The specific service providers involved are identified in our Privacy Policy.
+              </p>
             </div>
             <div className={subsectionBlockClass}>
               <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
                 4.2 How We Use Your Data
               </h3>
               <p className={bodyClass}>
-                We use collected data to: respond to enquiries and service requests (including sending you an email confirmation and an internal copy to our team through our email delivery provider, as described in the Privacy Policy); improve the performance and content of the Site; detect and prevent fraud, spam, or security threats; and comply with legal obligations. We do not sell your personal data to third parties. We do not use form submissions for marketing purposes unless you have explicitly opted in.
+                We use collected data to:
+              </p>
+              <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
+                <li>Respond to enquiries, demo requests, and event interest (including sending you an email confirmation and an internal copy to our team through our email delivery provider)</li>
+                <li>Create and maintain records in our CRM system and, for event interest submissions, store data in our secure database for coordination and follow-up</li>
+                <li>Conduct sales and related follow-up regarding your enquiry or expressed interest</li>
+                <li>Improve the performance and content of the Site, including A/B testing and analytics</li>
+                <li>Detect and prevent fraud, spam, or security threats</li>
+                <li>Comply with legal obligations</li>
+              </ul>
+              <p className={bodyClass}>
+                We do <strong>not</strong> sell your personal data. Submitting a business enquiry, demo request, or event interest form may result in sales and related follow-up communications, as further described in our Privacy Policy. <strong>You can opt out of marketing communications at any time</strong> using the unsubscribe link in any marketing email or by contacting us at{" "}
+                <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a>.
               </p>
             </div>
             <div className={subsectionBlockClass}>
@@ -201,18 +231,25 @@ export default function TermsPage() {
                 4.3 Cookies
               </h3>
               <p className={bodyClass}>
-                The Site uses cookies for functionality and analytics purposes. A full breakdown of the cookies we use, their purpose, and their duration is available in our{" "}
-                <Link href="/legal/cookie-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Cookie Policy</Link>. You may manage your cookie preferences at any time via the Cookie Settings option in the Site footer.
+                The Site uses cookies and similar tracking technologies for functionality, analytics, performance measurement, and A/B testing. A full inventory of the specific cookies we use — their providers, purposes, durations, and categories — is available in our{" "}
+                <Link href="/legal/cookie-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                  Cookie Policy
+                </Link>
+                .
               </p>
+              <p className={bodyClass}>
+                In the EEA and UK, non-essential analytics and marketing cookies are placed only after you provide consent. In the United States (including California), such technologies may operate on an opt-out basis, and you can exercise choices via the <strong>&quot;Do Not Sell or Share My Personal Information&quot;</strong> link in the footer and through Global Privacy Control (GPC) signals. See our Privacy Policy for details.
+              </p>
+              <blockquote className={blockquoteClass} style={{ borderColor: "var(--it-light-blue)", color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>
+                <strong>Implementation note (remove before public launch):</strong> The consent banner and footer cookie controls must be live in code before the statements above are accurate. Do not publish this section as written until the consent management mechanism is deployed, or revise it to match the Site&apos;s actual behaviour in the interim.
+              </blockquote>
             </div>
             <div className={subsectionBlockClass}>
               <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
                 4.4 Data Retention
               </h3>
               <p className={bodyClass}>
-                Contact, demo, and related enquiry data is retained as set out in the{" "}
-                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Privacy Policy</Link>{" "}
-                (including typical retention for business correspondence). We will honour any request to delete your data where we are not legally required to retain it.
+                Contact, demo, event intake, and related enquiry data — including records stored in our CRM and database systems — is retained as set out in the Privacy Policy. We will honour any request to delete your data where we are not legally required to retain it.
               </p>
             </div>
             <div className={subsectionBlockClass}>
@@ -220,8 +257,13 @@ export default function TermsPage() {
                 4.5 Your Rights
               </h3>
               <p className={bodyClass}>
-                Depending on your location, you may have the right to: access the personal data we hold about you; request correction of inaccurate or incomplete data; request deletion of your personal data; object to or restrict certain processing activities; or request a portable copy of your data. To exercise any of these rights, contact us at{" "}
-                <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a>.
+                Depending on your location, you may have the right to access, correct, delete, or port the personal data we hold about you, to object to or restrict certain processing, and to withdraw consent where consent is the legal basis. California residents may also opt out of the &quot;sale&quot; or &quot;sharing&quot; of personal information for cross-context behavioural advertising. To exercise any of these rights, contact us at{" "}
+                <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a>{" "}
+                or use the mechanisms described in our{" "}
+                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                  Privacy Policy
+                </Link>
+                .
               </p>
             </div>
             <div className={subsectionBlockClass}>
@@ -229,8 +271,7 @@ export default function TermsPage() {
                 4.6 Data Security
               </h3>
               <p className={bodyClass}>
-                We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. In the event of a data breach that affects your personal data, we will take prompt steps to contain the breach, assess risk, and notify affected individuals and relevant regulators as required by law. For full details on how we handle personal data, refer to our{" "}
-                <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>Privacy Policy</Link>.
+                We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. This includes encryption in transit, access controls, and secure processing through our hosting provider, email delivery provider, CRM platform, and database service, as further described in the Privacy Policy. In the event of a data breach affecting your personal data, we will take prompt steps to contain the breach, assess risk, and notify affected individuals and relevant regulators as required by law.
               </p>
             </div>
           </section>
@@ -265,27 +306,67 @@ export default function TermsPage() {
                 We make reasonable efforts to ensure that information on the Site is accurate and up to date. However, we make no warranty that the Site is free of errors or that specifications, capabilities, or availability described are final. Product capabilities are subject to change. Always confirm current specifications directly with our team.
               </p>
             </div>
+            <div className={subsectionBlockClass}>
+              <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
+                5.4 CRM and Sales Follow-up
+              </h3>
+              <p className={bodyClass}>
+                Submitting an enquiry, demo request, or event interest form will create a record in our CRM system. This enables our sales and solutions teams to follow up on your interest. It does not create any binding obligation on either party.
+              </p>
+            </div>
           </section>
 
           <hr className="my-8 border-t" style={{ borderColor: "var(--it-light-border)" }} />
 
-          <section id="third-party-links-and-embedded-content">
+          <section id="export-compliance">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              6. Third-Party Links and Embedded Content
+              6. Export Compliance
             </h2>
             <p className={bodyClass}>
-              The Site may contain links to third-party websites or embed content from external sources (such as videos or maps). These third parties operate under their own terms and privacy policies. InnoTech Systems is not responsible for the content, accuracy, or practices of any third-party site. Visiting third-party links is at your own risk.
+              InnoTech Systems&apos; products and technologies — including autonomous infrastructure, charging, safety monitoring, and vehicle communication systems — may be subject to U.S. export control laws and regulations, including the Export Administration Regulations (EAR) <strong>[CONFIRM: and the International Traffic in Arms Regulations (ITAR) if any product has a defense or military nexus]</strong>. You agree that you will not access, use, export, re-export, or transfer any information, technical data, or materials obtained through the Site in violation of applicable export control or sanctions laws. You represent that you are not located in, and are not a national of, a country or region subject to comprehensive U.S. sanctions, and that you are not on any U.S. government restricted-party list.
             </p>
+          </section>
+
+          <hr className="my-8 border-t" style={{ borderColor: "var(--it-light-border)" }} />
+
+          <section id="third-party-links">
+            <h2 className={sectionTitleClass} style={textPrimaryStyle}>
+              7. Third-Party Links
+            </h2>
+            <p className={bodyClass}>
+              The Site may contain links to third-party websites or resources. These third parties operate under their own terms and privacy policies. InnoTech Systems is not responsible for the content, accuracy, or practices of any third-party site. Visiting third-party links is at your own risk.
+            </p>
+            <blockquote className={blockquoteClass} style={{ borderColor: "var(--it-light-blue)", color: "var(--it-light-text-muted)", fontFamily: "var(--font-dm-sans)" }}>
+              <strong>Note:</strong> The current Site does not embed third-party media such as videos or maps. If embedded third-party content is added later, update this section to disclose it.
+            </blockquote>
           </section>
 
           <hr className="my-8 border-t" style={{ borderColor: "var(--it-light-border)" }} />
 
           <section id="analytics-and-third-party-services">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              7. Analytics and Third-Party Services
+              8. Analytics and Third-Party Services
             </h2>
             <p className={bodyClass}>
-              We may use third-party analytics services (such as Vercel Analytics) to understand how visitors use the Site. These services may collect anonymised usage data as described in our Privacy Policy. We do not use your data for automated decision-making or profiling in a way that significantly affects your rights or interests.
+              We use third-party services to operate, analyze, and improve the Site and to manage customer relationships. These include:
+            </p>
+            <ul className={`${bodyClass} list-disc pl-6 space-y-1`} style={{ color: "var(--it-light-text-muted)" }}>
+              <li><strong>Google Tag Manager</strong> (which may load Google Analytics (GA4), the Meta Pixel, and the LinkedIn Insight Tag) for analytics and marketing measurement</li>
+              <li><strong>HubSpot</strong> for customer relationship management (CRM), lead tracking, sales pipeline management, and website visitor analytics/tracking</li>
+              <li><strong>Vercel Analytics</strong> for anonymous, aggregate pageview and performance metrics</li>
+              <li><strong>Supabase</strong> for secure storage of event interest and registration data</li>
+              <li><strong>Resend</strong> for delivery of transactional and notification email</li>
+            </ul>
+            <p className={bodyClass}>
+              These services may collect usage data, device information, and (in the case of HubSpot and marketing pixels) browsing behaviour, as described in our{" "}
+              <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/legal/cookie-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                Cookie Policy
+              </Link>
+              . We do not use your data for automated decision-making or profiling that produces legal or similarly significant effects on you.
             </p>
           </section>
 
@@ -293,11 +374,11 @@ export default function TermsPage() {
 
           <section id="disclaimers">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              8. Disclaimers
+              9. Disclaimers
             </h2>
             <div className={subsectionBlockClass}>
               <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
-                8.1 No Warranties
+                9.1 No Warranties
               </h3>
               <p className={bodyClass}>
                 The Site and all content on it are provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or implied. To the fullest extent permitted by law, InnoTech Systems disclaims all implied warranties, including but not limited to merchantability, fitness for a particular purpose, and non-infringement.
@@ -305,7 +386,7 @@ export default function TermsPage() {
             </div>
             <div className={subsectionBlockClass}>
               <h3 className={subsectionTitleClass} style={textPrimaryDmStyle}>
-                8.2 Availability
+                9.2 Availability
               </h3>
               <p className={bodyClass}>
                 We do not guarantee that the Site will be available at all times or that access will be uninterrupted or error-free. We reserve the right to suspend, withdraw, or modify the Site at any time without notice.
@@ -317,7 +398,7 @@ export default function TermsPage() {
 
           <section id="limitation-of-liability">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              9. Limitation of Liability
+              10. Limitation of Liability
             </h2>
             <p className={bodyClass}>
               To the fullest extent permitted by applicable law, InnoTech Systems shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of, or inability to use, the Site — including but not limited to loss of data, loss of revenue, or loss of business opportunity — even if InnoTech Systems has been advised of the possibility of such damages.
@@ -334,7 +415,7 @@ export default function TermsPage() {
 
           <section id="indemnification">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              10. Indemnification
+              11. Indemnification
             </h2>
             <p className={bodyClass}>
               You agree to defend, indemnify, and hold harmless InnoTech Systems and its officers, directors, employees, and agents from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising out of or related to your use of the Site or your violation of these Terms.
@@ -345,7 +426,7 @@ export default function TermsPage() {
 
           <section id="governing-law-and-jurisdiction">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              11. Governing Law and Jurisdiction
+              12. Governing Law and Jurisdiction
             </h2>
             <p className={bodyClass}>
               These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the state and federal courts located in Los Angeles County, California.
@@ -356,7 +437,7 @@ export default function TermsPage() {
 
           <section id="changes-to-these-terms">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              12. Changes to These Terms
+              13. Changes to These Terms
             </h2>
             <p className={bodyClass}>
               We reserve the right to update or modify these Terms at any time. When we make material changes, we will update the &quot;Last Updated&quot; date at the top of this page. Your continued use of the Site after any such changes constitutes your acceptance of the updated Terms. We recommend reviewing this page periodically.
@@ -367,7 +448,7 @@ export default function TermsPage() {
 
           <section id="severability">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              13. Severability
+              14. Severability
             </h2>
             <p className={bodyClass}>
               If any provision of these Terms is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, that provision will be modified to the minimum extent necessary, and the remaining provisions will continue in full force and effect.
@@ -378,10 +459,18 @@ export default function TermsPage() {
 
           <section id="entire-agreement">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              14. Entire Agreement
+              15. Entire Agreement
             </h2>
             <p className={bodyClass}>
-              These Terms, together with our Privacy Policy and Cookie Policy, constitute the entire agreement between you and InnoTech Systems with respect to your use of the Site and supersede all prior agreements, representations, and understandings.
+              These Terms, together with our{" "}
+              <Link href="/legal/privacy-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/legal/cookie-policy" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>
+                Cookie Policy
+              </Link>
+              , constitute the entire agreement between you and InnoTech Systems with respect to your use of the Site and supersede all prior agreements, representations, and understandings.
             </p>
           </section>
 
@@ -389,7 +478,7 @@ export default function TermsPage() {
 
           <section id="contact-us">
             <h2 className={sectionTitleClass} style={textPrimaryStyle}>
-              15. Contact Us
+              16. Contact Us
             </h2>
             <p className={bodyClass}>
               For questions, concerns, or requests relating to these Terms, please contact:
@@ -401,16 +490,14 @@ export default function TermsPage() {
               United States
             </p>
             <p className={bodyClass}>
-              <strong style={textPrimaryStyle}>Email:</strong>{" "}
+              <strong>Email:</strong>{" "}
               <a href="mailto:info@innotech-sys.com" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>info@innotech-sys.com</a><br />
-              <strong style={textPrimaryStyle}>Web:</strong>{" "}
-              <Link href="/contact" className={anchorClass} style={{ color: "var(--it-light-blue)" }}>https://innotech-sys.com/contact</Link>
+              <strong>Web:</strong>{" "}
+              <a href="https://innotech-sys.com/contact" className={anchorClass} style={{ color: "var(--it-light-blue)" }} target="_blank" rel="noopener noreferrer">https://innotech-sys.com/contact</a>
             </p>
           </section>
 
-          <hr className="my-8 border-t" style={{ borderColor: "var(--it-light-border)" }} />
-
-          <p className="text-sm" style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}>
+          <p className="text-sm mt-12 pt-8 border-t border-it-light-border" style={{ color: "var(--it-light-text-dim)", fontFamily: "var(--font-ibm-mono)" }}>
             © 2026 InnoTech Systems. All rights reserved.
           </p>
         </main>
