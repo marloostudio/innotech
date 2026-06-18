@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { PageShell } from "@/components/page-shell"
-import { Badge } from "@/components/ui/badge"
 import {
   ImagePlaceholder,
   type ImagePlaceholderAspectRatio,
@@ -83,9 +82,9 @@ export function PillarHero({
   const heroContent = (
     <>
       {badge && (
-        <Badge variant="outline" className="mb-2 border-[var(--it-border)] text-[var(--it-text-secondary)]">
+        <span className="inline-flex w-fit items-center rounded-full px-3 py-1 it-ribbon-badge font-medium bg-it-blue-subtle text-it-blue">
           {badge}
-        </Badge>
+        </span>
       )}
       <h1 className={compact ? "text-3xl md:text-4xl font-bold tracking-tight text-balance" : "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"}>
         {h1}
