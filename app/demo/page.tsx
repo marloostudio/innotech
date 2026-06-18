@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: "Request a Demo — See InnoTech in Action",
+  title: "Request a Demo — See InnoTech in action",
   description: "Schedule a personalized demo of InnoTech's autonomous infrastructure solutions.",
 }
 
@@ -45,7 +45,9 @@ export default async function DemoPage({
                 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 text-balance"
                 style={{ fontFamily: "var(--font-chakra)" }}
               >
-                See InnoTech in Action
+                See InnoTech
+                <br />
+                <span className="text-it-blue">in action</span>
               </h1>
               <p
                 className="text-lg md:text-xl text-pretty mb-8 max-w-[680px]"
