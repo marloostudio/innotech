@@ -80,9 +80,18 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
     name: "Certified Safety",
     description: "Functional and AI Safety certified, including",
     bullets: [
-      "ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d)",
-      "ISO\u00A061508 (SIL\u00A03)",
-      "ISO\u00A022440",
+      {
+        text: "ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d)",
+        href: "https://www.iso.org/standard/73481.html",
+      },
+      {
+        text: "ISO\u00A061508 (SIL\u00A03)",
+        href: "https://webstore.ansi.org/standards/iec/iec61508ed2010",
+      },
+      {
+        text: "ISO\u00A022440",
+        href: "https://www.iso.org/standard/89535.html",
+      },
     ],
     icon: "badge-check",
   },

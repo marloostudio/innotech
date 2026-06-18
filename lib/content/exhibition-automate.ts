@@ -22,8 +22,8 @@ export const automateEvent = {
     titleLines: ["See intelligent infrastructure", "for autonomous fleets live"],
   },
   orchestrationImage: {
-    src: "/images/events/automate-2026/autoduck-orchestration-preview.jpg",
-    alt: "Isometric illustration of a smart factory with robotic arms, conveyor belts, and human workers coordinated through AutoDuck fleet orchestration",
+    src: "/images/events/automate-2026/innotech-isometric-illustration.png",
+    alt: "InnoTech isometric illustration of autonomous robotics and fleet systems",
   },
   /** Map Your Show — opens selected booth in a new browser tab */
   boothMapCta: {

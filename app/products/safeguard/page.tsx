@@ -149,7 +149,14 @@ export default function SafeGuardPage() {
 
                               return (
                                 <Item key={bulletText} className={itemClassName}>
-                                  {label ? (
+                                  {bulletHref ? (
+                                    <a
+                                      href={bulletHref}
+                                      className="font-semibold text-it-light-blue hover:text-it-light-blue-hover underline underline-offset-2 transition-colors duration-150"
+                                    >
+                                      {bulletText}
+                                    </a>
+                                  ) : label ? (
                                     <>
                                       <span className="font-semibold text-it-light-text-primary">
                                         {label}
@@ -161,24 +168,6 @@ export default function SafeGuardPage() {
                                       {bulletText}
                                     </span>
                                   )}
-                                  {bulletHref ? (
-                                    <>
-                                      {" "}
-                                      <a
-                                        href={bulletHref}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex align-middle text-it-light-blue hover:text-it-light-blue-hover transition-colors duration-150"
-                                        aria-label={`Open ${bulletText} in a new window`}
-                                      >
-                                        <LucideIcons.ExternalLink
-                                          className="w-3.5 h-3.5"
-                                          strokeWidth={1.5}
-                                          aria-hidden
-                                        />
-                                      </a>
-                                    </>
-                                  ) : null}
                                 </Item>
                               )
                             })}
@@ -197,14 +186,17 @@ export default function SafeGuardPage() {
       {/* Industries Using SafeGuard → dark gradient + right background image */}
       <section className="it-section-safeguard-industries py-20 lg:py-28">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <div className="absolute inset-y-0 right-0 hidden w-[62%] lg:block lg:w-[54%]">
-            <Image
-              src={safeguardImages.featuresBackground}
-              alt=""
-              fill
-              unoptimized
-              className="object-contain object-right"
-            />
+          {/* Keep the illustration aligned to page content — not the viewport edge — on ultra-wide screens */}
+          <div className="absolute inset-y-0 left-1/2 hidden h-full w-full max-w-screen-2xl -translate-x-1/2 px-8 box-border lg:block">
+            <div className="absolute inset-y-0 right-0 w-[62%] lg:w-[58%] translate-x-4 lg:translate-x-6">
+              <Image
+                src={safeguardImages.featuresBackground}
+                alt=""
+                fill
+                unoptimized
+                className="object-contain object-right origin-right scale-[1.12]"
+              />
+            </div>
           </div>
           <div
             className="absolute inset-0 hidden lg:block"
