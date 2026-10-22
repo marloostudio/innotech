@@ -23,6 +23,7 @@ export default function SafeGuardPage() {
   const getIcon = (iconName: string) => {
     const iconMap: Record<string, LucideIcons.LucideIcon> = {
       'badge-check': LucideIcons.BadgeCheck,
+      shield: LucideIcons.Shield,
       handshake: LucideIcons.Handshake,
       zap: LucideIcons.Zap,
       rocket: LucideIcons.Rocket,
@@ -174,6 +175,11 @@ export default function SafeGuardPage() {
                           </Wrapper>
                         )
                       })() : null}
+                      {card.note ? (
+                        <p className="text-[15px] font-medium text-it-light-text-primary text-pretty leading-relaxed w-full">
+                          {card.note}
+                        </p>
+                      ) : null}
                     </div>
                   </CardHeader>
                 </Card>

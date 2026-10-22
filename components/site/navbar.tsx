@@ -7,7 +7,6 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { Menu, X, Mail, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { productsMegaColumns } from "@/lib/nav-mega"
-import { AutomateEventTopBar } from "@/components/events/automate-event-top-bar"
 import { SiteLogo } from "@/components/site/site-logo"
 
 // ── Colour tokens ─────────────────────────────────────────
@@ -46,7 +45,6 @@ export function Navbar() {
   return (
     <>
       <div className="sticky top-0 z-50 w-full">
-        <AutomateEventTopBar />
         <motion.header
           className="w-full"
         initial={false}

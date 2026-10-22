@@ -152,7 +152,7 @@ export const faqItems = [
   },
   {
     question: "How do you ensure safety in human-robot collaboration?",
-    answer: "Safety is our top priority. Our systems meet international safety standards (ISO 10218, ISO/TS 15066) and include multiple layers of protection: advanced sensor arrays, real-time motion monitoring, emergency stop protocols, and configurable safety zones. All deployments include thorough safety assessments."
+    answer: "Safety is our top priority. Our systems are designed to meet international safety standards (ISO 10218, ISO/TS 15066) and include multiple layers of protection: advanced sensor arrays, real-time motion monitoring, emergency stop protocols, and configurable safety zones. Official third-party safety certification is currently in progress; our products are not yet safety certified. All deployments include thorough safety assessments."
   },
   {
     question: "What is the expected ROI?",

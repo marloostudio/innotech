@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 
-import { EventAnnouncementRow } from "@/components/sections/exhibition-teaser"
 import { HeroV2 } from "@/components/sections/hero-v2"
 import { HeroCanvas } from "@/components/sections/hero-canvas"
 import { IndustryGrid } from "@/components/sections/industry-grid"
@@ -37,7 +36,6 @@ export default function HomePage() {
         secondaryCta={{ label: "Explore Solutions", href: "/products" }}
         background={<HeroCanvas />}
       />
-      <EventAnnouncementRow />
       <section className="flex w-full flex-1 flex-col bg-it-light-bg">
         <div className="w-full max-w-screen-2xl mx-auto px-8 py-12 lg:py-20">
           <SectionHeader

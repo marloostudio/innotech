@@ -68,6 +68,7 @@ export interface SafeguardBrochureCard {
   id: string
   name: string
   description?: string
+  note?: string
   bullets?: SafeguardBrochureBullet[]
   /** When false, bullet lines render without list markers (default: true). */
   bulletsAsList?: boolean
@@ -76,9 +77,10 @@ export interface SafeguardBrochureCard {
 
 export const safeguardBrochureCards: SafeguardBrochureCard[] = [
   {
-    id: "certified-safety",
-    name: "Certified Safety",
-    description: "Functional and AI Safety certified, including",
+    id: "functional-safety-architecture",
+    name: "Functional Safety Architecture",
+    description: "Designed to meet functional and AI safety certifications, including",
+    note: "Official third-party certification currently in progress. SafeGuard is not yet safety certified.",
     bullets: [
       {
         text: "ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d)",
@@ -93,7 +95,7 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
         href: "https://www.iso.org/standard/89535.html",
       },
     ],
-    icon: "badge-check",
+    icon: "shield",
   },
   {
     id: "collaboration-ready",
@@ -166,7 +168,7 @@ export const safeguardApplicationsSection = {
       outcome:
         "SafeGuard replaces rigid fences with dynamic safety zones that shrink, expand, and yield in real time — so cobots keep moving when it's safe.",
       highlights: [
-        "ISO 13849-1 Cat 3 / PL d certified safety layer",
+        "Safety architecture designed for ISO 13849-1 Cat 3 / PL d; third-party certification in progress",
         "Human-robot collaboration without physical cages",
         "Pilot program: 4 weeks on your floor, $0 install",
       ],
