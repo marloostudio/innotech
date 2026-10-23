@@ -310,6 +310,6 @@ Use these instead of raw hex in class names. For inline styles, use `var(--it-*)
 |------|--------|
 | `app/globals.css` | All design tokens, utility classes, base typography, hero gradients, section/card system |
 | `app/layout.tsx` | Font loading (DM Sans, IBM Plex Mono, Inter) and CSS variable names |
-| `.cursorrules` / `.cursor/rules/design-and-naming.mdc` | Design and naming rules (dark only, fonts, no raw hex, cards, CTAs, product names) |
+| `docs/legacy-cursor/cursorrules.md` / `docs/legacy-cursor/rules/design-and-naming.mdc` | Design and naming rules (dark only, fonts, no raw hex, cards, CTAs, product names) |
 
 For the definitive list of token names and hex values, always refer to **`app/globals.css`**.

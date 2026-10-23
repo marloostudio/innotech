@@ -59,7 +59,7 @@ Generated: 2025-02-25 | Project: InnoTech Systems | Source of truth for current 
 - These are mapped in `@theme inline` as `--color-it-*` for Tailwind utilities (e.g. `bg-it-surface`, `text-it-text-primary`).
 
 ### Cursor rules
-- **Present**: `.cursorrules` (project root), `.cursor/rules/design-and-naming.mdc` — design theme (dark, fonts, colours, icons, motion, naming conventions).
+- **Present**: `docs/legacy-cursor/cursorrules.md` (project root), `docs/legacy-cursor/rules/design-and-naming.mdc` — design theme (dark, fonts, colours, icons, motion, naming conventions).
 
 ---
 
@@ -67,8 +67,8 @@ Generated: 2025-02-25 | Project: InnoTech Systems | Source of truth for current 
 
 ```
 Innotech/
-├── .cursor/rules/design-and-naming.mdc
-├── .cursorrules
+├── docs/legacy-cursor/rules/design-and-naming.mdc
+├── docs/legacy-cursor/cursorrules.md
 ├── .eslintrc.json
 ├── CHANGELOG.md
 ├── COMPONENTS_GUIDE.md
@@ -374,7 +374,7 @@ All planned areas have corresponding routes:
 | Charge Depot | Overnight Charge Facility |
 | Robotic Monitoring System (product name) | predictive monitoring |
 
-Naming conventions are enforced via `.cursorrules` and `.cursor/rules/design-and-naming.mdc`.
+Naming conventions are enforced via `docs/legacy-cursor/cursorrules.md` and `docs/legacy-cursor/rules/design-and-naming.mdc`.
 
 ---
 

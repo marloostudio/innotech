@@ -33,6 +33,11 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 ## Site Structure & Pages
 
+### Current safety and event status
+
+- The home FAQ says products are designed to meet the cited safety standards and are not yet safety certified. Official third-party certification is in progress. SafeGuard's “Functional Safety Architecture” card carries the same status; see `lib/content/home.ts` and `lib/content/safeguard.ts` for approved copy.
+- Automate 2026 promotion is no longer shown on the home page or in the sitewide navbar. The historical `/events/automate-2026` page remains available.
+
 ### Main routes
 
 - **/** – Home: HeroV2 + HeroCanvas (particle/robot background), trust marquee (“Trusted by innovative companies worldwide”), Comprehensive Automation Solutions (image-left, no icons), industries, tech, testimonial, stats, FAQ, CTA. No hero image placeholder; hero height 60vh.
@@ -94,7 +99,7 @@ Feature list and high-level track record of changes. For versioned, detailed cha
 
 - **Light / dark** – CSS variables in `globals.css`; `ThemeProvider` in root layout (system/light/dark).
 - **Toasts** – Sonner `Toaster` in root layout; `toast()` from `sonner`.
-- **Design rules** – `.cursor/rules/design-and-naming.mdc` (dark theme, fonts, motion, naming).
+- **Design rules** – `docs/legacy-cursor/rules/design-and-naming.mdc` (dark theme, fonts, motion, naming).
 
 ---
 

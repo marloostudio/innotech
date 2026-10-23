@@ -1,6 +1,14 @@
 # Website updates — owner overview
 
-Short notes for **site owner / marketing** (not a technical changelog). Dates match when changes were **implemented and deployed** (release history). Assumes the latest build is live.
+Short notes for **site owner / marketing** (not a technical changelog). Each entry states its release status when known; a repository update does not by itself confirm a production deployment.
+
+## October 21, 2026 — repository update
+
+- **Safety wording —** The home FAQ and SafeGuard page now say the products are designed to meet the listed standards. They state that official third-party certification is in progress and the products are not yet safety certified. The SafeGuard card is titled **Functional Safety Architecture**.
+- **Automate 2026 —** Removed the home page announcement and sitewide event banner. The event page remains available as an archive.
+- **Release status —** These changes were pushed to the repository in commit `71ec740`; production deployment has not been verified here.
+
+Earlier entries below record the messaging and promotions that existed at the time. They do not describe the current home page.
 
 ---
 

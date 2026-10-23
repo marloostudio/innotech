@@ -12,19 +12,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Current site update — 2026-10-21
+
+- **Safety certification status** (`lib/content/home.ts`, `lib/content/safeguard.ts`, `app/products/safeguard/page.tsx`) – Home FAQ and SafeGuard card now say the products are designed to meet the cited standards and that official third-party certification is in progress; the products are not yet safety certified. The SafeGuard card is now “Functional Safety Architecture,” and an application highlight no longer claims certification.
+- **Automate 2026 promotion** (`app/page.tsx`, `components/site/navbar.tsx`) – Removed the home announcement row and sitewide event top bar after the event. `/events/automate-2026` remains available.
+
+The entries below record earlier changes and may describe promotions that have since been removed.
+
 ### Added
 
 - **Home Automate 2026 announcement row** (`components/sections/exhibition-teaser.tsx`, `app/page.tsx`, `app/globals.css`) – Promo strip under the hero with event dates, booth, shimmer/glow styling, and a “See event details” button linking to `/events/automate-2026`.
 - **SEO structured data utilities** (`lib/seo/`) – `JsonLdScript`, `buildBreadcrumbListJsonLd`, `buildSiteGraphDocument` (Organization + WebSite), `buildAutomateEventJsonLd`, and `buildPageMetadata` (canonical, Open Graph, Twitter).
 - **Light-surface CTA button variant** (`components/ui/button.tsx`, `app/globals.css`) – `lightCta` variant and `.contact-form-light` overrides for readable primary buttons on white form cards.
 - **Automate 2026 isometric hero illustration** (`public/images/events/automate-2026/innotech-isometric-illustration.png`, `lib/content/exhibition-automate.ts`) – Event hero uses the shared InnoTech isometric illustration (replacing the smart-factory orchestration preview).
-
-### Changed
+- **Legal page layout constants** (`components/legal/legal-layout.ts`) – Shared wrapper and main-column classes for Terms, Privacy Policy, and Cookie Policy; main content capped at 680px.
 - **Footer top border token** (`app/globals.css`) – `--it-border-bright` separator above the site footer (`app/layout.tsx`).
 - **Product hero components** (`components/products/autoduck-hero.tsx`, `components/products/radar-link-hero.tsx`, `components/products/safeguard-hero.tsx`) – Dedicated above-the-fold heroes for AutoDuck, RADARLink, and SafeGuard product hubs.
 - **SafeGuard applications module** (`components/products/safeguard-applications.tsx`, `lib/content/safeguard.ts`) – Industry content model, demo deep-link builder, and interactive component (product page uses static industries grid).
 - **Hero scroll indicator** (`components/sections/hero-scroll-indicator.tsx`, `components/sections/hero-v2.tsx`) – Reusable scroll cue wired on home and product heroes.
-- **Automate 2026 hero component** (`components/events/automate-2026-hero.tsx`) – Extracted event hero with booth, dates, and product links for `/events/automate-2026`.
+- **Automate 2026 hero component** (`components/events/automate-2026-hero.tsx`) – Client-side event hero with staggered page-load motion, product links, and isometric illustration for `/events/automate-2026`.
 - **Automate 2026 event top bar** (`components/events/automate-event-top-bar.tsx`) – Persistent event promo bar for booth and dates.
 - **HubSpot CRM integration** (`lib/hubspot/`, `app/api/hubspot/health/route.ts`) – Contact, demo, and Automate intake submissions sync to HubSpot with configurable property mapping and a health-check endpoint; `.env.example` documents required keys.
 - **HubSpot analytics** (`components/analytics/hubspot-tracking.tsx`, `app/layout.tsx`) – HubSpot tracking script on marketing pages when configured.
@@ -32,7 +38,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- **Automate 2026 event page** (`app/events/automate-2026/page.tsx`, `lib/content/exhibition-automate.ts`) – Simplified to hero plus light intake section; updated to McCormick Place, Chicago, June 22–25 2026, booth #12053; product links in hero subtitle (SafeGuard → RADARLink → AutoDuck); “Session details” renamed to “Booth map”; exhibition info card beside the form; `BreadcrumbStrip` and Event JSON-LD for crawlers; hero logic moved into `Automate2026Hero`.
+- **Legal pages (June 2026 refresh)** (`app/legal/privacy-policy/page.tsx`, `app/legal/terms/page.tsx`, `app/legal/cookie-policy/page.tsx`) – Privacy Policy expanded to 16 sections (scope, HubSpot/Supabase, event intake, email/CASL, export compliance); Terms to 16 sections; Cookie Policy adds full cookie inventory table and regional consent language; Last Updated June 17, 2026.
+- **Automate 2026 event page** (`app/events/automate-2026/page.tsx`, `components/events/automate-2026-hero.tsx`, `lib/content/exhibition-automate.ts`) – Hero uses isometric illustration without bordered image wrapper; logo strip divider removed; page-load reveal on hero copy.
 - **Automate intake form** (`components/events/automate-intake-form.tsx`, `app/actions/automate-intake.ts`, `lib/email/automate-intake-notifications.ts`) – Job title, organization type, and role are optional; team notification emails use the same transactional layout as Contact/Demo, include full marketing/technical visitor context (IP, geo, referrer, user-agent), require `RESEND_API_KEY`, and fail in production if the inquiry inbox cannot be reached.
 - **Contact form selects** (`components/contact/contact-form.tsx`, `app/globals.css`) – Industry and Area of Interest use native `<select>` elements with `.contact-form-light` styling instead of Radix Select, avoiding page shift when opening a dropdown.
 - **Company page** (`app/company/page.tsx`) – Our Story copy and Executive Leadership merged into one light section with a side-by-side layout on desktop (story left, Fred Daneshgaran card right).
@@ -42,14 +49,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Root layout and key page metadata** (`app/layout.tsx`, `app/page.tsx`, `app/events/automate-2026/page.tsx`) – Organization/WebSite JSON-LD site-wide; default OG/Twitter image; dedicated home and Automate metadata with canonical URLs.
 - **Robots and sitemap** (`app/robots.ts`, `app/sitemap.ts`, `lib/site-access.ts`) – Allow list synced with public marketing paths (Automate, FAQ, legal policies); 301 redirect routes excluded from sitemap.
 - **Contact page** (`app/contact/page.tsx`) – Two-column hero: copy and “Prefer to talk?” email card left, compact form right on `--it-hero-gradient`.
-- **Demo page** (`app/demo/page.tsx`) – Merged hero and form into one two-column section; left-aligned intro; “Prefer to talk?” callout matches Contact; URL query params (`industry`, `interest`, `message`) pre-fill the request form.
+- **Demo page** (`app/demo/page.tsx`) – Merged hero and form into one two-column section; two-tone H1 (“See InnoTech” / “in action”); left-aligned intro; “Prefer to talk?” callout matches Contact; URL query params (`industry`, `interest`, `message`) pre-fill the request form.
 - **Company page hero** (`app/company/page.tsx`) – Compact left-aligned `PillarHero`; tighter section padding and body typography.
-- **PillarHero** (`components/sections/pillar-hero.tsx`) – Left-aligned compact heroes center on mobile and left-align from `lg`.
+- **PillarHero** (`components/sections/pillar-hero.tsx`) – Badge uses standard `it-ribbon-badge` blue pill styling (replacing outline Badge); left-aligned compact heroes center on mobile and left-align from `lg`.
 - **Contact and demo forms** (`components/contact/contact-form.tsx`, `components/demo/demo-request-form.tsx`) – Tighter field spacing, shorter message textarea, two-column rows on the demo form.
-- **Legal pages** (`app/legal/terms/page.tsx`, `app/legal/privacy-policy/page.tsx`, `app/legal/cookie-policy/page.tsx`) – Expanded Privacy Policy, Terms, and Cookie Policy with form metadata collection, service-provider tables, GDPR/CCPA rights, retention schedules, and international transfer language; shared `legal-layout` constants for breadcrumb and content width.
 - **Footer** (`components/site/footer.tsx`) – Increased vertical padding; Marloo credit link hover turns white on hover; version label is plain text (no `/changelog` link); Changelog removed from the legal link row.
 - **Products page** (`app/products/page.tsx`) – “Explore” buttons use `lightCta` foreground token for readability on light blue cards.
-- **SafeGuard product page** (`app/products/safeguard/page.tsx`, `lib/content/safeguard.ts`) – Redesigned with new hero, static-vs-dynamic safety narrative, features grid with zoning illustration, and industries applications grid.
+- **SafeGuard product page** (`app/products/safeguard/page.tsx`, `lib/content/safeguard.ts`) – Redesigned with new hero, static-vs-dynamic safety narrative, features grid with zoning illustration, industries applications grid, and in-page links for ISO 13849-1, ISO 61508, and ISO 22440 certification references; industries-section background image aligned to `max-w-screen-2xl`, scaled up, and offset slightly right on desktop.
 - **AutoDuck and RADARLink product pages** (`app/products/autoduck/page.tsx`, `app/products/radar-link/page.tsx`) – Wired to dedicated product hero components.
 - **Home and thank-you pages** (`app/page.tsx`, `app/thank-you/page.tsx`) – Layout and section refinements aligned with updated heroes and solutions cards.
 - **Section backgrounds and heroes** (`components/sections/section-parallax-background.tsx`, `components/sections/hero-v2.tsx`, `components/sections/home-solutions-cards.tsx`) – Visual and motion polish for home and pillar sections.
@@ -64,9 +70,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Form inquiry emails (Automate 2026)** (`app/actions/automate-intake.ts`, `lib/email/automate-intake-notifications.ts`) – Submissions now capture page URL and referrer, attach server-side visitor metadata to the team copy, and route alerts to `LEADS_NOTIFY_EMAIL` with the same reliability as Contact and Demo.
 - **Legal page content width** – Terms, Privacy Policy, and Cookie Policy share the same 680px main column.
 - **Footer Marloo link hover** (`components/site/footer.tsx`) – Removed inline `color: inherit` that blocked the white hover state.
-- **PillarHero** (`components/sections/pillar-hero.tsx`) – Minor alignment and spacing fix on compact heroes.
 - **Demo page layout** (`app/demo/page.tsx`) – Hero and form column spacing adjustments.
 - **Footer legal links** (`lib/site-access.ts`) – Privacy Policy, Terms of Service, and Cookie Policy open without the site-gate preview redirect.
+- **SafeGuard industries background image** (`app/products/safeguard/page.tsx`) – On ultra-wide viewports, the hardware illustration stays aligned to the page content column instead of drifting to the viewport edge or rendering too small.
 
 ### Removed
 
@@ -76,6 +82,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Changelog page and UI** (`app/changelog/page.tsx`, `components/changelog-accordion.tsx`, `components/changelog-layout.tsx`, `components/changelog-sidebar.tsx`, `lib/changelog.ts`) – Public `/changelog` release history removed; `CHANGELOG.md` remains the source of truth in the repo.
 - **Home solutions A/B test** (`lib/ab-testing/*`, `components/sections/home-solutions-ab.tsx`, `components/sections/home-solutions-variant-a.tsx`, `components/sections/home-solutions-variant-b.tsx`, `components/analytics/ab-exposure.tsx`) – Variant assignment cookie and GTM exposure events removed from middleware and home page.
 - **Legacy SafeGuard hero asset** (`public/images/products/safeguard/safeguard-hardware-hero.png`) – Replaced by updated hardware unit and hero imagery.
+- **Automate 2026 orchestration preview image** – Event hero no longer uses the smart-factory orchestration preview asset (replaced by isometric illustration).
 
 ## [1.5] – 2026-03-19 03:02 UTC
 
@@ -293,7 +300,7 @@ Improved layout consistency across key pages, refined section styling for a smoo
 
 ### Changed
 
-- **Product naming and copy** – SafeGuard: tagline updated to “Safety and Hazard Detection”; submenu features set to Hazard Detection, Dynamic Zoning, Asset and Human Monitoring, Real-Time Alerting. AutoLock renamed to **AutoDuck** across nav, product content, and site copy; tagline “Autonomous charging & fleet control” → “Autonomous Charging and Fleet Management”; CTA “View AutoDuck”. **Radar Link** renamed to **RADARLink** site-wide (nav, product pages, whitepapers, legal, case studies, industries/solutions content; slugs and URLs unchanged). RADARLink tagline/descriptions: “V2X, localization and drone tracking” → “V2X, Microlocalization and Drone Tracking”, then “Micro-localization” / “Microlocalization” replaced with **Cm-level Localization and Tracking** (product dropdown, solutions link, RADARLink content, case studies, our story, industries). “Drone Tracking & ID” → “Drone Tracking” in Product and Solutions menus. “Real-Time Analytics” → “Real-Time Asset Tracking” for RADARLink feature name (slug `real-time-analytics` retained). Design rules (`.cursorrules`, `.cursor/rules/design-and-naming.mdc`) updated to reflect AutoDuck, RADARLink, and Cm-level Localization and Tracking.
+- **Product naming and copy** – SafeGuard: tagline updated to “Safety and Hazard Detection”; submenu features set to Hazard Detection, Dynamic Zoning, Asset and Human Monitoring, Real-Time Alerting. AutoLock renamed to **AutoDuck** across nav, product content, and site copy; tagline “Autonomous charging & fleet control” → “Autonomous Charging and Fleet Management”; CTA “View AutoDuck”. **Radar Link** renamed to **RADARLink** site-wide (nav, product pages, whitepapers, legal, case studies, industries/solutions content; slugs and URLs unchanged). RADARLink tagline/descriptions: “V2X, localization and drone tracking” → “V2X, Microlocalization and Drone Tracking”, then “Micro-localization” / “Microlocalization” replaced with **Cm-level Localization and Tracking** (product dropdown, solutions link, RADARLink content, case studies, our story, industries). “Drone Tracking & ID” → “Drone Tracking” in Product and Solutions menus. “Real-Time Analytics” → “Real-Time Asset Tracking” for RADARLink feature name (slug `real-time-analytics` retained). Design rules (`docs/legacy-cursor/cursorrules.md`, `docs/legacy-cursor/rules/design-and-naming.mdc`) updated to reflect AutoDuck, RADARLink, and Cm-level Localization and Tracking.
 
 ---
 

@@ -127,6 +127,9 @@ export const technologyPillars = [
 ```
 
 ### FAQ
+
+The home safety answer is in `faqItems` in `lib/content/home.ts`. Keep its certification status consistent with the SafeGuard card in `lib/content/safeguard.ts`. Current approved status: designed to meet the cited standards; official third-party certification is in progress; products are not yet safety certified. Do not change this to a certified claim without client-approved evidence.
+
 ```typescript
 export const faqItems = [
   {
@@ -158,6 +161,8 @@ export const finalCta = {
 ```
 
 ## 📦 Products
+
+The SafeGuard product page reads its “Functional Safety Architecture” card from `safeguardBrochureCards` in `lib/content/safeguard.ts`; `app/products/safeguard/page.tsx` renders the note beneath the standards list. The same content file holds the manufacturing application highlight. The Automate event archive remains at `app/events/automate-2026/page.tsx`, while `app/page.tsx` and `components/site/navbar.tsx` control the retired promotions.
 
 **File:** `/lib/content/products.ts`
 

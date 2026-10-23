@@ -74,7 +74,7 @@ The site uses a professional B2B color scheme defined in `app/globals.css`:
 - **Muted**: Backgrounds and secondary content
 
 ### Typography
-- **Headings**: Chakra Petch (H1–H4); **Body**: DM Sans; **Mono/metadata**: IBM Plex Mono (see `.cursor/rules/design-and-naming.mdc`). Home hero v2 uses system-ui per style guide.
+- **Headings**: Chakra Petch (H1–H4); **Body**: DM Sans; **Mono/metadata**: IBM Plex Mono (see `docs/legacy-cursor/rules/design-and-naming.mdc`). Home hero v2 uses system-ui per style guide.
 - **Scale**: Responsive with Tailwind; design tokens in `app/globals.css` (`@theme inline`).
 
 ### Components
@@ -120,6 +120,7 @@ All content is centralized in `/lib/content/` for easy editing:
 - **`lib/site.ts`** - Company info, contact details, social links
 - **`lib/nav.ts`** - Navigation structure for header and footer
 - **`lib/content/home.ts`** - Home page sections (hero, solutions, industries, FAQ, etc.)
+- **`lib/content/safeguard.ts`** - SafeGuard product card, certification-status note, and application copy
 - **`lib/content/products.ts`** - Product catalog with features and applications
 - **`lib/content/solutions.ts`** - Solution descriptions, benefits, capabilities
 - **`lib/content/industries.ts`** - Industry challenges and solutions
@@ -247,7 +248,7 @@ export const mainNav: NavItem[] = [
 ### Styling
 
 - Global styles and tokens: `app/globals.css` (Tailwind v4, `@theme inline`; no tailwind.config.ts)
-- Design rules: `.cursorrules`, `.cursor/rules/design-and-naming.mdc`
+- Design rules: `docs/legacy-cursor/cursorrules.md`, `docs/legacy-cursor/rules/design-and-naming.mdc`
 - Component styles: Tailwind + CSS variables (no raw hex in components)
 
 ## 🎨 Reusable Components
