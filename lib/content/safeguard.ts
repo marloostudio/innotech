@@ -80,7 +80,7 @@ export const safeguardBrochureCards: SafeguardBrochureCard[] = [
     id: "functional-safety-architecture",
     name: "Functional Safety Architecture",
     description: "Designed to meet functional and AI safety certifications, including",
-    note: "Official third-party certification currently in progress. SafeGuard is not yet safety certified.",
+    note: "Official third-party certification currently in progress.",
     bullets: [
       {
         text: "ISO\u00A013849-1 (Cat\u00A03/PL\u00A0d)",
